@@ -9,12 +9,11 @@ android {
     buildToolsVersion "29.0.0"
 
     defaultConfig {
-        applicationId "com.common.wheelproject"
         minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode 1
         versionName "1.0"
-
+        flavorDimensions "versionCode"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,6 +44,15 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "false")//正式版不打印日志
         }
     }
+    productFlavors {
+        // 正式发布
+        prod {
+            applicationId 'com.prod.wheelproject'
+            ndk {
+                abiFilters "arm64-v8a"
+            }
+        }
+    }
     //自定义输出apk名字
     applicationVariants.all {
         variant ->
@@ -60,6 +68,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 }
 
 dependencies {
