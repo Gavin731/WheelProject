@@ -18,6 +18,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
+import com.common.wheel.base.BaseActivity;
 import com.common.wheelproject.R;
 import com.common.wheelproject.test.adapter.CommonAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -40,7 +41,7 @@ import butterknife.BindView;
  * -----------------------------------------------------------------
  * 2018/12/11     zenglinggui       v1.0.0        create
  **/
-public class RefreshLayoutActivity extends com.common.base.base.BaseActivity {
+public class RefreshLayoutActivity extends BaseActivity {
 
     @BindView(R.id.srl_main)
     SmartRefreshLayout layout;

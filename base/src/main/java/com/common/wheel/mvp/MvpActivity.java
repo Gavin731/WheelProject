@@ -2,6 +2,8 @@ package com.common.wheel.mvp;
 
 import android.os.Bundle;
 
+import com.common.wheel.base.BaseActivity;
+
 
 /**
  * @author: zenglinggui
@@ -12,7 +14,7 @@ import android.os.Bundle;
  * -----------------------------------------------------------------
  * 2018/11/30     zenglinggui       v1.0.0        create
  **/
-public abstract class MvpActivity<P extends IPresenter> extends com.common.base.base.BaseActivity implements IBaseView {
+public abstract class MvpActivity<P extends IPresenter> extends BaseActivity implements IBaseView {
 
     protected P presenter;
 

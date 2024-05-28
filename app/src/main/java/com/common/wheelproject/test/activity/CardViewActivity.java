@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
+import com.common.wheel.base.BaseActivity;
 import com.common.wheelproject.R;
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -19,7 +20,7 @@ import butterknife.BindView;
  * -----------------------------------------------------------------
  * 2018/12/4     zenglinggui       v1.0.0        create
  **/
-public class CardViewActivity extends com.common.base.base.BaseActivity {
+public class CardViewActivity extends BaseActivity {
 
     @BindView(R.id.cv_shadow)
     CardView cardView;

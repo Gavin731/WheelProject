@@ -1,4 +1,4 @@
-package com.common.base.base;
+package com.common.wheel.base;
 
 import android.os.Bundle;
 
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.common.wheel.mvp.IBaseView;
+import com.common.wheel.util.ActivityManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -30,6 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         if (layoutResID != 0) {
             setContentView(layoutResID);
             mUnbinder = ButterKnife.bind(this);
+            ActivityManager.getInstance().addActivity(this);
         }
     }
 
