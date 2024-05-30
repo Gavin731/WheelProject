@@ -42,7 +42,6 @@ public class BaseApplication extends Application {
             return;
         }
         LeakCanary.install(this);
-        MultiDex.install(this);
         initSharedPreferences();
         RxJavaPlugins.setErrorHandler(throwable -> {
             throwable.printStackTrace();

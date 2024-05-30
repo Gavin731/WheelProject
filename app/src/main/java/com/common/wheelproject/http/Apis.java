@@ -1,7 +1,7 @@
-package com.common.wheel.http;
+package com.common.wheelproject.http;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.common.wheel.http.api.BaseApi;
+import com.common.wheelproject.http.api.BaseApi;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;

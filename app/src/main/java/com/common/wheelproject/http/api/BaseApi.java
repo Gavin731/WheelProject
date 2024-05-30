@@ -1,4 +1,4 @@
-package com.common.wheel.http.api;
+package com.common.wheelproject.http.api;
 
 import com.common.wheel.http.entity.ResultBean;
 
@@ -15,6 +15,6 @@ public interface BaseApi {
      *
      * @return
      */
-    @POST("custom/free/pos/basic/addDevice")
+    @POST("k/integration/notoken/bsc/v1/login")
     Observable<ResultBean> addDevice(@Body HashMap<String, String> param);
 }
