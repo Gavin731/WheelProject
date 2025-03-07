@@ -1,4 +1,4 @@
-package com.common.wheelproject.http.api;
+package com.common.wheel.http.api;
 
 import com.common.wheel.http.entity.ResultBean;
 
