@@ -84,12 +84,8 @@ dependencies {
 
     //底部tab导航
     implementation 'me.majiajie:pager-bottom-tab-strip:2.4.0'
-    //RxBindind
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     //刷新控件
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.3'
-    //网络请求
-    implementation 'com.zhouyou:rxeasyhttp:2.1.5'
     //通用adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
     //PhotoView

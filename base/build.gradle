@@ -91,4 +91,8 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     //添加HttpLoggingInterceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //RxBindind
+    api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    //网络请求
+    api 'com.zhouyou:rxeasyhttp:2.1.5'
 }
