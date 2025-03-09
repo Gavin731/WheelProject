@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.common.wheel.admanager.InterstitialAdManager;
 import com.common.wheel.mvp.MvpFragment;
 import com.common.wheelproject.R;
 import com.common.wheelproject.home.presenter.APresenter;
@@ -28,6 +29,7 @@ import butterknife.OnClick;
 public class AFragment extends MvpFragment<APresenter> implements IAView {
 
     private static final String ARG_C = "content";
+    InterstitialAdManager interstitialAdManager;
 
     public static AFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -81,5 +83,15 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     @OnClick(R.id.btn_http_layout)
     public void skipHttpActivity() {
         ActivityUtils.startActivity(HttpLayoutActivity.class);
+    }
+    @OnClick(R.id.load_ad)
+    public void Load() {
+        interstitialAdManager = new InterstitialAdManager(getActivity());
+        interstitialAdManager.loadAd(getActivity(), "947793385");
+    }
+
+    @OnClick(R.id.show_ad)
+    public void showAd(){
+        interstitialAdManager.showAd();
     }
 }

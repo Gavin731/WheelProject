@@ -2,5 +2,6 @@
 <resources>
 
     <color name="transparent_black">#6f000000</color>
+    <color name="color_ef5b9c">#ef5b9c</color>
 
 </resources>

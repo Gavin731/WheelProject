@@ -6,7 +6,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion Integer.parseInt(ANDROID_SDK_VERSION)
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
@@ -15,6 +15,7 @@ android {
         versionName "1.0"
         flavorDimensions "versionCode"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId 'com.common.wheelproject'
     }
 
     signingConfigs {
@@ -36,8 +37,8 @@ android {
         }
 
         release {
-            minifyEnabled true //开启混淆
-            shrinkResources true //移除无用资源
+            minifyEnabled false //开启混淆
+            shrinkResources false //移除无用资源
             zipAlignEnabled true //zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
@@ -68,8 +69,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
+    packagingOptions {
+        exclude 'AndroidManifest.xml' // 忽略 .aar 文件中的 AndroidManifest.xml
+    }
 }
 
 dependencies {

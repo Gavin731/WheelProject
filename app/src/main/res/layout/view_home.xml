@@ -32,4 +32,17 @@
         android:text="rxeasyhttp"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/load_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加载插屏广告"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/show_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示插屏广告"
+        android:textAllCaps="false" />
 </LinearLayout>

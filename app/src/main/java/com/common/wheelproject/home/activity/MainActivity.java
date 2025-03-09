@@ -2,6 +2,7 @@ package com.common.wheelproject.home.activity;
 
 import android.os.Bundle;
 
+import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.mvp.MvpActivity;
 import com.common.wheelproject.R;
 import com.common.wheelproject.home.adapter.TabViewPagerAdapter;
@@ -27,6 +28,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
     }
 
     @Override
