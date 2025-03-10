@@ -27,6 +27,7 @@ public class InterstitialAdManager {
     public void loadAd(Activity activity, final String codeId) {
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(codeId) // 广告代码位Id
+                .setOrientation(TTAdConstant.VERTICAL)  //设置方向
                 .setAdLoadType(TTAdLoadType.LOAD) // 本次广告用途：TTAdLoadType.LOAD实时；TTAdLoadType.PRELOAD预请求
                 .build();
 

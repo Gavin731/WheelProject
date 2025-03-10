@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InterstitialAdManager;
 import com.common.wheel.mvp.MvpFragment;
 import com.common.wheelproject.R;
@@ -84,10 +85,14 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     public void skipHttpActivity() {
         ActivityUtils.startActivity(HttpLayoutActivity.class);
     }
+    @OnClick(R.id.init_ad)
+    public void initSdk() {
+        AdvertisementManager.getInstance().init(getActivity());
+    }
     @OnClick(R.id.load_ad)
     public void Load() {
         interstitialAdManager = new InterstitialAdManager(getActivity());
-        interstitialAdManager.loadAd(getActivity(), "947793385");
+        interstitialAdManager.loadAd(getActivity(), "102935580");
     }
 
     @OnClick(R.id.show_ad)

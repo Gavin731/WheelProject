@@ -8,6 +8,6 @@ public class CommonApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        AdvertisementManager.getInstance().init(getApplicationContext());
+
     }
 }

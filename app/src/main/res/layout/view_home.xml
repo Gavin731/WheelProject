@@ -31,7 +31,12 @@
         android:layout_height="wrap_content"
         android:text="rxeasyhttp"
         android:textAllCaps="false" />
-
+    <Button
+        android:id="@+id/init_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="初始化sdk"
+        android:textAllCaps="false" />
     <Button
         android:id="@+id/load_ad"
         android:layout_width="wrap_content"
