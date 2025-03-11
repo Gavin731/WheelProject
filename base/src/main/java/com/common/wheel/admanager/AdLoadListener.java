@@ -7,6 +7,8 @@ import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
 public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
@@ -50,6 +52,18 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
         mAd.setFullScreenVideoAdInteractionListener(new AdLifeListener(context));
         //【可选】监听下载状态
 //        mAd.setDownloadListener(new DownloadStatusListener());
+
+
+        //广告展示
+        MediationBaseManager manager = mAd.getMediationManager();
+        //获取展示广告相关信息，需要再show回调之后进行获取
+        if (manager != null && manager.getShowEcpm() != null) {
+            MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
+            String ecpm = showEcpm.getEcpm(); //展示广告的价格
+            String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
+            String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+        }
+
     }
 
     public void showAd(TTAdConstant.RitScenes ritScenes, String scenes) {

@@ -8,6 +8,7 @@ import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdLoadType;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 
 public class InterstitialAdManager {
 
@@ -29,6 +30,11 @@ public class InterstitialAdManager {
                 .setCodeId(codeId) // 广告代码位Id
                 .setOrientation(TTAdConstant.VERTICAL)  //设置方向
                 .setAdLoadType(TTAdLoadType.LOAD) // 本次广告用途：TTAdLoadType.LOAD实时；TTAdLoadType.PRELOAD预请求
+                .setMediationAdSlot(
+                        new MediationAdSlot.Builder()
+                                .setMuted(false)
+                                .build()
+                )
                 .build();
 
         mAdLoadListener = new AdLoadListener(activity);

@@ -88,8 +88,8 @@ public class AdvertisementManager {
                 /**
                  * 注：需要替换成在媒体平台申请的appID ，切勿直接复制
                  */
-                .appId("5558135")
-                .appName("剧多影视大全")
+                .appId("5670955")
+                .appName("终端测试软件")
                 /**
                  * 上线前需要关闭debug开关，否则会影响性能
                  */
