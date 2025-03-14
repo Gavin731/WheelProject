@@ -147,6 +147,21 @@ public class AdvertisementManager {
             }
         };
     }
+
+    /**
+     * 预加载插屏广告
+     *
+     * @param activity
+     * @param codeId
+     */
+    public void preloadInterstitialAd(Activity activity, String codeId) {
+        if (!sInit) {
+            LogUtils.i(TAG + "SDK没有初始化");
+            return;
+        }
+        InterstitialAdManager.getInstance().preload(activity, codeId);
+    }
+
     /**
      * 插屏广告
      */
@@ -168,14 +183,16 @@ public class AdvertisementManager {
         }
         InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
     }
+
     /**
      * 开屏广告
      */
-    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer) {
+    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer, OpenScreenAdCallBack callBack) {
         if (!sInit) {
             LogUtils.i(TAG + "SDK没有初始化");
             return;
         }
-        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer);
+        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer, callBack);
     }
+
 }

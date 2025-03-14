@@ -14,9 +14,11 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     private final Activity context;
 
     private TTFullScreenVideoAd mAd;
+    private AdLoadListener.LoadSuccess loadSuccess;
 
-    protected AdLoadListener(Activity activity) {
+    protected AdLoadListener(Activity activity,AdLoadListener.LoadSuccess loadSuccess) {
         context = activity;
+        this.loadSuccess = loadSuccess;
     }
 
     @Override
@@ -39,6 +41,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     public void onFullScreenVideoCached(TTFullScreenVideoAd ttFullScreenVideoAd) {
         LogUtils.i("AdLoadListener 缓存已加载");
         handleAd(ttFullScreenVideoAd);
+        if(loadSuccess !=null){
+            loadSuccess.loadSuccess();
+        }
     }
 
     public void handleAd(TTFullScreenVideoAd ad) {
@@ -51,8 +56,6 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
         mAd.setFullScreenVideoAdInteractionListener(new AdLifeListener(context));
         //【可选】监听下载状态
 //        mAd.setDownloadListener(new DownloadStatusListener());
-
-
         //广告展示
         MediationBaseManager manager = mAd.getMediationManager();
         //获取展示广告相关信息，需要再show回调之后进行获取
@@ -88,5 +91,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
                 return "直播流，type=" + type;
         }
         return "未知类型+type=" + type;
+    }
+
+    protected interface LoadSuccess{
+        void loadSuccess();
     }
 }

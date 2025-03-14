@@ -18,6 +18,7 @@ public class OpenScreenAdManager {
 
     private static volatile OpenScreenAdManager instance;
     private final TTAdNative mTTAdNative;
+    private OpenScreenAdCallBack callBack;
     private String projectId;
     private String codeId;
 
@@ -33,7 +34,7 @@ public class OpenScreenAdManager {
         return instance;
     }
 
-    protected OpenScreenAdManager() {
+    private OpenScreenAdManager() {
         mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
@@ -58,9 +59,10 @@ public class OpenScreenAdManager {
                 .build();
     }
 
-    protected void loadSplashAd(Activity act, String appId, String codeId, FrameLayout splashContainer) {
+    protected void loadSplashAd(Activity act, String appId, String codeId, FrameLayout splashContainer, OpenScreenAdCallBack callBack) {
         this.projectId = appId;
         this.codeId = codeId;
+        this.callBack = callBack;
         mTTAdNative.loadSplashAd(buildSplashAdslot(), new TTAdNative.CSJSplashAdListener() {
             @Override
             public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
@@ -92,7 +94,7 @@ public class OpenScreenAdManager {
         if (splashAd == null || container == null) {
             return;
         }
-
+        container.removeAllViews();
         splashAd.setSplashAdListener(new CSJSplashAd.SplashAdListener() {
             @Override
             public void onSplashAdShow(CSJSplashAd csjSplashAd) {
@@ -115,6 +117,10 @@ public class OpenScreenAdManager {
             @Override
             public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
                 //广告关闭
+                if (callBack != null) {
+                    callBack.onAdClose();
+                }
+                splashAd.getMediationManager().destroy();
             }
         });
         splashAd.showSplashView(container);//展示开屏广告

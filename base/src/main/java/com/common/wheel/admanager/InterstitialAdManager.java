@@ -31,11 +31,11 @@ public class InterstitialAdManager {
         return instance;
     }
 
-    protected InterstitialAdManager() {
+    private InterstitialAdManager() {
         mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
-    protected void loadAd(Activity activity, String codeId) {
+    private void loadAd(Activity activity, String codeId, AdLoadListener.LoadSuccess loadSuccess) {
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(codeId) // 广告代码位Id
                 .setOrientation(TTAdConstant.VERTICAL)  //设置方向
@@ -47,7 +47,7 @@ public class InterstitialAdManager {
                 )
                 .build();
 
-        AdLoadListener mAdLoadListener = new AdLoadListener(activity);
+        AdLoadListener mAdLoadListener = new AdLoadListener(activity, loadSuccess);
         mTTAdNative.loadFullScreenVideoAd(adSlot, mAdLoadListener);
         adLoadListeners.add(mAdLoadListener);
     }
@@ -57,8 +57,27 @@ public class InterstitialAdManager {
             AdLoadListener mAdLoadListener = adLoadListeners.get(0);
             mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
             adLoadListeners.remove(0);
+            loadAd(activity, codeId, null);
             return;
         }
-        loadAd(activity, codeId);
+        loadAd(activity, codeId, new AdLoadListener.LoadSuccess() {
+            @Override
+            public void loadSuccess() {
+                AdLoadListener mAdLoadListener = adLoadListeners.get(0);
+                mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
+                adLoadListeners.remove(0);
+                loadAd(activity, codeId, null);
+            }
+        });
+    }
+
+    /**
+     * 预加载
+     *
+     * @param activity
+     * @param codeId
+     */
+    protected void preload(Activity activity, String codeId) {
+        loadAd(activity, codeId, null);
     }
 }

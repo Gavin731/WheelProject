@@ -33,7 +33,7 @@ public class InformationFlowManager {
         return instance;
     }
 
-    protected InformationFlowManager() {
+    private InformationFlowManager() {
         mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
