@@ -1,7 +1,6 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
-import android.content.Context;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
@@ -12,11 +11,11 @@ import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
 public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
-    private Activity context;
+    private final Activity context;
 
     private TTFullScreenVideoAd mAd;
 
-    public AdLoadListener(Activity activity) {
+    protected AdLoadListener(Activity activity) {
         context = activity;
     }
 
@@ -66,7 +65,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     }
 
-    public void showAd(TTAdConstant.RitScenes ritScenes, String scenes) {
+    protected void showAd(TTAdConstant.RitScenes ritScenes, String scenes) {
         if (mAd == null) {
             LogUtils.e("AdLoadListener 当前广告未加载好，请先加载广告");
             return;

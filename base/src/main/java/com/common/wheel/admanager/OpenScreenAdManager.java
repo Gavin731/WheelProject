@@ -1,14 +1,12 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
-import android.content.Context;
 import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.CSJAdError;
 import com.bytedance.sdk.openadsdk.CSJSplashAd;
-import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
@@ -18,26 +16,39 @@ import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
 public class OpenScreenAdManager {
 
-    private TTAdNative mTTAdNative;
+    private static volatile OpenScreenAdManager instance;
+    private final TTAdNative mTTAdNative;
+    private String projectId;
+    private String codeId;
 
-    public OpenScreenAdManager(Context context) {
-        TTAdManager ttAdManager = AdvertisementManager.getInstance().get();
-        LogUtils.i("穿山甲sdk版本："+ttAdManager.getSDKVersion());
-        mTTAdNative = ttAdManager.createAdNative(context);
+
+    protected static OpenScreenAdManager getInstance() {
+        if (instance == null) {
+            synchronized (OpenScreenAdManager.class) {
+                if (instance == null) {
+                    instance = new OpenScreenAdManager();
+                }
+            }
+        }
+        return instance;
     }
 
-    //构造开屏广告的Adslot
+    protected OpenScreenAdManager() {
+        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
+    }
+
     private AdSlot buildSplashAdslot() {
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
-                "103403260", // adn开屏广告代码位Id，注意不是聚合广告位Id
-                "5670955",   // adn应用id，注意要跟初始化传入的保持一致
+                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                projectId,   // adn应用id，注意要跟初始化传入的保持一致
                 ""   // adn没有appKey时，传入空即可
-        ) {};
+        ) {
+        };
 
 
         return new AdSlot.Builder()
-                .setCodeId("103403260") //广告位ID
+                .setCodeId(codeId) //广告位ID
 //                .setImageAcceptedSize(widthPx, heightPx)
                 .setMediationAdSlot(
                         new MediationAdSlot.Builder()
@@ -47,8 +58,9 @@ public class OpenScreenAdManager {
                 .build();
     }
 
-    // 加载开屏广告
-    public void loadSplashAd(Activity act, FrameLayout splashContainer) {
+    protected void loadSplashAd(Activity act, String appId, String codeId, FrameLayout splashContainer) {
+        this.projectId = appId;
+        this.codeId = codeId;
         mTTAdNative.loadSplashAd(buildSplashAdslot(), new TTAdNative.CSJSplashAdListener() {
             @Override
             public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
@@ -76,7 +88,6 @@ public class OpenScreenAdManager {
         }, 3500);
     }
 
-    //展示开屏广告
     private void showSplashAd(CSJSplashAd splashAd, FrameLayout container) {
         if (splashAd == null || container == null) {
             return;

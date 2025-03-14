@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
 public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
     private final WeakReference<Context> mContextRef;
 
-    public AdLifeListener(Context context) {
+    protected AdLifeListener(Context context) {
         mContextRef = new WeakReference<>(context);
     }
 

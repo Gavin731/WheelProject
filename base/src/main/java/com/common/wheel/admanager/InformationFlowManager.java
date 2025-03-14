@@ -1,14 +1,12 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
-import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
@@ -18,27 +16,37 @@ import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
 import java.util.List;
 import java.util.Map;
 
+
 public class InformationFlowManager {
 
-    private TTAdNative mTTAdNative;
+    private static volatile InformationFlowManager instance;
+    private final TTAdNative mTTAdNative;
 
-    public InformationFlowManager(Context context) {
-        TTAdManager ttAdManager = AdvertisementManager.getInstance().get();
-        LogUtils.i("穿山甲sdk版本：" + ttAdManager.getSDKVersion());
-        mTTAdNative = ttAdManager.createAdNative(context);
+    protected static InformationFlowManager getInstance() {
+        if (instance == null) {
+            synchronized (InformationFlowManager.class) {
+                if (instance == null) {
+                    instance = new InformationFlowManager();
+                }
+            }
+        }
+        return instance;
     }
 
-    //构造信息流Adslot
-    private AdSlot buildNativeAdslot() {
+    protected InformationFlowManager() {
+        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
+    }
+
+    private AdSlot buildNativeAdslot(String codeId, int width, int height) {
         return new AdSlot.Builder()
-                .setCodeId("103401966") //广告位ID
+                .setCodeId(codeId) //广告位ID
                 /**
                  * 注：
                  *  1:单位为px
                  *  2:如果是信息流自渲染广告，设置广告图片期望的图片宽高 ，不能为0
                  *  2:如果是信息流模板广告，宽度设置为希望的宽度，高度设置为0(0为高度选择自适应参数)
                  */
-                .setImageAcceptedSize(200, 100)
+                .setImageAcceptedSize(width, height)
                 .setAdCount(1)//请求广告数量为1到3条 （优先采用平台配置的数量）
                 .setMediationAdSlot(// 聚合广告请求配置
                         new MediationAdSlot.Builder()
@@ -47,9 +55,9 @@ public class InformationFlowManager {
                 .build();
     }
 
-    //加载信息流广告
-    public void loadNativeAd(Activity act, FrameLayout splashContainer) {
-        mTTAdNative.loadFeedAd(buildNativeAdslot(), new TTAdNative.FeedAdListener() {
+    protected void loadNativeAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height) {
+        AdSlot adSlot = buildNativeAdslot(codeId, width, height);
+        mTTAdNative.loadFeedAd(adSlot, new TTAdNative.FeedAdListener() {
             private TTFeedAd mTTFeedAd;
 
             @Override

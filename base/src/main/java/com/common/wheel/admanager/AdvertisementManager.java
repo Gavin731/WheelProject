@@ -3,11 +3,10 @@ package com.common.wheel.admanager;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConfig;
-import com.bytedance.sdk.openadsdk.TTAdLoadType;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
@@ -18,8 +17,11 @@ public class AdvertisementManager {
     private static volatile AdvertisementManager instance;
     private static final String TAG = "AdvertisementManager";
 
-    private static boolean sInit;
-    private static boolean sStart;
+    private boolean sInit;
+    private boolean sStart;
+    private String projectId;
+    private String projectName;
+    private Context context;
 
     private AdvertisementManager() {
     }
@@ -39,57 +41,53 @@ public class AdvertisementManager {
         return TTAdSdk.getAdManager();
     }
 
-    public void requestPermissionIfNecessary(Context context){
+    protected TTAdNative getTTAdNative() {
+        TTAdManager ttAdManager = get();
+        return ttAdManager.createAdNative(context);
+    }
+
+    public void requestPermissionIfNecessary(Context context) {
         get().requestPermissionIfNecessary(context);
     }
 
-    public void init(Context context) {
-        doInit(context);
+    public void init(Context context, String appId, String appName) {
+        this.projectId = appId;
+        this.projectName = appName;
+        this.context = context;
+        doInit();
     }
 
-    /**
-     * 初始化
-     *
-     * @param context
-     */
-    private void doInit(Context context) {
+    private void doInit() {
         if (sInit) {
-            LogUtils.i(TAG+"已经初始化过了");
+            LogUtils.i(TAG + "已经初始化过了");
             return;
         }
-
-        TTAdSdk.init(context, buildConfig(context));
+        TTAdSdk.init(context, buildConfig());
         TTAdSdk.start(new TTAdSdk.Callback() {
             @Override
             public void success() {
                 sInit = true;
                 //初始化成功
                 //在初始化成功回调之后进行广告加载
-                Log.e(TAG,"初始化成功");
+                Log.e(TAG, "初始化成功");
             }
 
             @Override
             public void fail(int i, String s) {
                 //初始化失败
-                Log.e(TAG,"初始化失败");
+                Log.e(TAG, "初始化失败");
             }
         });
     }
 
-    /**
-     * 获取配置
-     *
-     * @param context
-     * @return
-     */
-    private TTAdConfig buildConfig(Context context) {
+    private TTAdConfig buildConfig() {
 
         return new TTAdConfig.Builder()
                 /**
                  * 注：需要替换成在媒体平台申请的appID ，切勿直接复制
                  */
-                .appId("5670955")
-                .appName("终端测试软件")
+                .appId(this.projectId)
+                .appName(this.projectName)
                 /**
                  * 上线前需要关闭debug开关，否则会影响性能
                  */
@@ -149,5 +147,35 @@ public class AdvertisementManager {
             }
         };
     }
+    /**
+     * 插屏广告
+     */
+    public void showInterstitialAd(Activity activity, String codeId) {
+        if (!sInit) {
+            LogUtils.i(TAG + "SDK没有初始化");
+            return;
+        }
+        InterstitialAdManager.getInstance().showAd(activity, codeId);
+    }
 
+    /**
+     * 信息流广告
+     */
+    public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height) {
+        if (!sInit) {
+            LogUtils.i(TAG + "SDK没有初始化");
+            return;
+        }
+        InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
+    }
+    /**
+     * 开屏广告
+     */
+    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer) {
+        if (!sInit) {
+            LogUtils.i(TAG + "SDK没有初始化");
+            return;
+        }
+        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer);
+    }
 }

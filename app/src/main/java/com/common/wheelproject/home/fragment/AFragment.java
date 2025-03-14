@@ -87,16 +87,16 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     }
     @OnClick(R.id.init_ad)
     public void initSdk() {
-        AdvertisementManager.getInstance().init(getActivity());
+        AdvertisementManager.getInstance().init(getActivity(), "5670955", "终端测试软件");
     }
     @OnClick(R.id.load_ad)
     public void Load() {
-        interstitialAdManager = new InterstitialAdManager(getActivity());
-        interstitialAdManager.loadAd(getActivity(), "102935580");
+//        interstitialAdManager = new InterstitialAdManager();
+//        interstitialAdManager.loadAd(getActivity(), "102935580");
     }
 
     @OnClick(R.id.show_ad)
     public void showAd(){
-        interstitialAdManager.showAd();
+//        interstitialAdManager.showAd();
     }
 }

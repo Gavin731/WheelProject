@@ -27,35 +27,37 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.init_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().init(MainActivity.this);
+                AdvertisementManager.getInstance().init(MainActivity.this, "5670955", "终端测试软件");
             }
         });
         findViewById(R.id.load_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interstitialAdManager = new InterstitialAdManager(MainActivity.this);
-                interstitialAdManager.loadAd(MainActivity.this, "964568346");
+//                interstitialAdManager = new InterstitialAdManager();
+//                interstitialAdManager.loadAd(MainActivity.this, "964568346");
             }
         });
         findViewById(R.id.show_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interstitialAdManager.showAd();
+                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346");
             }
         });
         FrameLayout splashContainer = findViewById(R.id.splashContainer);
         findViewById(R.id.show_kp_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openScreenAdManager = new OpenScreenAdManager(MainActivity.this);
-                openScreenAdManager.loadSplashAd(MainActivity.this, splashContainer);
+//                openScreenAdManager = new OpenScreenAdManager(MainActivity.this);
+//                openScreenAdManager.loadSplashAd(MainActivity.this, splashContainer);
+                AdvertisementManager.getInstance().showOpenScreenAd(MainActivity.this, "5670955", "103403260", splashContainer);
             }
         });
         findViewById(R.id.show_info_image_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                informationFlowManager = new InformationFlowManager(MainActivity.this);
-                informationFlowManager.loadNativeAd(MainActivity.this, splashContainer);
+//                informationFlowManager = new InformationFlowManager(MainActivity.this);
+//                informationFlowManager.loadNativeAd(MainActivity.this, splashContainer);
+                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", splashContainer, 800, 400);
             }
         });
     }
