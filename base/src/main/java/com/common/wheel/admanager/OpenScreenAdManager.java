@@ -1,7 +1,9 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -13,12 +15,15 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
+import com.common.wheel.R;
 
 public class OpenScreenAdManager {
 
     private static volatile OpenScreenAdManager instance;
     private final TTAdNative mTTAdNative;
     private OpenScreenAdCallBack callBack;
+    private Activity activity;
+    private FrameLayout splashContainer;
     private String projectId;
     private String codeId;
 
@@ -38,7 +43,7 @@ public class OpenScreenAdManager {
         mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
-    private AdSlot buildSplashAdslot() {
+    private AdSlot buildSplashAdslot(int width, int height) {
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
                 codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
@@ -50,7 +55,7 @@ public class OpenScreenAdManager {
 
         return new AdSlot.Builder()
                 .setCodeId(codeId) //广告位ID
-//                .setImageAcceptedSize(widthPx, heightPx)
+                .setImageAcceptedSize(width, height)
                 .setMediationAdSlot(
                         new MediationAdSlot.Builder()
                                 //将自定义兜底对象设置给AdSlot
@@ -59,11 +64,13 @@ public class OpenScreenAdManager {
                 .build();
     }
 
-    protected void loadSplashAd(Activity act, String appId, String codeId, FrameLayout splashContainer, OpenScreenAdCallBack callBack) {
+    protected void loadSplashAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
         this.projectId = appId;
         this.codeId = codeId;
         this.callBack = callBack;
-        mTTAdNative.loadSplashAd(buildSplashAdslot(), new TTAdNative.CSJSplashAdListener() {
+        this.activity = act;
+        this.splashContainer = splashContainer;
+        mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), new TTAdNative.CSJSplashAdListener() {
             @Override
             public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
                 LogUtils.e("开屏广告加载成功");
@@ -112,6 +119,7 @@ public class OpenScreenAdManager {
             @Override
             public void onSplashAdClick(CSJSplashAd csjSplashAd) {
                 //广告点击
+                LogUtils.i("开屏广告被点击");
             }
 
             @Override
@@ -124,5 +132,32 @@ public class OpenScreenAdManager {
             }
         });
         splashAd.showSplashView(container);//展示开屏广告
+//        addButtonToActivity();
+    }
+
+    private void addButtonToActivity() {
+        try {
+            // 获取 Activity 的根布局
+//            ViewGroup rootView = (ViewGroup) activity.findViewById(android.R.id.content);
+            // 创建按钮
+            ImageView closeImg = new ImageView(activity);
+            closeImg.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_close));
+
+            // 设置按钮的布局参数
+            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            layoutParams.setMargins(100, 600, 0, 0); // 左边距 100px，上边距 200px
+            closeImg.setLayoutParams(layoutParams);
+
+            // 设置按钮的点击事件
+            closeImg.setOnClickListener(v -> {
+                ClickViewUtil.openMove(splashContainer);
+            });
+            splashContainer.addView(closeImg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

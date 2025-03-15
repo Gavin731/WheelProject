@@ -1,6 +1,7 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
@@ -54,21 +55,27 @@ public class InterstitialAdManager {
 
     protected void showAd(Activity activity, String codeId) {
         if (!adLoadListeners.isEmpty()) {
-            AdLoadListener mAdLoadListener = adLoadListeners.get(0);
-            mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
-            adLoadListeners.remove(0);
-            loadAd(activity, codeId, null);
+            show(activity, codeId);
             return;
         }
         loadAd(activity, codeId, new AdLoadListener.LoadSuccess() {
             @Override
             public void loadSuccess() {
-                AdLoadListener mAdLoadListener = adLoadListeners.get(0);
-                mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
+                show(activity, codeId);
+            }
+        });
+    }
+
+    private void show(Activity activity, String codeId) {
+        AdLoadListener mAdLoadListener = adLoadListeners.get(0);
+        mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
                 adLoadListeners.remove(0);
                 loadAd(activity, codeId, null);
             }
-        });
+        }, 500);
     }
 
     /**

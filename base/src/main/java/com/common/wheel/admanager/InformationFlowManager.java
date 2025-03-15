@@ -1,9 +1,12 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.blankj.utilcode.util.DeviceUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
@@ -98,6 +101,23 @@ public class InformationFlowManager {
 //                                        UIUtils.removeFromParent(expressFeedView);
                                         splashContainer.removeAllViews();
                                         splashContainer.addView(expressFeedView);
+                                        splashContainer.setOnTouchListener((v2, event) -> {
+                                            boolean isClick = false;
+                                            switch (event.getAction()) {
+                                                case MotionEvent.ACTION_DOWN:
+                                                    break;
+                                                case MotionEvent.ACTION_MOVE:
+                                                    if (!isClick) {
+                                                        isClick = true;
+                                                        expressFeedView.performClick();
+                                                    }
+                                                    break;
+                                                case MotionEvent.ACTION_UP:
+                                                    break;
+                                            }
+                                            return true; // 返回 true 表示消费事件
+                                        });
+
                                     }
                                 }
 
