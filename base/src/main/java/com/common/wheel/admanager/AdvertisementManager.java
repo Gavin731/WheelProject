@@ -187,12 +187,12 @@ public class AdvertisementManager {
     /**
      * 开屏广告
      */
-    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer, OpenScreenAdCallBack callBack) {
+    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer,int width, int height, OpenScreenAdCallBack callBack) {
         if (!sInit) {
             LogUtils.i(TAG + "SDK没有初始化");
             return;
         }
-        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer, callBack);
+        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer,width, height, callBack);
     }
 
 }
