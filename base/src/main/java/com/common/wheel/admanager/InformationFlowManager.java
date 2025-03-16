@@ -1,9 +1,11 @@
 package com.common.wheel.admanager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.DeviceUtils;
@@ -101,22 +103,45 @@ public class InformationFlowManager {
 //                                        UIUtils.removeFromParent(expressFeedView);
                                         splashContainer.removeAllViews();
                                         splashContainer.addView(expressFeedView);
-                                        splashContainer.setOnTouchListener((v2, event) -> {
-                                            boolean isClick = false;
-                                            switch (event.getAction()) {
-                                                case MotionEvent.ACTION_DOWN:
-                                                    break;
-                                                case MotionEvent.ACTION_MOVE:
-                                                    if (!isClick) {
-                                                        isClick = true;
-                                                        expressFeedView.performClick();
-                                                    }
-                                                    break;
-                                                case MotionEvent.ACTION_UP:
-                                                    break;
-                                            }
-                                            return true; // 返回 true 表示消费事件
-                                        });
+//                                        expressFeedView.setOnTouchListener(new View.OnTouchListener() {
+//                                            @SuppressLint("ClickableViewAccessibility")
+//                                            @Override
+//                                            public boolean onTouch(View v, MotionEvent event) {
+//                                                boolean isClick = false;
+//                                                switch (event.getAction()) {
+//                                                    case MotionEvent.ACTION_DOWN:
+//                                                        if (!isClick) {
+//                                                            isClick = true;
+//                                                            expressFeedView.performClick();
+////                                                            ClickViewUtil.openClick((ViewGroup) expressFeedView);
+//                                                        }
+//                                                        break;
+//                                                    case MotionEvent.ACTION_MOVE:
+//
+//                                                        break;
+//                                                    case MotionEvent.ACTION_UP:
+//                                                        break;
+//                                                }
+//                                                return false; // 返回 true 表示消费事件
+//                                            }
+//                                        });
+//                                        splashContainer.setOnTouchListener((v2, event) -> {
+//                                            boolean isClick = false;
+//                                            switch (event.getAction()) {
+//                                                case MotionEvent.ACTION_DOWN:
+//                                                    break;
+//                                                case MotionEvent.ACTION_MOVE:
+//                                                    if (!isClick) {
+//                                                        isClick = true;
+////                                                        expressFeedView.performClick();
+//                                                        ClickViewUtil.openClick((ViewGroup) expressFeedView);
+//                                                    }
+//                                                    break;
+//                                                case MotionEvent.ACTION_UP:
+//                                                    break;
+//                                            }
+//                                            return true; // 返回 true 表示消费事件
+//                                        });
 
                                     }
                                 }
