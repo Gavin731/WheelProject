@@ -132,32 +132,5 @@ public class OpenScreenAdManager {
             }
         });
         splashAd.showSplashView(container);//展示开屏广告
-//        addButtonToActivity();
-    }
-
-    private void addButtonToActivity() {
-        try {
-            // 获取 Activity 的根布局
-//            ViewGroup rootView = (ViewGroup) activity.findViewById(android.R.id.content);
-            // 创建按钮
-            ImageView closeImg = new ImageView(activity);
-            closeImg.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_close));
-
-            // 设置按钮的布局参数
-            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            );
-            layoutParams.setMargins(100, 600, 0, 0); // 左边距 100px，上边距 200px
-            closeImg.setLayoutParams(layoutParams);
-
-            // 设置按钮的点击事件
-            closeImg.setOnClickListener(v -> {
-                ClickViewUtil.openMove(splashContainer);
-            });
-            splashContainer.addView(closeImg);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

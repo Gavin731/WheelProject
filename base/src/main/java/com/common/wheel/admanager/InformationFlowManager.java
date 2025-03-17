@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.DeviceUtils;
 import com.blankj.utilcode.util.LogUtils;
@@ -17,6 +18,7 @@ import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
+import com.common.wheel.R;
 
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,7 @@ public class InformationFlowManager {
 
     private static volatile InformationFlowManager instance;
     private final TTAdNative mTTAdNative;
+    private View expressFeedView;
 
     protected static InformationFlowManager getInstance() {
         if (instance == null) {
@@ -91,6 +94,7 @@ public class InformationFlowManager {
                         //非下载类广告
                     }
                     mTTFeedAd.uploadDislikeEvent("mediation_dislike_event");
+                    
                     /** 5、展示广告 */
                     MediationNativeManager manager = mTTFeedAd.getMediationManager();
                     if (manager != null) {
@@ -99,50 +103,26 @@ public class InformationFlowManager {
                                 @Override
                                 public void onRenderSuccess(View view, float v, float v1, boolean b) {
                                     if (mTTFeedAd != null) {
-                                        View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
+                                        expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
 //                                        UIUtils.removeFromParent(expressFeedView);
                                         splashContainer.removeAllViews();
                                         splashContainer.addView(expressFeedView);
-//                                        expressFeedView.setOnTouchListener(new View.OnTouchListener() {
-//                                            @SuppressLint("ClickableViewAccessibility")
-//                                            @Override
-//                                            public boolean onTouch(View v, MotionEvent event) {
-//                                                boolean isClick = false;
-//                                                switch (event.getAction()) {
-//                                                    case MotionEvent.ACTION_DOWN:
-//                                                        if (!isClick) {
-//                                                            isClick = true;
-//                                                            expressFeedView.performClick();
-////                                                            ClickViewUtil.openClick((ViewGroup) expressFeedView);
-//                                                        }
-//                                                        break;
-//                                                    case MotionEvent.ACTION_MOVE:
-//
-//                                                        break;
-//                                                    case MotionEvent.ACTION_UP:
-//                                                        break;
-//                                                }
-//                                                return false; // 返回 true 表示消费事件
-//                                            }
-//                                        });
-//                                        splashContainer.setOnTouchListener((v2, event) -> {
-//                                            boolean isClick = false;
-//                                            switch (event.getAction()) {
-//                                                case MotionEvent.ACTION_DOWN:
-//                                                    break;
-//                                                case MotionEvent.ACTION_MOVE:
-//                                                    if (!isClick) {
-//                                                        isClick = true;
-////                                                        expressFeedView.performClick();
-//                                                        ClickViewUtil.openClick((ViewGroup) expressFeedView);
-//                                                    }
-//                                                    break;
-//                                                case MotionEvent.ACTION_UP:
-//                                                    break;
-//                                            }
-//                                            return true; // 返回 true 表示消费事件
-//                                        });
-
+                                        expressFeedView.setOnTouchListener(new View.OnTouchListener() {
+                                            @Override
+                                            public boolean onTouch(View v, MotionEvent event) {
+                                                switch (event.getAction()){
+                                                    case MotionEvent.ACTION_DOWN:
+                                                        ClickViewUtil.openClick((ViewGroup) expressFeedView);
+                                                        break;
+                                                    case MotionEvent.ACTION_MOVE:
+                                                        ClickViewUtil.openClick((ViewGroup) expressFeedView);
+                                                        break;
+                                                    case MotionEvent.ACTION_UP:
+                                                        break;
+                                                }
+                                                return false;
+                                            }
+                                        });
                                     }
                                 }
 
