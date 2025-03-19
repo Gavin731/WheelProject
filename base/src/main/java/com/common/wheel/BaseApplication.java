@@ -2,7 +2,6 @@ package com.common.wheel;
 
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.multidex.MultiDex;
 
@@ -10,7 +9,6 @@ import com.blankj.utilcode.util.LogUtils;
 import com.orhanobut.hawk.Hawk;
 import com.squareup.leakcanary.LeakCanary;
 
-import gnu.trove.THash;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
 /**
