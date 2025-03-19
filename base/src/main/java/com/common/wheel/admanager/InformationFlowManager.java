@@ -63,7 +63,7 @@ public class InformationFlowManager {
             @Override
             public void onError(int erroCode, String errorMsg) {
                 //广告加载失败
-                LogUtils.e("信息广告加载失败：" + errorMsg);
+                LogUtils.e("广告加载失败：" + errorMsg);
             }
 
             @Override

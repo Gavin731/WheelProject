@@ -73,18 +73,18 @@ public class OpenScreenAdManager {
         mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), new TTAdNative.CSJSplashAdListener() {
             @Override
             public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("开屏广告加载成功");
+                LogUtils.e("广告加载成功");
             }
 
             @Override
             public void onSplashLoadFail(CSJAdError csjAdError) {
                 //广告加载失败
-                LogUtils.e("开屏广告加载失败：" + csjAdError.getMsg());
+                LogUtils.e("广告加载失败：" + csjAdError.getMsg());
             }
 
             @Override
             public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("开屏广告渲染成功");
+                LogUtils.e("广告渲染成功");
                 //广告渲染成功，在此展示广告
                 showSplashAd(csjSplashAd, splashContainer); //注 ：splashContainer为展示Banner广告的容器
             }
@@ -92,7 +92,7 @@ public class OpenScreenAdManager {
             @Override
             public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
                 //广告渲染失败
-                LogUtils.e("开屏广告渲染失败:" + csjAdError.getMsg());
+                LogUtils.e("广告渲染失败:" + csjAdError.getMsg());
             }
         }, 3500);
     }
@@ -119,7 +119,7 @@ public class OpenScreenAdManager {
             @Override
             public void onSplashAdClick(CSJSplashAd csjSplashAd) {
                 //广告点击
-                LogUtils.i("开屏广告被点击");
+                LogUtils.i("广告被点击");
             }
 
             @Override

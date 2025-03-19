@@ -48,11 +48,11 @@ public class ViewHelper {
     }
 
     protected static void addInterstitialView() {
-        Activity currentActivity = getCurPage();
-        if (currentActivity != null) {
-            btnToPage(currentActivity);
+        Activity ctx = getCurPage();
+        if (ctx != null) {
+            btnToPage(ctx);
         } else {
-            LogUtils.e("AdLifeListener 无法获取当前页面");
+            LogUtils.e("ViewHelper get error");
         }
     }
 
