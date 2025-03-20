@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.ArrayMap;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.bumptech.glide.Glide;
 import com.common.wheel.R;
 import com.common.wheel.util.DeviceUtil;
 
@@ -72,10 +72,11 @@ public class ViewHelper {
         try {
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             ImageView ci = new ImageView(act);
-            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
+            Glide.with(act).load("https://vcg01.cfp.cn/creative/vcg/800/new/VCG211245151984.jpg").into(ci);
+//            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
             ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    80,
+                    80
             );
             lp.setMargins(100, 600, 0, 0);
             ci.setLayoutParams(lp);
@@ -97,10 +98,12 @@ public class ViewHelper {
     }
 
     protected static void renderInfoView(Context context, FrameLayout sc, View efv) {
-        View fv = LayoutInflater.from(context).inflate(R.layout.view_info, null);
-        FrameLayout fli = fv.findViewById(R.id.fl_info);
-        View llm = fv.findViewById(R.id.ll_mask);
-        fli.removeAllViews();
+        FrameLayout fv = new FrameLayout(context);
+        FrameLayout fli = new FrameLayout(context);
+        View llm = new View(context);
+        fv.addView(fli);
+        fv.addView(llm);
+//        fli.removeAllViews();
         fli.addView(efv);
         llm.setVisibility(View.GONE);
         if (isAddView(context, 2)) {
