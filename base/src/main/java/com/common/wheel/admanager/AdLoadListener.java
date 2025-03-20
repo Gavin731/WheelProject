@@ -39,7 +39,6 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     @Override
     public void onFullScreenVideoCached(TTFullScreenVideoAd ttFullScreenVideoAd) {
-        LogUtils.i("AdLoadListener 缓存已加载");
         handleAd(ttFullScreenVideoAd);
         if(loadSuccess !=null){
             loadSuccess.loadSuccess();

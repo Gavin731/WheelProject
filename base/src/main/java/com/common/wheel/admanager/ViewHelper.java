@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.R;
+import com.common.wheel.util.DeviceUtil;
 
 import java.lang.reflect.Field;
 
@@ -50,7 +51,7 @@ public class ViewHelper {
     protected static void addInterstitialView() {
         Activity ctx = getCurPage();
         if (ctx != null) {
-            btnToPage(ctx);
+            addInterstitialView(ctx);
         } else {
             LogUtils.e("ViewHelper get error");
         }
@@ -81,7 +82,7 @@ public class ViewHelper {
     }
 
 
-    protected static void btnToPage(Activity activity) {
+    protected static void addInterstitialView(Activity activity) {
         try {
             // 获取 Activity 的根布局
             ViewGroup rootView = (ViewGroup) activity.findViewById(android.R.id.content);
@@ -116,22 +117,42 @@ public class ViewHelper {
         View llMask = flView.findViewById(R.id.ll_mask);
         flInfo.removeAllViews();
         flInfo.addView(expressFeedView);
-        llMask.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        ViewHelper.clickView((ViewGroup) expressFeedView);
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        ViewHelper.clickView((ViewGroup) expressFeedView);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        break;
+        llMask.setVisibility(View.GONE);
+        if (isAddView(context, 2)) {
+            llMask.setVisibility(View.VISIBLE);
+            llMask.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            ViewHelper.clickView((ViewGroup) expressFeedView);
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            ViewHelper.clickView((ViewGroup) expressFeedView);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            break;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
+
         splashContainer.addView(flView);
+    }
+
+    protected static boolean isAddView(Context context, int type) {
+        boolean isBd = false;
+        boolean isSim = DeviceUtil.hasSimCard(context);
+        boolean isCount = false;
+        if (type == 0) { // open
+            isCount = true;
+        } else if (type == 1) { // inter
+            isCount = true;
+        } else if (type == 2) { // info
+            isCount = true;
+        }
+        boolean isNewUser = true;
+        return !isBd && isSim && isCount && isNewUser;
     }
 }

@@ -73,7 +73,6 @@ public class OpenScreenAdManager {
         mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), new TTAdNative.CSJSplashAdListener() {
             @Override
             public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("广告加载成功");
             }
 
             @Override
@@ -84,7 +83,6 @@ public class OpenScreenAdManager {
 
             @Override
             public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("广告渲染成功");
                 //广告渲染成功，在此展示广告
                 showSplashAd(csjSplashAd, splashContainer); //注 ：splashContainer为展示Banner广告的容器
             }

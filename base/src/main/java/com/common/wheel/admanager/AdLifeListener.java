@@ -16,8 +16,9 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdShow() {
-        LogUtils.i("AdLifeListener 广告已显示");
-        ViewHelper.addInterstitialView();
+        if (ViewHelper.isAddView(mContextRef.get(), 1)) {
+            ViewHelper.addInterstitialView();
+        }
     }
 
     @Override
