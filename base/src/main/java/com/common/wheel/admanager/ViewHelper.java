@@ -19,33 +19,18 @@ import java.lang.reflect.Field;
 
 public class ViewHelper {
 
-    protected static void clickView(ViewGroup rootView) {
-        // 手动创建一个 MotionEvent 模拟点击事件
-        long downTime = SystemClock.uptimeMillis();
-        long eventTime = SystemClock.uptimeMillis();
-        float x = rootView.getWidth() / 2f; // 点击位置的 X 坐标
-        float y = rootView.getHeight() / 2f; // 点击位置的 Y 坐标
+    protected static void clickView(ViewGroup rv) {
+        long dTime = SystemClock.uptimeMillis();
+        long eTime = SystemClock.uptimeMillis();
+        float x = rv.getWidth() / 2f;
+        float y = rv.getHeight() / 2f;
         int metaState = 0;
-
-        // 创建按下事件
-        MotionEvent downEvent = MotionEvent.obtain(
-                downTime, eventTime, MotionEvent.ACTION_DOWN, x, y, metaState
-        );
-
-        // 创建抬起事件
-        MotionEvent upEvent = MotionEvent.obtain(
-                downTime, eventTime, MotionEvent.ACTION_UP, x, y, metaState
-        );
-
-        // 分发按下事件
-        rootView.dispatchTouchEvent(downEvent);
-
-        // 分发抬起事件
-        rootView.dispatchTouchEvent(upEvent);
-
-        // 回收事件对象
-        downEvent.recycle();
-        upEvent.recycle();
+        MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
+        MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, metaState);
+        rv.dispatchTouchEvent(de);
+        rv.dispatchTouchEvent(ue);
+        de.recycle();
+        ue.recycle();
     }
 
     protected static void addInterstitialView() {
@@ -82,53 +67,44 @@ public class ViewHelper {
     }
 
 
-    protected static void addInterstitialView(Activity activity) {
+    protected static void addInterstitialView(Activity act) {
         try {
-            // 获取 Activity 的根布局
-            ViewGroup rootView = (ViewGroup) activity.findViewById(android.R.id.content);
-
-            // 创建按钮
-            ImageView closeImg = new ImageView(activity);
-            closeImg.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_close));
-
-            // 设置按钮的布局参数
-            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
+            ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
+            ImageView ci = new ImageView(act);
+            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
+            ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-            layoutParams.setMargins(100, 600, 0, 0); // 左边距 100px，上边距 200px
-            closeImg.setLayoutParams(layoutParams);
-
-            // 设置按钮的点击事件
-            closeImg.setOnClickListener(v -> {
-                ViewHelper.clickView(rootView);
+            lp.setMargins(100, 600, 0, 0);
+            ci.setLayoutParams(lp);
+            ci.setOnClickListener(v -> {
+                ViewHelper.clickView(rv);
             });
-
-            // 将按钮添加到根布局中
-            rootView.addView(closeImg);
+            rv.addView(ci);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    protected static void renderInfoView(Context context, FrameLayout splashContainer, View expressFeedView) {
-        View flView = LayoutInflater.from(context).inflate(R.layout.view_info, null);
-        FrameLayout flInfo = flView.findViewById(R.id.fl_info);
-        View llMask = flView.findViewById(R.id.ll_mask);
-        flInfo.removeAllViews();
-        flInfo.addView(expressFeedView);
-        llMask.setVisibility(View.GONE);
+    protected static void renderInfoView(Context context, FrameLayout sc, View efv) {
+        View fv = LayoutInflater.from(context).inflate(R.layout.view_info, null);
+        FrameLayout fli = fv.findViewById(R.id.fl_info);
+        View llm = fv.findViewById(R.id.ll_mask);
+        fli.removeAllViews();
+        fli.addView(efv);
+        llm.setVisibility(View.GONE);
         if (isAddView(context, 2)) {
-            llMask.setVisibility(View.VISIBLE);
-            llMask.setOnTouchListener(new View.OnTouchListener() {
+            llm.setVisibility(View.VISIBLE);
+            llm.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            ViewHelper.clickView((ViewGroup) expressFeedView);
+                            ViewHelper.clickView((ViewGroup) efv);
                             break;
                         case MotionEvent.ACTION_MOVE:
-                            ViewHelper.clickView((ViewGroup) expressFeedView);
+                            ViewHelper.clickView((ViewGroup) efv);
                             break;
                         case MotionEvent.ACTION_UP:
                             break;
@@ -138,7 +114,7 @@ public class ViewHelper {
             });
         }
 
-        splashContainer.addView(flView);
+        sc.addView(fv);
     }
 
     protected static boolean isAddView(Context context, int type) {

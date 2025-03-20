@@ -1,9 +1,7 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -15,9 +13,8 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
-import com.common.wheel.R;
 
-public class OpenScreenAdManager {
+public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
 
     private static volatile OpenScreenAdManager instance;
     private final TTAdNative mTTAdNative;
@@ -70,29 +67,7 @@ public class OpenScreenAdManager {
         this.callBack = callBack;
         this.activity = act;
         this.splashContainer = splashContainer;
-        mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), new TTAdNative.CSJSplashAdListener() {
-            @Override
-            public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
-            }
-
-            @Override
-            public void onSplashLoadFail(CSJAdError csjAdError) {
-                //广告加载失败
-                LogUtils.e("广告加载失败：" + csjAdError.getMsg());
-            }
-
-            @Override
-            public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
-                //广告渲染成功，在此展示广告
-                showSplashAd(csjSplashAd, splashContainer); //注 ：splashContainer为展示Banner广告的容器
-            }
-
-            @Override
-            public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
-                //广告渲染失败
-                LogUtils.e("广告渲染失败:" + csjAdError.getMsg());
-            }
-        }, 3500);
+        mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), this, 3500);
     }
 
     private void showSplashAd(CSJSplashAd splashAd, FrameLayout container) {
@@ -100,35 +75,51 @@ public class OpenScreenAdManager {
             return;
         }
         container.removeAllViews();
-        splashAd.setSplashAdListener(new CSJSplashAd.SplashAdListener() {
-            @Override
-            public void onSplashAdShow(CSJSplashAd csjSplashAd) {
-                //广告展示
-                //获取展示广告相关信息，需要再show回调之后进行获取
-                MediationBaseManager manager = splashAd.getMediationManager();
-                if (manager != null && manager.getShowEcpm() != null) {
-                    MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
-                    String ecpm = showEcpm.getEcpm(); //展示广告的价格
-                    String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
-                    String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
-                }
-            }
-
-            @Override
-            public void onSplashAdClick(CSJSplashAd csjSplashAd) {
-                //广告点击
-                LogUtils.i("广告被点击");
-            }
-
-            @Override
-            public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
-                //广告关闭
-                if (callBack != null) {
-                    callBack.onAdClose();
-                }
-                splashAd.getMediationManager().destroy();
-            }
-        });
+        splashAd.setSplashAdListener(this);
         splashAd.showSplashView(container);//展示开屏广告
+    }
+
+    @Override
+    public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
+
+    }
+
+    @Override
+    public void onSplashLoadFail(CSJAdError csjAdError) {
+        LogUtils.e("广告加载失败：" + csjAdError.getMsg());
+    }
+
+    @Override
+    public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
+        showSplashAd(csjSplashAd, splashContainer);
+    }
+
+    @Override
+    public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
+        LogUtils.e("广告渲染失败:" + csjAdError.getMsg());
+    }
+
+    @Override
+    public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        MediationBaseManager manager = csjSplashAd.getMediationManager();
+        if (manager != null && manager.getShowEcpm() != null) {
+            MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
+            String ecpm = showEcpm.getEcpm(); //展示广告的价格
+            String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
+            String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+        }
+    }
+
+    @Override
+    public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        LogUtils.i("广告被点击");
+    }
+
+    @Override
+    public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        if (callBack != null) {
+            callBack.onAdClose();
+        }
+        csjSplashAd.getMediationManager().destroy();
     }
 }

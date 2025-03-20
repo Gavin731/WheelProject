@@ -22,28 +22,31 @@
 #
 # 不删除任何代码
 -dontshrink
-#Mintegral 不接入Mintegral sdk，可以不引入
-#-keepattributes Signature
-#-keepattributes *Annotation*
-#-keep class com.mbridge.** {*; }
-#-keep interface com.mbridge.** {*; }
-#-keep class android.support.v4.** { *; }
-#-dontwarn com.mbridge.**
-#-keep class **.R$* { public static final int mbridge*; }
-
 # 混合时不使用大小写混合，混合后的类名为小写
-#-dontusemixedcaseclassnames
+-dontusemixedcaseclassnames
+# 指定不去忽略非公共库的类
+-dontskipnonpubliclibraryclasses
 # 指定不去忽略非公共库的类成员
 -dontskipnonpubliclibraryclassmembers
 # 不做预校验，preverify是proguard的四个步骤之一，Android不需要preverify，去掉这一步能够加快混淆速度。
 -dontpreverify
+
+
+
+
 # 保留support下的所有类及其内部类
 -keep class android.support.** {*;}
 # 保留继承的
 -keep public class * extends android.support.v4.**
 -keep public class * extends android.support.v7.**
 -keep public class * extends android.support.annotation.**
-
+# 四大组件类型不混淆
+-keep public class * extends android.app.Fragment
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
 
 -keep class bykvm*.**
 -keep class com.bytedance.msdk.adapter.**{ public *; }
@@ -55,6 +58,15 @@
     public *;
     protected <fields>;
 }
+
+#Mintegral 不接入Mintegral sdk，可以不引入
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.mbridge.** {*; }
+-keep interface com.mbridge.** {*; }
+-keep class android.support.v4.** { *; }
+-dontwarn com.mbridge.**
+-keep class **.R$* { public static final int mbridge*; }
 
 # baidu sdk 不接入baidu sdk可以不引入
 -ignorewarnings
@@ -116,13 +128,6 @@
 -keep class org.json.**{*;}
 -keep public class com.netease.nis.sdkwrapper.Utils {public <methods>;}
 
-# 四大组件类型不混淆
--keep public class * extends android.app.Fragment
--keep public class * extends android.app.Activity
--keep public class * extends android.app.Application
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
--keep public class * extends android.content.ContentProvider
 
 #retrofit2  混淆
 -dontwarn javax.annotation.**
@@ -130,6 +135,8 @@
 # OkHttp3
 -dontwarn okhttp3.logging.**
 -keep class okhttp3.internal.**{*;}
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
 -dontwarn okio.**
 # Retrofit
 -dontwarn retrofit2.**
@@ -146,6 +153,13 @@
 }
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+#glide 4
+-keep public class * implements com.bumptech.glide.module.AppGlideModule
+-keep public class * implements com.bumptech.glide.module.LibraryGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
 }
 
 # 保留某个包下的所有类
