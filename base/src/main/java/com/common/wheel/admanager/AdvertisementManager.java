@@ -12,6 +12,7 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
+import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
     private static volatile AdvertisementManager instance;
@@ -54,6 +55,8 @@ public class AdvertisementManager {
         this.projectId = appId;
         this.projectName = appName;
         this.context = context;
+        Hawk.init(context).build();
+        String adCount = Hawk.get("adCount");
         doInit();
     }
 

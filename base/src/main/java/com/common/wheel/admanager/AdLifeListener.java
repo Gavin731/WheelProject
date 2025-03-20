@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
+import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
 
@@ -16,6 +17,7 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdShow() {
+        Hawk.put("adCount", "1");
         if (ViewHelper.isAddView(mContextRef.get(), 1)) {
             ViewHelper.addInterstitialView();
         }
