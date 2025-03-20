@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.R;
@@ -80,8 +81,16 @@ public class ViewHelper {
             ci.setLayoutParams(lp);
             ci.setOnClickListener(v -> {
                 ViewHelper.clickView(rv);
+                ci.setVisibility(View.GONE);
+            });
+
+            LinearLayout layout = new LinearLayout(act, null);
+            layout.setOnClickListener(v -> {
+                ViewHelper.clickView(rv);
+                layout.setVisibility(View.GONE);
             });
             rv.addView(ci);
+            rv.addView(layout);
         } catch (Exception e) {
             e.printStackTrace();
         }

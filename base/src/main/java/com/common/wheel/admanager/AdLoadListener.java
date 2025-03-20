@@ -28,7 +28,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     @Override
     public void onFullScreenVideoAdLoad(TTFullScreenVideoAd ttFullScreenVideoAd) {
-        LogUtils.i("AdLoadListener  广告类型：" + getAdType(ttFullScreenVideoAd.getFullVideoAdType()));
+        LogUtils.i("AdLoadL  广告类型：" + getAdType(ttFullScreenVideoAd.getFullVideoAdType()));
         handleAd(ttFullScreenVideoAd);
     }
 
@@ -69,7 +69,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     protected void showAd(TTAdConstant.RitScenes ritScenes, String scenes) {
         if (mAd == null) {
-            LogUtils.e("AdLoadListener 当前广告未加载好，请先加载广告");
+            LogUtils.e("AdLoadL mAd is null");
             return;
         }
 

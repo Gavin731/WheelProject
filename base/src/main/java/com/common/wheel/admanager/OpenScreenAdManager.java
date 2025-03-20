@@ -86,7 +86,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashLoadFail(CSJAdError csjAdError) {
-        LogUtils.e("广告加载失败：" + csjAdError.getMsg());
+        LogUtils.e("open ad load fail：" + csjAdError.getMsg());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
-        LogUtils.e("广告渲染失败:" + csjAdError.getMsg());
+        LogUtils.e("open ad render fail:" + csjAdError.getMsg());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
-        LogUtils.i("广告被点击");
+        LogUtils.i("open ad click");
     }
 
     @Override

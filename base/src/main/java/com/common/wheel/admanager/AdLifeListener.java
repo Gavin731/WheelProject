@@ -23,22 +23,22 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdVideoBarClick() {
-        LogUtils.i("AdLifeListener 广告被点击");
+        LogUtils.i("adLs click");
     }
 
     @Override
     public void onAdClose() {
-        LogUtils.i("AdLifeListener 广告已关闭");
+        LogUtils.i("adLs close");
     }
 
     @Override
     public void onVideoComplete() {
-        LogUtils.i("AdLifeListener 广告加载完成");
+        LogUtils.i("adLs complete");
     }
 
     @Override
     public void onSkippedVideo() {
-        LogUtils.i("AdLifeListener 广告已跳过");
+        LogUtils.i("adLs Skip");
     }
 
 

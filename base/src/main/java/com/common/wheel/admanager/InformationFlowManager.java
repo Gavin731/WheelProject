@@ -68,7 +68,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onError(int i, String s) {
-        LogUtils.e("广告加载失败：" + s);
+        LogUtils.e("ad load error：" + s);
     }
 
     @Override
