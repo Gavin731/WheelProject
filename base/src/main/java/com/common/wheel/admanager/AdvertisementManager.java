@@ -92,7 +92,7 @@ public class AdvertisementManager {
                 .appId(this.projectId)
                 .appName(this.projectName)
                 /**
-                 * 上线前需要关闭debug开关，否则会影响性能
+                 *  todo 上线前需要关闭debug开关，否则会影响性能
                  */
                 .debug(true)
                 /**
@@ -190,12 +190,12 @@ public class AdvertisementManager {
     /**
      * 开屏广告
      */
-    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer,int width, int height, OpenScreenAdCallBack callBack) {
+    public void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer,int width, int height, OpenScreenAdCallBack callBack) {
         if (!sInit) {
             LogUtils.i(TAG + "SDK没有初始化");
             return;
         }
-        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer,width, height, callBack);
+        OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer,width, height, callBack);
     }
 
 }

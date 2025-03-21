@@ -1,17 +1,10 @@
 package com.common.wheel.util;
 
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
-
-import androidx.core.app.ActivityCompat;
-
-import com.blankj.utilcode.util.DeviceUtils;
 
 public class DeviceUtil {
 
@@ -30,6 +23,7 @@ public class DeviceUtil {
 
     /**
      * 获取ip地址
+     *
      * @param context
      * @return
      */

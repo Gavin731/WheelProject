@@ -30,12 +30,12 @@ public class ViewHelper {
             float y = rv.getHeight() / 2f;
             int metaState = 0;
             MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
 
 
             MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, metaState);
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
 
 
@@ -94,7 +94,7 @@ public class ViewHelper {
             );
             lp.setMargins(100, 600, 0, 0);
             ci.setLayoutParams(lp);
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.view.View");
 
             ci.setOnClickListener(v -> {
@@ -103,7 +103,7 @@ public class ViewHelper {
             });
 
             LinearLayout layout = new LinearLayout(act, null);
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Class<?> fl = Class.forName("android.widget.FrameLayout");
 
 
@@ -124,7 +124,7 @@ public class ViewHelper {
             FrameLayout fli = new FrameLayout(context);
             View llm = new View(context);
 
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.widget.FrameLayout");
 
 
@@ -133,7 +133,7 @@ public class ViewHelper {
 //        fli.removeAllViews();
             fli.addView(efv);
 
-            // 添加一行不要的代码
+            // 添加垃圾代码
             Class<?> vv = Class.forName("android.view.View");
 
             llm.setVisibility(View.GONE);

@@ -164,6 +164,7 @@
 
 # 保留某个包下的所有类
 -keep class com.common.wheel.http.entity.** { *; }
+-keep class com.common.wheel.entity.** { *; }
 -keep class com.blankj.utilcode.**.** { *; }
 -keep class com.common.wheel.http.BaseUrl { *; }
 -keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
