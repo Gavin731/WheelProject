@@ -132,12 +132,6 @@
 #retrofit2  混淆
 -dontwarn javax.annotation.**
 -dontwarn javax.inject.**
-# OkHttp3
--dontwarn okhttp3.logging.**
--keep class okhttp3.internal.**{*;}
--dontwarn com.squareup.okhttp3.**
--keep class com.squareup.okhttp3.** { *;}
--dontwarn okio.**
 # Retrofit
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
@@ -154,6 +148,15 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
+
+# OkHttp3
+-keep class okhttp3.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
 #glide 4
 -keep public class * implements com.bumptech.glide.module.AppGlideModule
 -keep public class * implements com.bumptech.glide.module.LibraryGlideModule
@@ -162,6 +165,7 @@
   public *;
 }
 
+-keep class com.orhanobut.hawk.** { *; }
 # 保留某个包下的所有类
 -keep class com.common.wheel.http.entity.** { *; }
 -keep class com.common.wheel.entity.** { *; }

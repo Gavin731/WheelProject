@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat;
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
-import com.common.wheel.service.ApiService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AdvertisementManager.getInstance().init(MainActivity.this, "5670955", "终端测试软件");
-                ApiService.requestTestHttp(MainActivity.this);
             }
         });
 //        findViewById(R.id.load_ad).setOnClickListener(new View.OnClickListener() {
@@ -67,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer, 800, 400);
+            }
+        });
+        findViewById(R.id.http_request).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdvertisementManager.getInstance().httpRequest(MainActivity.this);
             }
         });
     }

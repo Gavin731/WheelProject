@@ -12,6 +12,7 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
+import com.common.wheel.service.ApiService;
 import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
@@ -198,4 +199,8 @@ public class AdvertisementManager {
         OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer,width, height, callBack);
     }
 
+
+    public void httpRequest(Context context){
+        ApiService.requestTestHttp(context);
+    }
 }
