@@ -1,8 +1,8 @@
 package com.common.wheel.admanager;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.orhanobut.hawk.Hawk;
 
@@ -25,22 +25,22 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdVideoBarClick() {
-        LogUtils.i("adLs click");
+        Log.i("", "adLs click");
     }
 
     @Override
     public void onAdClose() {
-        LogUtils.i("adLs close");
+        Log.i("", "adLs close");
     }
 
     @Override
     public void onVideoComplete() {
-        LogUtils.i("adLs complete");
+        Log.i("", "adLs complete");
     }
 
     @Override
     public void onSkippedVideo() {
-        LogUtils.i("adLs Skip");
+        Log.i("", "adLs Skip");
     }
 
 

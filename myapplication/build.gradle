@@ -96,4 +96,22 @@ dependencies {
     implementation 'com.maven.local:unity-ads:4.3.0'
     implementation 'com.maven.local:windAd:4.19.5'
     implementation 'com.maven.local:windAd-common:1.7.2'
+
+//glide
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //SharedPreferences
+    implementation "com.orhanobut:hawk:2.0.1"
+    //okhttp
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    //rxjava和retrofit
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+    //添加HttpLoggingInterceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    implementation "com.android.support:support-v4:28.0.0"
 }

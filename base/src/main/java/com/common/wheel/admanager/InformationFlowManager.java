@@ -1,10 +1,10 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
 import com.bytedance.sdk.openadsdk.TTAdNative;
@@ -68,7 +68,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onError(int i, String s) {
-        LogUtils.e("ad load error：" + s);
+        Log.e("", "ad load error：" + s);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.common.wheel.http;
 
-import com.blankj.utilcode.util.LogUtils;
+import android.util.Log;
+
 import com.common.wheel.http.api.BaseApi;
 
 import java.util.Arrays;
@@ -61,7 +62,7 @@ public class Apis {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                LogUtils.i("请求的url:" + message);
+                Log.i("", "请求的url:" + message);
             }
         });
         loggingInterceptor.setLevel(level);

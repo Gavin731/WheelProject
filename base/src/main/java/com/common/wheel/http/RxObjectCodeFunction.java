@@ -1,12 +1,8 @@
 package com.common.wheel.http;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ToastUtils;
-import com.common.wheel.BaseApplication;
 import com.common.wheel.http.entity.ResultBean;
 import com.common.wheel.util.GsonUtil;
 
@@ -35,17 +31,7 @@ public class RxObjectCodeFunction<T> implements Function<ResultBean, RxObjectCod
         RxObjectCode rxObjectCode = new RxObjectCode();
         rxObjectCode.setCode(code);
         if (code != RESULTOK) {
-            LogUtils.i("接口返回的错误code1:" + code + " 信息：" + resultBean.getMessage());
-            Thread thread = Thread.currentThread();
-            if (TextUtils.equals(thread.getName(), "main")) {
-                if (resultBean.getMessage() != null) {
-                    if (context == null) {
-                        Toast.makeText(BaseApplication.getInstance(), (String) resultBean.getMessage(), Toast.LENGTH_LONG).show();
-                    } else {
-                        ToastUtils.showShort((String) resultBean.getMessage());
-                    }
-                }
-            }
+            Log.i("", "接口返回的错误code1:" + code + " 信息：" + resultBean.getMessage());
         }
 //        String result = AESUtil.getInstance().getDecodeResultData(resultBean);
 //        Logger.e("接口返回的result:" + result);

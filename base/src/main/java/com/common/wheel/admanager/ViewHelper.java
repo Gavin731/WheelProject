@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
-import com.common.wheel.R;
 import com.common.wheel.util.DeviceUtil;
 
 import java.lang.reflect.Field;
@@ -53,7 +52,7 @@ public class ViewHelper {
         if (ctx != null) {
             addInterstitialView(ctx);
         } else {
-            LogUtils.e("ViewHelper get error");
+            Log.e("", "ViewHelper get error");
         }
     }
 
@@ -158,7 +157,7 @@ public class ViewHelper {
             }
 
             sc.addView(fv);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

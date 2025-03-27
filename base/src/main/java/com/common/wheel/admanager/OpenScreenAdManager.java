@@ -1,9 +1,9 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.FrameLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.CSJAdError;
 import com.bytedance.sdk.openadsdk.CSJSplashAd;
@@ -86,7 +86,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashLoadFail(CSJAdError csjAdError) {
-        LogUtils.e("open ad load fail：" + csjAdError.getMsg());
+        Log.e("", "open ad load fail：" + csjAdError.getMsg());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
-        LogUtils.e("open ad render fail:" + csjAdError.getMsg());
+        Log.e("", "open ad render fail:" + csjAdError.getMsg());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
-        LogUtils.i("open ad click");
+        Log.i("", "open ad click");
     }
 
     @Override

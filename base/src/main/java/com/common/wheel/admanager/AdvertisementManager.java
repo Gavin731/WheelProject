@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.FrameLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
@@ -63,7 +62,7 @@ public class AdvertisementManager {
 
     private void doInit() {
         if (sInit) {
-            LogUtils.i(TAG + "已经初始化过了");
+            Log.i(TAG, "已经初始化过了");
             return;
         }
         TTAdSdk.init(context, buildConfig());
@@ -160,7 +159,7 @@ public class AdvertisementManager {
      */
     public void preloadInterstitialAd(Activity activity, String codeId) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InterstitialAdManager.getInstance().preload(activity, codeId);
@@ -171,7 +170,7 @@ public class AdvertisementManager {
      */
     public void showInterstitialAd(Activity activity, String codeId) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InterstitialAdManager.getInstance().showAd(activity, codeId);
@@ -182,7 +181,7 @@ public class AdvertisementManager {
      */
     public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
@@ -191,16 +190,16 @@ public class AdvertisementManager {
     /**
      * 开屏广告
      */
-    public void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer,int width, int height, OpenScreenAdCallBack callBack) {
+    public void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
-        OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer,width, height, callBack);
+        OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
     }
 
 
-    public void httpRequest(Context context){
+    public void httpRequest(Context context) {
         ApiService.requestTestHttp(context);
     }
 }

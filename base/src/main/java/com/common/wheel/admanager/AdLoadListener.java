@@ -1,8 +1,8 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
@@ -16,19 +16,19 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     private TTFullScreenVideoAd mAd;
     private AdLoadListener.LoadSuccess loadSuccess;
 
-    protected AdLoadListener(Activity activity,AdLoadListener.LoadSuccess loadSuccess) {
+    protected AdLoadListener(Activity activity, AdLoadListener.LoadSuccess loadSuccess) {
         context = activity;
         this.loadSuccess = loadSuccess;
     }
 
     @Override
     public void onError(int i, String s) {
-        LogUtils.e(s);
+        Log.e("", s);
     }
 
     @Override
     public void onFullScreenVideoAdLoad(TTFullScreenVideoAd ttFullScreenVideoAd) {
-        LogUtils.i("AdLoadL  广告类型：" + getAdType(ttFullScreenVideoAd.getFullVideoAdType()));
+        Log.i("", "AdLoadL  广告类型：" + getAdType(ttFullScreenVideoAd.getFullVideoAdType()));
         handleAd(ttFullScreenVideoAd);
     }
 
@@ -40,7 +40,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     @Override
     public void onFullScreenVideoCached(TTFullScreenVideoAd ttFullScreenVideoAd) {
         handleAd(ttFullScreenVideoAd);
-        if(loadSuccess !=null){
+        if (loadSuccess != null) {
             loadSuccess.loadSuccess();
         }
     }
@@ -69,7 +69,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     protected void showAd(TTAdConstant.RitScenes ritScenes, String scenes) {
         if (mAd == null) {
-            LogUtils.e("AdLoadL mAd is null");
+            Log.i("", "AdLoadL mAd is null");
             return;
         }
 
@@ -92,7 +92,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
         return "未知类型+type=" + type;
     }
 
-    protected interface LoadSuccess{
+    protected interface LoadSuccess {
         void loadSuccess();
     }
 }
