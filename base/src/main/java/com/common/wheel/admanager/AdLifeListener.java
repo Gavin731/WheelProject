@@ -19,10 +19,7 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdShow() {
-        Hawk.put("adCount", "1");
-        if (ViewHelper.isAddView(mContextRef.get(), 1)) {
-            ViewHelper.addInterstitialView(mAd);
-        }
+        ViewHelper.addInterstitialView(mAd);
     }
 
     @Override

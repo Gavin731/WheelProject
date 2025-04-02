@@ -56,9 +56,7 @@ public class AdvertisementManager {
         this.projectName = appName;
         this.context = context;
         Hawk.init(context).build();
-        String adCount = Hawk.get("adCount");
         doInit();
-        ApiService.postEnvInfo(context);
         ApiService.requestConfig(context);
     }
 

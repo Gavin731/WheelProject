@@ -3,7 +3,7 @@ package com.common.wheel.entity;
 public class ConfigEntity {
 
     private String configKey;
-    private Object configStatus;
+    private boolean configStatus;
     private String configValue;
 
     public String getConfigKey() {
@@ -14,11 +14,11 @@ public class ConfigEntity {
         this.configKey = configKey;
     }
 
-    public Object getConfigStatus() {
+    public boolean getConfigStatus() {
         return configStatus;
     }
 
-    public void setConfigStatus(Object configStatus) {
+    public void setConfigStatus(boolean configStatus) {
         this.configStatus = configStatus;
     }
 

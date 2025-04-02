@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
+import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.entity.ConfigEntity;
 import com.common.wheel.entity.TokenEntity;
 import com.common.wheel.http.Apis;
@@ -14,6 +15,7 @@ import com.common.wheel.http.RxObjectCodeFunction;
 import com.common.wheel.http.entity.ResultBean;
 import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.HashMap;
 import java.util.List;
@@ -102,7 +104,6 @@ public class ApiService {
         requestParams.put("appName", "");
         requestParams.put("appToken", "");
         requestParams.put("params", params);
-
         Apis.getBaseApi().zxzh_sdk_config_query(requestParams)
                 .subscribeOn(Schedulers.io())
                 .map(new Function<ResultBean, Object>() {
@@ -111,13 +112,65 @@ public class ApiService {
                         if (resultBean.getData() != null) {
                             List<ConfigEntity> configs = GsonUtil.parseJsonToList(resultBean.getData().toString(), ConfigEntity.class);
                             if (configs != null && configs.size() > 0) {
-                                // todo 写配置文件
+                                writeConfig(context, configs);
                             }
                         }
                         return null;
                     }
                 });
     }
+
+    private static void writeConfig(Context context, List<ConfigEntity> configs) {
+        for (ConfigEntity configEntity : configs) {
+            switch (configEntity.getConfigKey()) {
+                case ConstantsPath.global_ad_switch: // //全局广告开关
+                    if (configEntity.getConfigStatus()) {
+                        // 校验是否开启广告
+                        ApiService.postEnvInfo(context);
+                    }
+                    break;
+                case ConstantsPath.splash_ad_switch: //开屏广告开关
+                    break;
+                case ConstantsPath.interstitial_ad_switch://插屏广告开关
+                    break;
+                case ConstantsPath.video_ad_switch://激励视频广告开关
+                    break;
+                case ConstantsPath.feeds_ad_switch://信息流广告开关
+                    break;
+                case ConstantsPath.interstitial_perss_ad_config://插屏广告诱导设置
+                    if (configEntity.getConfigStatus()) {
+                        Hawk.put(ConstantsPath.interstitial_perss_ad_config, true);
+                        Hawk.put(ConstantsPath.interstitial_perss_ad_config_value, configEntity.getConfigValue());
+                    } else {
+                        Hawk.put(ConstantsPath.interstitial_perss_ad_config, false);
+                    }
+                    break;
+                case ConstantsPath.splash_misclick_ad_switch://开屏广告误点配置
+                    break;
+                case ConstantsPath.interstitial_misclick_ad_switch://插屏广告误点配置
+                    if (configEntity.getConfigStatus()) {
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch, true);
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch_value, configEntity.getConfigValue());
+                    } else {
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch, false);
+                    }
+                    break;
+                case ConstantsPath.video_misclick_ad_config://激励视频广告误点配置
+                    break;
+                case ConstantsPath.feeds_misclick_ad_config://信息流视频广告误点配置
+                    if (configEntity.getConfigStatus()) {
+                        Hawk.put(ConstantsPath.feeds_misclick_ad_config, true);
+                        Hawk.put(ConstantsPath.feeds_misclick_ad_config_value, configEntity.getConfigValue());
+                    } else {
+                        Hawk.put(ConstantsPath.feeds_misclick_ad_config, false);
+                    }
+                    break;
+            }
+        }
+
+
+    }
+
 
     @SuppressLint("CheckResult")
     public static void postAdInfo(Context context, HashMap<String, String> adInfo) {
