@@ -13,9 +13,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.bytedance.sdk.openadsdk.TTFeedAd;
+import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+import com.common.wheel.service.ApiService;
 import com.common.wheel.util.DeviceUtil;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 
 public class ViewHelper {
 
@@ -47,10 +52,10 @@ public class ViewHelper {
         }
     }
 
-    protected static void addInterstitialView() {
+    protected static void addInterstitialView(TTFullScreenVideoAd mAd) {
         Activity ctx = getCurPage();
         if (ctx != null) {
-            addInterstitialView(ctx);
+            addInterstitialView(ctx, mAd);
         } else {
             Log.e("", "ViewHelper get error");
         }
@@ -81,7 +86,7 @@ public class ViewHelper {
     }
 
 
-    protected static void addInterstitialView(Activity act) {
+    protected static void addInterstitialView(Activity act, TTFullScreenVideoAd mAd) {
         try {
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             ImageView ci = new ImageView(act);
@@ -98,6 +103,7 @@ public class ViewHelper {
 
             ci.setOnClickListener(v -> {
                 ViewHelper.clickView(rv);
+                logInterEcpmInfo(act, mAd, "PERSS_CLICK");
                 ci.setVisibility(View.GONE);
             });
 
@@ -108,6 +114,7 @@ public class ViewHelper {
 
             layout.setOnClickListener(v -> {
                 ViewHelper.clickView(rv);
+                logInterEcpmInfo(act, mAd, "MIS_CLICK");
                 layout.setVisibility(View.GONE);
             });
             rv.addView(ci);
@@ -117,7 +124,7 @@ public class ViewHelper {
         }
     }
 
-    protected static void renderInfoView(Context context, FrameLayout sc, View efv) {
+    protected static void renderInfoView(Context context, FrameLayout sc, View efv, TTFeedAd ttFeedAd) {
         try {
             FrameLayout fv = new FrameLayout(context);
             FrameLayout fli = new FrameLayout(context);
@@ -143,10 +150,9 @@ public class ViewHelper {
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
-                                ViewHelper.clickView((ViewGroup) efv);
-                                break;
                             case MotionEvent.ACTION_MOVE:
                                 ViewHelper.clickView((ViewGroup) efv);
+                                logEcpmInfo(context, ttFeedAd);
                                 break;
                             case MotionEvent.ACTION_UP:
                                 break;
@@ -175,5 +181,29 @@ public class ViewHelper {
         }
         boolean isNewUser = true;
         return !isBd && isSim && isCount && isNewUser;
+    }
+
+    protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
+        MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+        params.put("adType", "INTERSTITIAL");// 广告类型（见类型枚举）
+        params.put("ecpm", item.getEcpm());
+        params.put("adPosition", item.getSlotId()); // 广告位标识
+        params.put("clickType", clickType); // 误触
+        params.put("userId", "");
+        ApiService.postAdInfo(context, params);
+    }
+
+    protected static void logEcpmInfo(Context context, TTFeedAd ttFeedAd) {
+        MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+        params.put("adType", "FEEDS");// 广告类型（见类型枚举）
+        params.put("ecpm", item.getEcpm());
+        params.put("adPosition", item.getSlotId()); // 广告位标识
+        params.put("clickType", "MIS_CLICK"); // 误触
+        params.put("userId", "");
+        ApiService.postAdInfo(context, params);
     }
 }

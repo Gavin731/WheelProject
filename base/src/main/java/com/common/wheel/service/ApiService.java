@@ -2,16 +2,21 @@ package com.common.wheel.service;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
+import com.common.wheel.entity.ConfigEntity;
 import com.common.wheel.entity.TokenEntity;
 import com.common.wheel.http.Apis;
 import com.common.wheel.http.RxConsumerThrowable;
 import com.common.wheel.http.RxObjectCode;
 import com.common.wheel.http.RxObjectCodeFunction;
+import com.common.wheel.http.entity.ResultBean;
+import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -45,5 +50,99 @@ public class ApiService {
                         Log.i("", "获取成功");
                     }
                 }, new RxConsumerThrowable(context, "登录异常"));
+    }
+
+    @SuppressLint("CheckResult")
+    public static void postEnvInfo(Context context) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("tjType", "yxtj");
+        params.put("deviceId", DeviceUtil.getUUID(context));
+        params.put("osVersion", DeviceUtil.getSystemVersion());
+        params.put("imei", DeviceUtil.getImei(context));
+        params.put("androidId", DeviceUtil.getAndroidId(context));
+        params.put("oaid", DeviceUtil.getOAId(context));
+        params.put("meid", DeviceUtil.getMeId(context));
+        params.put("mac", DeviceUtil.getMacAddress());
+        params.put("systemInfo", DeviceUtil.getSystem());
+        params.put("ipAddress", DeviceUtil.getWifiIpAddress(context));
+        params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
+        params.put("MANUFACTURER", DeviceUtil.getManufacturer());
+        params.put("MODEL", Build.MODEL);
+        params.put("BRAND", DeviceUtil.getSystem());
+        params.put("BOARD", Build.PRODUCT);
+        params.put("DEVICE", "");
+        params.put("HARDWARE", Build.HARDWARE);
+        params.put("OS_VERSION", "");
+        params.put("SDK_INT", "");
+
+
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_sdk_env_info");
+        requestParams.put("appName", "");
+        requestParams.put("appToken", "");
+        requestParams.put("params", params);
+        Apis.getBaseApi().zxzh_sdk_env_info(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<ResultBean, Object>() {
+                    @Override
+                    public Object apply(ResultBean resultBean) throws Exception {
+                        return null;
+                    }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    public static void requestConfig(Context context) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ipAddress", DeviceUtil.getLocalIpAddress());
+        params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
+
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_sdk_config_query");
+        requestParams.put("appName", "");
+        requestParams.put("appToken", "");
+        requestParams.put("params", params);
+
+        Apis.getBaseApi().zxzh_sdk_config_query(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<ResultBean, Object>() {
+                    @Override
+                    public Object apply(ResultBean resultBean) throws Exception {
+                        if (resultBean.getData() != null) {
+                            List<ConfigEntity> configs = GsonUtil.parseJsonToList(resultBean.getData().toString(), ConfigEntity.class);
+                            if (configs != null && configs.size() > 0) {
+                                // todo 写配置文件
+                            }
+                        }
+                        return null;
+                    }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    public static void postAdInfo(Context context, HashMap<String, String> adInfo) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adPlatform", adInfo.get("adPlatform")); // 广告平台（见平台枚举）
+        params.put("adType", adInfo.get("adType"));// 广告类型（见类型枚举）
+        params.put("ecpm", adInfo.get("ecpm"));
+        params.put("oaid", ""); // 设备OAID
+        params.put("adPosition", adInfo.get("adPosition")); // 广告位标识
+        params.put("clickType", adInfo.get("clickType")); // 点击类型（见点击类型枚举）
+        params.put("deviceId", DeviceUtil.getUUID(context));
+        params.put("userId", "");
+
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_sdk_ad_click_info");
+        requestParams.put("appName", "");
+        requestParams.put("appToken", "");
+        requestParams.put("params", params);
+        Apis.getBaseApi().zxzh_sdk_ad_click_info(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<ResultBean, Object>() {
+                    @Override
+                    public Object apply(ResultBean resultBean) throws Exception {
+                        return null;
+                    }
+                });
     }
 }

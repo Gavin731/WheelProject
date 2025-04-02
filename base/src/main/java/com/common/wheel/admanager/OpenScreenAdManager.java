@@ -13,6 +13,9 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
+import com.common.wheel.service.ApiService;
+
+import java.util.HashMap;
 
 public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
 
@@ -113,6 +116,13 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
         Log.i("", "open ad click");
+        MediationBaseManager mediationManager = csjSplashAd.getMediationManager();
+        if (mediationManager != null) {
+            MediationAdEcpmInfo showEcpm = mediationManager.getShowEcpm();
+            if (showEcpm != null) {
+                logEcpmInfo(showEcpm);
+            }
+        }
     }
 
     @Override
@@ -121,5 +131,33 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
             callBack.onAdClose();
         }
         csjSplashAd.getMediationManager().destroy();
+    }
+
+    private void logEcpmInfo(MediationAdEcpmInfo item) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+        params.put("adType", "SPLASH");// 广告类型（见类型枚举）
+        params.put("ecpm", item.getEcpm());
+        params.put("adPosition", item.getSlotId()); // 广告位标识
+        params.put("clickType", "MANUAL_CLICK"); // 点击类型（见点击类型枚举）
+        params.put("userId", "");
+        ApiService.postAdInfo(this.activity, params);
+//        Log.d(Const.TAG, "EcpmInfo: \n" +
+//                "SdkName: " + item.getSdkName() + ",\n" +
+//                "CustomSdkName: " + item.getCustomSdkName() + ",\n" +
+//                "SlotId: " + item.getSlotId() + ",\n" +
+//                // 单位：分；一般情况下兜底代码位的ecpm是0，若获取到的ecpm为0的话，可优先核实是否是兜底代码位
+//                "Ecpm: " + item.getEcpm() + ",\n" +
+//                "ReqBiddingType: " + item.getReqBiddingType() + ",\n" +
+//                "ErrorMsg: " + item.getErrorMsg() + ",\n" +
+//                "RequestId: " + item.getRequestId() + ",\n" +
+//                "RitType: " + item.getRitType() + ",\n" +
+//                "AbTestId: " + item.getAbTestId() + ",\n" +
+//                "ScenarioId: " + item.getScenarioId() + ",\n" +
+//                "SegmentId: " + item.getSegmentId() + ",\n" +
+//                "Channel: " + item.getChannel() + ",\n" +
+//                "SubChannel: " + item.getSubChannel() + ",\n" +
+//                "customData: " + item.getCustomData()
+//        );
     }
 }

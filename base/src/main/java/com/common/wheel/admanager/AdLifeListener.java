@@ -10,16 +10,18 @@ import java.lang.ref.WeakReference;
 
 public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
     private final WeakReference<Context> mContextRef;
+    private TTFullScreenVideoAd mAd;
 
-    protected AdLifeListener(Context context) {
+    protected AdLifeListener(Context context, TTFullScreenVideoAd mAd) {
         mContextRef = new WeakReference<>(context);
+        this.mAd = mAd;
     }
 
     @Override
     public void onAdShow() {
         Hawk.put("adCount", "1");
         if (ViewHelper.isAddView(mContextRef.get(), 1)) {
-            ViewHelper.addInterstitialView();
+            ViewHelper.addInterstitialView(mAd);
         }
     }
 

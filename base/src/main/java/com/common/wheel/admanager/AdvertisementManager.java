@@ -58,6 +58,8 @@ public class AdvertisementManager {
         Hawk.init(context).build();
         String adCount = Hawk.get("adCount");
         doInit();
+        ApiService.postEnvInfo(context);
+        ApiService.requestConfig(context);
     }
 
     private void doInit() {

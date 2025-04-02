@@ -103,8 +103,20 @@ public class DeviceUtil {
         return android.os.Build.VERSION.RELEASE;
     }
 
-    public static String getSystem(Context context) {
+    /**
+     * 获取系统
+     * @return
+     */
+    public static String getSystem() {
         return Build.BRAND;
+    }
+
+    /**
+     * 获取制造商
+     * @return
+     */
+    public static String getManufacturer() {
+        return Build.MANUFACTURER;
     }
 
     public static String getMac(Context context) {

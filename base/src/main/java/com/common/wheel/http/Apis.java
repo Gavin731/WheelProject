@@ -2,13 +2,19 @@ package com.common.wheel.http;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.common.wheel.http.api.BaseApi;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.ConnectionSpec;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -55,7 +61,17 @@ public class Apis {
                 .retryOnConnectionFailure(true)
                 // 支持HTTPS
                 .connectionSpecs(Arrays.asList(ConnectionSpec.CLEARTEXT, ConnectionSpec.MODERN_TLS)); //明文Http与比较新的Https
-//		builder.addInterceptor(new commonInterceptor());  //添加公共参数
+		builder.addInterceptor(new Interceptor() {
+            @NonNull
+            @Override
+            public Response intercept(@NonNull Chain chain) throws IOException {
+                Request originalRequest = chain.request();
+                Request newRequest = originalRequest.newBuilder()
+                        .header("Authorization", "Bearer your_token") // 静态 Token
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        });  //添加公共参数
         //添加logcat信息 只在debug上看
         HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
         //新建log拦截器
