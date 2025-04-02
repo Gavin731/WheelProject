@@ -172,6 +172,7 @@
 -keep class com.blankj.utilcode.**.** { *; }
 -keep class com.common.wheel.http.BaseUrl { *; }
 -keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
+-keep class com.common.wheel.admanager.RewardAdCallBack { *; }
 # 保留所有公共类及其公共方法
 -keep public class com.common.wheel.admanager.AdvertisementManager{
     public *;

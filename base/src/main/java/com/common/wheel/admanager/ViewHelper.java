@@ -21,6 +21,7 @@ import com.common.wheel.util.DeviceUtil;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ViewHelper {
 
@@ -152,7 +153,7 @@ public class ViewHelper {
                             case MotionEvent.ACTION_DOWN:
                             case MotionEvent.ACTION_MOVE:
                                 ViewHelper.clickView((ViewGroup) efv);
-                                logEcpmInfo(context, ttFeedAd);
+                                logInfoEcpmInfo(context, ttFeedAd);
                                 break;
                             case MotionEvent.ACTION_UP:
                                 break;
@@ -187,7 +188,7 @@ public class ViewHelper {
         MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
-        params.put("adType", "INTERSTITIAL");// 广告类型（见类型枚举）
+        params.put("adType", "INTERSTITIAL");// 插屏
         params.put("ecpm", item.getEcpm());
         params.put("adPosition", item.getSlotId()); // 广告位标识
         params.put("clickType", clickType); // 误触
@@ -195,14 +196,32 @@ public class ViewHelper {
         ApiService.postAdInfo(context, params);
     }
 
-    protected static void logEcpmInfo(Context context, TTFeedAd ttFeedAd) {
+    protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
+//        Map<String, Object>  mediaExtraInfo = ttFeedAd.getMediaExtraInfo();
+        try {
+//            String channel = mediaExtraInfo.get("channel").toString();
+            HashMap<String, String> params = new HashMap<>();
+            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adType", "FEEDS");// 信息流
+            params.put("ecpm", item.getEcpm());
+            params.put("adPosition", item.getSlotId()); // 广告位标识
+            params.put("clickType", "MIS_CLICK"); // 误触
+            params.put("userId", "");
+            ApiService.postAdInfo(context, params);
+        } catch (Exception e) {
+        }
+
+
+    }
+
+    protected static void logRewardEcpmInfo(Context context, MediationAdEcpmInfo item) {
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
-        params.put("adType", "FEEDS");// 广告类型（见类型枚举）
+        params.put("adType", "VIDEO");// 激励
         params.put("ecpm", item.getEcpm());
         params.put("adPosition", item.getSlotId()); // 广告位标识
-        params.put("clickType", "MIS_CLICK"); // 误触
+        params.put("clickType", "MANUAL_CLICK"); // 手动
         params.put("userId", "");
         ApiService.postAdInfo(context, params);
     }

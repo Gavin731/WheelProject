@@ -77,11 +77,15 @@ public class DeviceUtil {
      */
     @SuppressLint("MissingPermission")
     public static String getMeId(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return telephonyManager.getMeid();
-        } else {
-            return telephonyManager.getDeviceId();
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return telephonyManager.getMeid();
+            } else {
+                return telephonyManager.getDeviceId();
+            }
+        }catch (Exception e){
+            return "";
         }
     }
 

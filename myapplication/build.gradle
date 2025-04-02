@@ -92,7 +92,7 @@ dependencies {
     implementation 'com.maven.local:mediation_sigmob_adapter:4.19.5.1'
     implementation 'com.maven.local:mediation_unity_adapter:4.3.0.32'
     implementation 'com.maven.local:open_ad_sdk:6.7.0.6'
-    implementation 'com.maven.local:tools-release:1.0.0'
+//    implementation 'com.maven.local:tools-release:1.0.0'
     implementation 'com.maven.local:unity-ads:4.3.0'
     implementation 'com.maven.local:windAd:4.19.5'
     implementation 'com.maven.local:windAd-common:1.7.2'

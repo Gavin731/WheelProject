@@ -96,7 +96,7 @@ public class AdvertisementManager {
                 /**
                  *  todo 上线前需要关闭debug开关，否则会影响性能
                  */
-                .debug(true)
+                .debug(false)
                 /**
                  * 使用聚合功能此开关必须设置为true，默认为false
                  */
@@ -200,6 +200,19 @@ public class AdvertisementManager {
         OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
     }
 
+    /**
+     * 激励视频
+     * @param act
+     * @param codeId
+     * @param listener
+     */
+    public void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
+        if (!sInit) {
+            Log.i(TAG, "SDK没有初始化");
+            return;
+        }
+        RewardAdManager.getInstance().loadRewardAd(act, codeId, listener);
+    }
 
     public void httpRequest(Context context) {
         ApiService.requestTestHttp(context);
