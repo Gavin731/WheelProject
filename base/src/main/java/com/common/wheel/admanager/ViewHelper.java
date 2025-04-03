@@ -24,6 +24,7 @@ import com.orhanobut.hawk.Hawk;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ViewHelper {
 
@@ -93,7 +94,7 @@ public class ViewHelper {
         try {
             int count = Hawk.get("interCount", 0);
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
-            Hawk.put("interCount", count++);
+            Hawk.put("interCount", count+1);
             if (isInterInfoPerssView(act)) {
                 ImageView ci = new ImageView(act);
                 Glide.with(act).load("https://vcg01.cfp.cn/creative/vcg/800/new/VCG211245151984.jpg").into(ci);
@@ -153,7 +154,7 @@ public class ViewHelper {
 
             // 添加垃圾代码
             Class<?> vv = Class.forName("android.view.View");
-            Hawk.put("infoCount", count++);
+            Hawk.put("infoCount", count+1);
             llm.setVisibility(View.GONE);
             if (isAddInfoView(context)) {
                 llm.setVisibility(View.VISIBLE);

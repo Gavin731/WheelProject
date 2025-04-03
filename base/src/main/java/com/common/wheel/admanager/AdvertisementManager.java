@@ -22,6 +22,7 @@ public class AdvertisementManager {
     private boolean sStart;
     private String projectId;
     private String projectName;
+    private String token;
     private Context context;
 
     private AdvertisementManager() {
@@ -51,13 +52,17 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
+    public void initConfig(String token) {
+        this.token = token;
+        Hawk.init(context).build();
+        ApiService.requestConfig(context);
+    }
+
     public void init(Context context, String appId, String appName) {
         this.projectId = appId;
         this.projectName = appName;
         this.context = context;
-        Hawk.init(context).build();
         doInit();
-        ApiService.requestConfig(context);
     }
 
     private void doInit() {
@@ -200,6 +205,7 @@ public class AdvertisementManager {
 
     /**
      * 激励视频
+     *
      * @param act
      * @param codeId
      * @param listener
@@ -214,5 +220,9 @@ public class AdvertisementManager {
 
     public void httpRequest(Context context) {
         ApiService.requestTestHttp(context);
+    }
+
+    public String getToken() {
+        return token;
     }
 }

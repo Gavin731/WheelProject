@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
+import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.entity.ConfigEntity;
 import com.common.wheel.entity.TokenEntity;
@@ -80,8 +81,8 @@ public class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_env_info");
-        requestParams.put("appName", "");
-        requestParams.put("appToken", "");
+        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_env_info(requestParams)
                 .subscribeOn(Schedulers.io())
@@ -101,8 +102,8 @@ public class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_config_query");
-        requestParams.put("appName", "");
-        requestParams.put("appToken", "");
+        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_config_query(requestParams)
                 .subscribeOn(Schedulers.io())
@@ -186,8 +187,8 @@ public class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_ad_click_info");
-        requestParams.put("appName", "");
-        requestParams.put("appToken", "");
+        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_ad_click_info(requestParams)
                 .subscribeOn(Schedulers.io())
