@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.init_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().init(MainActivity.this, "5670955", "终端测试软件");
             }
         });
 //        findViewById(R.id.load_ad).setOnClickListener(new View.OnClickListener() {

@@ -62,9 +62,9 @@ public class ApiService {
         params.put("osVersion", DeviceUtil.getSystemVersion());
         params.put("imei", DeviceUtil.getImei(context));
         params.put("androidId", DeviceUtil.getAndroidId(context));
-        params.put("oaid", DeviceUtil.getOAId(context));
+        params.put("oaid", DeviceUtil.getUUID(context));
         params.put("meid", DeviceUtil.getMeId(context));
-        params.put("mac", DeviceUtil.getMacAddress());
+        params.put("mac", DeviceUtil.getMac(context));
         params.put("systemInfo", DeviceUtil.getSystem());
         params.put("ipAddress", DeviceUtil.getWifiIpAddress(context));
         params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
@@ -178,7 +178,7 @@ public class ApiService {
         params.put("adPlatform", adInfo.get("adPlatform")); // 广告平台（见平台枚举）
         params.put("adType", adInfo.get("adType"));// 广告类型（见类型枚举）
         params.put("ecpm", adInfo.get("ecpm"));
-        params.put("oaid", ""); // 设备OAID
+        params.put("oaid", DeviceUtil.getUUID(context)); // 设备OAID
         params.put("adPosition", adInfo.get("adPosition")); // 广告位标识
         params.put("clickType", adInfo.get("clickType")); // 点击类型（见点击类型枚举）
         params.put("deviceId", DeviceUtil.getUUID(context));
