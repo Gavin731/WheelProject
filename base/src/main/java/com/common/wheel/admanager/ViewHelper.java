@@ -191,13 +191,13 @@ public class ViewHelper {
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
-        boolean feeds_misclick_ad_config = Hawk.get(ConstantsPath.feeds_misclick_ad_config, true);
+        boolean feeds_misclick_ad_config = Hawk.get(ConstantsPath.feeds_misclick_ad_config, false);
         // 不增加误点
         if (!feeds_misclick_ad_config) {
             return false;
         }
         int count = Hawk.get("infoCount", 0);
-        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "1,2,3,4,5,6,7,8,9,10");
+        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
         if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
             String[] value = feeds_misclick_ad_config_value.split(",");
             for (String v : value) {
@@ -220,13 +220,13 @@ public class ViewHelper {
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
-        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, true);
+        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
         // 不增加误点
         if (!interstitial_perss_ad_config) {
             return false;
         }
         int count = Hawk.get("interCount", 0);
-        String interstitial_perss_ad_config_value = Hawk.get(ConstantsPath.interstitial_perss_ad_config_value, "1,2,3,4,5,6,7,8,9,10");
+        String interstitial_perss_ad_config_value = Hawk.get(ConstantsPath.interstitial_perss_ad_config_value, "");
         if (!TextUtils.isEmpty(interstitial_perss_ad_config_value)) {
             String[] value = interstitial_perss_ad_config_value.split(",");
             for (String v : value) {
@@ -249,13 +249,13 @@ public class ViewHelper {
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
-        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch, true);
+        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch, false);
         // 不增加误点
         if (!interstitial_misclick_ad_switch) {
             return false;
         }
         int count = Hawk.get("interCount", 0);
-        String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch_value, "1,2,3,4,5,6,7,8,9,10");
+        String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch_value, "");
         if (!TextUtils.isEmpty(interstitial_misclick_ad_switch_value)) {
             String[] value = interstitial_misclick_ad_switch_value.split(",");
             for (String v : value) {
