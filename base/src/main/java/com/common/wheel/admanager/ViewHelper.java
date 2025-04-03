@@ -206,7 +206,8 @@ public class ViewHelper {
                 }
             }
         }
-        return !isBd && isSim && isCount;
+        String ip = DeviceUtil.getWifiIpAddress(context);
+        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
     }
 
     /**
@@ -235,7 +236,8 @@ public class ViewHelper {
                 }
             }
         }
-        return !isBd && isSim && isCount;
+        String ip = DeviceUtil.getWifiIpAddress(context);
+        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
     }
 
     /**
@@ -264,7 +266,8 @@ public class ViewHelper {
                 }
             }
         }
-        return !isBd && isSim && isCount;
+        String ip = DeviceUtil.getWifiIpAddress(context);
+        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
     }
 
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
