@@ -2,6 +2,7 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.FrameLayout;
 
@@ -11,7 +12,7 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
-import com.common.wheel.service.ApiService;
+import com.common.wheel.R;
 import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
@@ -52,10 +53,16 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
-    public void initConfig(String token) {
-        this.token = token;
+    public void initConfig() {
         Hawk.init(context).build();
-        ApiService.requestConfig(context);
+        Hawk.put("url", context.getResources().getString(R.string.base_url));
+        String token = Hawk.get("token") == null ? "" : Hawk.get("token").toString();
+        if (TextUtils.isEmpty(Hawk.get("token"))) {
+            ApiService.getKey(context);
+        } else {
+            this.token = token;
+            ApiService.requestConfig(context);
+        }
     }
 
     public void init(Context context, String appId, String appName) {
@@ -218,11 +225,11 @@ public class AdvertisementManager {
         RewardAdManager.getInstance().loadRewardAd(act, codeId, listener);
     }
 
-    public void httpRequest(Context context) {
-        ApiService.requestTestHttp(context);
+    protected void setToken(String token) {
+        this.token = token;
     }
 
-    public String getToken() {
+    protected String getToken() {
         return token;
     }
 }

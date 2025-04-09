@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.common.wheel.http.api.BaseApi;
+import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -61,17 +62,17 @@ public class Apis {
                 .retryOnConnectionFailure(true)
                 // 支持HTTPS
                 .connectionSpecs(Arrays.asList(ConnectionSpec.CLEARTEXT, ConnectionSpec.MODERN_TLS)); //明文Http与比较新的Https
-		builder.addInterceptor(new Interceptor() {
-            @NonNull
-            @Override
-            public Response intercept(@NonNull Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                Request newRequest = originalRequest.newBuilder()
-                        .header("Authorization", "Bearer your_token") // 静态 Token
-                        .build();
-                return chain.proceed(newRequest);
-            }
-        });  //添加公共参数
+//		builder.addInterceptor(new Interceptor() {
+//            @NonNull
+//            @Override
+//            public Response intercept(@NonNull Chain chain) throws IOException {
+//                Request originalRequest = chain.request();
+//                Request newRequest = originalRequest.newBuilder()
+//                        .header("Authorization", "Bearer your_token") // 静态 Token
+//                        .build();
+//                return chain.proceed(newRequest);
+//            }
+//        });  //添加公共参数
         //添加logcat信息 只在debug上看
         HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
         //新建log拦截器
@@ -86,7 +87,7 @@ public class Apis {
         builder.addInterceptor(loggingInterceptor);  //日志拦截器
         return new Retrofit.Builder()
                 .client(builder.build())
-                .baseUrl(BaseUrl.baseUrl)
+                .baseUrl(Hawk.get("url").toString())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build().create(clazz);

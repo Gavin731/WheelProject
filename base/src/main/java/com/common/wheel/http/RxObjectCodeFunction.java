@@ -10,7 +10,7 @@ import io.reactivex.functions.Function;
 
 public class RxObjectCodeFunction<T> implements Function<ResultBean, RxObjectCode<T>> {
 
-    public static final int RESULTOK = 10000;
+    public static final int RESULTOK = 200;
     private Class<T> tClass;
     private Context context;
 
@@ -39,7 +39,7 @@ public class RxObjectCodeFunction<T> implements Function<ResultBean, RxObjectCod
 //            rxObjectCode.setObject(new Object());
 //            return rxObjectCode;
 //        }
-        rxObjectCode.setObject(GsonUtil.parseJsonToBean(resultBean.getData().toString(), tClass));
+        rxObjectCode.setObject(resultBean.getData());
         return rxObjectCode;
     }
 

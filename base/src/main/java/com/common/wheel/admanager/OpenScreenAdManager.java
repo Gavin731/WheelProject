@@ -13,7 +13,6 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
-import com.common.wheel.service.ApiService;
 
 import java.util.HashMap;
 

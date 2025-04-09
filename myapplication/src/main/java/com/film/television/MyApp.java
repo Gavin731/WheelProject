@@ -10,6 +10,6 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         AdvertisementManager.getInstance().init(this, "5670955", "终端测试软件");
-        AdvertisementManager.getInstance().initConfig("12345566544");
+        AdvertisementManager.getInstance().initConfig();
     }
 }

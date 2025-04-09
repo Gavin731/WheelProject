@@ -18,13 +18,11 @@ import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.common.wheel.constans.ConstantsPath;
-import com.common.wheel.service.ApiService;
 import com.common.wheel.util.DeviceUtil;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ViewHelper {
 
@@ -251,13 +249,13 @@ public class ViewHelper {
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
-        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch, false);
+        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
         // 不增加误点
         if (!interstitial_misclick_ad_switch) {
             return false;
         }
         int count = Hawk.get("interCount", 0);
-        String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_switch_value, "");
+        String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_config_value, "");
         if (!TextUtils.isEmpty(interstitial_misclick_ad_switch_value)) {
             String[] value = interstitial_misclick_ad_switch_value.split(",");
             for (String v : value) {

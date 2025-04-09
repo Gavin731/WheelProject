@@ -7,8 +7,7 @@ public class ResultBean<T> {
 
 
     private int code;
-    private Object message;
-    private T resultData;
+    private String message;
     private T data;
 
     public int getCode() {
@@ -19,20 +18,12 @@ public class ResultBean<T> {
         this.code = code;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Object message) {
+    public void setMessage(String message) {
         this.message = message;
-    }
-
-    public void setResultData(T resultData) {
-        this.resultData = resultData;
-    }
-
-    public T getResultData() {
-        return resultData;
     }
 
     public void setData(T data) {
@@ -48,7 +39,6 @@ public class ResultBean<T> {
         return "ResultBean{" +
                 "code=" + code +
                 ", message=" + message +
-                ", resultData=" + resultData +
                 ", data=" + data +
                 '}';
     }

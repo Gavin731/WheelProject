@@ -1,5 +1,6 @@
 package com.common.wheel.http.api;
 
+import com.common.wheel.entity.TokenEntity;
 import com.common.wheel.http.entity.ResultBean;
 
 import java.util.HashMap;
@@ -41,4 +42,12 @@ public interface BaseApi {
      */
     @POST("api/gateway/request")
     Observable<ResultBean> zxzh_sdk_ad_click_info(@Body HashMap<String, Object> param);
+
+    /**
+     * 获取token
+     * @param param
+     * @return
+     */
+    @POST("api/gateway/request")
+    Observable<ResultBean<TokenEntity>> zxzh_app_token_apply(@Body HashMap<String, Object> param);
 }

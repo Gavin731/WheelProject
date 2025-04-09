@@ -17,9 +17,9 @@ public interface ConstantsPath {
     String feeds_ad_switch = "feeds_ad_switch"; // 信息流广告开关
     String interstitial_perss_ad_config = "interstitial_perss_ad_config"; // 插屏广告诱导设置
     String interstitial_perss_ad_config_value = "interstitial_perss_ad_config_value"; // 插屏广告诱导设置
-    String splash_misclick_ad_switch = "splash_misclick_ad_switch"; // 开屏广告误点配置
-    String interstitial_misclick_ad_switch = "interstitial_misclick_ad_switch"; // 插屏广告误点配置
-    String interstitial_misclick_ad_switch_value = "interstitial_misclick_ad_switch_value"; // 插屏广告误点配置
+    String splash_misclick_ad_config = "splash_misclick_ad_config"; // 开屏广告误点配置
+    String interstitial_misclick_ad_config = "interstitial_misclick_ad_config"; // 插屏广告误点配置
+    String interstitial_misclick_ad_config_value = "interstitial_misclick_ad_config_value"; // 插屏广告误点配置
     String video_misclick_ad_config = "video_misclick_ad_config"; // 激励视频广告误点配置
     String feeds_misclick_ad_config = "feeds_misclick_ad_config"; // 信息流视频广告误点配置
     String feeds_misclick_ad_config_value = "feeds_misclick_ad_config_value"; // 信息流视频广告误点配置

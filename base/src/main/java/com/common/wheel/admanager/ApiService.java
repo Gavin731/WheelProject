@@ -1,11 +1,11 @@
-package com.common.wheel.service;
+package com.common.wheel.admanager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.entity.ConfigEntity;
 import com.common.wheel.entity.TokenEntity;
@@ -25,10 +25,10 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class ApiService {
+class ApiService {
 
     @SuppressLint("CheckResult")
-    public static void requestTestHttp(Context context) {
+    protected static void requestTestHttp(Context context) {
         HashMap<String, String> params = new HashMap<>();
         params.put("appkey", "13761304832");
         params.put("appsecret", "zt123456");
@@ -55,8 +55,39 @@ public class ApiService {
                 }, new RxConsumerThrowable(context, "登录异常"));
     }
 
+    protected static void getKey(Context context) {
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_app_token_apply");
+//        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appName", "com.example.app");
+        Apis.getBaseApi().zxzh_app_token_apply(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new RxObjectCodeFunction<>(context, TokenEntity.class))
+                .map(new Function<RxObjectCode<TokenEntity>, Boolean>() {
+                    @Override
+                    public Boolean apply(RxObjectCode<TokenEntity> tokenEntityRxObjectCode) throws Exception {
+                        TokenEntity result = tokenEntityRxObjectCode.getObject();
+                        if (!TextUtils.isEmpty(result.getAppToken())) {
+                            Hawk.put("token", result.getAppToken());
+                            AdvertisementManager.getInstance().setToken(result.getAppToken());
+                            requestConfig(context);
+                        }
+                        return true;
+                    }
+                }).subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
+    }
+
     @SuppressLint("CheckResult")
-    public static void postEnvInfo(Context context) {
+    protected static void postEnvInfo(Context context) {
         HashMap<String, String> params = new HashMap<>();
         params.put("tjType", "yxtj");
         params.put("deviceId", DeviceUtil.getUUID(context));
@@ -81,7 +112,8 @@ public class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_env_info");
-        requestParams.put("appName", context.getPackageName());
+//        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appName", "com.example.app");
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_env_info(requestParams)
@@ -91,18 +123,29 @@ public class ApiService {
                     public Object apply(ResultBean resultBean) throws Exception {
                         return null;
                     }
+                }).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
                 });
     }
 
     @SuppressLint("CheckResult")
-    public static void requestConfig(Context context) {
+    protected static void requestConfig(Context context) {
         HashMap<String, String> params = new HashMap<>();
         params.put("ipAddress", DeviceUtil.getLocalIpAddress());
         params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_config_query");
-        requestParams.put("appName", context.getPackageName());
+//        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appName", "com.example.app");
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_config_query(requestParams)
@@ -118,6 +161,16 @@ public class ApiService {
                         }
                         return null;
                     }
+                }).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
                 });
     }
 
@@ -127,7 +180,7 @@ public class ApiService {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
                     if (configEntity.getConfigStatus()) {
                         // 校验是否开启广告
-                        ApiService.postEnvInfo(context);
+                        postEnvInfo(context);
                     }
                     break;
                 case ConstantsPath.splash_ad_switch: //开屏广告开关
@@ -146,14 +199,14 @@ public class ApiService {
                         Hawk.put(ConstantsPath.interstitial_perss_ad_config, false);
                     }
                     break;
-                case ConstantsPath.splash_misclick_ad_switch://开屏广告误点配置
+                case ConstantsPath.splash_misclick_ad_config://开屏广告误点配置
                     break;
-                case ConstantsPath.interstitial_misclick_ad_switch://插屏广告误点配置
+                case ConstantsPath.interstitial_misclick_ad_config://插屏广告误点配置
                     if (configEntity.getConfigStatus()) {
-                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch, true);
-                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch_value, configEntity.getConfigValue());
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_config, true);
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_config_value, configEntity.getConfigValue());
                     } else {
-                        Hawk.put(ConstantsPath.interstitial_misclick_ad_switch, false);
+                        Hawk.put(ConstantsPath.interstitial_misclick_ad_config, false);
                     }
                     break;
                 case ConstantsPath.video_misclick_ad_config://激励视频广告误点配置
@@ -174,7 +227,7 @@ public class ApiService {
 
 
     @SuppressLint("CheckResult")
-    public static void postAdInfo(Context context, HashMap<String, String> adInfo) {
+    protected static void postAdInfo(Context context, HashMap<String, String> adInfo) {
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", adInfo.get("adPlatform")); // 广告平台（见平台枚举）
         params.put("adType", adInfo.get("adType"));// 广告类型（见类型枚举）
@@ -187,7 +240,8 @@ public class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_ad_click_info");
-        requestParams.put("appName", context.getPackageName());
+//        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appName", "com.example.app");
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_ad_click_info(requestParams)
@@ -196,6 +250,16 @@ public class ApiService {
                     @Override
                     public Object apply(ResultBean resultBean) throws Exception {
                         return null;
+                    }
+                }).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
                     }
                 });
     }
