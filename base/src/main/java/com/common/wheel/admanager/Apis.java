@@ -1,27 +1,20 @@
-package com.common.wheel.http;
+package com.common.wheel.admanager;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.common.wheel.http.api.BaseApi;
 import com.orhanobut.hawk.Hawk;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.ConnectionSpec;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Apis {
+class Apis {
 
     private static final int DEFAULT_CONNECT_TIMEOUT = 30;   //连接超时
     private static final int DEFAULT_READ_TIMEOUT = 12;     //读取超时

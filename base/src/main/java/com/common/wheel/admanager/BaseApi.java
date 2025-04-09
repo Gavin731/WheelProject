@@ -1,4 +1,4 @@
-package com.common.wheel.http.api;
+package com.common.wheel.admanager;
 
 import com.common.wheel.entity.TokenEntity;
 import com.common.wheel.http.entity.ResultBean;
@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-public interface BaseApi {
+interface BaseApi {
 
     /**
      * 获取机器号

@@ -9,15 +9,16 @@ import android.util.Log;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.entity.ConfigEntity;
 import com.common.wheel.entity.TokenEntity;
-import com.common.wheel.http.Apis;
 import com.common.wheel.http.RxConsumerThrowable;
 import com.common.wheel.http.RxObjectCode;
 import com.common.wheel.http.RxObjectCodeFunction;
 import com.common.wheel.http.entity.ResultBean;
 import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
+import com.google.gson.internal.LinkedTreeMap;
 import com.orhanobut.hawk.Hawk;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -154,7 +155,21 @@ class ApiService {
                     @Override
                     public Object apply(ResultBean resultBean) throws Exception {
                         if (resultBean.getData() != null) {
-                            List<ConfigEntity> configs = GsonUtil.parseJsonToList(resultBean.getData().toString(), ConfigEntity.class);
+                            ArrayList<LinkedTreeMap<String, Object>> config = (ArrayList<LinkedTreeMap<String, Object>>) resultBean.getData();
+                            List<ConfigEntity> configs = new ArrayList<>();
+
+                            for (LinkedTreeMap<String, Object> map : config) {
+                                ConfigEntity entity = new ConfigEntity();
+
+                                String configKey = map.get("configKey") == null ? "" : map.get("configKey").toString();
+                                boolean configStatus = map.get("configStatus") != null && (boolean) map.get("configStatus");
+                                String configValue = map.get("configValue") == null ? "" : map.get("configValue").toString();
+                                entity.setConfigKey(configKey);
+                                entity.setConfigStatus(configStatus);
+                                entity.setConfigValue(configValue);
+
+                                configs.add(entity);
+                            }
                             if (configs != null && configs.size() > 0) {
                                 writeConfig(context, configs);
                             }
