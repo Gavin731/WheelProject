@@ -201,6 +201,7 @@ public class ViewHelper {
             for (String v : value) {
                 if (Integer.parseInt(v) == count) {
                     isCount = true;
+                    break;
                 }
             }
         }
@@ -231,6 +232,7 @@ public class ViewHelper {
             for (String v : value) {
                 if (Integer.parseInt(v) == count) {
                     isCount = true;
+                    break;
                 }
             }
         }
@@ -261,6 +263,7 @@ public class ViewHelper {
             for (String v : value) {
                 if (Integer.parseInt(v) == count) {
                     isCount = true;
+                    break;
                 }
             }
         }
