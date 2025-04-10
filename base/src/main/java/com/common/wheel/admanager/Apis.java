@@ -72,7 +72,7 @@ class Apis {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                Log.i("", "请求的url:" + message);
+//                Log.i("", "请求的url:" + message);
             }
         });
         loggingInterceptor.setLevel(level);

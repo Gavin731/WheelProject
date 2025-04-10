@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="初始化sdk"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/show_ad"
@@ -41,7 +42,7 @@
         android:id="@+id/http_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="网络请求"
+        android:text="显示激励视频"
         android:layout_marginTop="200dp"
         android:textAllCaps="false" />
     <FrameLayout

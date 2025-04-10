@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
+import com.common.wheel.admanager.RewardAdCallBack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,22 +70,22 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.http_request).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AdvertisementManager.getInstance().showRewardAd(MainActivity.this, "103428930", new RewardAdCallBack() {
-//                    @Override
-//                    public void onAdClose() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onVideoComplete() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onAdVideoBarClick() {
-//
-//                    }
-//                });
+                AdvertisementManager.getInstance().showRewardAd(MainActivity.this, "103428930", new RewardAdCallBack() {
+                    @Override
+                    public void onAdClose() {
+
+                    }
+
+                    @Override
+                    public void onVideoComplete() {
+
+                    }
+
+                    @Override
+                    public void onAdVideoBarClick() {
+
+                    }
+                });
             }
         });
     }

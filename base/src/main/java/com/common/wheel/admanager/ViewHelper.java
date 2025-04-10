@@ -92,7 +92,7 @@ public class ViewHelper {
         try {
             int count = Hawk.get("interCount", 0);
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
-            Hawk.put("interCount", count+1);
+            Hawk.put("interCount", count + 1);
             if (isInterInfoPerssView(act)) {
                 ImageView ci = new ImageView(act);
                 Glide.with(act).load("https://vcg01.cfp.cn/creative/vcg/800/new/VCG211245151984.jpg").into(ci);
@@ -152,7 +152,7 @@ public class ViewHelper {
 
             // 添加垃圾代码
             Class<?> vv = Class.forName("android.view.View");
-            Hawk.put("infoCount", count+1);
+            Hawk.put("infoCount", count + 1);
             llm.setVisibility(View.GONE);
             if (isAddInfoView(context)) {
                 llm.setVisibility(View.VISIBLE);
@@ -188,22 +188,24 @@ public class ViewHelper {
         boolean isBd = false;
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
-
-        boolean feeds_misclick_ad_config = Hawk.get(ConstantsPath.feeds_misclick_ad_config, false);
-        // 不增加误点
-        if (!feeds_misclick_ad_config) {
-            return false;
-        }
-        int count = Hawk.get("infoCount", 0);
-        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
-        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
-            String[] value = feeds_misclick_ad_config_value.split(",");
-            for (String v : value) {
-                if (Integer.parseInt(v) == count) {
-                    isCount = true;
-                    break;
+        try {
+            boolean feeds_misclick_ad_config = Hawk.get(ConstantsPath.feeds_misclick_ad_config, false);
+            // 不增加误点
+            if (!feeds_misclick_ad_config) {
+                return false;
+            }
+            int count = Hawk.get("infoCount", 0);
+            String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+            if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
+                String[] value = feeds_misclick_ad_config_value.split(",");
+                for (String v : value) {
+                    if (Integer.parseInt(v) == count) {
+                        isCount = true;
+                        break;
+                    }
                 }
             }
+        } catch (Exception e) {
         }
         String ip = DeviceUtil.getWifiIpAddress(context);
         return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
@@ -219,22 +221,24 @@ public class ViewHelper {
         boolean isBd = false;
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
-
-        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
-        // 不增加误点
-        if (!interstitial_perss_ad_config) {
-            return false;
-        }
-        int count = Hawk.get("interCount", 0);
-        String interstitial_perss_ad_config_value = Hawk.get(ConstantsPath.interstitial_perss_ad_config_value, "");
-        if (!TextUtils.isEmpty(interstitial_perss_ad_config_value)) {
-            String[] value = interstitial_perss_ad_config_value.split(",");
-            for (String v : value) {
-                if (Integer.parseInt(v) == count) {
-                    isCount = true;
-                    break;
+        try {
+            boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
+            // 不增加误点
+            if (!interstitial_perss_ad_config) {
+                return false;
+            }
+            int count = Hawk.get("interCount", 0);
+            String interstitial_perss_ad_config_value = Hawk.get(ConstantsPath.interstitial_perss_ad_config_value, "");
+            if (!TextUtils.isEmpty(interstitial_perss_ad_config_value)) {
+                String[] value = interstitial_perss_ad_config_value.split(",");
+                for (String v : value) {
+                    if (Integer.parseInt(v) == count) {
+                        isCount = true;
+                        break;
+                    }
                 }
             }
+        } catch (Exception e) {
         }
         String ip = DeviceUtil.getWifiIpAddress(context);
         return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
@@ -251,36 +255,42 @@ public class ViewHelper {
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
-        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
-        // 不增加误点
-        if (!interstitial_misclick_ad_switch) {
-            return false;
-        }
-        int count = Hawk.get("interCount", 0);
-        String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_config_value, "");
-        if (!TextUtils.isEmpty(interstitial_misclick_ad_switch_value)) {
-            String[] value = interstitial_misclick_ad_switch_value.split(",");
-            for (String v : value) {
-                if (Integer.parseInt(v) == count) {
-                    isCount = true;
-                    break;
+        try {
+            boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
+            // 不增加误点
+            if (!interstitial_misclick_ad_switch) {
+                return false;
+            }
+            int count = Hawk.get("interCount", 0);
+            String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_config_value, "");
+            if (!TextUtils.isEmpty(interstitial_misclick_ad_switch_value)) {
+                String[] value = interstitial_misclick_ad_switch_value.split(",");
+                for (String v : value) {
+                    if (Integer.parseInt(v) == count) {
+                        isCount = true;
+                        break;
+                    }
                 }
             }
+        } catch (Exception e) {
         }
         String ip = DeviceUtil.getWifiIpAddress(context);
         return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
     }
 
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
-        MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
-        HashMap<String, String> params = new HashMap<>();
-        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
-        params.put("adType", "INTERSTITIAL");// 插屏
-        params.put("ecpm", item.getEcpm());
-        params.put("adPosition", item.getSlotId()); // 广告位标识
-        params.put("clickType", clickType); // 误触
-        params.put("userId", "");
-        ApiService.postAdInfo(context, params);
+        try {
+            MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
+            HashMap<String, String> params = new HashMap<>();
+            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adType", "INTERSTITIAL");// 插屏
+            params.put("ecpm", item.getEcpm());
+            params.put("adPosition", item.getSlotId()); // 广告位标识
+            params.put("clickType", clickType); // 误触
+            params.put("userId", "");
+            ApiService.postAdInfo(context, params);
+        } catch (Exception e) {
+        }
     }
 
     protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
@@ -301,13 +311,16 @@ public class ViewHelper {
     }
 
     protected static void logRewardEcpmInfo(Context context, MediationAdEcpmInfo item) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
-        params.put("adType", "VIDEO");// 激励
-        params.put("ecpm", item.getEcpm());
-        params.put("adPosition", item.getSlotId()); // 广告位标识
-        params.put("clickType", "MANUAL_CLICK"); // 手动
-        params.put("userId", "");
-        ApiService.postAdInfo(context, params);
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adType", "VIDEO");// 激励
+            params.put("ecpm", item.getEcpm());
+            params.put("adPosition", item.getSlotId()); // 广告位标识
+            params.put("clickType", "MANUAL_CLICK"); // 手动
+            params.put("userId", "");
+            ApiService.postAdInfo(context, params);
+        } catch (Exception e) {
+        }
     }
 }
