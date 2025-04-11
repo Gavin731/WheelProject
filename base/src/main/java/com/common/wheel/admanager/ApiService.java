@@ -234,6 +234,11 @@ class ApiService {
                         Hawk.put(ConstantsPath.feeds_misclick_ad_config, false);
                     }
                     break;
+                case ConstantsPath.perss_img_url:
+                    if (configEntity.getConfigStatus()) {
+                        Hawk.put(ConstantsPath.perss_img_url_value, configEntity.getConfigValue());
+                    }
+                    break;
             }
         }
 

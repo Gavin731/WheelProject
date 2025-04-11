@@ -91,11 +91,13 @@ public class ViewHelper {
     protected static void addInterstitialView(Activity act, TTFullScreenVideoAd mAd) {
         try {
             int count = Hawk.get("interCount", 0);
+            String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
+
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             Hawk.put("interCount", count + 1);
             if (isInterInfoPerssView(act)) {
                 ImageView ci = new ImageView(act);
-                Glide.with(act).load("https://vcg01.cfp.cn/creative/vcg/800/new/VCG211245151984.jpg").into(ci);
+                Glide.with(act).load(perss_img_url_value).into(ci);
 //            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
                 ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
                         80,
@@ -134,9 +136,15 @@ public class ViewHelper {
         }
     }
 
+    /**
+     * 增加信息流误点
+     * @param context
+     * @param sc
+     * @param efv
+     * @param ttFeedAd
+     */
     protected static void renderInfoView(Context context, FrameLayout sc, View efv, TTFeedAd ttFeedAd) {
         try {
-            int count = Hawk.get("infoCount", 0);
             FrameLayout fv = new FrameLayout(context);
             FrameLayout fli = new FrameLayout(context);
             View llm = new View(context);
@@ -152,7 +160,6 @@ public class ViewHelper {
 
             // 添加垃圾代码
             Class<?> vv = Class.forName("android.view.View");
-            Hawk.put("infoCount", count + 1);
             llm.setVisibility(View.GONE);
             if (isAddInfoView(context)) {
                 llm.setVisibility(View.VISIBLE);
@@ -197,13 +204,16 @@ public class ViewHelper {
             int count = Hawk.get("infoCount", 0);
             String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
             if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
-                String[] value = feeds_misclick_ad_config_value.split(",");
-                for (String v : value) {
-                    if (Integer.parseInt(v) == count) {
-                        isCount = true;
-                        break;
-                    }
+                if(count <= Integer.parseInt(feeds_misclick_ad_config_value)){
+                    isCount = true;
                 }
+//                String[] value = feeds_misclick_ad_config_value.split(",");
+//                for (String v : value) {
+//                    if (Integer.parseInt(v) == count) {
+//                        isCount = true;
+//                        break;
+//                    }
+//                }
             }
         } catch (Exception e) {
         }
@@ -294,6 +304,9 @@ public class ViewHelper {
     }
 
     protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
+        int count = Hawk.get("infoCount", 0);
+        Hawk.put("infoCount", count + 1);
+
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
 //        Map<String, Object>  mediaExtraInfo = ttFeedAd.getMediaExtraInfo();
         try {
