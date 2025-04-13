@@ -20,6 +20,13 @@ android {
         }
     }
 
+    // 可选：指定生成的 AAR 文件名
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "ad-base.aar"
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true //开启混淆

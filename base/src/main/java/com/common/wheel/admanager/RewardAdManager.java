@@ -8,7 +8,9 @@ import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
+import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
+import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
@@ -34,13 +36,22 @@ public class RewardAdManager {
         mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
-    private AdSlot buildSplashAdslot(String codeId) {
+    private AdSlot buildSplashAdslot(String projectId, String codeId) {
+        MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
+                MediationConstant.ADN_PANGLE, // 穿山甲
+                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                projectId,   // adn应用id，注意要跟初始化传入的保持一致
+                ""   // adn没有appKey时，传入空即可
+        ) {
+        };
         return new AdSlot.Builder()
                 .setCodeId(codeId)  //广告位ID
                 .setOrientation(TTAdConstant.VERTICAL)  //激励视频方向
                 .setMediationAdSlot(
                         new MediationAdSlot.Builder()
                                 .setMuted(false)
+                                //将自定义兜底对象设置给AdSlot
+                                .setMediationSplashRequestInfo(csjSplashRequestInfo)
 //                                .setRewardName("观看")
 //                                .setRewardAmount(1)
                                 .build()
@@ -49,10 +60,10 @@ public class RewardAdManager {
     }
 
     //加载激励视频
-    protected void loadRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
+    protected void loadRewardAd(Activity act,String projectId, String codeId, RewardAdCallBack listener) {
         this.listener = listener;
         /** 这里为激励视频的简单功能，如需使用复杂功能，如gromore的服务端奖励验证，请参考demo中的AdUtils.kt类中激励部分 */
-        mTTAdNative.loadRewardVideoAd(buildSplashAdslot(codeId), new TTAdNative.RewardVideoAdListener() {
+        mTTAdNative.loadRewardVideoAd(buildSplashAdslot(projectId,codeId), new TTAdNative.RewardVideoAdListener() {
             @Override
             public void onError(int errorCode, String errorMsg) {
                 //广告加载失败

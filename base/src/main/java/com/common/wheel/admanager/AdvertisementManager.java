@@ -222,7 +222,7 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        RewardAdManager.getInstance().loadRewardAd(act, codeId, listener);
+        RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
     }
 
     protected void setToken(String token) {
