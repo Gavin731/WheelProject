@@ -59,8 +59,7 @@ class ApiService {
     protected static void getKey(Context context) {
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_app_token_apply");
-//        requestParams.put("appName", context.getPackageName());
-        requestParams.put("appName", "com.example.app");
+        requestParams.put("appName", context.getPackageName());
         Apis.getBaseApi().zxzh_app_token_apply(requestParams)
                 .subscribeOn(Schedulers.io())
                 .map(new RxObjectCodeFunction<>(context, TokenEntity.class))
@@ -89,6 +88,11 @@ class ApiService {
 
     @SuppressLint("CheckResult")
     protected static void postEnvInfo(Context context) {
+        boolean isUpload = Hawk.get("isUpload", false);
+        if(isUpload){
+            return;
+        }
+
         HashMap<String, String> params = new HashMap<>();
         params.put("tjType", "yxtj");
         params.put("deviceId", DeviceUtil.getUUID(context));
@@ -113,8 +117,7 @@ class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_env_info");
-//        requestParams.put("appName", context.getPackageName());
-        requestParams.put("appName", "com.example.app");
+        requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_env_info(requestParams)
@@ -122,6 +125,7 @@ class ApiService {
                 .map(new Function<ResultBean, Object>() {
                     @Override
                     public Object apply(ResultBean resultBean) throws Exception {
+                        Hawk.put("isUpload", true);
                         return null;
                     }
                 }).subscribe(new Consumer<Object>() {
@@ -145,8 +149,7 @@ class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_config_query");
-//        requestParams.put("appName", context.getPackageName());
-        requestParams.put("appName", "com.example.app");
+        requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_config_query(requestParams)
@@ -193,12 +196,12 @@ class ApiService {
         for (ConfigEntity configEntity : configs) {
             switch (configEntity.getConfigKey()) {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
+                    break;
+                case ConstantsPath.splash_ad_switch: //开屏广告开关
                     if (configEntity.getConfigStatus()) {
                         // 校验是否开启广告
                         postEnvInfo(context);
                     }
-                    break;
-                case ConstantsPath.splash_ad_switch: //开屏广告开关
                     break;
                 case ConstantsPath.interstitial_ad_switch://插屏广告开关
                     break;
@@ -260,8 +263,7 @@ class ApiService {
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_ad_click_info");
-//        requestParams.put("appName", context.getPackageName());
-        requestParams.put("appName", "com.example.app");
+        requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_ad_click_info(requestParams)
