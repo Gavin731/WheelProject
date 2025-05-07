@@ -20,6 +20,34 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 #
+# 不删除任何代码
+-dontshrink
+# 混合时不使用大小写混合，混合后的类名为小写
+-dontusemixedcaseclassnames
+# 指定不去忽略非公共库的类
+-dontskipnonpubliclibraryclasses
+# 指定不去忽略非公共库的类成员
+-dontskipnonpubliclibraryclassmembers
+# 不做预校验，preverify是proguard的四个步骤之一，Android不需要preverify，去掉这一步能够加快混淆速度。
+-dontpreverify
+
+
+
+
+# 保留support下的所有类及其内部类
+-keep class android.support.** {*;}
+# 保留继承的
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.support.v7.**
+-keep public class * extends android.support.annotation.**
+# 四大组件类型不混淆
+-keep public class * extends android.app.Fragment
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+
 -keep class bykvm*.**
 -keep class com.bytedance.msdk.adapter.**{ public *; }
 -keep class com.bytedance.msdk.api.** {
@@ -30,6 +58,15 @@
     public *;
     protected <fields>;
 }
+
+#Mintegral 不接入Mintegral sdk，可以不引入
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.mbridge.** {*; }
+-keep interface com.mbridge.** {*; }
+-keep class android.support.v4.** { *; }
+-dontwarn com.mbridge.**
+-keep class **.R$* { public static final int mbridge*; }
 
 # baidu sdk 不接入baidu sdk可以不引入
 -ignorewarnings
@@ -92,15 +129,52 @@
 -keep public class com.netease.nis.sdkwrapper.Utils {public <methods>;}
 
 
-#Mintegral 不接入Mintegral sdk，可以不引入
+#retrofit2  混淆
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
 -keepattributes Signature
--keepattributes *Annotation*
--keep class com.mbridge.** {*; }
--keep interface com.mbridge.** {*; }
--keep class android.support.v4.** { *; }
--dontwarn com.mbridge.**
--keep class **.R$* { public static final int mbridge*; }
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
 
+# OkHttp3
+-keep class okhttp3.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
+#glide 4
+-keep public class * implements com.bumptech.glide.module.AppGlideModule
+-keep public class * implements com.bumptech.glide.module.LibraryGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+-keep class com.orhanobut.hawk.** { *; }
 # 保留某个包下的所有类
 -keep class com.common.wheel.http.entity.** { *; }
+-keep class com.common.wheel.entity.** { *; }
+-keep class com.blankj.utilcode.**.** { *; }
 -keep class com.common.wheel.http.BaseUrl { *; }
+-keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
+-keep class com.common.wheel.admanager.RewardAdCallBack { *; }
+# 保留所有公共类及其公共方法
+-keep public class com.common.wheel.admanager.AdvertisementManager{
+    public *;
+}
+

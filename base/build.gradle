@@ -20,9 +20,22 @@ android {
         }
     }
 
+    // 可选：指定生成的 AAR 文件名
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "ad-base.aar"
+        }
+    }
+
     buildTypes {
+        debug {
+            minifyEnabled true //开启混淆
+            zipAlignEnabled true //Zipalign优化
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true //开启混淆
+            zipAlignEnabled true //Zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,67 +66,54 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //内存泄露
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
-    //控件绑定
-    implementation 'com.jakewharton:butterknife:10.2.1'
-    //多dex
-    implementation 'com.android.support:multidex:1.0.3'
     //glide
     api 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    //各种工具包
-    api 'com.blankj:utilcode:1.29.0'
-
-    def lifecycle_version = "1.1.1"
-
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    // alternatively - just ViewModel
-    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version" // use -ktx for Kotlin
-    // alternatively - just LiveData
-    implementation "android.arch.lifecycle:livedata:$lifecycle_version"
-    // alternatively - Lifecycles only (no ViewModel or LiveData).
-    //     Support library depends on this lightweight import
-    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
-
-    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version" // use kapt for Kotlin
-    // alternately - if using Java8, use the following instead of compiler
-//    implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
-
-    // optional - ReactiveStreams support for LiveData
-    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
-
-    // optional - Test helpers for LiveData
-    testImplementation "android.arch.core:core-testing:$lifecycle_version"
-
-
-    // 屏幕适配
-    implementation 'me.jessyan:autosize:1.2.1'
     //SharedPreferences
     implementation "com.orhanobut:hawk:2.0.1"
     //okhttp
     implementation "com.squareup.okhttp3:okhttp:4.7.2"
     //rxjava和retrofit
     implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
-    //使用RxJava过程中管理Activity和Fragment生命周期能力的框架
-    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     //添加HttpLoggingInterceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-    //RxBindind
-    api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    //网络请求
-    api 'com.zhouyou:rxeasyhttp:2.1.5'
 
     implementation "com.android.support:support-v4:28.0.0"
-//    implementation "com.bytedance.ies.ugc.aweme:opensdk-china-external:0.1.8.0"
-//    implementation "com.bytedance.ies.ugc.aweme:opensdk-common:0.1.8.0"
+
+    implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.37.0'
+    implementation 'com.maven.local:GDTSDK:4.611.1481'
+    implementation 'com.maven.local:kssdk-ad:3.3.71.3'
+    implementation 'com.maven.local:mbridge_chinasame:16.6.57'
+    implementation 'com.maven.local:mbridge_dycreator:16.6.57'
+    implementation 'com.maven.local:mbridge_interstitial:16.6.57'
+    implementation 'com.maven.local:mbridge_interstitialvideo:16.6.57'
+    implementation 'com.maven.local:mbridge_mbbanner:16.6.57'
+    implementation 'com.maven.local:mbridge_mbbid:16.6.57'
+    implementation 'com.maven.local:mbridge_mbjscommon:16.6.57'
+    implementation 'com.maven.local:mbridge_mbnative:16.6.57'
+    implementation 'com.maven.local:mbridge_mbnativeadvanced:16.6.57'
+    implementation 'com.maven.local:mbridge_mbsplash:16.6.57'
+    implementation 'com.maven.local:mbridge_nativeex:16.6.57'
+    implementation 'com.maven.local:mbridge_newinterstitial:16.6.57'
+    implementation 'com.maven.local:mbridge_playercommon:16.6.57'
+    implementation 'com.maven.local:mbridge_reward:16.6.57'
+    implementation 'com.maven.local:mbridge_videocommon:16.6.57'
+    implementation 'com.maven.local:mbridge_videojs:16.6.57'
+    implementation 'com.maven.local:mediation_admob_adapter:17.2.0.65'
+    implementation 'com.maven.local:mediation_baidu_adapter:9.37.3'
+    implementation 'com.maven.local:mediation_gdt_adapter:4.611.1481.0'
+    implementation 'com.maven.local:mediation_ks_adapter:3.3.71.3.0'
+    implementation 'com.maven.local:mediation_mintegral_adapter:16.6.57.8'
+    implementation 'com.maven.local:mediation_sigmob_adapter:4.19.5.1'
+    implementation 'com.maven.local:mediation_unity_adapter:4.3.0.32'
+    implementation 'com.maven.local:open_ad_sdk:6.7.0.6'
+//    implementation 'com.maven.local:tools-release:1.0.0' // todo 上线需删除
+    implementation 'com.maven.local:unity-ads:4.3.0'
+    implementation 'com.maven.local:windAd:4.19.5'
+    implementation 'com.maven.local:windAd-common:1.7.2'
 
 }

@@ -1,14 +1,10 @@
 package com.common.wheel.util;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-
-import com.blankj.utilcode.util.LogUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,9 +15,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -30,7 +23,7 @@ import java.util.zip.ZipOutputStream;
 public class FileUtil {
 
     public static final String TAG = "ZIP";
-    private static final int  BUFFER_SIZE = 2 * 1024;
+    private static final int BUFFER_SIZE = 2 * 1024;
 
 
     /**
@@ -84,7 +77,7 @@ public class FileUtil {
             fw.write(srcText);
 
         } catch (Exception e) {
-            LogUtils.e(e, "writeFile异常");
+            Log.e("", "writeFile异常");
             // e.printStackTrace();
             result = false;
         } finally {
@@ -178,7 +171,7 @@ public class FileUtil {
     }
 
     public static void copyWithoutExsit(File file, File toFile) throws Exception {
-        if(file == null || toFile == null){
+        if (file == null || toFile == null) {
             return;
         }
         byte[] b = new byte[1024];
@@ -215,7 +208,7 @@ public class FileUtil {
                 }
             } else {
                 // 这个文件不存在
-                if(!toFile.exists()){
+                if (!toFile.exists()) {
                     //写文件
                     fis = new FileInputStream(file);
                     fos = new FileOutputStream(toFile);
@@ -364,7 +357,7 @@ public class FileUtil {
             File file = new File(path);
             inputStream = new FileInputStream(file);
         } catch (Exception e) {
-            LogUtils.e(ExceptionUtil.getStackTrace(e));
+            Log.e("", ExceptionUtil.getStackTrace(e));
         }
         return inputStream;
     }
@@ -381,6 +374,7 @@ public class FileUtil {
         }
         return urlcon;
     }
+
     /**
      * 根据路径删除指定的目录或文件，无论存在与否
      *
@@ -426,17 +420,14 @@ public class FileUtil {
             // 删除子文件
             if (files[i].isFile()) {
                 flag = delFile(files[i]);
-                if (!flag)
-                    break;
+                if (!flag) break;
             } // 删除子目录
             else {
                 flag = deleteDirectory(files[i].getAbsolutePath());
-                if (!flag)
-                    break;
+                if (!flag) break;
             }
         }
-        if (!flag)
-            return false;
+        if (!flag) return false;
         // 删除当前目录
         if (dirFile.delete()) {
             return true;
@@ -464,7 +455,7 @@ public class FileUtil {
             File file = new File(srcFileString);
             if (file.exists()) {
                 //压缩
-                compress(file,outZip,outFile.getName(),true);
+                compress(file, outZip, outFile.getName(), true);
             }
         }
         outZip.finish();
@@ -473,23 +464,23 @@ public class FileUtil {
 
     /**
      * 递归压缩方法
-     * @param sourceFile 源文件
-     * @param zos        zip输出流
-     * @param name       压缩后的名称
-     * @param KeepDirStructure  是否保留原来的目录结构,true:保留目录结构;
-     *                          false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
+     *
+     * @param sourceFile       源文件
+     * @param zos              zip输出流
+     * @param name             压缩后的名称
+     * @param KeepDirStructure 是否保留原来的目录结构,true:保留目录结构;
+     *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
      * @throws Exception
      */
-    private static void compress(File sourceFile, ZipOutputStream zos, String name,
-                                 boolean KeepDirStructure) throws Exception{
+    private static void compress(File sourceFile, ZipOutputStream zos, String name, boolean KeepDirStructure) throws Exception {
         byte[] buf = new byte[BUFFER_SIZE];
-        if(sourceFile.isFile()){
+        if (sourceFile.isFile()) {
             // 向zip输出流中添加一个zip实体，构造器中name为zip实体的文件的名字
             zos.putNextEntry(new ZipEntry(name));
             // copy文件到zip输出流中
             int len;
             FileInputStream in = new FileInputStream(sourceFile);
-            while ((len = in.read(buf)) != -1){
+            while ((len = in.read(buf)) != -1) {
                 zos.write(buf, 0, len);
             }
             // Complete the entry
@@ -497,23 +488,23 @@ public class FileUtil {
             in.close();
         } else {
             File[] listFiles = sourceFile.listFiles();
-            if(listFiles == null || listFiles.length == 0){
+            if (listFiles == null || listFiles.length == 0) {
                 // 需要保留原来的文件结构时,需要对空文件夹进行处理
-                if(KeepDirStructure){
+                if (KeepDirStructure) {
                     // 空文件夹的处理
                     zos.putNextEntry(new ZipEntry(name + "/"));
                     // 没有文件，不需要文件的copy
                     zos.closeEntry();
                 }
-            }else {
+            } else {
                 for (File file : listFiles) {
                     // 判断是否需要保留原来的文件结构
                     if (KeepDirStructure) {
                         // 注意：file.getName()前面需要带上父文件夹的名字加一斜杠,
                         // 不然最后压缩包中就不能保留原来的文件结构,即：所有文件都跑到压缩包根目录下了
-                        compress(file, zos, name +"/"+sourceFile.getName()+ "/" + file.getName(),KeepDirStructure);
+                        compress(file, zos, name + "/" + sourceFile.getName() + "/" + file.getName(), KeepDirStructure);
                     } else {
-                        compress(file, zos, file.getName(),KeepDirStructure);
+                        compress(file, zos, file.getName(), KeepDirStructure);
                     }
                 }
             }
@@ -529,8 +520,7 @@ public class FileUtil {
      * @throws Exception
      */
     private static void ZipFiles(String folderString, String fileString, ZipOutputStream zipOutputSteam) throws Exception {
-        if (zipOutputSteam == null)
-            return;
+        if (zipOutputSteam == null) return;
         File file = new File(folderString + fileString);
         if (file.isFile()) {
             ZipEntry zipEntry = new ZipEntry(fileString);
@@ -560,12 +550,13 @@ public class FileUtil {
 
     /**
      * 将base64保存本地
+     *
      * @param base64Code
      * @param savePath
      * @throws Exception
      */
-    public static void decoderBase64File(String base64Code,String savePath) throws Exception {
-        byte[] buffer =Base64.decode(base64Code, Base64.DEFAULT);
+    public static void decoderBase64File(String base64Code, String savePath) throws Exception {
+        byte[] buffer = Base64.decode(base64Code, Base64.DEFAULT);
         FileOutputStream out = new FileOutputStream(savePath);
         out.write(buffer);
         out.close();
@@ -596,8 +587,7 @@ public class FileUtil {
         int color;//用来存储某个像素点的颜色值
         int r, g, b, a;//红，绿，蓝，透明度
         //创建空白图像，宽度等于原图宽度，高度等于原图高度，用ARGB_8888渲染，这个不用了解，这样写就行了
-        Bitmap bmp = Bitmap.createBitmap(width, height
-                , Bitmap.Config.ARGB_8888);
+        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         int[] oldPx = new int[width * height];//用来存储原图每个像素点的颜色信息
         int[] newPx = new int[width * height];//用来处理处理之后的每个像素点的颜色信息

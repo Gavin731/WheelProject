@@ -1,11 +1,9 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
-import android.view.ViewGroup;
+import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.CSJAdError;
 import com.bytedance.sdk.openadsdk.CSJSplashAd;
@@ -15,9 +13,10 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
-import com.common.wheel.R;
 
-public class OpenScreenAdManager {
+import java.util.HashMap;
+
+public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
 
     private static volatile OpenScreenAdManager instance;
     private final TTAdNative mTTAdNative;
@@ -70,31 +69,7 @@ public class OpenScreenAdManager {
         this.callBack = callBack;
         this.activity = act;
         this.splashContainer = splashContainer;
-        mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), new TTAdNative.CSJSplashAdListener() {
-            @Override
-            public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("开屏广告加载成功");
-            }
-
-            @Override
-            public void onSplashLoadFail(CSJAdError csjAdError) {
-                //广告加载失败
-                LogUtils.e("开屏广告加载失败：" + csjAdError.getMsg());
-            }
-
-            @Override
-            public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
-                LogUtils.e("开屏广告渲染成功");
-                //广告渲染成功，在此展示广告
-                showSplashAd(csjSplashAd, splashContainer); //注 ：splashContainer为展示Banner广告的容器
-            }
-
-            @Override
-            public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
-                //广告渲染失败
-                LogUtils.e("开屏广告渲染失败:" + csjAdError.getMsg());
-            }
-        }, 3500);
+        mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), this, 3500);
     }
 
     private void showSplashAd(CSJSplashAd splashAd, FrameLayout container) {
@@ -102,62 +77,86 @@ public class OpenScreenAdManager {
             return;
         }
         container.removeAllViews();
-        splashAd.setSplashAdListener(new CSJSplashAd.SplashAdListener() {
-            @Override
-            public void onSplashAdShow(CSJSplashAd csjSplashAd) {
-                //广告展示
-                //获取展示广告相关信息，需要再show回调之后进行获取
-                MediationBaseManager manager = splashAd.getMediationManager();
-                if (manager != null && manager.getShowEcpm() != null) {
-                    MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
-                    String ecpm = showEcpm.getEcpm(); //展示广告的价格
-                    String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
-                    String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
-                }
-            }
-
-            @Override
-            public void onSplashAdClick(CSJSplashAd csjSplashAd) {
-                //广告点击
-                LogUtils.i("开屏广告被点击");
-            }
-
-            @Override
-            public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
-                //广告关闭
-                if (callBack != null) {
-                    callBack.onAdClose();
-                }
-                splashAd.getMediationManager().destroy();
-            }
-        });
+        splashAd.setSplashAdListener(this);
         splashAd.showSplashView(container);//展示开屏广告
-//        addButtonToActivity();
     }
 
-    private void addButtonToActivity() {
-        try {
-            // 获取 Activity 的根布局
-//            ViewGroup rootView = (ViewGroup) activity.findViewById(android.R.id.content);
-            // 创建按钮
-            ImageView closeImg = new ImageView(activity);
-            closeImg.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_close));
+    @Override
+    public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
 
-            // 设置按钮的布局参数
-            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            );
-            layoutParams.setMargins(100, 600, 0, 0); // 左边距 100px，上边距 200px
-            closeImg.setLayoutParams(layoutParams);
+    }
 
-            // 设置按钮的点击事件
-            closeImg.setOnClickListener(v -> {
-                ClickViewUtil.openMove(splashContainer);
-            });
-            splashContainer.addView(closeImg);
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public void onSplashLoadFail(CSJAdError csjAdError) {
+        Log.e("", "open ad load fail：" + csjAdError.getMsg());
+    }
+
+    @Override
+    public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
+        showSplashAd(csjSplashAd, splashContainer);
+    }
+
+    @Override
+    public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
+        Log.e("", "open ad render fail:" + csjAdError.getMsg());
+    }
+
+    @Override
+    public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        MediationBaseManager manager = csjSplashAd.getMediationManager();
+        if (manager != null && manager.getShowEcpm() != null) {
+            MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
+            String ecpm = showEcpm.getEcpm(); //展示广告的价格
+            String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
+            String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
         }
+    }
+
+    @Override
+    public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        Log.i("", "open ad click");
+        MediationBaseManager mediationManager = csjSplashAd.getMediationManager();
+        if (mediationManager != null) {
+            MediationAdEcpmInfo showEcpm = mediationManager.getShowEcpm();
+            if (showEcpm != null) {
+                logEcpmInfo(showEcpm);
+            }
+        }
+    }
+
+    @Override
+    public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        if (callBack != null) {
+            callBack.onAdClose();
+        }
+        csjSplashAd.getMediationManager().destroy();
+    }
+
+    private void logEcpmInfo(MediationAdEcpmInfo item) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+        params.put("adType", "SPLASH");// 广告类型（见类型枚举）
+        params.put("ecpm", item.getEcpm());
+        params.put("adPosition", item.getSlotId()); // 广告位标识
+        params.put("clickType", "MANUAL_CLICK"); // 点击类型（见点击类型枚举）
+        params.put("userId", "");
+        ApiService.postAdInfo(this.activity, params);
+//        Log.d(Const.TAG, "EcpmInfo: \n" +
+//                "SdkName: " + item.getSdkName() + ",\n" +
+//                "CustomSdkName: " + item.getCustomSdkName() + ",\n" +
+//                "SlotId: " + item.getSlotId() + ",\n" +
+//                // 单位：分；一般情况下兜底代码位的ecpm是0，若获取到的ecpm为0的话，可优先核实是否是兜底代码位
+//                "Ecpm: " + item.getEcpm() + ",\n" +
+//                "ReqBiddingType: " + item.getReqBiddingType() + ",\n" +
+//                "ErrorMsg: " + item.getErrorMsg() + ",\n" +
+//                "RequestId: " + item.getRequestId() + ",\n" +
+//                "RitType: " + item.getRitType() + ",\n" +
+//                "AbTestId: " + item.getAbTestId() + ",\n" +
+//                "ScenarioId: " + item.getScenarioId() + ",\n" +
+//                "SegmentId: " + item.getSegmentId() + ",\n" +
+//                "Channel: " + item.getChannel() + ",\n" +
+//                "SubChannel: " + item.getSubChannel() + ",\n" +
+//                "customData: " + item.getCustomData()
+//        );
     }
 }

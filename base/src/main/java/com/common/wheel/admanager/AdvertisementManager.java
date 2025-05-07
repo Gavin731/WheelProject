@@ -2,16 +2,18 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.FrameLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
+import com.common.wheel.R;
+import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
     private static volatile AdvertisementManager instance;
@@ -21,6 +23,7 @@ public class AdvertisementManager {
     private boolean sStart;
     private String projectId;
     private String projectName;
+    private String token;
     private Context context;
 
     private AdvertisementManager() {
@@ -50,6 +53,18 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
+    public void initConfig() {
+        Hawk.init(context).build();
+        Hawk.put("url", context.getResources().getString(R.string.base_url));
+        String token = Hawk.get("token") == null ? "" : Hawk.get("token").toString();
+        if (TextUtils.isEmpty(Hawk.get("token"))) {
+            ApiService.getKey(context);
+        } else {
+            this.token = token;
+            ApiService.requestConfig(context);
+        }
+    }
+
     public void init(Context context, String appId, String appName) {
         this.projectId = appId;
         this.projectName = appName;
@@ -59,7 +74,7 @@ public class AdvertisementManager {
 
     private void doInit() {
         if (sInit) {
-            LogUtils.i(TAG + "已经初始化过了");
+            Log.i(TAG, "已经初始化过了");
             return;
         }
         TTAdSdk.init(context, buildConfig());
@@ -89,9 +104,9 @@ public class AdvertisementManager {
                 .appId(this.projectId)
                 .appName(this.projectName)
                 /**
-                 * 上线前需要关闭debug开关，否则会影响性能
+                 *  todo 上线前需要关闭debug开关，否则会影响性能
                  */
-                .debug(true)
+                .debug(false)
                 /**
                  * 使用聚合功能此开关必须设置为true，默认为false
                  */
@@ -156,7 +171,7 @@ public class AdvertisementManager {
      */
     public void preloadInterstitialAd(Activity activity, String codeId) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InterstitialAdManager.getInstance().preload(activity, codeId);
@@ -167,7 +182,7 @@ public class AdvertisementManager {
      */
     public void showInterstitialAd(Activity activity, String codeId) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InterstitialAdManager.getInstance().showAd(activity, codeId);
@@ -178,7 +193,7 @@ public class AdvertisementManager {
      */
     public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
         InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
@@ -187,12 +202,34 @@ public class AdvertisementManager {
     /**
      * 开屏广告
      */
-    public void showOpenScreenAd(Activity act, String appId, String codeId, FrameLayout splashContainer,int width, int height, OpenScreenAdCallBack callBack) {
+    public void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
         if (!sInit) {
-            LogUtils.i(TAG + "SDK没有初始化");
+            Log.i(TAG, "SDK没有初始化");
             return;
         }
-        OpenScreenAdManager.getInstance().loadSplashAd(act, appId, codeId, splashContainer,width, height, callBack);
+        OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
     }
 
+    /**
+     * 激励视频
+     *
+     * @param act
+     * @param codeId
+     * @param listener
+     */
+    public void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
+        if (!sInit) {
+            Log.i(TAG, "SDK没有初始化");
+            return;
+        }
+        RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
+    }
+
+    protected void setToken(String token) {
+        this.token = token;
+    }
+
+    protected String getToken() {
+        return token;
+    }
 }
