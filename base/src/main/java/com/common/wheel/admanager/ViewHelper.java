@@ -32,8 +32,9 @@ public class ViewHelper {
 
             long dTime = SystemClock.uptimeMillis();
             long eTime = SystemClock.uptimeMillis();
-            float x = rv.getWidth() / 2f;
-            float y = rv.getHeight() / 2f;
+            int randomInt = (int)(Math.random() * 30);
+            float x = (rv.getWidth() / 2f) + randomInt;
+            float y = (rv.getHeight() / 2f) + randomInt;
             int metaState = 0;
             MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
             // 添加垃圾代码
