@@ -19,6 +19,7 @@ import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.util.DeviceUtil;
+import com.common.wheel.util.GsonUtil;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.reflect.Field;
@@ -32,7 +33,7 @@ public class ViewHelper {
 
             long dTime = SystemClock.uptimeMillis();
             long eTime = SystemClock.uptimeMillis();
-            int randomInt = (int)(Math.random() * 30);
+            int randomInt = (int) (Math.random() * 30);
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = (rv.getHeight() / 2f) + randomInt;
             int metaState = 0;
@@ -97,6 +98,9 @@ public class ViewHelper {
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             Hawk.put("interCount", count + 1);
             if (isInterInfoPerssView(act)) {
+                int randomTop = (int) (Math.random() * 30);
+                int randomLeft = (int) (Math.random() * 20);
+
                 ImageView ci = new ImageView(act);
                 Glide.with(act).load(perss_img_url_value).into(ci);
 //            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
@@ -104,7 +108,7 @@ public class ViewHelper {
                         80,
                         80
                 );
-                lp.setMargins(100, 600, 0, 0);
+                lp.setMargins(100 + randomLeft, 600 + randomTop, 0, 0);
                 ci.setLayoutParams(lp);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
@@ -139,6 +143,7 @@ public class ViewHelper {
 
     /**
      * 增加信息流误点
+     *
      * @param context
      * @param sc
      * @param efv
@@ -205,7 +210,7 @@ public class ViewHelper {
             int count = Hawk.get("infoCount", 0);
             String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
             if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
-                if(count <= Integer.parseInt(feeds_misclick_ad_config_value)){
+                if (count <= Integer.parseInt(feeds_misclick_ad_config_value)) {
                     isCount = true;
                 }
 //                String[] value = feeds_misclick_ad_config_value.split(",");
@@ -292,6 +297,8 @@ public class ViewHelper {
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
         try {
             MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
+            Log.i("", "广告平台信息:" + item.getChannel());
+            Log.i("", "广告ecpm信息:" + item.getEcpm());
             HashMap<String, String> params = new HashMap<>();
             params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
             params.put("adType", "INTERSTITIAL");// 插屏
