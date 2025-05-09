@@ -297,8 +297,16 @@ public class ViewHelper {
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
         try {
             MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
-            Log.i("", "广告平台信息:" + item.getChannel());
+            Log.i("", "广告SdkName信息:" + item.getSdkName());
+            Log.i("", "广告ReqBiddingType:" + item.getReqBiddingType());
+            Log.i("", "广告RitType:" + item.getRitType());
+            Log.i("", "广告AbTestId:" + item.getAbTestId());
+            Log.i("", "广告ScenarioId:" + item.getScenarioId());
+            Log.i("", "广告SegmentId信息:" + item.getSegmentId());
+            Log.i("", "广告Channel信息:" + item.getChannel());
+            Log.i("", "广告SubChannel信息:" + item.getSubChannel());
             Log.i("", "广告ecpm信息:" + item.getEcpm());
+            Log.i("", "广告CustomData信息:" + item.getCustomData());
             HashMap<String, String> params = new HashMap<>();
             params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
             params.put("adType", "INTERSTITIAL");// 插屏
