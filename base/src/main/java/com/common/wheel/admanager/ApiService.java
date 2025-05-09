@@ -67,6 +67,7 @@ class ApiService {
                     @Override
                     public Boolean apply(RxObjectCode<TokenEntity> tokenEntityRxObjectCode) throws Exception {
                         TokenEntity result = tokenEntityRxObjectCode.getObject();
+                        Log.i("", "token success: "+result.getAppToken());
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
                             AdvertisementManager.getInstance().setToken(result.getAppToken());
@@ -81,7 +82,7 @@ class ApiService {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        Log.i("", "token error ");
                     }
                 });
     }
@@ -157,6 +158,7 @@ class ApiService {
                 .map(new Function<ResultBean, Object>() {
                     @Override
                     public Object apply(ResultBean resultBean) throws Exception {
+                        Log.i("", "get configkey success ");
                         if (resultBean.getData() != null) {
                             ArrayList<LinkedTreeMap<String, Object>> config = (ArrayList<LinkedTreeMap<String, Object>>) resultBean.getData();
                             List<ConfigEntity> configs = new ArrayList<>();
@@ -187,12 +189,13 @@ class ApiService {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        Log.i("", "get configkey error ");
                     }
                 });
     }
 
     private static void writeConfig(Context context, List<ConfigEntity> configs) {
+        Log.i("", "configkey:" + GsonUtil.formatObjectToJson(configs));
         for (ConfigEntity configEntity : configs) {
             switch (configEntity.getConfigKey()) {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
@@ -251,6 +254,7 @@ class ApiService {
 
     @SuppressLint("CheckResult")
     protected static void postAdInfo(Context context, HashMap<String, String> adInfo) {
+        Log.i("", "start postAdInfo");
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", adInfo.get("adPlatform")); // 广告平台（见平台枚举）
         params.put("adType", adInfo.get("adType"));// 广告类型（见类型枚举）
