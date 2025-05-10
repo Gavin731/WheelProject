@@ -14,6 +14,7 @@ import com.common.wheel.http.RxObjectCode;
 import com.common.wheel.http.RxObjectCodeFunction;
 import com.common.wheel.http.entity.ResultBean;
 import com.common.wheel.util.DeviceUtil;
+import com.common.wheel.util.ExceptionUtil;
 import com.common.wheel.util.GsonUtil;
 import com.google.gson.internal.LinkedTreeMap;
 import com.orhanobut.hawk.Hawk;
@@ -67,7 +68,6 @@ class ApiService {
                     @Override
                     public Boolean apply(RxObjectCode<TokenEntity> tokenEntityRxObjectCode) throws Exception {
                         TokenEntity result = tokenEntityRxObjectCode.getObject();
-                        Log.i("", "token success: "+result.getAppToken());
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
                             AdvertisementManager.getInstance().setToken(result.getAppToken());
@@ -82,7 +82,7 @@ class ApiService {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i("", "token error ");
+                        Log.i("", "token error:" + ExceptionUtil.getStackTrace(throwable));
                     }
                 });
     }
@@ -158,7 +158,6 @@ class ApiService {
                 .map(new Function<ResultBean, Object>() {
                     @Override
                     public Object apply(ResultBean resultBean) throws Exception {
-                        Log.i("", "get configkey success ");
                         if (resultBean.getData() != null) {
                             ArrayList<LinkedTreeMap<String, Object>> config = (ArrayList<LinkedTreeMap<String, Object>>) resultBean.getData();
                             List<ConfigEntity> configs = new ArrayList<>();
@@ -189,7 +188,7 @@ class ApiService {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i("", "get configkey error ");
+                        Log.i("", "get configkey error:" + ExceptionUtil.getStackTrace(throwable));
                     }
                 });
     }
@@ -244,6 +243,8 @@ class ApiService {
                     if (configEntity.getConfigStatus()) {
                         Hawk.put(ConstantsPath.perss_img_url_value, configEntity.getConfigValue());
                     }
+                    break;
+                case ConstantsPath.union_ad_switch:
                     break;
             }
         }

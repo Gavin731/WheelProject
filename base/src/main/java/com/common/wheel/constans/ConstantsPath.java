@@ -25,4 +25,5 @@ public interface ConstantsPath {
     String feeds_misclick_ad_config_value = "feeds_misclick_ad_config_value"; // 信息流视频广告误点配置
     String perss_img_url = "perss_img_url"; // 诱导点击图片url
     String perss_img_url_value = "perss_img_url_value"; // 诱导点击图片url
+    String union_ad_switch = "union_ad_switch";
 }
