@@ -20,10 +20,12 @@ import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
+import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ViewHelper {
 
@@ -92,14 +94,35 @@ public class ViewHelper {
 
     protected static void addInterstitialView(Activity act, TTFullScreenVideoAd mAd) {
         try {
+            MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
+            String key = item.getSdkName();
+            Log.i("addInterstitialView", "广告SdkName信息:" + item.getSdkName());
+            Log.i("addInterstitialView", "广告ReqBiddingType:" + item.getReqBiddingType());
+            Log.i("addInterstitialView", "广告RitType:" + item.getRitType());
+            Log.i("addInterstitialView", "广告AbTestId:" + item.getAbTestId());
+            Log.i("addInterstitialView", "广告ScenarioId:" + item.getScenarioId());
+            Log.i("addInterstitialView", "广告SegmentId信息:" + item.getSegmentId());
+            Log.i("addInterstitialView", "广告Channel信息:" + item.getChannel());
+            Log.i("addInterstitialView", "广告SubChannel信息:" + item.getSubChannel());
+            Log.i("addInterstitialView", "广告ecpm信息:" + item.getEcpm());
+            Log.i("addInterstitialView", "广告CustomData信息:" + item.getCustomData());
+
+
             int count = Hawk.get("interCount", 0);
             String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
 
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             Hawk.put("interCount", count + 1);
-            if (isInterInfoPerssView(act)) {
+            if (isInterInfoPerssView(act, key)) {
                 int randomTop = (int) (Math.random() * 30);
                 int randomLeft = (int) (Math.random() * 20);
+
+                int left = 100;
+                int top = 600;
+                if(key.equals("ks")){
+                    left = 40;
+                    top = 200;
+                }
 
                 ImageView ci = new ImageView(act);
                 Glide.with(act).load(perss_img_url_value).into(ci);
@@ -108,7 +131,7 @@ public class ViewHelper {
                         80,
                         80
                 );
-                lp.setMargins(100 + randomLeft, 600 + randomTop, 0, 0);
+                lp.setMargins(left + randomLeft, top + randomTop, 0, 0);
                 ci.setLayoutParams(lp);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
@@ -121,7 +144,7 @@ public class ViewHelper {
                 rv.addView(ci);
             }
 
-            if (isInterInfoClickView(act)) {
+            if (isInterInfoClickView(act, key)) {
                 LinearLayout layout = new LinearLayout(act, null);
                 // 添加垃圾代码
                 Class<?> fl = Class.forName("android.widget.FrameLayout");
@@ -155,6 +178,9 @@ public class ViewHelper {
             FrameLayout fli = new FrameLayout(context);
             View llm = new View(context);
 
+            MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
+            String key = item.getSdkName();
+
             // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.widget.FrameLayout");
 
@@ -167,7 +193,7 @@ public class ViewHelper {
             // 添加垃圾代码
             Class<?> vv = Class.forName("android.view.View");
             llm.setVisibility(View.GONE);
-            if (isAddInfoView(context)) {
+            if (isAddInfoView(context, key)) {
                 llm.setVisibility(View.VISIBLE);
                 llm.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -197,8 +223,8 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isAddInfoView(Context context) {
-        boolean isBd = false;
+    protected static boolean isAddInfoView(Context context, String  key) {
+        boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         try {
@@ -213,13 +239,6 @@ public class ViewHelper {
                 if (count <= Integer.parseInt(feeds_misclick_ad_config_value)) {
                     isCount = true;
                 }
-//                String[] value = feeds_misclick_ad_config_value.split(",");
-//                for (String v : value) {
-//                    if (Integer.parseInt(v) == count) {
-//                        isCount = true;
-//                        break;
-//                    }
-//                }
             }
         } catch (Exception e) {
         }
@@ -233,8 +252,8 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isInterInfoPerssView(Context context) {
-        boolean isBd = false;
+    protected static boolean isInterInfoPerssView(Context context, String  key) {
+        boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         try {
@@ -266,8 +285,8 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isInterInfoClickView(Context context) {
-        boolean isBd = false;
+    protected static boolean isInterInfoClickView(Context context, String  key) {
+        boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
 
@@ -297,18 +316,8 @@ public class ViewHelper {
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {
         try {
             MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
-            Log.i("", "广告SdkName信息:" + item.getSdkName());
-            Log.i("", "广告ReqBiddingType:" + item.getReqBiddingType());
-            Log.i("", "广告RitType:" + item.getRitType());
-            Log.i("", "广告AbTestId:" + item.getAbTestId());
-            Log.i("", "广告ScenarioId:" + item.getScenarioId());
-            Log.i("", "广告SegmentId信息:" + item.getSegmentId());
-            Log.i("", "广告Channel信息:" + item.getChannel());
-            Log.i("", "广告SubChannel信息:" + item.getSubChannel());
-            Log.i("", "广告ecpm信息:" + item.getEcpm());
-            Log.i("", "广告CustomData信息:" + item.getCustomData());
             HashMap<String, String> params = new HashMap<>();
-            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adPlatform", item.getSdkName()); // 广告平台（见平台枚举）
             params.put("adType", "INTERSTITIAL");// 插屏
             params.put("ecpm", item.getEcpm());
             params.put("adPosition", item.getSlotId()); // 广告位标识
@@ -324,11 +333,9 @@ public class ViewHelper {
         Hawk.put("infoCount", count + 1);
 
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
-//        Map<String, Object>  mediaExtraInfo = ttFeedAd.getMediaExtraInfo();
         try {
-//            String channel = mediaExtraInfo.get("channel").toString();
             HashMap<String, String> params = new HashMap<>();
-            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adPlatform", item.getSdkName()); // 广告平台（见平台枚举）
             params.put("adType", "FEEDS");// 信息流
             params.put("ecpm", item.getEcpm());
             params.put("adPosition", item.getSlotId()); // 广告位标识
@@ -342,7 +349,7 @@ public class ViewHelper {
     protected static void logRewardEcpmInfo(Context context, MediationAdEcpmInfo item) {
         try {
             HashMap<String, String> params = new HashMap<>();
-            params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
+            params.put("adPlatform", item.getSdkName()); // 广告平台（见平台枚举）
             params.put("adType", "VIDEO");// 激励
             params.put("ecpm", item.getEcpm());
             params.put("adPosition", item.getSlotId()); // 广告位标识
@@ -352,4 +359,6 @@ public class ViewHelper {
         } catch (Exception e) {
         }
     }
+
+    // ks 快手 baidu 百度 ylh优量汇  pangle穿山甲
 }
