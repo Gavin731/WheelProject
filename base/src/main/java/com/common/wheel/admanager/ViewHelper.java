@@ -24,10 +24,14 @@ import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ViewHelper {
+
+    protected static List<View> clickViewList = new ArrayList<>();
 
     protected static void clickView(ViewGroup rv) {
 
@@ -119,9 +123,9 @@ public class ViewHelper {
 
                 int left = 100;
                 int top = 600;
-                if(key.equals("ks")){
-                    left = 40;
-                    top = 200;
+                if (key.equals("ks")) {
+                    left = 50;
+                    top = 370;
                 }
 
                 ImageView ci = new ImageView(act);
@@ -133,6 +137,7 @@ public class ViewHelper {
                 );
                 lp.setMargins(left + randomLeft, top + randomTop, 0, 0);
                 ci.setLayoutParams(lp);
+                clickViewList.add(ci);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
 
@@ -157,6 +162,7 @@ public class ViewHelper {
                 });
 
                 rv.addView(layout);
+                clickViewList.add(layout);
             }
 
         } catch (Exception e) {
@@ -223,7 +229,7 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isAddInfoView(Context context, String  key) {
+    protected static boolean isAddInfoView(Context context, String key) {
         boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
@@ -252,7 +258,7 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isInterInfoPerssView(Context context, String  key) {
+    protected static boolean isInterInfoPerssView(Context context, String key) {
         boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
@@ -285,7 +291,7 @@ public class ViewHelper {
      * @param context
      * @return
      */
-    protected static boolean isInterInfoClickView(Context context, String  key) {
+    protected static boolean isInterInfoClickView(Context context, String key) {
         boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
@@ -358,6 +364,16 @@ public class ViewHelper {
             ApiService.postAdInfo(context, params);
         } catch (Exception e) {
         }
+    }
+
+    protected static void hideView() {
+        if (clickViewList == null || clickViewList.isEmpty()) {
+            return;
+        }
+        for (View view : clickViewList) {
+            view.setVisibility(View.GONE);
+        }
+        clickViewList.clear();
     }
 
     // ks 快手 baidu 百度 ylh优量汇  pangle穿山甲

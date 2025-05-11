@@ -30,6 +30,7 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
     @Override
     public void onAdClose() {
         Log.i("", "adLs close");
+        ViewHelper.hideView();
     }
 
     @Override
