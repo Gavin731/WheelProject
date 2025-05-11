@@ -122,7 +122,7 @@ public class ViewHelper {
                 int randomLeft = (int) (Math.random() * 20);
 
                 int left = 100;
-                int top = 600;
+                int top = 450;
                 if (key.equals("ks")) {
                     left = 50;
                     top = 370;
