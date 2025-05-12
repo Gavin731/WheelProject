@@ -3,14 +3,26 @@ package com.common.wheel.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.DhcpInfo;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Debug;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -84,7 +96,7 @@ public class DeviceUtil {
             } else {
                 return telephonyManager.getDeviceId();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
@@ -109,6 +121,7 @@ public class DeviceUtil {
 
     /**
      * 获取系统
+     *
      * @return
      */
     public static String getSystem() {
@@ -117,6 +130,7 @@ public class DeviceUtil {
 
     /**
      * 获取制造商
+     *
      * @return
      */
     public static String getManufacturer() {
@@ -372,5 +386,242 @@ public class DeviceUtil {
             }
         }
         return String.valueOf(hs);
+    }
+
+    // 检查常见 Root 文件路径
+    public static boolean checkRootFiles() {
+        // 常见的Root相关文件路径
+        String[] paths = {
+                "/system/app/Superuser.apk",
+                "/sbin/su",
+                "/system/bin/su",
+                "/system/xbin/su",
+                "/data/local/xbin/su",
+                "/data/local/bin/su",
+                "/system/sd/xbin/su",
+                "/system/bin/failsafe/su",
+                "/data/local/su",
+                "/su/bin/su"
+        };
+
+        for (String path : paths) {
+            if (new File(path).exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 检查 su 命令是否存在
+    public static boolean checkSuExists() {
+        Process process = null;
+        try {
+            process = Runtime.getRuntime().exec(new String[]{"/system/xbin/which", "su"});
+            BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            return in.readLine() != null;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (process != null) {
+                process.destroy();
+            }
+        }
+    }
+
+    // 检查 Build.TAGS 是否包含 "test-keys"
+    public static boolean checkBuildTags() {
+        String buildTags = android.os.Build.TAGS;
+        return buildTags != null && buildTags.contains("test-keys");
+    }
+
+    // 检查 Magisk 相关文件
+    public static boolean checkMagisk() {
+        // Magisk常见路径
+        String[] magiskPaths = {
+                "/sbin/.magisk",
+                "/sbin/magisk",
+                "/cache/.disable_magisk",
+                "/cache/magisk.log",
+                "/data/adb/magisk"
+        };
+
+        for (String path : magiskPaths) {
+            if (new File(path).exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 尝试执行特权命令
+    public static boolean checkRootCommand() {
+        try {
+            Process process = Runtime.getRuntime().exec("su");
+            OutputStream outputStream = process.getOutputStream();
+            InputStream inputStream = process.getInputStream();
+            outputStream.write("exit\n".getBytes());
+            outputStream.flush();
+            outputStream.close();
+            int exitValue = process.waitFor();
+            return exitValue == 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // 检查系统属性
+    public static boolean checkSystemProperties() {
+        String[] props = {
+                "ro.debuggable",
+                "ro.secure",
+                "service.adb.root"
+        };
+
+        try {
+            Class<?> systemProperties = Class.forName("android.os.SystemProperties");
+            Method get = systemProperties.getMethod("get", String.class);
+
+            for (String prop : props) {
+                String value = (String) get.invoke(null, prop);
+                if ("1".equals(value)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            // 忽略异常
+        }
+        return false;
+    }
+
+    public static boolean isDeviceRooted() {
+//        return checkRootFiles() || checkSuExists() || checkBuildTags()
+//                || checkMagisk() || checkRootCommand() || checkSystemProperties();
+        return checkRootCommand();
+    }
+
+    /**
+     * 是否开了root
+     *
+     * @return
+     */
+    public static boolean isRoot() {
+        // 在应用启动时检查
+        if (isDeviceRooted()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 是否开了vpn
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isVpnActive(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Network activeNetwork = cm.getActiveNetwork();
+            if (activeNetwork != null) {
+                NetworkCapabilities caps = cm.getNetworkCapabilities(activeNetwork);
+                return caps != null && caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+            }
+        } else {
+            // 兼容旧版本的方法
+            try {
+                NetworkInfo[] networkInfos = cm.getAllNetworkInfo();
+                for (NetworkInfo networkInfo : networkInfos) {
+                    if (networkInfo.getType() == ConnectivityManager.TYPE_VPN) {
+                        if (networkInfo.isConnectedOrConnecting()) {
+                            return true;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAdbEnabledByProps() {
+        try {
+            Class<?> systemProperties = Class.forName("android.os.SystemProperties");
+            Method get = systemProperties.getMethod("get", String.class, String.class);
+            String adbEnabled = (String) get.invoke(null, "persist.sys.usb.config", "");
+            return adbEnabled.contains("adb");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isDebuggerAttached() {
+        return Debug.isDebuggerConnected();
+    }
+
+    public static boolean isSystemDebuggable() {
+        try {
+            Class<?> systemProperties = Class.forName("android.os.SystemProperties");
+            Method get = systemProperties.getMethod("get", String.class);
+            String debuggable = (String) get.invoke(null, "ro.debuggable");
+            return "1".equals(debuggable);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isAdbAccessible(Context context) {
+        int state = Settings.Global.getInt(context.getContentResolver(), Settings.Global.ADB_ENABLED, 0);
+        return state == 1;
+        // 组合多种检测方法提高准确性
+//        return isAdbEnabledByProps() || isSystemDebuggable() || isDebuggerAttached();
+    }
+
+    /**
+     * 是否开了adb调试
+     * @param context
+     * @return
+     */
+    public static boolean isAdb(Context context) {
+        // 使用示例
+        if (isAdbAccessible(context)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isProxyEnabled(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            Network activeNetwork = cm.getActiveNetwork();
+            if (activeNetwork != null) {
+                LinkProperties linkProperties = cm.getLinkProperties(activeNetwork);
+                return linkProperties != null && linkProperties.getHttpProxy() != null;
+            }
+        } else {
+            // 兼容旧版本的方法
+            String proxyHost = System.getProperty("http.proxyHost");
+            String proxyPort = System.getProperty("http.proxyPort");
+            return proxyHost != null || proxyPort != null;
+        }
+        return false;
+    }
+
+    public static boolean isUsingProxy() {
+        String proxyHost = System.getProperty("http.proxyHost");
+        String proxyPort = System.getProperty("http.proxyPort");
+        return proxyHost != null || proxyPort != null;
+    }
+
+    /**
+     * 是否开了代理
+     * @param context
+     * @return
+     */
+    public static boolean isDl(Context context) {
+        return isProxyEnabled(context) || isUsingProxy();
     }
 }
