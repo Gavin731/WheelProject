@@ -168,6 +168,7 @@
 -keep class com.orhanobut.hawk.** { *; }
 # 保留某个包下的所有类
 -keep class com.common.wheel.http.entity.** { *; }
+-keep class com.common.wheel.util.** { *; }
 -keep class com.common.wheel.entity.** { *; }
 -keep class com.blankj.utilcode.**.** { *; }
 -keep class com.common.wheel.http.BaseUrl { *; }
