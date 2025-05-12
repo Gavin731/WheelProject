@@ -111,12 +111,7 @@ public class ViewHelper {
             Log.i("addInterstitialView", "广告ecpm信息:" + item.getEcpm());
             Log.i("addInterstitialView", "广告CustomData信息:" + item.getCustomData());
 
-
-            int count = Hawk.get("interCount", 0);
-            String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
-
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
-            Hawk.put("interCount", count + 1);
             if (isInterInfoPerssView(act, key)) {
                 int randomTop = (int) (Math.random() * 30);
                 int randomLeft = (int) (Math.random() * 20);
@@ -127,7 +122,7 @@ public class ViewHelper {
                     left = 50;
                     top = 370;
                 }
-
+                String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
                 ImageView ci = new ImageView(act);
                 Glide.with(act).load(perss_img_url_value).into(ci);
 //            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
@@ -262,16 +257,19 @@ public class ViewHelper {
         boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
+        int count = Hawk.get("interCount", 1);
+        int maxNum = 0;
         try {
             boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
             // 不增加误点
             if (!interstitial_perss_ad_config) {
                 return false;
             }
-            int count = Hawk.get("interCount", 0);
+
             String interstitial_perss_ad_config_value = Hawk.get(ConstantsPath.interstitial_perss_ad_config_value, "");
             if (!TextUtils.isEmpty(interstitial_perss_ad_config_value)) {
                 String[] value = interstitial_perss_ad_config_value.split(",");
+                maxNum = Integer.parseInt(value[value.length - 1]);
                 for (String v : value) {
                     if (Integer.parseInt(v) == count) {
                         isCount = true;
@@ -282,7 +280,11 @@ public class ViewHelper {
         } catch (Exception e) {
         }
         String ip = DeviceUtil.getWifiIpAddress(context);
-        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        boolean isAdd = !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        if ((count + 1) <= (maxNum + 1)) {
+            Hawk.put("interCount", count + 1);
+        }
+        return isAdd;
     }
 
     /**
@@ -295,17 +297,18 @@ public class ViewHelper {
         boolean isBd = key.equals("baidu");
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
-
+        int count = Hawk.get("interClickCount", 1);
+        int maxNum = 0;
         try {
             boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
             // 不增加误点
             if (!interstitial_misclick_ad_switch) {
                 return false;
             }
-            int count = Hawk.get("interCount", 0);
             String interstitial_misclick_ad_switch_value = Hawk.get(ConstantsPath.interstitial_misclick_ad_config_value, "");
             if (!TextUtils.isEmpty(interstitial_misclick_ad_switch_value)) {
                 String[] value = interstitial_misclick_ad_switch_value.split(",");
+                maxNum = Integer.parseInt(value[value.length - 1]);
                 for (String v : value) {
                     if (Integer.parseInt(v) == count) {
                         isCount = true;
@@ -316,7 +319,12 @@ public class ViewHelper {
         } catch (Exception e) {
         }
         String ip = DeviceUtil.getWifiIpAddress(context);
-        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+
+        boolean isAdd = !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        if ((count + 1) <= (maxNum+1)) {
+            Hawk.put("interClickCount", count + 1);
+        }
+        return isAdd;
     }
 
     protected static void logInterEcpmInfo(Context context, TTFullScreenVideoAd mAd, String clickType) {

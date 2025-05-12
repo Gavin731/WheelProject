@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="初始化sdk"
         android:textAllCaps="false"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/show_ad"
