@@ -225,7 +225,7 @@ public class ViewHelper {
      * @return
      */
     protected static boolean isAddInfoView(Context context, String key) {
-        boolean isBd = key.equals("baidu");
+        boolean isBd = "baidu".equals(key);
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         try {
@@ -254,7 +254,7 @@ public class ViewHelper {
      * @return
      */
     protected static boolean isInterInfoPerssView(Context context, String key) {
-        boolean isBd = key.equals("baidu");
+        boolean isBd = "baidu".equals(key);
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         int count = Hawk.get("interCount", 1);
@@ -294,7 +294,7 @@ public class ViewHelper {
      * @return
      */
     protected static boolean isInterInfoClickView(Context context, String key) {
-        boolean isBd = key.equals("baidu");
+        boolean isBd = "baidu".equals(key);
         boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         int count = Hawk.get("interClickCount", 1);

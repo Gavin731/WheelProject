@@ -54,7 +54,7 @@ public class InterstitialAdManager {
                 .setAdLoadType(TTAdLoadType.LOAD) // 本次广告用途：TTAdLoadType.LOAD实时；TTAdLoadType.PRELOAD预请求
                 .setMediationAdSlot(
                         new MediationAdSlot.Builder()
-                                .setMuted(false)
+                                .setMuted(true)
                                 //将自定义兜底对象设置给AdSlot
                                 .setMediationSplashRequestInfo(csjSplashRequestInfo)
                                 .build()
