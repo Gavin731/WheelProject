@@ -55,6 +55,8 @@ public class InterstitialAdManager {
                 .setMediationAdSlot(
                         new MediationAdSlot.Builder()
                                 .setMuted(false)
+                                //将自定义兜底对象设置给AdSlot
+                                .setMediationSplashRequestInfo(csjSplashRequestInfo)
                                 .build()
                 )
                 .build();

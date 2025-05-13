@@ -68,7 +68,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                         new MediationAdSlot.Builder()
                                 //将自定义兜底对象设置给AdSlot
                                 .setMediationSplashRequestInfo(csjSplashRequestInfo)
-                                .setMuted(false)
+                                .setMuted(true)
                                 .build())
                 .build();
     }
