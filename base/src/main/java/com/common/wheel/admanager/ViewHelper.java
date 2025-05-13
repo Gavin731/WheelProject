@@ -212,6 +212,7 @@ public class ViewHelper {
                     }
                 });
             }
+            sc.removeAllViews();
             sc.addView(fv);
         } catch (Exception e) {
             e.printStackTrace();

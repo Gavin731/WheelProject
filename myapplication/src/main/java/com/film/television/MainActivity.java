@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
         FrameLayout splashContainer = findViewById(R.id.splashContainer);
         FrameLayout infoContainer = findViewById(R.id.infoContainer);
+        FrameLayout infoContainer2 = findViewById(R.id.infoContainer2);
         findViewById(R.id.show_kp_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer, 800, 400);
+            }
+        });
+        findViewById(R.id.show_info_image_ad2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer2, 800, 400);
             }
         });
         findViewById(R.id.http_request).setOnClickListener(new View.OnClickListener() {
