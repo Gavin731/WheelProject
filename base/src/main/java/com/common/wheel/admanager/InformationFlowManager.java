@@ -9,8 +9,10 @@ import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
+import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
+import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
 
 import java.util.List;
@@ -25,6 +27,8 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     private Activity act;
     private FrameLayout splashContainer;
+
+    private String projectId;
 
     protected static InformationFlowManager getInstance() {
         if (instance == null) {
@@ -42,6 +46,14 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     }
 
     private AdSlot buildNativeAdslot(String codeId, int width, int height) {
+        MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
+                MediationConstant.ADN_PANGLE, // 穿山甲
+                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                projectId,   // adn应用id，注意要跟初始化传入的保持一致
+                ""   // adn没有appKey时，传入空即可
+        ) {
+        };
+
         return new AdSlot.Builder()
                 .setCodeId(codeId) //广告位ID
                 /**
@@ -54,12 +66,15 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                 .setAdCount(1)//请求广告数量为1到3条 （优先采用平台配置的数量）
                 .setMediationAdSlot(// 聚合广告请求配置
                         new MediationAdSlot.Builder()
+                                //将自定义兜底对象设置给AdSlot
+                                .setMediationSplashRequestInfo(csjSplashRequestInfo)
                                 .setMuted(false)
                                 .build())
                 .build();
     }
 
-    protected void loadNativeAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height) {
+    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height) {
+        this.projectId = appId;
         this.act = act;
         this.splashContainer = splashContainer;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);

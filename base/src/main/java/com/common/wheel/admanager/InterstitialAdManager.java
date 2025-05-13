@@ -7,7 +7,9 @@ import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdLoadType;
 import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
+import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class InterstitialAdManager {
 
     private final List<AdLoadListener> adLoadListeners = new ArrayList<>();
 
+    private String projectId;
 
     protected static InterstitialAdManager getInstance() {
         if (instance == null) {
@@ -37,6 +40,14 @@ public class InterstitialAdManager {
     }
 
     private void loadAd(Activity activity, String codeId, AdLoadListener.LoadSuccess loadSuccess) {
+        MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
+                MediationConstant.ADN_PANGLE, // 穿山甲
+                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                projectId,   // adn应用id，注意要跟初始化传入的保持一致
+                ""   // adn没有appKey时，传入空即可
+        ) {
+        };
+
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(codeId) // 广告代码位Id
                 .setOrientation(TTAdConstant.VERTICAL)  //设置方向
@@ -53,7 +64,8 @@ public class InterstitialAdManager {
         adLoadListeners.add(mAdLoadListener);
     }
 
-    protected void showAd(Activity activity, String codeId) {
+    protected void showAd(Activity activity,String appId, String codeId) {
+        this.projectId = appId;
         if (!adLoadListeners.isEmpty()) {
             show(activity, codeId);
             return;
@@ -80,11 +92,12 @@ public class InterstitialAdManager {
 
     /**
      * 预加载
-     *
      * @param activity
+     * @param appId
      * @param codeId
      */
-    protected void preload(Activity activity, String codeId) {
+    protected void preload(Activity activity,String appId, String codeId) {
+        this.projectId = appId;
         loadAd(activity, codeId, null);
     }
 }

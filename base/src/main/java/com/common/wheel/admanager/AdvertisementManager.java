@@ -174,7 +174,7 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().preload(activity, codeId);
+        InterstitialAdManager.getInstance().preload(activity,this.projectId, codeId);
     }
 
     /**
@@ -185,7 +185,7 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().showAd(activity, codeId);
+        InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId);
     }
 
     /**
@@ -196,7 +196,7 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
+        InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height);
     }
 
     /**
