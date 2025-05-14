@@ -43,12 +43,19 @@ public class ViewHelper {
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = (rv.getHeight() / 2f) + randomInt;
             int metaState = 0;
-            MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, metaState);
+            float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
+            float size = 0.9f + (float) Math.random() * 0.1f; // 0.9 ~ 1.0
+
+            MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, pressure, size,
+                    metaState, pressure, pressure, 0, 0);
+
+
             // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
 
 
-            MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, metaState);
+            MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, pressure, size,
+                    metaState, pressure, pressure, 0, 0);
             // 添加垃圾代码
             Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
 
@@ -235,7 +242,7 @@ public class ViewHelper {
             if (!feeds_misclick_ad_config) {
                 return false;
             }
-            int count = Hawk.get("infoCount", 0);
+            int count = Hawk.get("infoCount", 1);
             String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
             if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
                 if (count <= Integer.parseInt(feeds_misclick_ad_config_value)) {
@@ -322,7 +329,7 @@ public class ViewHelper {
         String ip = DeviceUtil.getWifiIpAddress(context);
 
         boolean isAdd = !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
-        if ((count + 1) <= (maxNum+1)) {
+        if ((count + 1) <= (maxNum + 1)) {
             Hawk.put("interClickCount", count + 1);
         }
         return isAdd;
@@ -344,7 +351,7 @@ public class ViewHelper {
     }
 
     protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
-        int count = Hawk.get("infoCount", 0);
+        int count = Hawk.get("infoCount", 1);
         Hawk.put("infoCount", count + 1);
 
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
