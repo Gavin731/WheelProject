@@ -15,10 +15,12 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     private TTFullScreenVideoAd mAd;
     private AdLoadListener.LoadSuccess loadSuccess;
+    private InfoAdCallBack callback;
 
-    protected AdLoadListener(Activity activity, AdLoadListener.LoadSuccess loadSuccess) {
+    protected AdLoadListener(Activity activity, AdLoadListener.LoadSuccess loadSuccess, InfoAdCallBack callback) {
         context = activity;
         this.loadSuccess = loadSuccess;
+        this.callback = callback;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
         mAd = ad;
         //【必须】广告展示时的生命周期监听
 
-        mAd.setFullScreenVideoAdInteractionListener(new AdLifeListener(context, mAd));
+        mAd.setFullScreenVideoAdInteractionListener(new AdLifeListener(context, mAd, callback));
         //【可选】监听下载状态
 //        mAd.setDownloadListener(new DownloadStatusListener());
         //广告展示

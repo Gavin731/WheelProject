@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.admanager.AdvertisementManager;
+import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
 import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.util.DeviceUtil;
@@ -54,7 +55,32 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.show_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346");
+                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346", new InfoAdCallBack() {
+                    @Override
+                    public void onAdShow() {
+                        LogUtils.i("页面提示：插屏广告已展示");
+                    }
+
+                    @Override
+                    public void onAdVideoBarClick() {
+                        LogUtils.i("页面提示：插屏广告被点击");
+                    }
+
+                    @Override
+                    public void onAdClose() {
+                        LogUtils.i("页面提示：插屏广告被关闭");
+                    }
+
+                    @Override
+                    public void onVideoComplete() {
+
+                    }
+
+                    @Override
+                    public void onSkippedVideo() {
+
+                    }
+                });
             }
         });
         FrameLayout splashContainer = findViewById(R.id.splashContainer);

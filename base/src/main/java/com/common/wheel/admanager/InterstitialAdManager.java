@@ -24,6 +24,8 @@ public class InterstitialAdManager {
 
     private String projectId;
 
+    private InfoAdCallBack callback;
+
     protected static InterstitialAdManager getInstance() {
         if (instance == null) {
             synchronized (InterstitialAdManager.class) {
@@ -61,12 +63,13 @@ public class InterstitialAdManager {
                 )
                 .build();
 
-        AdLoadListener mAdLoadListener = new AdLoadListener(activity, loadSuccess);
+        AdLoadListener mAdLoadListener = new AdLoadListener(activity, loadSuccess, callback);
         mTTAdNative.loadFullScreenVideoAd(adSlot, mAdLoadListener);
         adLoadListeners.add(mAdLoadListener);
     }
 
-    protected void showAd(Activity activity,String appId, String codeId) {
+    protected void showAd(Activity activity,String appId, String codeId, InfoAdCallBack callback) {
+        this.callback = callback;
         this.projectId = appId;
         if (!adLoadListeners.isEmpty()) {
             show(activity, codeId);
@@ -98,7 +101,8 @@ public class InterstitialAdManager {
      * @param appId
      * @param codeId
      */
-    protected void preload(Activity activity,String appId, String codeId) {
+    protected void preload(Activity activity,String appId, String codeId, InfoAdCallBack callback) {
+        this.callback = callback;
         this.projectId = appId;
         loadAd(activity, codeId, null);
     }

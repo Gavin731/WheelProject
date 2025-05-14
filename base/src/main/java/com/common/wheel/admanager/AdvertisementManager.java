@@ -169,23 +169,23 @@ public class AdvertisementManager {
      * @param activity
      * @param codeId
      */
-    public void preloadInterstitialAd(Activity activity, String codeId) {
+    public void preloadInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().preload(activity,this.projectId, codeId);
+        InterstitialAdManager.getInstance().preload(activity,this.projectId, codeId, callback);
     }
 
     /**
      * 插屏广告
      */
-    public void showInterstitialAd(Activity activity, String codeId) {
+    public void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId);
+        InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId, callback);
     }
 
     /**
