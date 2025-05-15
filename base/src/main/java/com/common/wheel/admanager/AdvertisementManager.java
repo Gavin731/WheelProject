@@ -65,14 +65,14 @@ public class AdvertisementManager {
         }
     }
 
-    public void init(Context context, String appId, String appName) {
+    public void init(Context context, String appId, String appName, InitCallback callback) {
         this.projectId = appId;
         this.projectName = appName;
         this.context = context;
-        doInit();
+        doInit(callback);
     }
 
-    private void doInit() {
+    private void doInit(InitCallback callback) {
         if (sInit) {
             Log.i(TAG, "已经初始化过了");
             return;
@@ -85,12 +85,18 @@ public class AdvertisementManager {
                 //初始化成功
                 //在初始化成功回调之后进行广告加载
                 Log.e(TAG, "初始化成功");
+                if(callback!=null){
+                    callback.success();
+                }
             }
 
             @Override
             public void fail(int i, String s) {
                 //初始化失败
                 Log.e(TAG, "初始化失败");
+                if(callback!=null){
+                    callback.error();
+                }
             }
         });
     }

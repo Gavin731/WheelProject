@@ -175,6 +175,7 @@
 -keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
 -keep class com.common.wheel.admanager.RewardAdCallBack { *; }
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }
+-keep class com.common.wheel.admanager.InitCallback { *; }
 # 保留所有公共类及其公共方法
 -keep public class com.common.wheel.admanager.AdvertisementManager{
     public *;
