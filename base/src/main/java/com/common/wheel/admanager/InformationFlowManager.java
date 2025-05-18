@@ -62,7 +62,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                  *  2:如果是信息流自渲染广告，设置广告图片期望的图片宽高 ，不能为0
                  *  2:如果是信息流模板广告，宽度设置为希望的宽度，高度设置为0(0为高度选择自适应参数)
                  */
-                .setImageAcceptedSize(width, height)
+//                .setImageAcceptedSize(width, height)
                 .setAdCount(1)//请求广告数量为1到3条 （优先采用平台配置的数量）
                 .setMediationAdSlot(// 聚合广告请求配置
                         new MediationAdSlot.Builder()
