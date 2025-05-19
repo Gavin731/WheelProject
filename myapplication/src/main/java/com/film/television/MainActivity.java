@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InfoAdCallBack;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
 import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.util.DeviceUtil;
@@ -95,19 +96,54 @@ public class MainActivity extends AppCompatActivity {
                         LogUtils.i("广告关闭");
                         splashContainer.removeAllViews();
                     }
+
+                    @Override
+                    public void onSplashAdClick() {
+                        LogUtils.i("广告被点击");
+                    }
+
+                    @Override
+                    public void onSplashAdShow() {
+                        LogUtils.i("广告显示");
+                    }
+
+                    @Override
+                    public void onSplashLoadFail() {
+                        LogUtils.i("广告加载失败");
+                    }
+
+                    @Override
+                    public void onSplashRenderFail() {
+                        LogUtils.i("广告渲染失败");
+                    }
                 });
             }
         });
         findViewById(R.id.show_info_image_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer, 800, 400);
+                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer, 800, 400, null);
             }
         });
         findViewById(R.id.show_info_image_ad2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer2, 800, 400);
+                AdvertisementManager.getInstance().showInfoFlowAd(MainActivity.this, "103401966", infoContainer2, 800, 400, new InformationFlowAdCallback() {
+                    @Override
+                    public void onError() {
+                        LogUtils.i("广告获取失败");
+                    }
+
+                    @Override
+                    public void onFeedAdLoad() {
+                        LogUtils.i("已获取广告");
+                    }
+
+                    @Override
+                    public void onRenderSuccess() {
+                        LogUtils.i("广告被加载");
+                    }
+                });
             }
         });
         findViewById(R.id.http_request).setOnClickListener(new View.OnClickListener() {

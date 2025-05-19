@@ -8,4 +8,12 @@ public interface OpenScreenAdCallBack {
      * 被关闭
      */
     void onAdClose();
+
+    void onSplashAdClick();
+
+    void onSplashAdShow();
+
+    void onSplashLoadFail();
+
+    void onSplashRenderFail();
 }

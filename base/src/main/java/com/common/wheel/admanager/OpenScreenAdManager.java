@@ -89,6 +89,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     @Override
     public void onSplashLoadFail(CSJAdError csjAdError) {
         Log.e("", "open ad load fail：" + csjAdError.getMsg());
+        if (callBack != null) {
+            callBack.onSplashLoadFail();
+        }
     }
 
     @Override
@@ -99,10 +102,16 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     @Override
     public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
         Log.e("", "open ad render fail:" + csjAdError.getMsg());
+        if (callBack != null) {
+            callBack.onSplashRenderFail();
+        }
     }
 
     @Override
     public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        if (callBack != null) {
+            callBack.onSplashAdShow();
+        }
         MediationBaseManager manager = csjSplashAd.getMediationManager();
         if (manager != null && manager.getShowEcpm() != null) {
             MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
@@ -114,6 +123,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        if (callBack != null) {
+            callBack.onSplashAdClick();
+        }
         Log.i("", "open ad click");
         MediationBaseManager mediationManager = csjSplashAd.getMediationManager();
         if (mediationManager != null) {

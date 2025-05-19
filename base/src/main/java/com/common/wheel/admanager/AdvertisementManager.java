@@ -197,12 +197,12 @@ public class AdvertisementManager {
     /**
      * 信息流广告
      */
-    public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height) {
+    public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height);
+        InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height, callback);
     }
 
     /**

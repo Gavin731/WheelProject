@@ -1,5 +1,8 @@
 package com.common.wheel.admanager;
 
+/**
+ * 插屏回调
+ */
 public interface InfoAdCallBack {
 
     void onAdShow();

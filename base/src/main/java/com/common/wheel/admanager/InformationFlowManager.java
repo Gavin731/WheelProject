@@ -30,6 +30,8 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     private String projectId;
 
+    private InformationFlowAdCallback callback;
+
     protected static InformationFlowManager getInstance() {
         if (instance == null) {
             synchronized (InformationFlowManager.class) {
@@ -62,7 +64,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                  *  2:如果是信息流自渲染广告，设置广告图片期望的图片宽高 ，不能为0
                  *  2:如果是信息流模板广告，宽度设置为希望的宽度，高度设置为0(0为高度选择自适应参数)
                  */
-//                .setImageAcceptedSize(width, height)
+                .setImageAcceptedSize(width, height)
                 .setAdCount(1)//请求广告数量为1到3条 （优先采用平台配置的数量）
                 .setMediationAdSlot(// 聚合广告请求配置
                         new MediationAdSlot.Builder()
@@ -73,10 +75,11 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                 .build();
     }
 
-    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height) {
+    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         this.projectId = appId;
         this.act = act;
         this.splashContainer = splashContainer;
+        this.callback = callback;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);
         mTTAdNative.loadFeedAd(adSlot, this);
     }
@@ -84,10 +87,16 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     @Override
     public void onError(int i, String s) {
         Log.e("", "ad load error：" + s);
+        if(callback!=null){
+            callback.onError();
+        }
     }
 
     @Override
     public void onFeedAdLoad(List<TTFeedAd> list) {
+        if(callback!=null){
+            callback.onFeedAdLoad();
+        }
         //如果是自渲染下载类广告可以通过以下api获取下载六要素
         if (list != null && list.size() > 0) {
             mTTFeedAd = list.get(0);
@@ -142,6 +151,9 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     @Override
     public void onRenderSuccess(View view, float v, float v1, boolean b) {
         Log.i("","信息流广告获取成功");
+        if(callback!=null){
+            callback.onRenderSuccess();
+        }
         if (mTTFeedAd != null) {
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
             ViewHelper.renderInfoView(act, splashContainer, expressFeedView, mTTFeedAd);
