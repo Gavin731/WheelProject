@@ -71,6 +71,7 @@ class ApiService {
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
                             AdvertisementManager.getInstance().setToken(result.getAppToken());
+                            isPostEnvInfo(context);
                             requestConfig(context);
                         }
                         return true;
@@ -87,6 +88,49 @@ class ApiService {
                 });
     }
 
+    /**
+     * 是否上报信息
+     * @param context
+     */
+    @SuppressLint("CheckResult")
+    protected static void isPostEnvInfo(Context context) {
+        HashMap<String, Object> params = new HashMap<>();
+
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_sdk_report_config_query");
+        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
+        requestParams.put("params", params);
+        Apis.getBaseApi().zxzh_sdk_report_config_query(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<ResultBean, Object>() {
+                    @Override
+                    public Object apply(ResultBean resultBean) throws Exception {
+                        if (resultBean.getData() != null) {
+                            String data = resultBean.getData().toString();
+                            if("true".equals(data)){
+                                postEnvInfo(context);
+                            }
+                        }
+                        return null;
+                    }
+                }).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
+    }
+
+
+    /**
+     * 手机信息上报
+     * @param context
+     */
     @SuppressLint("CheckResult")
     protected static void postEnvInfo(Context context) {
         boolean isUpload = Hawk.get("isUpload", false);
@@ -94,7 +138,12 @@ class ApiService {
             return;
         }
 
-        HashMap<String, String> params = new HashMap<>();
+        boolean isRoot = DeviceUtil.isRoot();
+        boolean isAdb = DeviceUtil.isAdb(context);
+        boolean isDl = DeviceUtil.isDl(context);
+        boolean isVpn = DeviceUtil.isVpnActive(context);
+
+        HashMap<String, Object> params = new HashMap<>();
         params.put("tjType", "yxtj");
         params.put("deviceId", DeviceUtil.getUUID(context));
         params.put("osVersion", DeviceUtil.getSystemVersion());
@@ -114,6 +163,10 @@ class ApiService {
         params.put("HARDWARE", Build.HARDWARE);
         params.put("OS_VERSION", "");
         params.put("SDK_INT", "");
+        params.put("vpnState", isVpn ? 1 : 0);
+        params.put("rootState", isRoot ? 1 : 0);
+        params.put("adbState", isAdb ? 1 : 0);
+        params.put("agentState", isDl ? 1 : 0);
 
 
         HashMap<String, Object> requestParams = new HashMap<>();
@@ -142,11 +195,33 @@ class ApiService {
                 });
     }
 
+    /**
+     * 获取配置
+     * @param context
+     */
     @SuppressLint("CheckResult")
     protected static void requestConfig(Context context) {
-        HashMap<String, String> params = new HashMap<>();
+        boolean isRoot = DeviceUtil.isRoot();
+        boolean isAdb = DeviceUtil.isAdb(context);
+        boolean isDl = DeviceUtil.isDl(context);
+        boolean isVpn = DeviceUtil.isVpnActive(context);
+
+
+        HashMap<String, Object> params = new HashMap<>();
         params.put("ipAddress", DeviceUtil.getLocalIpAddress());
+        params.put("imei", DeviceUtil.getImei(context));
+        params.put("androidId", DeviceUtil.getAndroidId(context));
+        params.put("oaid", DeviceUtil.getUUID(context));
+        params.put("meid", DeviceUtil.getMeId(context));
+        params.put("mac", DeviceUtil.getMac(context));
+        params.put("systemInfo", DeviceUtil.getSystem());
+        params.put("ipAddress", DeviceUtil.getWifiIpAddress(context));
         params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
+        params.put("vpnState", isVpn ? 1 : 0);
+        params.put("rootState", isRoot ? 1 : 0);
+        params.put("adbState", isAdb ? 1 : 0);
+        params.put("agentState", isDl ? 1 : 0);
+
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_config_query");
@@ -200,10 +275,6 @@ class ApiService {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
                     break;
                 case ConstantsPath.splash_ad_switch: //开屏广告开关
-                    if (configEntity.getConfigStatus()) {
-                        // 校验是否开启广告
-                        postEnvInfo(context);
-                    }
                     break;
                 case ConstantsPath.interstitial_ad_switch://插屏广告开关
                     break;
@@ -252,7 +323,10 @@ class ApiService {
 
     }
 
-
+    /**
+     * 点击信息上报
+     * @param context
+     */
     @SuppressLint("CheckResult")
     protected static void postAdInfo(Context context, HashMap<String, String> adInfo) {
         Log.i("", "start postAdInfo");

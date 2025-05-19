@@ -20,6 +20,13 @@ interface BaseApi {
     Observable<ResultBean> addDevice(@Body HashMap<String, String> param);
 
     /**
+     * 是否上报信息
+     * @param param
+     * @return
+     */
+    @POST("api/gateway/request")
+    Observable<ResultBean> zxzh_sdk_report_config_query(@Body HashMap<String, Object> param);
+    /**
      * 上报环境信息
      * @param param
      * @return

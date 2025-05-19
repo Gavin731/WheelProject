@@ -61,6 +61,7 @@ public class AdvertisementManager {
             ApiService.getKey(context);
         } else {
             this.token = token;
+            ApiService.isPostEnvInfo(context);
             ApiService.requestConfig(context);
         }
     }
