@@ -8,4 +8,6 @@ public interface InformationFlowAdCallback {
     void onError();
     void onFeedAdLoad();
     void onRenderSuccess();
+    void onAdClick();
+    void onRenderFail();
 }

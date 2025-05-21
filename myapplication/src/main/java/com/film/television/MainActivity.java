@@ -158,6 +158,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onRenderSuccess() {
                         LogUtils.i("广告被加载");
                     }
+
+                    @Override
+                    public void onAdClick() {
+                        LogUtils.i("广告被点击");
+                    }
+
+                    @Override
+                    public void onRenderFail() {
+                        LogUtils.i("广告渲染失败");
+                    }
                 });
             }
         });
@@ -167,17 +177,42 @@ public class MainActivity extends AppCompatActivity {
                 AdvertisementManager.getInstance().showRewardAd(MainActivity.this, "103428930", new RewardAdCallBack() {
                     @Override
                     public void onAdClose() {
-
+                        LogUtils.i("广告关闭");
                     }
 
                     @Override
                     public void onVideoComplete() {
-
+                        LogUtils.i("广告视频完成");
                     }
 
                     @Override
                     public void onAdVideoBarClick() {
+                        LogUtils.i("广告视频被点击");
+                    }
 
+                    @Override
+                    public void onVideoError() {
+                        LogUtils.i("广告视频获取失败");
+                    }
+
+                    @Override
+                    public void onRewardArrived() {
+                        LogUtils.i("广告奖励发放");
+                    }
+
+                    @Override
+                    public void onSkippedVideo() {
+                        LogUtils.i("广告跳过");
+                    }
+
+                    @Override
+                    public void onAdShow() {
+                        LogUtils.i("广告显示");
+                    }
+
+                    @Override
+                    public void onError() {
+                        LogUtils.i("广告加载失败");
                     }
                 });
             }

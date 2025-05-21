@@ -10,4 +10,9 @@ public interface RewardAdCallBack {
     void onVideoComplete();
 
     void onAdVideoBarClick();
+    void onVideoError();
+    void onRewardArrived();
+    void onSkippedVideo();
+    void onAdShow();
+    void onError();
 }

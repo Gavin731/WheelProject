@@ -135,12 +135,16 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onRenderFail(View view, String s, int i) {
-
+        if(callback!=null){
+            callback.onRenderFail();
+        }
     }
 
     @Override
     public void onAdClick() {
-
+        if(callback!=null){
+            callback.onAdClick();
+        }
     }
 
     @Override

@@ -68,6 +68,9 @@ public class RewardAdManager {
             public void onError(int errorCode, String errorMsg) {
                 //广告加载失败
                 Log.e("", errorMsg);
+                if (listener != null) {
+                    listener.onError();
+                }
             }
 
             @Override
@@ -97,6 +100,9 @@ public class RewardAdManager {
         ttRewardVideoAd.setRewardAdInteractionListener(new TTRewardVideoAd.RewardAdInteractionListener() {
             @Override
             public void onAdShow() {
+                if (listener != null) {
+                    listener.onAdShow();
+                }
                 //广告展示
                 //获取展示广告相关信息，需要再show回调之后进行获取
                 MediationBaseManager manager = ttRewardVideoAd.getMediationManager();
@@ -141,6 +147,9 @@ public class RewardAdManager {
             @Override
             public void onVideoError() {
                 //广告视频错误
+                if (listener != null) {
+                    listener.onVideoError();
+                }
             }
 
             @Override
@@ -150,6 +159,9 @@ public class RewardAdManager {
 
             @Override
             public void onRewardArrived(boolean isRewardValid, int rewardType, Bundle extraInfo) {
+                if (listener != null) {
+                    listener.onRewardArrived();
+                }
                 //奖励发放
                 if (isRewardValid) {
                     // 验证通过
@@ -162,6 +174,9 @@ public class RewardAdManager {
             @Override
             public void onSkippedVideo() {
                 //广告跳过
+                if (listener != null) {
+                    listener.onSkippedVideo();
+                }
             }
         });
         ttRewardVideoAd.showRewardVideoAd(act); //展示激励视频
