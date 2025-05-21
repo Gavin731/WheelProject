@@ -26,6 +26,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     @Override
     public void onError(int i, String s) {
         Log.e("", s);
+        if(callback!=null){
+            callback.onError();
+        }
     }
 
     @Override
@@ -48,6 +51,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     }
 
     public void handleAd(TTFullScreenVideoAd ad) {
+        if(callback!=null){
+            callback.onLoadSuccess();
+        }
         if (mAd != null) {
             return;
         }
@@ -74,7 +80,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
             Log.i("", "AdLoadL mAd is null");
             return;
         }
-
+        if(callback!=null){
+            callback.onStartShow();
+        }
         mAd.showFullScreenVideoAd(context, ritScenes, scenes);
         // 广告使用后应废弃
         mAd = null;

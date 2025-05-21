@@ -58,6 +58,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346", new InfoAdCallBack() {
                     @Override
+                    public void onError() {
+                        LogUtils.i("页面提示：插屏广告获取失败");
+                    }
+
+                    @Override
+                    public void onLoadSuccess() {
+                        LogUtils.i("页面提示：插屏广告获取成功");
+                    }
+
+                    @Override
+                    public void onStartShow() {
+                        LogUtils.i("页面提示：插屏广告开始显示");
+                    }
+
+                    @Override
                     public void onAdShow() {
                         LogUtils.i("页面提示：插屏广告已展示");
                     }
@@ -74,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onVideoComplete() {
-
+                        LogUtils.i("页面提示：插屏广告视频完成");
                     }
 
                     @Override
                     public void onSkippedVideo() {
-
+                        LogUtils.i("页面提示：插屏广告跳过视频");
                     }
                 });
             }

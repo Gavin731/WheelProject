@@ -5,6 +5,9 @@ package com.common.wheel.admanager;
  */
 public interface InfoAdCallBack {
 
+    void onError();
+    void onLoadSuccess();
+    void onStartShow();
     void onAdShow();
 
     void onAdVideoBarClick();
