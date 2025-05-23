@@ -2,6 +2,7 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
@@ -42,6 +43,7 @@ public class InterstitialAdManager {
     }
 
     private void loadAd(Activity activity, String codeId, AdLoadListener.LoadSuccess loadSuccess) {
+        Log.i("","-----aaaaaaaaaaaaaaaaa");
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
                 codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
@@ -90,7 +92,7 @@ public class InterstitialAdManager {
             @Override
             public void run() {
                 adLoadListeners.remove(0);
-                loadAd(activity, codeId, null);
+//                loadAd(activity, codeId, null);
             }
         }, 500);
     }
