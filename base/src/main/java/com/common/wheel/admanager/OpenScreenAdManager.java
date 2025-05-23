@@ -14,6 +14,7 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
@@ -21,7 +22,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     private static volatile OpenScreenAdManager instance;
     private final TTAdNative mTTAdNative;
     private OpenScreenAdCallBack callBack;
-    private Activity activity;
+    private WeakReference<Activity> weakRef;
     private FrameLayout splashContainer;
     private String projectId;
     private String codeId;
@@ -67,7 +68,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         this.projectId = appId;
         this.codeId = codeId;
         this.callBack = callBack;
-        this.activity = act;
+        this.weakRef = new WeakReference<>(act);
         this.splashContainer = splashContainer;
         mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), this, 3500);
     }
@@ -145,6 +146,10 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private void logEcpmInfo(MediationAdEcpmInfo item) {
+        if(weakRef == null || weakRef.get() == null){
+            return;
+        }
+        Activity activity = weakRef.get();
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
         params.put("adType", "SPLASH");// 广告类型（见类型枚举）
@@ -152,7 +157,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         params.put("adPosition", item.getSlotId()); // 广告位标识
         params.put("clickType", "MANUAL_CLICK"); // 点击类型（见点击类型枚举）
         params.put("userId", "");
-        ApiService.postAdInfo(this.activity, params);
+        ApiService.postAdInfo(activity, params);
 //        Log.d(Const.TAG, "EcpmInfo: \n" +
 //                "SdkName: " + item.getSdkName() + ",\n" +
 //                "CustomSdkName: " + item.getCustomSdkName() + ",\n" +

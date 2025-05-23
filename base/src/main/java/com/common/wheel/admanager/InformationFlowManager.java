@@ -15,6 +15,7 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     private final TTAdNative mTTAdNative;
     private TTFeedAd mTTFeedAd;
 
-    private Activity act;
+    private WeakReference<Activity> weakRef;
     private FrameLayout splashContainer;
 
     private String projectId;
@@ -77,7 +78,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         this.projectId = appId;
-        this.act = act;
+        this.weakRef = new WeakReference<>(act);
         this.splashContainer = splashContainer;
         this.callback = callback;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);
@@ -155,12 +156,16 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     @Override
     public void onRenderSuccess(View view, float v, float v1, boolean b) {
         Log.i("","信息流广告获取成功");
+        if(weakRef == null || weakRef.get() == null){
+            return;
+        }
+        Activity activity = weakRef.get();
         if(callback!=null){
             callback.onRenderSuccess();
         }
         if (mTTFeedAd != null) {
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
-            ViewHelper.renderInfoView(act, splashContainer, expressFeedView, mTTFeedAd);
+            ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
         }
     }
 }
