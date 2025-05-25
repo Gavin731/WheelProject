@@ -99,6 +99,52 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        findViewById(R.id.show_ad2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346", new InfoAdCallBack() {
+                    @Override
+                    public void onError() {
+                        LogUtils.i("页面提示：插屏广告2获取失败");
+                    }
+
+                    @Override
+                    public void onLoadSuccess() {
+                        LogUtils.i("页面提示：插屏广告2获取成功");
+                    }
+
+                    @Override
+                    public void onStartShow() {
+                        LogUtils.i("页面提示：插屏广告2开始显示");
+                    }
+
+                    @Override
+                    public void onAdShow() {
+                        LogUtils.i("页面提示：插屏广告2已展示");
+                    }
+
+                    @Override
+                    public void onAdVideoBarClick() {
+                        LogUtils.i("页面提示：插屏广告2被点击");
+                    }
+
+                    @Override
+                    public void onAdClose() {
+                        LogUtils.i("页面提示：插屏广告2被关闭");
+                    }
+
+                    @Override
+                    public void onVideoComplete() {
+                        LogUtils.i("页面提示：插屏广告2视频完成");
+                    }
+
+                    @Override
+                    public void onSkippedVideo() {
+                        LogUtils.i("页面提示：插屏广告2跳过视频");
+                    }
+                });
+            }
+        });
         FrameLayout splashContainer = findViewById(R.id.splashContainer);
         FrameLayout infoContainer = findViewById(R.id.infoContainer);
         FrameLayout infoContainer2 = findViewById(R.id.infoContainer2);

@@ -19,6 +19,10 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
         this.callback = callback;
     }
 
+    protected void setCallBack(InfoAdCallBack callback){
+        this.callback = callback;
+    }
+
     @Override
     public void onAdShow() {
         ViewHelper.addInterstitialView(mAd);
