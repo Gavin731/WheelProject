@@ -66,19 +66,19 @@ public class AdvertisementManager {
         }
     }
 
-    public void init(Context context, String appId, String appName, InitCallback callback) {
+    public void init(Context context, String appId, String appName, InitCallback callback, TTCustomController customController) {
         this.projectId = appId;
         this.projectName = appName;
         this.context = context;
-        doInit(callback);
+        doInit(callback, customController);
     }
 
-    private void doInit(InitCallback callback) {
+    private void doInit(InitCallback callback, TTCustomController customController) {
         if (sInit) {
             Log.i(TAG, "已经初始化过了");
             return;
         }
-        TTAdSdk.init(context, buildConfig());
+        TTAdSdk.init(context, buildConfig(customController));
         TTAdSdk.start(new TTAdSdk.Callback() {
             @Override
             public void success() {
@@ -102,7 +102,7 @@ public class AdvertisementManager {
         });
     }
 
-    private TTAdConfig buildConfig() {
+    private TTAdConfig buildConfig(TTCustomController customController) {
 
         return new TTAdConfig.Builder()
                 /**
@@ -118,7 +118,7 @@ public class AdvertisementManager {
                  * 使用聚合功能此开关必须设置为true，默认为false
                  */
                 .useMediation(true)
-                .customController(getTTCustomController())  //设置隐私权
+                .customController(customController)  //设置隐私权
 //                .customController(getTTCustomController()) //如果您需要设置隐私策略请参考该api
 //                .setMediationConfig(new MediationConfig.Builder() //可设置聚合特有参数详细设置请参考该api
 //                        .setMediationConfigUserInfoForSegment(getUserInfoForSegment())//如果您需要配置流量分组信息请参考该api
