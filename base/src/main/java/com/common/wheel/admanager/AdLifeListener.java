@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
@@ -26,6 +27,8 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
     @Override
     public void onAdShow() {
         ViewHelper.addInterstitialView(mAd);
+        MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
+        ViewHelper.showAdUploadInfo(mContextRef.get(), item, "INTERSTITIAL");
         if(callback!=null){
             callback.onAdShow();
         }

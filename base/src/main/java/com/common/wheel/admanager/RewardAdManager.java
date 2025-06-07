@@ -14,12 +14,16 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
+import java.lang.ref.WeakReference;
+
 public class RewardAdManager {
 
     private static volatile RewardAdManager instance;
     private final TTAdNative mTTAdNative;
 
     private RewardAdCallBack listener;
+
+    private WeakReference<Activity> weakRef;
 
     protected static RewardAdManager getInstance() {
         if (instance == null) {
@@ -62,6 +66,7 @@ public class RewardAdManager {
     //加载激励视频
     protected void loadRewardAd(Activity act,String projectId, String codeId, RewardAdCallBack listener) {
         this.listener = listener;
+        this.weakRef = new WeakReference<>(act);
         /** 这里为激励视频的简单功能，如需使用复杂功能，如gromore的服务端奖励验证，请参考demo中的AdUtils.kt类中激励部分 */
         mTTAdNative.loadRewardVideoAd(buildSplashAdslot(projectId,codeId), new TTAdNative.RewardVideoAdListener() {
             @Override
@@ -86,7 +91,7 @@ public class RewardAdManager {
             @Override
             public void onRewardVideoCached(TTRewardVideoAd ttRewardVideoAd) {
                 //广告缓存成功 在此回调中进行广告展示
-                showRewardAd(act, ttRewardVideoAd);
+                showRewardAd(weakRef.get(), ttRewardVideoAd);
             }
         });
     }
@@ -111,6 +116,8 @@ public class RewardAdManager {
                     String ecpm = showEcpm.getEcpm(); //展示广告的价格
                     String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
                     String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+
+                    ViewHelper.showAdUploadInfo(weakRef.get(), showEcpm, "VIDEO");
                 }
             }
 
@@ -179,6 +186,6 @@ public class RewardAdManager {
                 }
             }
         });
-        ttRewardVideoAd.showRewardVideoAd(act); //展示激励视频
+        ttRewardVideoAd.showRewardVideoAd(weakRef.get()); //展示激励视频
     }
 }

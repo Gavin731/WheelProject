@@ -13,6 +13,7 @@ import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
 
 import java.lang.ref.WeakReference;
@@ -164,6 +165,9 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
             callback.onRenderSuccess();
         }
         if (mTTFeedAd != null) {
+            MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
+            ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
+
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
             ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
         }

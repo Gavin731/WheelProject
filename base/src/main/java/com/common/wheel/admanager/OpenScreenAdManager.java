@@ -77,6 +77,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         if (splashAd == null || container == null) {
             return;
         }
+        MediationAdEcpmInfo item = splashAd.getMediationManager().getShowEcpm();
+        ViewHelper.showAdUploadInfo(weakRef.get(), item, "SPLASH");
+
         container.removeAllViews();
         splashAd.setSplashAdListener(this);
         splashAd.showSplashView(container);//展示开屏广告

@@ -23,7 +23,7 @@ public class MyApp extends Application {
 
             }
         }, getTTCustomController());
-        AdvertisementManager.getInstance().initConfig();
+        AdvertisementManager.getInstance().initConfig("我是测试oaid");
     }
 
     private TTCustomController getTTCustomController() {

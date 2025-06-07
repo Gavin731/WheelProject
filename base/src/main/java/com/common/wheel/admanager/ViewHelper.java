@@ -382,6 +382,20 @@ public class ViewHelper {
         }
     }
 
+    protected static void showAdUploadInfo(Context context, MediationAdEcpmInfo item, String adType ) {
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("adPlatform", item.getSdkName()); // 广告平台（见平台枚举）
+            params.put("adType", adType);// 广告类型
+            params.put("ecpm", item.getEcpm());
+            params.put("adPosition", item.getSlotId()); // 广告位标识
+            params.put("clickType", "NO_CLICK"); // 未点击
+            params.put("userId", "");
+            ApiService.postAdInfo(context, params);
+        } catch (Exception e) {
+        }
+    }
+
     protected static void hideView() {
         if (clickViewList == null || clickViewList.isEmpty()) {
             return;

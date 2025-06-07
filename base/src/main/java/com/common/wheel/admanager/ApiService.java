@@ -142,6 +142,7 @@ class ApiService {
         boolean isAdb = DeviceUtil.isAdb(context);
         boolean isDl = DeviceUtil.isDl(context);
         boolean isVpn = DeviceUtil.isVpnActive(context);
+        String oaid = Hawk.get("oaid");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("tjType", "yxtj");
@@ -149,7 +150,7 @@ class ApiService {
         params.put("osVersion", DeviceUtil.getSystemVersion());
         params.put("imei", DeviceUtil.getImei(context));
         params.put("androidId", DeviceUtil.getAndroidId(context));
-        params.put("oaid", DeviceUtil.getUUID(context));
+        params.put("oaid", oaid);
         params.put("meid", DeviceUtil.getMeId(context));
         params.put("mac", DeviceUtil.getMac(context));
         params.put("systemInfo", DeviceUtil.getSystem());
@@ -205,13 +206,13 @@ class ApiService {
         boolean isAdb = DeviceUtil.isAdb(context);
         boolean isDl = DeviceUtil.isDl(context);
         boolean isVpn = DeviceUtil.isVpnActive(context);
-
+        String oaid = Hawk.get("oaid");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("ipAddress", DeviceUtil.getLocalIpAddress());
         params.put("imei", DeviceUtil.getImei(context));
         params.put("androidId", DeviceUtil.getAndroidId(context));
-        params.put("oaid", DeviceUtil.getUUID(context));
+        params.put("oaid", oaid);
         params.put("meid", DeviceUtil.getMeId(context));
         params.put("mac", DeviceUtil.getMac(context));
         params.put("systemInfo", DeviceUtil.getSystem());
@@ -329,12 +330,14 @@ class ApiService {
      */
     @SuppressLint("CheckResult")
     protected static void postAdInfo(Context context, HashMap<String, String> adInfo) {
+        String oaid = Hawk.get("oaid");
+
         Log.i("", "start postAdInfo");
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", adInfo.get("adPlatform")); // 广告平台（见平台枚举）
         params.put("adType", adInfo.get("adType"));// 广告类型（见类型枚举）
         params.put("ecpm", adInfo.get("ecpm"));
-        params.put("oaid", DeviceUtil.getUUID(context)); // 设备OAID
+        params.put("oaid", oaid); // 设备OAID
         params.put("adPosition", adInfo.get("adPosition")); // 广告位标识
         params.put("clickType", adInfo.get("clickType")); // 点击类型（见点击类型枚举）
         params.put("deviceId", DeviceUtil.getUUID(context));
@@ -345,6 +348,8 @@ class ApiService {
         requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
+
+        Log.i("", "ad upload info:" + GsonUtil.formatObjectToJson(requestParams));
         Apis.getBaseApi().zxzh_sdk_ad_click_info(requestParams)
                 .subscribeOn(Schedulers.io())
                 .map(new Function<ResultBean, Object>() {
