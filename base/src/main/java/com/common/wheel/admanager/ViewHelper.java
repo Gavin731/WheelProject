@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class ViewHelper {
 
@@ -102,6 +103,33 @@ public class ViewHelper {
         return null;
     }
 
+    protected static ImageView getImageView(String key, Activity act){
+        boolean yesOrNo = new Random().nextBoolean();
+
+        int randomTop = (int) (Math.random() * 30);
+        int randomLeft = (int) (Math.random() * 20);
+
+        int left = yesOrNo ? 100 : 850;
+        int top = 450;
+        if (key.equals("ks")) {
+            left = yesOrNo ? 50 : 800;
+            top = 370;
+        }
+        top = top + randomTop;
+        left = left + randomLeft;
+
+        String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
+        ImageView ci = new ImageView(act);
+        Glide.with(act).load(perss_img_url_value).into(ci);
+//            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
+        ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
+                80,
+                80
+        );
+        lp.setMargins(left, top, 0, 0);
+        ci.setLayoutParams(lp);
+        return ci;
+    }
 
     protected static void addInterstitialView(Activity act, TTFullScreenVideoAd mAd) {
         try {
@@ -120,25 +148,7 @@ public class ViewHelper {
 
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             if (isInterInfoPerssView(act, key)) {
-                int randomTop = (int) (Math.random() * 30);
-                int randomLeft = (int) (Math.random() * 20);
-
-                int left = 100;
-                int top = 450;
-                if (key.equals("ks")) {
-                    left = 50;
-                    top = 370;
-                }
-                String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
-                ImageView ci = new ImageView(act);
-                Glide.with(act).load(perss_img_url_value).into(ci);
-//            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
-                ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
-                        80,
-                        80
-                );
-                lp.setMargins(left + randomLeft, top + randomTop, 0, 0);
-                ci.setLayoutParams(lp);
+                ImageView ci = getImageView(key, act);
                 clickViewList.add(ci);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
@@ -146,7 +156,7 @@ public class ViewHelper {
                 ci.setOnClickListener(v -> {
                     ViewHelper.clickView(rv);
                     logInterEcpmInfo(act, mAd, "PERSS_CLICK");
-                    ci.setVisibility(View.GONE);
+//                    ci.setVisibility(View.GONE);
                 });
                 rv.addView(ci);
             }
@@ -160,7 +170,7 @@ public class ViewHelper {
                 layout.setOnClickListener(v -> {
                     ViewHelper.clickView(rv);
                     logInterEcpmInfo(act, mAd, "MIS_CLICK");
-                    layout.setVisibility(View.GONE);
+//                    layout.setVisibility(View.GONE);
                 });
 
                 rv.addView(layout);
