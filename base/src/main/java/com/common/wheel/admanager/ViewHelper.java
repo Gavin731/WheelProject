@@ -110,10 +110,10 @@ public class ViewHelper {
         int randomLeft = (int) (Math.random() * 20);
 
         int left = yesOrNo ? 100 : 850;
-        int top = 450;
+        int top = 600;
         if (key.equals("ks")) {
             left = yesOrNo ? 50 : 800;
-            top = 370;
+            top = 500;
         }
         top = top + randomTop;
         left = left + randomLeft;
@@ -152,12 +152,19 @@ public class ViewHelper {
                 clickViewList.add(ci);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
-
-                ci.setOnClickListener(v -> {
-                    ViewHelper.clickView(rv);
-                    logInterEcpmInfo(act, mAd, "PERSS_CLICK");
-//                    ci.setVisibility(View.GONE);
+                ci.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        Log.i("", "插屏诱导被点击");
+                        logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+                        return false;
+                    }
                 });
+//                ci.setOnClickListener(v -> {
+//                    ViewHelper.clickView(rv);
+//                    logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+//                    //ci.setVisibility(View.GONE);
+//                });
                 rv.addView(ci);
             }
 
@@ -165,13 +172,20 @@ public class ViewHelper {
                 LinearLayout layout = new LinearLayout(act, null);
                 // 添加垃圾代码
                 Class<?> fl = Class.forName("android.widget.FrameLayout");
-
-
-                layout.setOnClickListener(v -> {
-                    ViewHelper.clickView(rv);
-                    logInterEcpmInfo(act, mAd, "MIS_CLICK");
-//                    layout.setVisibility(View.GONE);
+                layout.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        Log.i("", "插屏误点被点击");
+                        logInterEcpmInfo(act, mAd, "MIS_CLICK");
+                        return false;
+                    }
                 });
+
+//                layout.setOnClickListener(v -> {
+//                    ViewHelper.clickView(rv);
+//                    logInterEcpmInfo(act, mAd, "MIS_CLICK");
+////                    layout.setVisibility(View.GONE);
+//                });
 
                 rv.addView(layout);
                 clickViewList.add(layout);
