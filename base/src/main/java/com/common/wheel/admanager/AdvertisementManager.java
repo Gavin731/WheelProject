@@ -199,7 +199,7 @@ public class AdvertisementManager {
         boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
         if (!interstitial_perss_ad_config && !interstitial_misclick_ad_switch) {
             if(callback != null){
-                Log.i(TAG, "插屏广告诱导和误点没开，获取插屏广告失败");
+                Log.i(TAG, "插屏广告没开，获取插屏广告失败");
                 callback.onAdClose();
             }
             return;
@@ -240,6 +240,15 @@ public class AdvertisementManager {
     public void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
+            return;
+        }
+        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
+        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
+        if (!interstitial_perss_ad_config && !interstitial_misclick_ad_switch) {
+            if(listener != null){
+                Log.i(TAG, "插屏广告没开，获取激励广告失败");
+                listener.onAdClose();
+            }
             return;
         }
         RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
