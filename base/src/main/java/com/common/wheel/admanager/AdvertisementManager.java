@@ -13,6 +13,7 @@ import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.common.wheel.R;
+import com.common.wheel.constans.ConstantsPath;
 import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
@@ -193,6 +194,16 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
+        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
+        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
+        if (!interstitial_perss_ad_config && !interstitial_misclick_ad_switch) {
+            if(callback != null){
+                Log.i(TAG, "插屏广告诱导和误点没开，获取插屏广告失败");
+                callback.onAdClose();
+            }
+            return;
+        }
+
         InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId, callback);
     }
 
