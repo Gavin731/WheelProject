@@ -54,11 +54,12 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
-    public void initConfig(String oaid) {
+    public void initConfig(String oaid, String publicIP) {
         Hawk.init(context).build();
         Hawk.put("url", context.getResources().getString(R.string.base_url));
         String token = Hawk.get("token") == null ? "" : Hawk.get("token").toString();
         Hawk.put("oaid", oaid);
+        Hawk.put("publicIP", publicIP);
         if (TextUtils.isEmpty(Hawk.get("token"))) {
             ApiService.getKey(context);
         } else {

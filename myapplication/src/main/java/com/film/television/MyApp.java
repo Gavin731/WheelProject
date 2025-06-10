@@ -23,7 +23,7 @@ public class MyApp extends Application {
 
             }
         }, getTTCustomController());
-        AdvertisementManager.getInstance().initConfig("297ca176-e8ad-40e7-b39e-0926e16bf166");
+        AdvertisementManager.getInstance().initConfig("297ca176-e8ad-40e7-b39e-0926e16bf166", "192.168.1.0");
     }
 
     private TTCustomController getTTCustomController() {

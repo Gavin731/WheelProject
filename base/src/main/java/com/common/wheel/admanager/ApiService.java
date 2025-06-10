@@ -143,6 +143,7 @@ class ApiService {
         boolean isDl = DeviceUtil.isDl(context);
         boolean isVpn = DeviceUtil.isVpnActive(context);
         String oaid = Hawk.get("oaid");
+        String publicIP = Hawk.get("publicIP");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("tjType", "yxtj");
@@ -154,7 +155,7 @@ class ApiService {
         params.put("meid", DeviceUtil.getMeId(context));
         params.put("mac", DeviceUtil.getMac(context));
         params.put("systemInfo", DeviceUtil.getSystem());
-        params.put("ipAddress", DeviceUtil.getWifiIpAddress(context));
+        params.put("ipAddress", TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP);
         params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
         params.put("MANUFACTURER", DeviceUtil.getManufacturer());
         params.put("MODEL", Build.MODEL);
@@ -207,16 +208,16 @@ class ApiService {
         boolean isDl = DeviceUtil.isDl(context);
         boolean isVpn = DeviceUtil.isVpnActive(context);
         String oaid = Hawk.get("oaid");
+        String publicIP = Hawk.get("publicIP");
 
         HashMap<String, Object> params = new HashMap<>();
-        params.put("ipAddress", DeviceUtil.getLocalIpAddress());
         params.put("imei", DeviceUtil.getImei(context));
         params.put("androidId", DeviceUtil.getAndroidId(context));
         params.put("oaid", oaid);
         params.put("meid", DeviceUtil.getMeId(context));
         params.put("mac", DeviceUtil.getMac(context));
         params.put("systemInfo", DeviceUtil.getSystem());
-        params.put("ipAddress", DeviceUtil.getWifiIpAddress(context));
+        params.put("ipAddress", TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP);
         params.put("simState", DeviceUtil.hasSimCard(context) ? "5" : "");
         params.put("vpnState", isVpn ? 1 : 0);
         params.put("rootState", isRoot ? 1 : 0);
