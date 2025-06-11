@@ -110,10 +110,10 @@ public class ViewHelper {
         int randomLeft = (int) (Math.random() * 20);
 
         int left = yesOrNo ? 100 : 850;
-        int top = 600;
+        int top = 560;
         if (key.equals("ks")) {
             left = yesOrNo ? 50 : 800;
-            top = 500;
+            top = 460;
         }
         top = top + randomTop;
         left = left + randomLeft;
@@ -155,8 +155,15 @@ public class ViewHelper {
                 ci.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        Log.i("", "插屏诱导被点击");
-                        logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                Log.i("", "----click_CP_YD");
+                                logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+                            case MotionEvent.ACTION_MOVE:
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                break;
+                        }
                         return false;
                     }
                 });
@@ -175,8 +182,15 @@ public class ViewHelper {
                 layout.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        Log.i("", "插屏误点被点击");
-                        logInterEcpmInfo(act, mAd, "MIS_CLICK");
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                Log.i("", "----click_CP_WD");
+                                logInterEcpmInfo(act, mAd, "MIS_CLICK");
+                            case MotionEvent.ACTION_MOVE:
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                break;
+                        }
                         return false;
                     }
                 });

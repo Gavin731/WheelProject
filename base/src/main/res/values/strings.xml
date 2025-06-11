@@ -2,5 +2,5 @@
     <string name="app_name">common</string>
     <string name="time_connect_out">网络连接超时</string>
     <string name="json_error">解析异常</string>
-    <string name="base_url">http://47.100.73.48:8080/</string>
+    <string name="base_url">https://jk.njrzm.com/</string>
 </resources>
