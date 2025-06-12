@@ -33,6 +33,7 @@ import java.util.Random;
 public class ViewHelper {
 
     protected static List<View> clickViewList = new ArrayList<>();
+    protected static List<View> infoClickViewList = new ArrayList<>();
 
     protected static void clickView(ViewGroup rv) {
 
@@ -222,6 +223,7 @@ public class ViewHelper {
         try {
             FrameLayout fv = new FrameLayout(context);
             FrameLayout fli = new FrameLayout(context);
+            // 蒙层
             View llm = new View(context);
 
             MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
@@ -240,6 +242,7 @@ public class ViewHelper {
             Class<?> vv = Class.forName("android.view.View");
             llm.setVisibility(View.GONE);
             if (isAddInfoView(context, key)) {
+                infoClickViewList.add(llm);
                 llm.setVisibility(View.VISIBLE);
                 llm.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -391,6 +394,13 @@ public class ViewHelper {
     protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
         int count = Hawk.get("infoCount", 1);
         Hawk.put("infoCount", count + 1);
+        // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
+        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
+            if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
+                hideInfoView();
+            }
+        }
 
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
         try {
@@ -442,6 +452,15 @@ public class ViewHelper {
             view.setVisibility(View.GONE);
         }
         clickViewList.clear();
+    }
+    protected static void hideInfoView() {
+        if (infoClickViewList == null || infoClickViewList.isEmpty()) {
+            return;
+        }
+        for (View view : infoClickViewList) {
+            view.setVisibility(View.GONE);
+        }
+        infoClickViewList.clear();
     }
 
     // ks 快手 baidu 百度 ylh优量汇  pangle穿山甲
