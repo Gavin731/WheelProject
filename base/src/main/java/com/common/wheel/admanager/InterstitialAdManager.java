@@ -94,7 +94,7 @@ public class InterstitialAdManager {
             @Override
             public void run() {
                 adLoadListeners.remove(0);
-                loadAd(activity, codeId, null);
+//                loadAd(activity, codeId, null);
             }
         }, 500);
     }
