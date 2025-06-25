@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.show_ad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346", new InfoAdCallBack() {
+                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "103526723", new InfoAdCallBack() {
                     @Override
                     public void onError() {
                         LogUtils.i("页面提示：插屏广告获取失败");
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.show_ad2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "964568346", new InfoAdCallBack() {
+                AdvertisementManager.getInstance().showInterstitialAd(MainActivity.this, "103526723", new InfoAdCallBack() {
                     @Override
                     public void onError() {
                         LogUtils.i("页面提示：插屏广告2获取失败");

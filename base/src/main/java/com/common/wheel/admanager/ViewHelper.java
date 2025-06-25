@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+import com.common.wheel.R;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
@@ -154,12 +155,14 @@ public class ViewHelper {
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
                 ci.setOnTouchListener(new View.OnTouchListener() {
+                    
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
                                 Log.i("", "----click_CP_YD");
                                 logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+                                break;
                             case MotionEvent.ACTION_MOVE:
                                 break;
                             case MotionEvent.ACTION_UP:
@@ -187,6 +190,7 @@ public class ViewHelper {
                             case MotionEvent.ACTION_DOWN:
                                 Log.i("", "----click_CP_WD");
                                 logInterEcpmInfo(act, mAd, "MIS_CLICK");
+                                break;
                             case MotionEvent.ACTION_MOVE:
                                 break;
                             case MotionEvent.ACTION_UP:
@@ -250,6 +254,7 @@ public class ViewHelper {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
                             case MotionEvent.ACTION_MOVE:
+                                Log.i("", "----click_info_WD");
                                 ViewHelper.clickView((ViewGroup) efv);
                                 logInfoEcpmInfo(context, ttFeedAd);
                                 break;

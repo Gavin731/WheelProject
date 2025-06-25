@@ -24,7 +24,6 @@ import java.util.Map;
 public class InformationFlowManager implements TTAdNative.FeedAdListener, MediationExpressRenderListener {
 
     private static volatile InformationFlowManager instance;
-    private final TTAdNative mTTAdNative;
     private TTFeedAd mTTFeedAd;
 
     private WeakReference<Activity> weakRef;
@@ -46,7 +45,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     }
 
     private InformationFlowManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
+
     }
 
     private AdSlot buildNativeAdslot(String codeId, int width, int height) {
@@ -83,6 +82,8 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
         this.splashContainer = splashContainer;
         this.callback = callback;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
+
         mTTAdNative.loadFeedAd(adSlot, this);
     }
 

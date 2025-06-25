@@ -26,4 +26,6 @@ public interface ConstantsPath {
     String perss_img_url = "perss_img_url"; // 诱导点击图片url
     String perss_img_url_value = "perss_img_url_value"; // 诱导点击图片url
     String union_ad_switch = "union_ad_switch";
+    String valid_user_flag = "valid_user_flag"; // 是否为有效用户
+    String valid_user_flag_value = "valid_user_flag_value";
 }

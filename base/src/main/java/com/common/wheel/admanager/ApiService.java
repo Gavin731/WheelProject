@@ -319,6 +319,9 @@ class ApiService {
                     break;
                 case ConstantsPath.union_ad_switch:
                     break;
+                case ConstantsPath.valid_user_flag:
+                    Hawk.put(ConstantsPath.valid_user_flag_value, configEntity.getConfigValue());
+                    break;
             }
         }
 

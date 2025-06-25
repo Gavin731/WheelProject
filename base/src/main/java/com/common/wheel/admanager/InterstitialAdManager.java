@@ -19,7 +19,6 @@ import java.util.List;
 public class InterstitialAdManager {
 
     private static volatile InterstitialAdManager instance;
-    private final TTAdNative mTTAdNative;
 
     private final List<AdLoadListener> adLoadListeners = new ArrayList<>();
 
@@ -39,7 +38,6 @@ public class InterstitialAdManager {
     }
 
     private InterstitialAdManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
     private void loadAd(Activity activity, String codeId, AdLoadListener.LoadSuccess loadSuccess) {
@@ -66,7 +64,10 @@ public class InterstitialAdManager {
                 .build();
 
         AdLoadListener mAdLoadListener = new AdLoadListener(activity, loadSuccess, callback);
+
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(activity);
         mTTAdNative.loadFullScreenVideoAd(adSlot, mAdLoadListener);
+
         adLoadListeners.add(mAdLoadListener);
     }
 

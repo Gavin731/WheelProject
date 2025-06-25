@@ -20,7 +20,6 @@ import java.util.HashMap;
 public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
 
     private static volatile OpenScreenAdManager instance;
-    private final TTAdNative mTTAdNative;
     private OpenScreenAdCallBack callBack;
     private WeakReference<Activity> weakRef;
     private FrameLayout splashContainer;
@@ -40,7 +39,6 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private OpenScreenAdManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
     private AdSlot buildSplashAdslot(int width, int height) {
@@ -70,6 +68,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         this.callBack = callBack;
         this.weakRef = new WeakReference<>(act);
         this.splashContainer = splashContainer;
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
         mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), this, 3500);
     }
 

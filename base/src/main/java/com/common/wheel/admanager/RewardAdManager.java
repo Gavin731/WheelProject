@@ -19,7 +19,6 @@ import java.lang.ref.WeakReference;
 public class RewardAdManager {
 
     private static volatile RewardAdManager instance;
-    private final TTAdNative mTTAdNative;
 
     private RewardAdCallBack listener;
 
@@ -37,7 +36,6 @@ public class RewardAdManager {
     }
 
     private RewardAdManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
     private AdSlot buildSplashAdslot(String projectId, String codeId) {
@@ -67,6 +65,7 @@ public class RewardAdManager {
     protected void loadRewardAd(Activity act,String projectId, String codeId, RewardAdCallBack listener) {
         this.listener = listener;
         this.weakRef = new WeakReference<>(act);
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
         /** 这里为激励视频的简单功能，如需使用复杂功能，如gromore的服务端奖励验证，请参考demo中的AdUtils.kt类中激励部分 */
         mTTAdNative.loadRewardVideoAd(buildSplashAdslot(projectId,codeId), new TTAdNative.RewardVideoAdListener() {
             @Override

@@ -45,9 +45,9 @@ public class AdvertisementManager {
         return TTAdSdk.getAdManager();
     }
 
-    protected TTAdNative getTTAdNative() {
+    protected TTAdNative getTTAdNative(Activity act) {
         TTAdManager ttAdManager = get();
-        return ttAdManager.createAdNative(context);
+        return ttAdManager.createAdNative(act);
     }
 
     public void requestPermissionIfNecessary(Context context) {
@@ -195,11 +195,10 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
-        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
-        if (!interstitial_perss_ad_config && !interstitial_misclick_ad_switch) {
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
             if(callback != null){
-                Log.i(TAG, "插屏广告没开，获取插屏广告失败");
+                Log.i(TAG, "无效用户，获取插屏广告失败");
                 callback.onAdClose();
             }
             return;
@@ -242,15 +241,16 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        boolean interstitial_perss_ad_config = Hawk.get(ConstantsPath.interstitial_perss_ad_config, false);
-        boolean interstitial_misclick_ad_switch = Hawk.get(ConstantsPath.interstitial_misclick_ad_config, false);
-        if (!interstitial_perss_ad_config && !interstitial_misclick_ad_switch) {
+
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
             if(listener != null){
-                Log.i(TAG, "插屏广告没开，获取激励广告失败");
+                Log.i(TAG, "无效用户，获取激励广告失败");
                 listener.onAdClose();
             }
             return;
         }
+
         RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
     }
 
