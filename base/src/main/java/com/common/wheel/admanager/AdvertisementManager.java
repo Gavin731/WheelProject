@@ -195,6 +195,9 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if ("0".equals(valid_user_flag_value)) {
             if(callback != null){
@@ -241,7 +244,9 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if ("0".equals(valid_user_flag_value)) {
             if(listener != null){
