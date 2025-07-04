@@ -322,6 +322,9 @@ class ApiService {
                 case ConstantsPath.valid_user_flag:
                     Hawk.put(ConstantsPath.valid_user_flag_value, configEntity.getConfigValue());
                     break;
+                case ConstantsPath.is_upload_log:
+                    Hawk.put(ConstantsPath.is_upload_log_value, configEntity.getConfigStatus());
+                    break;
             }
         }
 
@@ -372,5 +375,21 @@ class ApiService {
 
                     }
                 });
+    }
+
+    protected static void addLog(Context context, String type, String content) {
+        String oaid = Hawk.get("oaid");
+        boolean is_upload_log = Hawk.get(ConstantsPath.is_upload_log_value, false);
+        if(!is_upload_log){
+            Log.i("","上传日志配置没开，不上传");
+            return;
+        }
+        HashMap<String, String> params = new HashMap<>();
+
+        HashMap<String, Object> requestParams = new HashMap<>();
+        requestParams.put("methodType", "zxzh_sdk_ad_click_info");
+        requestParams.put("appName", context.getPackageName());
+        requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
+        requestParams.put("params", params);
     }
 }

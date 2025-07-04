@@ -34,6 +34,7 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     @Override
     public void onError(int i, String s) {
         Log.e("", s);
+        ApiService.addLog(context,"error","获取插屏广告失败："+s);
         if(callback!=null){
             callback.onError();
         }

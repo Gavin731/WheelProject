@@ -28,4 +28,7 @@ public interface ConstantsPath {
     String union_ad_switch = "union_ad_switch";
     String valid_user_flag = "valid_user_flag"; // 是否为有效用户
     String valid_user_flag_value = "valid_user_flag_value";
+
+    String 	is_upload_log = "is_upload_log";// 是否上传日志
+    String 	is_upload_log_value = "is_upload_log_value";
 }
