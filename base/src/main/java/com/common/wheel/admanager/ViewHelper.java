@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -271,8 +272,12 @@ public class ViewHelper {
 //                    logInterEcpmInfo(act, mAd, "PERSS_CLICK");
 //                    //ci.setVisibility(View.GONE);
 //                });
-                rv.addView(ci);
-                rv.addView(ci2);
+                if (key.equals("ks")) {
+                    addCustomButtonOverAd(act);
+                }else{
+                    rv.addView(ci);
+                    rv.addView(ci2);
+                }
             }
 
             if (isInterInfoClickView(act, key)) {
@@ -310,6 +315,38 @@ public class ViewHelper {
             e.printStackTrace();
         }
     }
+
+    private static void addCustomButtonOverAd(Activity activity) {
+        // 获取 Window 的 DecorView
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+
+        // 创建覆盖层（透明 FrameLayout）
+        FrameLayout overlayLayout = new FrameLayout(activity);
+        FrameLayout.LayoutParams overlayParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+        );
+        overlayLayout.setClickable(true); // 阻止事件穿透到广告
+
+        // 添加自定义按钮
+        Button customButton = new Button(activity);
+        customButton.setText("跳过广告");
+        FrameLayout.LayoutParams buttonParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                Gravity.LEFT | Gravity.TOP
+        );
+        buttonParams.setMargins(50, 500, 0, 0); // 调整位置
+
+        overlayLayout.addView(customButton, buttonParams);
+        decorView.addView(overlayLayout, overlayParams);
+
+        // 点击按钮关闭广告
+        customButton.setOnClickListener(v -> {
+            decorView.removeView(overlayLayout); // 移除覆盖层
+        });
+    }
+
 
     /**
      * 增加信息流误点
