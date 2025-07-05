@@ -88,6 +88,9 @@ public class InterstitialAdManager {
     }
 
     private void show(Activity activity, String codeId) {
+        if(adLoadListeners.isEmpty()){
+            return;
+        }
         AdLoadListener mAdLoadListener = adLoadListeners.get(0);
         mAdLoadListener.showAd(TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test");
         new Handler().postDelayed(new Runnable() {
