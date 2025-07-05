@@ -1,6 +1,7 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,8 +16,11 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
+import com.common.wheel.constans.ConstantsPath;
+import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +34,8 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     private FrameLayout splashContainer;
 
     private String projectId;
+
+    private long upDate=0;
 
     private InformationFlowAdCallback callback;
 
@@ -145,9 +151,26 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onAdClick() {
+        long curDate = new Date().getTime();
+        // 2次点击小于1.5秒，则不处理
+        if(upDate >0 && (curDate - upDate)<= 9000){
+            return;
+        }
         if(callback!=null){
             callback.onAdClick();
         }
+
+        upDate = curDate;
+        int count = Hawk.get("infoCount", 1);
+        Hawk.put("infoCount", count + 1);
+        // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
+        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
+            if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
+                ViewHelper.hideInfoView();
+            }
+        }
+
     }
 
     @Override

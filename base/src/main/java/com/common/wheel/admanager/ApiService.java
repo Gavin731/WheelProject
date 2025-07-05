@@ -372,7 +372,6 @@ class ApiService {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
                     }
                 });
     }
@@ -385,11 +384,33 @@ class ApiService {
             return;
         }
         HashMap<String, String> params = new HashMap<>();
+        params.put("oaid", oaid);
+        params.put("eventType", type);
+        params.put("eventName", "插屏");
+        params.put("eventValue", content);
 
         HashMap<String, Object> requestParams = new HashMap<>();
-        requestParams.put("methodType", "zxzh_sdk_ad_click_info");
+        requestParams.put("methodType", "zxzh_sdk_event_tracking");
         requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
         requestParams.put("params", params);
+
+        Apis.getBaseApi().zxzh_sdk_event_tracking(requestParams)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<ResultBean, Object>() {
+                    @Override
+                    public Object apply(ResultBean resultBean) throws Exception {
+                        return null;
+                    }
+                }).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
     }
 }

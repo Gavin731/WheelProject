@@ -515,16 +515,6 @@ public class ViewHelper {
     }
 
     protected static void logInfoEcpmInfo(Context context, TTFeedAd ttFeedAd) {
-        int count = Hawk.get("infoCount", 1);
-        Hawk.put("infoCount", count + 1);
-        // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
-        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
-        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
-            if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
-                hideInfoView();
-            }
-        }
-
         MediationAdEcpmInfo item = ttFeedAd.getMediationManager().getShowEcpm();
         try {
             HashMap<String, String> params = new HashMap<>();
