@@ -175,7 +175,9 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onAdShow() {
-
+        Activity activity = weakRef.get();
+        MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
+        ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
     }
 
     @Override
@@ -189,8 +191,8 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
             callback.onRenderSuccess();
         }
         if (mTTFeedAd != null) {
-            MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
-            ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
+
+
 
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
             ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);

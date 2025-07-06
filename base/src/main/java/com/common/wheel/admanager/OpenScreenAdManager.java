@@ -77,7 +77,6 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
             return;
         }
         MediationAdEcpmInfo item = splashAd.getMediationManager().getShowEcpm();
-        ViewHelper.showAdUploadInfo(weakRef.get(), item, "SPLASH");
 
         container.removeAllViews();
         splashAd.setSplashAdListener(this);
@@ -121,6 +120,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
             String ecpm = showEcpm.getEcpm(); //展示广告的价格
             String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
             String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+            Log.e("", "aaaaaaaaaa:" + showEcpm.getEcpm());
+
+            ViewHelper.showAdUploadInfo(weakRef.get(), showEcpm, "SPLASH");
         }
     }
 

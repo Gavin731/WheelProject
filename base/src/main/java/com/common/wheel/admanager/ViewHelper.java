@@ -552,6 +552,9 @@ public class ViewHelper {
             params.put("adPosition", item.getSlotId()); // 广告位标识
             params.put("clickType", "NO_CLICK"); // 未点击
             params.put("userId", "");
+            Log.i("aaa------","aaa------:"+GsonUtil.formatObjectToJson(params));
+            ApiService.addLog(context,"show","获取广告类型："+GsonUtil.formatObjectToJson(params));
+
             ApiService.postAdInfo(context, params);
         } catch (Exception e) {
         }
