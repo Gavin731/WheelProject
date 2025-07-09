@@ -379,7 +379,7 @@ public class ViewHelper {
                             case MotionEvent.ACTION_UP:
                                 break;
                         }
-                        return true;
+                        return false;
                     }
                 });
             }
