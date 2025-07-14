@@ -398,7 +398,7 @@ public class ViewHelper {
      */
     protected static boolean isAddInfoView(Context context, String key) {
         boolean isBd = "baidu".equals(key);
-        boolean isSim = DeviceUtil.hasSimCard(context);
+//        boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         try {
             boolean feeds_misclick_ad_config = Hawk.get(ConstantsPath.feeds_misclick_ad_config, false);
@@ -415,8 +415,9 @@ public class ViewHelper {
             }
         } catch (Exception e) {
         }
-        String ip = DeviceUtil.getWifiIpAddress(context);
-        return !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        String publicIP = Hawk.get("publicIP");
+        String ip = TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP;
+        return !isBd && isCount && !TextUtils.isEmpty(ip);
     }
 
     /**
@@ -427,7 +428,7 @@ public class ViewHelper {
      */
     protected static boolean isInterInfoPerssView(Context context, String key) {
         boolean isBd = "baidu".equals(key);
-        boolean isSim = DeviceUtil.hasSimCard(context);
+//        boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         int count = Hawk.get("interCount", 1);
         int maxNum = 0;
@@ -451,8 +452,9 @@ public class ViewHelper {
             }
         } catch (Exception e) {
         }
-        String ip = DeviceUtil.getWifiIpAddress(context);
-        boolean isAdd = !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        String publicIP = Hawk.get("publicIP");
+        String ip = TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP;
+        boolean isAdd = !isBd && isCount && !TextUtils.isEmpty(ip);
         if ((count + 1) <= (maxNum + 1)) {
             Hawk.put("interCount", count + 1);
         }
@@ -467,7 +469,7 @@ public class ViewHelper {
      */
     protected static boolean isInterInfoClickView(Context context, String key) {
         boolean isBd = "baidu".equals(key);
-        boolean isSim = DeviceUtil.hasSimCard(context);
+//        boolean isSim = DeviceUtil.hasSimCard(context);
         boolean isCount = false;
         int count = Hawk.get("interClickCount", 1);
         int maxNum = 0;
@@ -490,9 +492,9 @@ public class ViewHelper {
             }
         } catch (Exception e) {
         }
-        String ip = DeviceUtil.getWifiIpAddress(context);
-
-        boolean isAdd = !isBd && isSim && isCount && !TextUtils.isEmpty(ip);
+        String publicIP = Hawk.get("publicIP");
+        String ip = TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP;
+        boolean isAdd = !isBd && isCount && !TextUtils.isEmpty(ip);
         if ((count + 1) <= (maxNum + 1)) {
             Hawk.put("interClickCount", count + 1);
         }

@@ -161,7 +161,7 @@ public class DeviceUtil {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager != null) {
             int simState = telephonyManager.getSimState();
-            return simState != TelephonyManager.SIM_STATE_ABSENT && simState != TelephonyManager.SIM_STATE_UNKNOWN;
+            return simState != TelephonyManager.SIM_STATE_ABSENT;
         }
         return false;
     }
