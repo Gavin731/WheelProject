@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig true  // 启用 BuildConfig 生成功能
+    }
+
     signingConfigs {
         release {
 //            storeFile file("/Users/zenglinggui/Documents/zeng/key_store/shangyantong.keystore")

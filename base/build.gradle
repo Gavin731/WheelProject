@@ -8,6 +8,7 @@ android {
     buildToolsVersion "34.0.0"
 
     defaultConfig {
+        namespace 'com.common.wheel'
         minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode 1
