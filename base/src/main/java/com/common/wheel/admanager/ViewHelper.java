@@ -39,6 +39,10 @@ public class ViewHelper {
 
     protected static List<Integer> locationList = new ArrayList<>();
 
+    /**
+     * 信息流误点
+     * @param rv
+     */
     protected static void clickView(ViewGroup rv) {
 
         try {
@@ -48,6 +52,50 @@ public class ViewHelper {
             int randomInt = (int) (Math.random() * 30);
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = (rv.getHeight() / 2f) + randomInt;
+            int metaState = 0;
+            float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
+            float size = 0.9f + (float) Math.random() * 0.1f; // 0.9 ~ 1.0
+
+            MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, pressure, size,
+                    metaState, pressure, pressure, 0, 0);
+
+
+            // 添加垃圾代码
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+
+
+            MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, pressure, size,
+                    metaState, pressure, pressure, 0, 0);
+            // 添加垃圾代码
+            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+
+
+            rv.dispatchTouchEvent(de);
+            rv.dispatchTouchEvent(ue);
+            de.recycle();
+            ue.recycle();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 插屏误点
+     * @param rv
+     */
+    protected static void interstitialClickView(ViewGroup rv, int top) {
+
+        try {
+            Log.i("","插屏误点:"+top);
+
+            long dTime = SystemClock.uptimeMillis();
+            long eTime = SystemClock.uptimeMillis();
+            int randomInt = (int) (Math.random() * 30);
+            float x = (rv.getWidth() / 2f) + randomInt;
+            float y = top + 40;
+
+            Log.i("","X："+x+",y："+y);
+
             int metaState = 0;
             float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
             float size = 0.9f + (float) Math.random() * 0.1f; // 0.9 ~ 1.0
@@ -318,8 +366,24 @@ public class ViewHelper {
 //                    }
 //                });
 
+                locationList.clear();
+
+                findAdViewRecursive(rv);
+                int left = 0;
+                int top = 0;
+                int width = 0;
+                int height = 0;
+                if (!locationList.isEmpty()) {
+                    left = locationList.get(0);
+                    top = locationList.get(1);
+                    width = locationList.get(2);
+                    height = locationList.get(3);
+                }
+                Log.d("AdPosition", "最终广告位置 - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
+
+                final int cTop = top;
                 layout.setOnClickListener(v -> {
-                    ViewHelper.clickView(rv);
+                    ViewHelper.interstitialClickView(rv, cTop);
                     logInterEcpmInfo(act, mAd, "MIS_CLICK");
                     layout.setVisibility(View.GONE);
                 });
