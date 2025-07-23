@@ -222,6 +222,9 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
         InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height, callback);
     }
 
@@ -232,6 +235,9 @@ public class AdvertisementManager {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
+        }
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
         }
         OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
     }
