@@ -301,28 +301,28 @@ public class ViewHelper {
                 LinearLayout layout = new LinearLayout(act, null);
                 // 添加垃圾代码
                 Class<?> fl = Class.forName("android.widget.FrameLayout");
-                layout.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        switch (event.getAction()) {
-                            case MotionEvent.ACTION_DOWN:
-                                Log.i("", "----click_CP_WD");
-                                logInterEcpmInfo(act, mAd, "MIS_CLICK");
-                                break;
-                            case MotionEvent.ACTION_MOVE:
-                                break;
-                            case MotionEvent.ACTION_UP:
-                                break;
-                        }
-                        return false;
-                    }
-                });
-
-//                layout.setOnClickListener(v -> {
-//                    ViewHelper.clickView(rv);
-//                    logInterEcpmInfo(act, mAd, "MIS_CLICK");
-////                    layout.setVisibility(View.GONE);
+//                layout.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View v, MotionEvent event) {
+//                        switch (event.getAction()) {
+//                            case MotionEvent.ACTION_DOWN:
+//                                Log.i("", "----click_CP_WD");
+//                                logInterEcpmInfo(act, mAd, "MIS_CLICK");
+//                                break;
+//                            case MotionEvent.ACTION_MOVE:
+//                                break;
+//                            case MotionEvent.ACTION_UP:
+//                                break;
+//                        }
+//                        return false;
+//                    }
 //                });
+
+                layout.setOnClickListener(v -> {
+                    ViewHelper.clickView(rv);
+                    logInterEcpmInfo(act, mAd, "MIS_CLICK");
+                    layout.setVisibility(View.GONE);
+                });
 
                 rv.addView(layout);
                 clickViewList.add(layout);
