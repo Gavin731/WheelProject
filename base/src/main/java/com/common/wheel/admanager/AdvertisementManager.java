@@ -13,6 +13,7 @@ import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.common.wheel.R;
+import com.common.wheel.constans.ConstantsPath;
 import com.orhanobut.hawk.Hawk;
 
 public class AdvertisementManager {
@@ -44,40 +45,43 @@ public class AdvertisementManager {
         return TTAdSdk.getAdManager();
     }
 
-    protected TTAdNative getTTAdNative() {
+    protected TTAdNative getTTAdNative(Activity act) {
         TTAdManager ttAdManager = get();
-        return ttAdManager.createAdNative(context);
+        return ttAdManager.createAdNative(act);
     }
 
     public void requestPermissionIfNecessary(Context context) {
         get().requestPermissionIfNecessary(context);
     }
 
-    public void initConfig() {
+    public void initConfig(String oaid, String publicIP) {
         Hawk.init(context).build();
         Hawk.put("url", context.getResources().getString(R.string.base_url));
         String token = Hawk.get("token") == null ? "" : Hawk.get("token").toString();
+        Hawk.put("oaid", oaid);
+        Hawk.put("publicIP", publicIP);
         if (TextUtils.isEmpty(Hawk.get("token"))) {
             ApiService.getKey(context);
         } else {
             this.token = token;
+            ApiService.isPostEnvInfo(context);
             ApiService.requestConfig(context);
         }
     }
 
-    public void init(Context context, String appId, String appName) {
+    public void init(Context context, String appId, String appName, InitCallback callback, TTCustomController customController) {
         this.projectId = appId;
         this.projectName = appName;
         this.context = context;
-        doInit();
+        doInit(callback, customController);
     }
 
-    private void doInit() {
+    private void doInit(InitCallback callback, TTCustomController customController) {
         if (sInit) {
             Log.i(TAG, "已经初始化过了");
             return;
         }
-        TTAdSdk.init(context, buildConfig());
+        TTAdSdk.init(context, buildConfig(customController));
         TTAdSdk.start(new TTAdSdk.Callback() {
             @Override
             public void success() {
@@ -85,17 +89,23 @@ public class AdvertisementManager {
                 //初始化成功
                 //在初始化成功回调之后进行广告加载
                 Log.e(TAG, "初始化成功");
+                if(callback!=null){
+                    callback.success();
+                }
             }
 
             @Override
             public void fail(int i, String s) {
                 //初始化失败
                 Log.e(TAG, "初始化失败");
+                if(callback!=null){
+                    callback.error();
+                }
             }
         });
     }
 
-    private TTAdConfig buildConfig() {
+    private TTAdConfig buildConfig(TTCustomController customController) {
 
         return new TTAdConfig.Builder()
                 /**
@@ -111,7 +121,7 @@ public class AdvertisementManager {
                  * 使用聚合功能此开关必须设置为true，默认为false
                  */
                 .useMediation(true)
-                .customController(getTTCustomController())  //设置隐私权
+                .customController(customController)  //设置隐私权
 //                .customController(getTTCustomController()) //如果您需要设置隐私策略请参考该api
 //                .setMediationConfig(new MediationConfig.Builder() //可设置聚合特有参数详细设置请参考该api
 //                        .setMediationConfigUserInfoForSegment(getUserInfoForSegment())//如果您需要配置流量分组信息请参考该api
@@ -169,34 +179,53 @@ public class AdvertisementManager {
      * @param activity
      * @param codeId
      */
-    public void preloadInterstitialAd(Activity activity, String codeId) {
+    public void preloadInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().preload(activity, codeId);
+        InterstitialAdManager.getInstance().preload(activity,this.projectId, codeId, callback);
     }
 
     /**
      * 插屏广告
      */
-    public void showInterstitialAd(Activity activity, String codeId) {
+    public void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
+        ApiService.addLog(activity,"info","准备获取插屏广告");
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
+            ApiService.addLog(activity,"error","SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().showAd(activity, codeId);
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
+
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
+            if(callback != null){
+                Log.i(TAG, "无效用户，获取插屏广告失败");
+                ApiService.addLog(activity,"error","无效用户，获取插屏广告失败");
+                callback.onAdClose();
+            }
+            return;
+        }
+        ApiService.addLog(activity,"info","开始获取插屏广告");
+        InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId, callback);
     }
 
     /**
      * 信息流广告
      */
-    public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height) {
+    public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InformationFlowManager.getInstance().loadNativeAd(activity, codeId, splashContainer, width, height);
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
+        InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height, callback);
     }
 
     /**
@@ -206,6 +235,9 @@ public class AdvertisementManager {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             return;
+        }
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
         }
         OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
     }
@@ -222,6 +254,18 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
+        if(!Hawk.isBuilt()){
+            Hawk.init(context).build();
+        }
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
+            if(listener != null){
+                Log.i(TAG, "无效用户，获取激励广告失败");
+                listener.onAdClose();
+            }
+            return;
+        }
+
         RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
     }
 

@@ -14,12 +14,15 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
+import java.lang.ref.WeakReference;
+
 public class RewardAdManager {
 
     private static volatile RewardAdManager instance;
-    private final TTAdNative mTTAdNative;
 
     private RewardAdCallBack listener;
+
+    private WeakReference<Activity> weakRef;
 
     protected static RewardAdManager getInstance() {
         if (instance == null) {
@@ -33,7 +36,6 @@ public class RewardAdManager {
     }
 
     private RewardAdManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
     private AdSlot buildSplashAdslot(String projectId, String codeId) {
@@ -62,12 +64,17 @@ public class RewardAdManager {
     //加载激励视频
     protected void loadRewardAd(Activity act,String projectId, String codeId, RewardAdCallBack listener) {
         this.listener = listener;
+        this.weakRef = new WeakReference<>(act);
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
         /** 这里为激励视频的简单功能，如需使用复杂功能，如gromore的服务端奖励验证，请参考demo中的AdUtils.kt类中激励部分 */
         mTTAdNative.loadRewardVideoAd(buildSplashAdslot(projectId,codeId), new TTAdNative.RewardVideoAdListener() {
             @Override
             public void onError(int errorCode, String errorMsg) {
                 //广告加载失败
                 Log.e("", errorMsg);
+                if (listener != null) {
+                    listener.onError();
+                }
             }
 
             @Override
@@ -83,7 +90,7 @@ public class RewardAdManager {
             @Override
             public void onRewardVideoCached(TTRewardVideoAd ttRewardVideoAd) {
                 //广告缓存成功 在此回调中进行广告展示
-                showRewardAd(act, ttRewardVideoAd);
+                showRewardAd(weakRef.get(), ttRewardVideoAd);
             }
         });
     }
@@ -97,6 +104,9 @@ public class RewardAdManager {
         ttRewardVideoAd.setRewardAdInteractionListener(new TTRewardVideoAd.RewardAdInteractionListener() {
             @Override
             public void onAdShow() {
+                if (listener != null) {
+                    listener.onAdShow();
+                }
                 //广告展示
                 //获取展示广告相关信息，需要再show回调之后进行获取
                 MediationBaseManager manager = ttRewardVideoAd.getMediationManager();
@@ -105,6 +115,8 @@ public class RewardAdManager {
                     String ecpm = showEcpm.getEcpm(); //展示广告的价格
                     String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
                     String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+
+                    ViewHelper.showAdUploadInfo(weakRef.get(), showEcpm, "VIDEO");
                 }
             }
 
@@ -141,6 +153,9 @@ public class RewardAdManager {
             @Override
             public void onVideoError() {
                 //广告视频错误
+                if (listener != null) {
+                    listener.onVideoError();
+                }
             }
 
             @Override
@@ -150,6 +165,9 @@ public class RewardAdManager {
 
             @Override
             public void onRewardArrived(boolean isRewardValid, int rewardType, Bundle extraInfo) {
+                if (listener != null) {
+                    listener.onRewardArrived();
+                }
                 //奖励发放
                 if (isRewardValid) {
                     // 验证通过
@@ -162,8 +180,11 @@ public class RewardAdManager {
             @Override
             public void onSkippedVideo() {
                 //广告跳过
+                if (listener != null) {
+                    listener.onSkippedVideo();
+                }
             }
         });
-        ttRewardVideoAd.showRewardVideoAd(act); //展示激励视频
+        ttRewardVideoAd.showRewardVideoAd(weakRef.get()); //展示激励视频
     }
 }

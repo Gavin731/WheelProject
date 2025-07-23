@@ -15,15 +15,29 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
 
     private TTFullScreenVideoAd mAd;
     private AdLoadListener.LoadSuccess loadSuccess;
+    private InfoAdCallBack callback;
+    private AdLifeListener adLifeListener;
 
-    protected AdLoadListener(Activity activity, AdLoadListener.LoadSuccess loadSuccess) {
+    protected AdLoadListener(Activity activity, AdLoadListener.LoadSuccess loadSuccess, InfoAdCallBack callback) {
         context = activity;
         this.loadSuccess = loadSuccess;
+        this.callback = callback;
+    }
+
+    protected void setCallback(InfoAdCallBack callback){
+        this.callback = callback;
+        if(adLifeListener !=null){
+            adLifeListener.setCallBack(callback);
+        }
     }
 
     @Override
     public void onError(int i, String s) {
         Log.e("", s);
+        ApiService.addLog(context,"error","获取插屏广告失败："+s);
+        if(callback!=null){
+            callback.onError();
+        }
     }
 
     @Override
@@ -46,13 +60,16 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
     }
 
     public void handleAd(TTFullScreenVideoAd ad) {
+        if(callback!=null){
+            callback.onLoadSuccess();
+        }
         if (mAd != null) {
             return;
         }
         mAd = ad;
         //【必须】广告展示时的生命周期监听
-
-        mAd.setFullScreenVideoAdInteractionListener(new AdLifeListener(context, mAd));
+        adLifeListener = new AdLifeListener(context, mAd, callback);
+        mAd.setFullScreenVideoAdInteractionListener(adLifeListener);
         //【可选】监听下载状态
 //        mAd.setDownloadListener(new DownloadStatusListener());
         //广告展示
@@ -72,7 +89,9 @@ public class AdLoadListener implements TTAdNative.FullScreenVideoAdListener {
             Log.i("", "AdLoadL mAd is null");
             return;
         }
-
+        if(callback!=null){
+            callback.onStartShow();
+        }
         mAd.showFullScreenVideoAd(context, ritScenes, scenes);
         // 广告使用后应废弃
         mAd = null;

@@ -1,6 +1,7 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,10 +10,17 @@ import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
+import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
+import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
+import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
+import com.common.wheel.constans.ConstantsPath;
+import com.orhanobut.hawk.Hawk;
 
+import java.lang.ref.WeakReference;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +28,16 @@ import java.util.Map;
 public class InformationFlowManager implements TTAdNative.FeedAdListener, MediationExpressRenderListener {
 
     private static volatile InformationFlowManager instance;
-    private final TTAdNative mTTAdNative;
     private TTFeedAd mTTFeedAd;
 
-    private Activity act;
+    private WeakReference<Activity> weakRef;
     private FrameLayout splashContainer;
+
+    private String projectId;
+
+    private long upDate=0;
+
+    private InformationFlowAdCallback callback;
 
     protected static InformationFlowManager getInstance() {
         if (instance == null) {
@@ -38,10 +51,18 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     }
 
     private InformationFlowManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
+
     }
 
     private AdSlot buildNativeAdslot(String codeId, int width, int height) {
+        MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
+                MediationConstant.ADN_PANGLE, // 穿山甲
+                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                projectId,   // adn应用id，注意要跟初始化传入的保持一致
+                ""   // adn没有appKey时，传入空即可
+        ) {
+        };
+
         return new AdSlot.Builder()
                 .setCodeId(codeId) //广告位ID
                 /**
@@ -54,25 +75,37 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
                 .setAdCount(1)//请求广告数量为1到3条 （优先采用平台配置的数量）
                 .setMediationAdSlot(// 聚合广告请求配置
                         new MediationAdSlot.Builder()
-                                .setMuted(false)
+                                //将自定义兜底对象设置给AdSlot
+                                .setMediationSplashRequestInfo(csjSplashRequestInfo)
+                                .setMuted(true)
                                 .build())
                 .build();
     }
 
-    protected void loadNativeAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height) {
-        this.act = act;
+    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
+        this.projectId = appId;
+        this.weakRef = new WeakReference<>(act);
         this.splashContainer = splashContainer;
+        this.callback = callback;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
+
         mTTAdNative.loadFeedAd(adSlot, this);
     }
 
     @Override
     public void onError(int i, String s) {
         Log.e("", "ad load error：" + s);
+        if(callback!=null){
+            callback.onError();
+        }
     }
 
     @Override
     public void onFeedAdLoad(List<TTFeedAd> list) {
+        if(callback!=null){
+            callback.onFeedAdLoad();
+        }
         //如果是自渲染下载类广告可以通过以下api获取下载六要素
         if (list != null && list.size() > 0) {
             mTTFeedAd = list.get(0);
@@ -111,24 +144,58 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
 
     @Override
     public void onRenderFail(View view, String s, int i) {
-
+        if(callback!=null){
+            callback.onRenderFail();
+        }
     }
 
     @Override
     public void onAdClick() {
+        long curDate = new Date().getTime();
+        // 2次点击小于1.5秒，则不处理
+        if(upDate >0 && (curDate - upDate)<= 9000){
+            return;
+        }
+        if(callback!=null){
+            callback.onAdClick();
+        }
+
+        upDate = curDate;
+        int count = Hawk.get("infoCount", 1);
+        Hawk.put("infoCount", count + 1);
+        // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
+        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
+            if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
+                ViewHelper.hideInfoView();
+            }
+        }
 
     }
 
     @Override
     public void onAdShow() {
-
+        Activity activity = weakRef.get();
+        MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
+        ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
     }
 
     @Override
     public void onRenderSuccess(View view, float v, float v1, boolean b) {
+        Log.i("","信息流广告获取成功");
+        if(weakRef == null || weakRef.get() == null){
+            return;
+        }
+        Activity activity = weakRef.get();
+        if(callback!=null){
+            callback.onRenderSuccess();
+        }
         if (mTTFeedAd != null) {
+
+
+
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
-            ViewHelper.renderInfoView(act, splashContainer, expressFeedView, mTTFeedAd);
+            ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
         }
     }
 }

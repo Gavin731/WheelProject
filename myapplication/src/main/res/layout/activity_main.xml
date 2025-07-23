@@ -13,15 +13,26 @@
         android:layout_height="wrap_content"
         android:text="初始化sdk"
         android:textAllCaps="false"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
-    <Button
-        android:id="@+id/show_ad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="显示插屏广告"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_marginTop="50dp"
-        android:textAllCaps="false" />
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/show_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示插屏广告"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/show_ad2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示插屏广告2"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/show_kp_ad"
@@ -45,15 +56,27 @@
         android:text="显示激励视频"
         android:layout_marginTop="200dp"
         android:textAllCaps="false" />
+    <Button
+        android:id="@+id/show_info_image_ad2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示信息流广告2"
+        android:layout_marginTop="250dp"
+        android:textAllCaps="false" />
     <FrameLayout
         android:id="@+id/splashContainer"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <FrameLayout
         android:id="@+id/infoContainer"
         android:layout_width="400dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
+        android:layout_height="200dp"/>
+    <FrameLayout
+        android:id="@+id/infoContainer2"
+        android:layout_width="400dp"
+        android:layout_marginTop="550dp"
         android:layout_height="200dp"/>
 
 </FrameLayout>

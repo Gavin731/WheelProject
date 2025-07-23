@@ -8,6 +8,7 @@ android {
     buildToolsVersion "34.0.0"
 
     defaultConfig {
+        namespace 'com.common.wheel'
         minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode 1
@@ -84,9 +85,9 @@ dependencies {
 
     implementation "com.android.support:support-v4:28.0.0"
 
-    implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.37.0'
-    implementation 'com.maven.local:GDTSDK:4.630.1500'
-    implementation 'com.maven.local:kssdk-ad:3.3.75'
+    implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.3905.0'
+    implementation 'com.maven.local:GDTSDK:4.640.1510'
+    implementation 'com.maven.local:kssdk-ad:3.3.76.5'
     implementation 'com.maven.local:mbridge_chinasame:16.6.57'
     implementation 'com.maven.local:mbridge_dycreator:16.6.57'
     implementation 'com.maven.local:mbridge_interstitial:16.6.57'
@@ -103,17 +104,17 @@ dependencies {
     implementation 'com.maven.local:mbridge_reward:16.6.57'
     implementation 'com.maven.local:mbridge_videocommon:16.6.57'
     implementation 'com.maven.local:mbridge_videojs:16.6.57'
-    implementation 'com.maven.local:mediation_admob_adapter:17.2.0.66'
-    implementation 'com.maven.local:mediation_baidu_adapter:9.37.4'
-    implementation 'com.maven.local:mediation_gdt_adapter:4.630.1500.1'
-    implementation 'com.maven.local:mediation_ks_adapter:3.3.75.1'
-    implementation 'com.maven.local:mediation_mintegral_adapter:16.6.57.9'
-    implementation 'com.maven.local:mediation_sigmob_adapter:4.21.1.1'
-    implementation 'com.maven.local:mediation_unity_adapter:4.3.0.33'
-    implementation 'com.maven.local:open_ad_sdk:6.8.1.7'
+    implementation 'com.maven.local:mediation_admob_adapter:17.2.0.70'
+    implementation 'com.maven.local:mediation_baidu_adapter:9.3905.5'
+    implementation 'com.maven.local:mediation_gdt_adapter:4.640.1510.4'
+    implementation 'com.maven.local:mediation_ks_adapter:3.3.76.5.4'
+    implementation 'com.maven.local:mediation_mintegral_adapter:16.6.57.13'
+    implementation 'com.maven.local:mediation_sigmob_adapter:4.22.2.4'
+    implementation 'com.maven.local:mediation_unity_adapter:4.3.0.37'
+    implementation 'com.maven.local:open_ad_sdk:7.0.1.2'
 //    implementation 'com.maven.local:tools-release:1.0.0' // todo 上线需删除
     implementation 'com.maven.local:unity-ads:4.3.0'
-    implementation 'com.maven.local:windAd:4.21.1'
-    implementation 'com.maven.local:windAd-common:1.7.7'
+    implementation 'com.maven.local:windAd:4.22.2'
+    implementation 'com.maven.local:windAd-common:1.7.9'
 
 }

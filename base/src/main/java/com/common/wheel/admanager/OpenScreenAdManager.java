@@ -14,14 +14,14 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
 
     private static volatile OpenScreenAdManager instance;
-    private final TTAdNative mTTAdNative;
     private OpenScreenAdCallBack callBack;
-    private Activity activity;
+    private WeakReference<Activity> weakRef;
     private FrameLayout splashContainer;
     private String projectId;
     private String codeId;
@@ -39,7 +39,6 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private OpenScreenAdManager() {
-        mTTAdNative = AdvertisementManager.getInstance().getTTAdNative();
     }
 
     private AdSlot buildSplashAdslot(int width, int height) {
@@ -67,8 +66,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         this.projectId = appId;
         this.codeId = codeId;
         this.callBack = callBack;
-        this.activity = act;
+        this.weakRef = new WeakReference<>(act);
         this.splashContainer = splashContainer;
+        TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
         mTTAdNative.loadSplashAd(buildSplashAdslot(width, height), this, 3500);
     }
 
@@ -76,6 +76,8 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         if (splashAd == null || container == null) {
             return;
         }
+        MediationAdEcpmInfo item = splashAd.getMediationManager().getShowEcpm();
+
         container.removeAllViews();
         splashAd.setSplashAdListener(this);
         splashAd.showSplashView(container);//展示开屏广告
@@ -89,6 +91,9 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     @Override
     public void onSplashLoadFail(CSJAdError csjAdError) {
         Log.e("", "open ad load fail：" + csjAdError.getMsg());
+        if (callBack != null) {
+            callBack.onSplashLoadFail();
+        }
     }
 
     @Override
@@ -99,21 +104,33 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     @Override
     public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError csjAdError) {
         Log.e("", "open ad render fail:" + csjAdError.getMsg());
+        if (callBack != null) {
+            callBack.onSplashRenderFail();
+        }
     }
 
     @Override
     public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        if (callBack != null) {
+            callBack.onSplashAdShow();
+        }
         MediationBaseManager manager = csjSplashAd.getMediationManager();
         if (manager != null && manager.getShowEcpm() != null) {
             MediationAdEcpmInfo showEcpm = manager.getShowEcpm();
             String ecpm = showEcpm.getEcpm(); //展示广告的价格
             String sdkName = showEcpm.getSdkName();  //展示广告的adn名称
             String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
+            Log.e("", "aaaaaaaaaa:" + showEcpm.getEcpm());
+
+            ViewHelper.showAdUploadInfo(weakRef.get(), showEcpm, "SPLASH");
         }
     }
 
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        if (callBack != null) {
+            callBack.onSplashAdClick();
+        }
         Log.i("", "open ad click");
         MediationBaseManager mediationManager = csjSplashAd.getMediationManager();
         if (mediationManager != null) {
@@ -133,6 +150,10 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private void logEcpmInfo(MediationAdEcpmInfo item) {
+        if(weakRef == null || weakRef.get() == null){
+            return;
+        }
+        Activity activity = weakRef.get();
         HashMap<String, String> params = new HashMap<>();
         params.put("adPlatform", item.getChannel()); // 广告平台（见平台枚举）
         params.put("adType", "SPLASH");// 广告类型（见类型枚举）
@@ -140,7 +161,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         params.put("adPosition", item.getSlotId()); // 广告位标识
         params.put("clickType", "MANUAL_CLICK"); // 点击类型（见点击类型枚举）
         params.put("userId", "");
-        ApiService.postAdInfo(this.activity, params);
+        ApiService.postAdInfo(activity, params);
 //        Log.d(Const.TAG, "EcpmInfo: \n" +
 //                "SdkName: " + item.getSdkName() + ",\n" +
 //                "CustomSdkName: " + item.getCustomSdkName() + ",\n" +
