@@ -86,7 +86,7 @@ public class ViewHelper {
     protected static void interstitialClickView(ViewGroup rv, int top) {
 
         try {
-            Log.i("","插屏误点:"+top);
+//            Log.i("","插屏误点:"+top);
 
             long dTime = SystemClock.uptimeMillis();
             long eTime = SystemClock.uptimeMillis();
@@ -94,7 +94,7 @@ public class ViewHelper {
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = top + 40;
 
-            Log.i("","X："+x+",y："+y);
+//            Log.i("","X："+x+",y："+y);
 
             int metaState = 0;
             float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
