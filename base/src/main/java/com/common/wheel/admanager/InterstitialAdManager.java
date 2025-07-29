@@ -96,7 +96,10 @@ public class InterstitialAdManager {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adLoadListeners.remove(0);
+                if(!adLoadListeners.isEmpty()){
+                    adLoadListeners.remove(0);
+                }
+                
 //                loadAd(activity, codeId, null);
             }
         }, 500);
