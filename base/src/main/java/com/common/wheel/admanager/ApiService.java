@@ -223,6 +223,7 @@ class ApiService {
         params.put("rootState", isRoot ? 1 : 0);
         params.put("adbState", isAdb ? 1 : 0);
         params.put("agentState", isDl ? 1 : 0);
+        params.put("version", "1");
 
 
         HashMap<String, Object> requestParams = new HashMap<>();
