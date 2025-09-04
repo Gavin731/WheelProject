@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdkVersion Integer.parseInt(ANDROID_SDK_VERSION)
-    buildToolsVersion "34.0.0"
+    buildToolsVersion "35.0.0"
 
     defaultConfig {
         namespace 'com.common.wheel'
@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true //开启混淆
+            minifyEnabled false //开启混淆
             zipAlignEnabled true //Zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

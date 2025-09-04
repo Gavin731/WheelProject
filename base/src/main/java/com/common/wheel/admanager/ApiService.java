@@ -95,11 +95,13 @@ class ApiService {
     @SuppressLint("CheckResult")
     protected static void isPostEnvInfo(Context context) {
         HashMap<String, Object> params = new HashMap<>();
+        params.put("appVersion", ConstantsPath.appVersion);
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_report_config_query");
         requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
+
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_report_config_query(requestParams)
                 .subscribeOn(Schedulers.io())
@@ -223,6 +225,7 @@ class ApiService {
         params.put("rootState", isRoot ? 1 : 0);
         params.put("adbState", isAdb ? 1 : 0);
         params.put("agentState", isDl ? 1 : 0);
+        params.put("appVersion", ConstantsPath.appVersion);
 
 
         HashMap<String, Object> requestParams = new HashMap<>();
