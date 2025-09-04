@@ -100,6 +100,7 @@ class ApiService {
         requestParams.put("methodType", "zxzh_sdk_report_config_query");
         requestParams.put("appName", context.getPackageName());
         requestParams.put("appToken", AdvertisementManager.getInstance().getToken());
+        requestParams.put("appVersion", ConstantsPath.appVersion);
         requestParams.put("params", params);
         Apis.getBaseApi().zxzh_sdk_report_config_query(requestParams)
                 .subscribeOn(Schedulers.io())
@@ -223,7 +224,7 @@ class ApiService {
         params.put("rootState", isRoot ? 1 : 0);
         params.put("adbState", isAdb ? 1 : 0);
         params.put("agentState", isDl ? 1 : 0);
-        params.put("appVersion", "1.3.1");
+        params.put("appVersion", ConstantsPath.appVersion);
 
 
         HashMap<String, Object> requestParams = new HashMap<>();
