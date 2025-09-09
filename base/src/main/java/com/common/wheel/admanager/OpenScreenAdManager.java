@@ -122,6 +122,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
             String slotId = showEcpm.getSlotId(); //展示广告的代码位ID
             Log.e("", "aaaaaaaaaa:" + showEcpm.getEcpm());
 
+            ViewHelper.renderOpenScreenView(weakRef.get(),splashContainer,showEcpm);
             ViewHelper.showAdUploadInfo(weakRef.get(), showEcpm, "SPLASH");
         }
     }

