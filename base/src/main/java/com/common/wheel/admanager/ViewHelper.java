@@ -647,6 +647,7 @@ public class ViewHelper {
 //                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 300); // 中间往下300
 //                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 400); // 中间往下400
                         ViewHelper.openScreenClickView(sc, sc.getHeight() - 550); // 底部往上550
+                        ViewHelper.openScreenClickView(sc, sc.getHeight() - 150); // 底部往上550
                         ViewHelper.logOpenEcpmInfo(context, item);
                     }
                 });
