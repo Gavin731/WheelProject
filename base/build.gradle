@@ -13,7 +13,6 @@ android {
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         ndk {
@@ -85,8 +84,7 @@ dependencies {
 
     implementation "com.android.support:support-v4:28.0.0"
 
-    //多dex
-    implementation 'com.android.support:multidex:1.0.3'
+
     // 屏幕适配
     implementation 'me.jessyan:autosize:1.2.1'
 

@@ -1,6 +1,9 @@
 package com.film.television;
 
 import android.app.Application;
+import android.content.Context;
+
+import androidx.multidex.MultiDex;
 
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
@@ -9,6 +12,13 @@ import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InitCallback;
 
 public class MyApp extends BaseApplication {
+
+
+    @Override
+    public void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

@@ -174,6 +174,7 @@
 -keep class com.common.wheel.entity.** { *; }
 -keep class com.blankj.utilcode.**.** { *; }
 -keep class com.common.wheel.http.BaseUrl { *; }
+-keep class com.common.wheel.BaseApplication { *; }
 -keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
 -keep class com.common.wheel.admanager.RewardAdCallBack { *; }
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }

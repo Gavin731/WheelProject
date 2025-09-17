@@ -122,4 +122,6 @@ dependencies {
 
     //底部tab导航
     implementation 'me.majiajie:pager-bottom-tab-strip:2.4.0'
+    //多dex
+    implementation 'com.android.support:multidex:2.0.1'
 }
