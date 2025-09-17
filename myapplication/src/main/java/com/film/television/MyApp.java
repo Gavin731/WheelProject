@@ -4,10 +4,11 @@ import android.app.Application;
 
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
+import com.common.wheel.BaseApplication;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InitCallback;
 
-public class MyApp extends Application {
+public class MyApp extends BaseApplication {
 
     @Override
     public void onCreate() {

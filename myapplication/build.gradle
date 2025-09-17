@@ -13,6 +13,7 @@ android {
         targetSdk 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -121,7 +122,4 @@ dependencies {
 
     //底部tab导航
     implementation 'me.majiajie:pager-bottom-tab-strip:2.4.0'
-    //控件绑定
-//    implementation 'com.jakewharton:butterknife:10.2.3'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 }

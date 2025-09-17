@@ -89,8 +89,6 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     // 屏幕适配
     implementation 'me.jessyan:autosize:1.2.1'
-    //控件绑定
-    api 'com.jakewharton:butterknife:10.2.3'
 
     implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.3905.0'
     implementation 'com.maven.local:GDTSDK:4.640.1510'

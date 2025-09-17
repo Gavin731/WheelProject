@@ -11,9 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.common.wheel.mvp.IBaseView;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * @author: zenglinggui
  * @description TODO
@@ -25,7 +22,6 @@ import butterknife.Unbinder;
  **/
 public abstract class BaseFragment extends Fragment implements IBaseView {
 
-    private Unbinder unbinder;
 
     /**
      * 视图是否加载完毕
@@ -43,7 +39,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         View view;
         if (layoutId != 0) {
             view = inflater.inflate(layoutId, container, false);
-            unbinder = ButterKnife.bind(this, view);
         } else {
             view = super.onCreateView(inflater, container, savedInstanceState);
         }
@@ -85,10 +80,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-            unbinder = null;
-        }
     }
 
     @Override

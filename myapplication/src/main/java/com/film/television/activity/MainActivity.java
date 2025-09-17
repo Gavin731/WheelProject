@@ -23,9 +23,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     private final int[] COLORS = {0xFF455A64, 0xFF00796B, 0xFF795548, 0xFF5B4947, 0xFFF57C00};
 
-//    @BindView(R.id.pnv_Tab)
     PageNavigationView pnvTab;
-//    @BindView(R.id.vp_Main)
     NoTouchViewPager vpMain;
 
 

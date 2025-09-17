@@ -8,9 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.common.wheel.mvp.IBaseView;
 import com.common.wheel.util.ActivityManager;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * @author: zenglinggui
  * @description TODO
@@ -22,7 +19,6 @@ import butterknife.Unbinder;
  **/
 public abstract class BaseActivity extends AppCompatActivity implements IBaseView {
 
-    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         int layoutResID = getLayoutId();
         if (layoutResID != 0) {
             setContentView(layoutResID);
-            mUnbinder = ButterKnife.bind(this);
             ActivityManager.getInstance().addActivity(this);
         }
     }
@@ -39,10 +34,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
-            mUnbinder.unbind();
-            this.mUnbinder = null;
-        }
     }
 
     public abstract int getLayoutId();
