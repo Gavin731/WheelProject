@@ -5,8 +5,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.blankj.utilcode.util.LogUtils;
-
 import java.lang.ref.WeakReference;
 
 /**
