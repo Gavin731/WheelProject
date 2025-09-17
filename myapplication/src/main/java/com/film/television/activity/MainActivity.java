@@ -28,7 +28,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)

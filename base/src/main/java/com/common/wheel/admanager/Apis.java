@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-class Apis {
+public class Apis {
 
     private static final int DEFAULT_CONNECT_TIMEOUT = 30;   //连接超时
     private static final int DEFAULT_READ_TIMEOUT = 12;     //读取超时
