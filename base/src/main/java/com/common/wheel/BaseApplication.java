@@ -3,9 +3,6 @@ package com.common.wheel;
 import android.app.Application;
 import android.content.Context;
 
-
-import androidx.multidex.MultiDex;
-
 import com.orhanobut.hawk.Hawk;
 
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
