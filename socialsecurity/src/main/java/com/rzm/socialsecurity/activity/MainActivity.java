@@ -55,13 +55,13 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
         NavigationController mNavigationController = pnvTab.material()
                 .addItem(R.drawable.ic_ondemand_video_black_24dp, "首页", COLORS[0])
-                .addItem(R.drawable.ic_audiotrack_black_24dp, "活动", COLORS[1])
-                .addItem(R.drawable.ic_book_black_24dp, "友圈", COLORS[2])
-                .addItem(R.drawable.ic_news_black_24dp, "个人", COLORS[3])
+                .addItem(R.drawable.ic_audiotrack_black_24dp, "更多工具", COLORS[1])
+                .addItem(R.drawable.ic_book_black_24dp, "税务指南", COLORS[2])
+                .addItem(R.drawable.ic_news_black_24dp, "个人中心", COLORS[3])
                 .enableAnimateLayoutChanges()
                 .build();
 
-        TabViewPagerAdapter pagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager(), Math.max(5, mNavigationController.getItemCount()));
+        TabViewPagerAdapter pagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager(), 4);
         vpMain.setAdapter(pagerAdapter);
 
         mNavigationController.setupWithViewPager(vpMain);

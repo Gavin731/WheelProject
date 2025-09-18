@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.rzm.socialsecurity.fragment.AFragment;
+import com.rzm.socialsecurity.fragment.BFragment;
 
 
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
@@ -18,7 +19,15 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return AFragment.newInstance(position + "");
+        switch (position){
+            case 0:
+                return AFragment.newInstance(position + "");
+            case 1:
+                return BFragment.newInstance(position + "");
+            default:
+                return AFragment.newInstance(position + "");
+        }
+
     }
 
     @Override

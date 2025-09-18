@@ -1,80 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <Button
-        android:id="@+id/init_ad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="初始化sdk"
-        android:textAllCaps="false"
-        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/color_ef5b9c"/>
 
     <LinearLayout
+        android:id="@+id/iv_top_bx"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/show_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="显示插屏广告"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/show_ad2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="显示插屏广告2"
-            android:textAllCaps="false" />
+        android:layout_marginTop="2dp"
+        >
+        <ImageView
+            android:id="@+id/iv_yanglao"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#fff"/>
+        <ImageView
+            android:id="@+id/iv_yiliao"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/color_ef5b9c"/>
+        <ImageView
+            android:id="@+id/iv_top_shiye"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#fff"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#eeeeee"
+            android:text="社保计算"/>
+        <View
+             android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#cccccc"
+            android:gravity="center"
+            android:text="个税计算"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/show_kp_ad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="展示开屏广告"
-        android:layout_marginTop="100dp"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/show_info_image_ad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="显示信息流广告"
-        android:layout_marginTop="150dp"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/http_request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="显示激励视频"
-        android:layout_marginTop="200dp"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/show_info_image_ad2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="显示信息流广告2"
-        android:layout_marginTop="250dp"
-        android:textAllCaps="false" />
-    <FrameLayout
-        android:id="@+id/splashContainer"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <FrameLayout
-        android:id="@+id/infoContainer"
-        android:layout_width="400dp"
-        android:layout_marginTop="300dp"
-        android:layout_height="200dp"/>
-    <FrameLayout
-        android:id="@+id/infoContainer2"
-        android:layout_width="400dp"
-        android:layout_marginTop="550dp"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="本月工资收入"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="5dp"
+        android:inputType="numberDecimal"
+        android:background="@drawable/edit_bg"
+        android:hint="请输入工资（元）"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="社保个人部分"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="5dp"
+        android:inputType="numberDecimal"
+        android:background="@drawable/edit_bg"
+        android:hint="请输入个人缴纳金额（元）"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="#fff"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:drawableStart="@mipmap/ic_launcher_round"
+        android:drawablePadding="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/btn_bg"
+        android:text="开始计算"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#cccccc"
+        android:layout_marginTop="10dp"
+        android:gravity="start|center"
+        android:paddingStart="15dp"
+        android:text="社保计算手册"/>
+</LinearLayout>

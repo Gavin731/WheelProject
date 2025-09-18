@@ -1,0 +1,16 @@
+package com.rzm.socialsecurity.view;
+
+
+import com.common.wheel.mvp.IBaseView;
+
+/**
+ * @author: zenglinggui
+ * @description TODO
+ * @Modification History:
+ * <p>
+ * Date         Author      Version     Description
+ * -----------------------------------------------------------------
+ * 2018/12/3     zenglinggui       v1.0.0        create
+ **/
+public interface IBView extends IBaseView {
+}

@@ -22,7 +22,7 @@ import com.common.wheel.mvp.IBaseView;
  **/
 public abstract class BaseFragment extends Fragment implements IBaseView {
 
-
+    public View view;
     /**
      * 视图是否加载完毕
      */
@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int layoutId = getLayoutId();
-        View view;
+
         if (layoutId != 0) {
             view = inflater.inflate(layoutId, container, false);
         } else {
