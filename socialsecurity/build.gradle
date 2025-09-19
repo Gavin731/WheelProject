@@ -96,6 +96,8 @@ dependencies {
     implementation 'com.android.support:multidex:2.0.1'
     // 屏幕适配
     implementation 'me.jessyan:autosize:1.2.1'
+    // popup
+    implementation "com.kongzue.dialogx:DialogX:0.0.49"
 
 
 

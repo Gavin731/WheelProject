@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg_write_radius"
+    android:gravity="center"
+    android:layout_marginStart="100dp"
+    android:layout_marginEnd="100dp"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="缴费基数"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一般以职工本人上一年度月平均工资作为缴费基数。新入职员工按当月实际工资收入来确定，但不得低于当地最低工资标准，也不得高于当地上年度职工月平均工资的300%。"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="若职工工资低于当地最低工资标准，则以最低工资标准作为缴费基数;若高于当地上年度职工月平均工资的 300%，则以当地上年度职工月平均工资的 300%作为缴费基数。"/>
+
+
+    <TextView
+        android:id="@+id/tv_close"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="我知道了"
+        android:textColor="#fff" />
+</LinearLayout>

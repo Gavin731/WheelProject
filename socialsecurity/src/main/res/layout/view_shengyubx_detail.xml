@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生育保险是国家通过立法规定，在怀孕和分娩的妇女劳动者暂时中断劳动时，由国家和社会提供医疗服务、生育津贴和产假的一种社会保险制度。"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="主要特点"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="强制性:由国家立法强制实施，用人单位必须依法为职工缴纳生育保险费，以确保女职工在生育期间能够享受相应的保障待遇。
+     \n\n福利性:生育保险具有明显的福利色彩，旨在保障女职工因生育而暂时丧失劳动能力时的基本经济收入和医疗保健，待遇水平相对较高。
+     \n\n特定性:主要针对生育行为，保障对象一般为女职工，部分国家和地区也扩展到男性配偶。并且生育行为具有一定的时间性，所以生育保险待遇的保障时间相对较短。"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="保障内容"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生育津贴:是对职业女性因生育休产假离开工作岗位期间给予的经济支持，实际上是工资收入的替代，按照职工所在用人单位上年度职工月平均工资计发。
+     \n\n生育医疗费用:包括产前检查、住院分娩和计划生育的医疗费用，如女职工生育的检查费、接生费、手术费、住院费和药费等，由生育保险基金按规定支付。"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="享受条件"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="一般要求用人单位和职工按照规定参加生育保险并且用人单位已按时足额缴纳生育保险费。同时职工的生育行为需符合国家和地方的计划生育规定。例如，在中国，享受对象必须是合法婚姻者要符合法定结婚年龄，按婚姻法规定办理了合法手续，并符合国家计划生育政策等。"/>
+
+</LinearLayout>

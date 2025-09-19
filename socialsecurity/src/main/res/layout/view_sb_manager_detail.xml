@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="管理主体与职责分工"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="人力资源和社会保障部门:是我国社保的负责管理部门，承担着宏观管理和政策制定等重要职责。它需要从整体上规划和设计社保体系，制定相关政策法规，确保社保制度的公平性、可持续性和有效性，以保障广大人民群众的社保权益各级社保经办机构:具体承担着社保业务的实际操作工作。
+     \n\n社保登记:负责为各类用人单位和参保个人办理社保登记手续，记录其基本信息和参保情况，是参保人员纳入社保体系的首要环节，确保每一个符合条件的人员都能被准确纳入社保系统，享受相应的社保待遇。
+     \n\n缴费核定:根据参保人员的工资收入等情况，按照规定的社保缴费基数和费率，准确核定每个参保单位和个人应缴纳的社保费用金额，这是保证社保基金来源准确、稳定的关键步骤。
+     \n\n待遇发放:在参保人员符合享受社保待遇条件时如达到退休年龄领取养老金、生病住院进行医保报销、失业时领取失业保险金等，负责按时、足额地将相应待遇发放到参保人员手中，直接关系到参保人员的切身利益。
+     \n\n财政部门:在社保管理中也起着重要作用。它负责社保基金的财务管理，包括对社保基金的收支进行监督，确保基金的安全和合理使用。同时，财政部门还可能根据需要对社保基金进行补贴，以保证社保制度的正常运行，特别是在一些特殊情况下，如人口老龄化加剧、社保基金收支出现缺口等，财政补贴能够起到重要的支撑作用。
+     \n\n税务部门:其主要职责是负责社保费的征收工作。通过利用自身的征管优势，税务部门能够确保社保费按时、足额征收，提高征收效率，保证社保基金的稳定收入。税务部门在征收过程中，依据相关法律法规，对参保单位和个人的缴费情况进行监督检查，对欠费行为进行追缴，维护社保费征收的严肃性和规范性。
+     \n\n这种多部门协作的管理模式，明确了各部门在社保管理中的职责，通过分工合作，形成了一个有机的整体，共同保障了我国社保制度的顺利运行，确保社保工作能够高效、有序地开展，为广大参保人员提供优质、便捷的社保服务。"/>
+
+</LinearLayout>

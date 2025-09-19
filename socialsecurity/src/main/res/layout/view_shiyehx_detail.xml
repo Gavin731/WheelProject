@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="失业保险是国家通过立法强制实行的，由社会集中建立基金，对因失业而暂时中断生活来源的劳动者提供物质帮助的制度。"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="主要特点"/>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="强制性:由国家立法强制实施，符合条件的用人单位和劳动者必须依法参加失业保险，履行缴费义务。
+     \n\n互济性:通过建立失业保险基金，将众多用人单位和劳动者缴纳的保险费集中起来，对失业人员进行经济援助，实现了风险的分担和互助共济。
+     \n\n保障性:旨在保障失业人员在失业期间的基本生活，帮助他们度过难关，同时为其再就业提供一定的支持和帮助。"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="保险待遇"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="失业保险金:这是失业人员最基本的待遇，是社会保险经办机构按规定支付给符合条件的失业者的基本生活费。
+     \n\n领取失业保险金期间的医疗补助金:对失业者在领取失业保险金期间患病就医的医疗费给予一定补助。
+     \n\n领取失业保险金期间死亡的失业人员的丧葬补助金和其供养的配偶、直系亲属的抚恤金:过去这项费用由职工生前所在单位负担，现在改为向社会保险经办机构申领。
+     \n\n领取失业保险金期间接受职业培训、职业介绍的补贴:包括失业者为接受职业培训所需的路费、住宿费、培训费等。"/>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include android:id="@+id/header" layout="@layout/view_top"/>
+
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tv_sb_manager"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#eeeeee"
+            android:gravity="center"
+            android:text="社保管理" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_sb_supervise"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#cccccc"
+            android:gravity="center"
+            android:text="社保监督" />
+    </LinearLayout>
+
+    <include android:id="@+id/sb_manager" layout="@layout/view_sb_manager_detail"/>
+    <include android:id="@+id/sb_supervise" android:visibility="gone" layout="@layout/view_sb_supervise_detail"/>
+
+</LinearLayout>
