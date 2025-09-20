@@ -267,6 +267,7 @@
             android:inputType="numberDecimal"
             android:paddingStart="5dp" />
         <TextView
+            android:id="@+id/tv_gs_calculate"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="40dp"
@@ -309,5 +310,4 @@
                 android:text="前往查看" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

@@ -11,16 +11,20 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
-import com.rzm.socialsecurity.activity.YLBXCalculateResultActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.APresenter;
+import com.rzm.socialsecurity.util.DialogUtil;
 import com.rzm.socialsecurity.view.IAView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: zenglinggui
@@ -35,7 +39,7 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
 
     private static final String ARG_C = "content";
 
-    public TextView tvTabGszxjs,tvTabSbjnjs, tvStartCalculate,tvGoPage1,tvGoPage2;
+    public TextView tvTabGszxjs,tvTabSbjnjs, tvStartCalculate,tvGoPage1,tvGoPage2,tvGsCalculate;
     public LinearLayout llSb, llGs;
     public ImageView ivYanglao, ivYiliao, ivShiye;
 
@@ -95,6 +99,22 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
         tvGoPage1.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBFunctionActivity.class)));
         tvGoPage2=view.findViewById(R.id.tv_goPage2);
         tvGoPage2.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBManageOrSuperviseActivity.class)));
+
+        List<String> data = new ArrayList<>();
+        data.add("食品生鲜");
+        data.add("家用电器");
+        data.add("家居生活");
+        data.add("医疗保健");
+        data.add("酒水饮料");
+        data.add("图书音像");
+        tvGsCalculate =view.findViewById(R.id.tv_gs_calculate);
+        tvGsCalculate.setOnClickListener(v -> DialogUtil.showBottomWheelDialog(getActivity(), data, new DialogUtil.SelectBottomCallback() {
+            @Override
+            public void onConfirm(int position, String value) {
+                LogUtils.e("选择的索引:"+position+",值："+value);
+            }
+        }));
+
     }
 
     public void jumpCalculatePage(int type){
@@ -102,4 +122,7 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
         intent.putExtra(ConstantConfig.bxKey, type);
         startActivity(intent);
     }
+
+
+
 }
