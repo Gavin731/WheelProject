@@ -78,7 +78,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical"
-       android:visibility="visible">
+       android:visibility="gone">
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -310,4 +310,10 @@
                 android:text="前往查看" />
         </LinearLayout>
     </LinearLayout>
+    <TableLayout
+        android:id="@+id/tbL_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#ff000000"/>
 </LinearLayout>

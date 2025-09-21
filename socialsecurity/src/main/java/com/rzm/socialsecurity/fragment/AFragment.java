@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,6 +23,7 @@ import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.APresenter;
 import com.rzm.socialsecurity.util.DialogUtil;
+import com.rzm.socialsecurity.util.TablelayoutUtil;
 import com.rzm.socialsecurity.view.IAView;
 
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     public TextView tvTabGszxjs,tvTabSbjnjs, tvStartCalculate,tvGoPage1,tvGoPage2,tvGsCalculate;
     public LinearLayout llSb, llGs;
     public ImageView ivYanglao, ivYiliao, ivShiye;
+    public TableLayout tbLDetail;
 
     public static AFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -115,6 +119,36 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
             }
         }));
 
+        tbLDetail = view.findViewById(R.id.tbL_detail);
+        List<String> titles=new ArrayList<>();
+        titles.add("明细");
+        titles.add("明细2");
+        titles.add("明细3");
+        titles.add("明细4");
+
+        List<List<String>> tableData=new ArrayList<>();
+        List<String> row1=new ArrayList<>();
+        row1.add("1");
+        row1.add("2");
+        row1.add("3");
+        row1.add("4");
+        tableData.add(row1);
+
+        List<String> row2=new ArrayList<>();
+        row2.add("a");
+        row2.add("b");
+        row2.add("c");
+        row2.add("d");
+        tableData.add(row2);
+
+        List<String> row3=new ArrayList<>();
+        row3.add("a1");
+        row3.add("a2");
+        row3.add("a3");
+        row3.add("a4");
+        tableData.add(row3);
+
+        TablelayoutUtil.addTableRow(getActivity(), tbLDetail,titles, tableData,getActivity().getColor(R.color.gray), getActivity().getColor(R.color.white));
     }
 
     public void jumpCalculatePage(int type){
