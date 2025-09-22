@@ -80,6 +80,14 @@
             android:name=".activity.SBManageOrSuperviseActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
+        <activity
+            android:name=".activity.GSCalculateResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.CalculateZXFJKCActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"

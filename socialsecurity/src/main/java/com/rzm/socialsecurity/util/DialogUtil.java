@@ -18,11 +18,12 @@ import java.util.List;
 
 public class DialogUtil {
 
-    public static void showBottomWheelDialog(Context context, List<String> datas, SelectBottomCallback callback) {
+    public static void showBottomWheelDialog(Context context, List<String> datas, SelectBottomCallback callback, String title) {
         // 创建Dialog并设置样式
         final Dialog dialog = new Dialog(context, R.style.BottomDialog);
         View dialogView = View.inflate(context, R.layout.view_single_selected_xml, null);
-
+        TextView titleText = dialogView.findViewById(R.id.tv_title);
+        titleText.setText(title);
         // 设置Dialog的窗口属性
         Window window = dialog.getWindow();
         if (window != null) {

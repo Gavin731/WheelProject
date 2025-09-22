@@ -78,7 +78,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical"
-       android:visibility="gone">
+       android:visibility="visible">
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -86,6 +86,7 @@
            android:text="本月工资收入" />
 
        <EditText
+           android:id="@+id/et_month_money"
            android:layout_width="match_parent"
            android:layout_height="40dp"
            android:layout_marginLeft="15dp"
@@ -104,6 +105,7 @@
            android:text="社保个人部分" />
 
        <EditText
+           android:id="@+id/et_sb_money"
            android:layout_width="match_parent"
            android:layout_height="40dp"
            android:layout_marginLeft="15dp"
@@ -114,19 +116,29 @@
            android:inputType="numberDecimal"
            android:paddingStart="5dp" />
 
-       <TextView
+       <LinearLayout
            android:id="@+id/tv_start_calculate"
            android:layout_width="match_parent"
            android:layout_height="40dp"
+           android:background="@drawable/btn_bg"
+           android:gravity="center"
            android:layout_marginLeft="40dp"
            android:layout_marginTop="10dp"
            android:layout_marginRight="40dp"
-           android:background="@drawable/btn_bg"
-           android:drawableStart="@mipmap/ic_launcher_round"
-           android:drawablePadding="5dp"
-           android:gravity="center"
-           android:text="开始计算"
-           android:textColor="#fff" />
+           android:orientation="horizontal">
+           <ImageView
+               android:layout_width="12dp"
+               android:layout_height="12dp"
+               android:src="@mipmap/ic_launcher_round"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="5dp"
+               android:gravity="center"
+               android:text="开始计算"
+               android:textColor="#fff" />
+       </LinearLayout>
+
 
        <TextView
            android:layout_width="match_parent"
@@ -225,6 +237,7 @@
             android:text="本月工资收入" />
 
         <EditText
+            android:id="@+id/et_gs_month_money"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
@@ -241,6 +254,7 @@
             android:text="五险一金（个人缴纳）" />
 
         <EditText
+            android:id="@+id/et_gs_sb_money"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
@@ -257,6 +271,7 @@
             android:text="专项附加扣除" />
 
         <EditText
+            android:id="@+id/et_gs_zxkc_money"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
@@ -266,21 +281,31 @@
             android:hint="请输入专项附加扣除金额（元）"
             android:inputType="numberDecimal"
             android:paddingStart="5dp" />
-        <TextView
+        <LinearLayout
             android:id="@+id/tv_gs_calculate"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="40dp"
-            android:background="@drawable/btn_bg"
-            android:drawableStart="@mipmap/ic_launcher_round"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="开始计算"
-            android:textColor="#fff" />
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@mipmap/ic_launcher_round"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:gravity="center"
+                android:text="开始计算"
+                android:textColor="#fff" />
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_zxfjkc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -303,6 +328,7 @@
                 android:text="税务申报指南" />
 
             <TextView
+                android:id="@+id/tv_jump_fragment3"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:background="@drawable/btn_bg"
@@ -310,10 +336,4 @@
                 android:text="前往查看" />
         </LinearLayout>
     </LinearLayout>
-    <TableLayout
-        android:id="@+id/tbL_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#ff000000"/>
 </LinearLayout>

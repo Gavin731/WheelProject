@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.wheel.mvp.MvpActivity;
@@ -22,7 +23,8 @@ import com.rzm.socialsecurity.view.IYLBXCalculateView;
 public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> implements IYLBXCalculateView {
 
     public ImageView ivBack;
-    public TextView tvJnjs, tvCalculate, tvName;
+    public TextView tvName;
+    public LinearLayout tvCalculate, tvJnjs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

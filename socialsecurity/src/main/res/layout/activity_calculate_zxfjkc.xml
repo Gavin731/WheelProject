@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="计算专项附加扣除" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总计金额： " />
+        <TextView
+            android:id="@+id/tv_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元" />
+    </LinearLayout>
+
+
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="赡养老人"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="60岁以上父母或祖辈"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_sylr"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_sylr"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_sylr_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="租房租金"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="同城、夫妻择一，不同城、分别抵扣"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_zfzj"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_zfzj"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_zfzj_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="住房贷款利息"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="同城、夫妻择一，不同城、分别抵扣"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_zfdklx"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_zfdklx"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_zfdklx_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="继续教育"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="包含职业资格教育和学历教育"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_jxjy"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_jxjy"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_jxjy_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="子女教育"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="包含学历教育和学前教育"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_znjy"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_znjy"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_znjy_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="15dp"
+               android:background="@drawable/edit_bg"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="婴幼儿照护"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="3岁以下婴幼儿子女相关支出"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/ll_yyrzh"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:background="@drawable/edit_bg"
+                   android:gravity="center_vertical"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:id="@+id/tv_yyrzh"
+                       android:layout_width="0dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:hint="请选择"
+                       android:textColorHint="@color/gray"
+                       android:textSize="16sp" />
+
+                   <ImageView
+                       android:layout_width="12dp"
+                       android:layout_height="12dp"
+                       android:layout_marginEnd="15dp"
+                       android:src="@mipmap/ic_launcher" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginEnd="15dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:layout_height="wrap_content"
+                       android:text="金额"
+                       android:textSize="16sp" />
+
+                   <TextView
+                       android:id="@+id/tv_yyrzh_amount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0.00"
+                       android:textSize="12sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="元"
+                       android:textColor="@color/gray"
+                       android:textSize="12sp" />
+               </LinearLayout>
+           </LinearLayout>
+       </LinearLayout>
+   </ScrollView>
+</LinearLayout>

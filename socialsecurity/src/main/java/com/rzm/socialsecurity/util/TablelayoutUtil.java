@@ -10,14 +10,14 @@ import java.util.List;
 
 public class TablelayoutUtil {
 
-    public static void addTableRow(Context context, TableLayout tableLayout, List<String> titles, List<List<String>> rowData, int titleBgColor, int rowBgColor) {
+    public static void addTableRow(Context context, TableLayout tableLayout, List<String> titles, List<List<String>> rowData, int titleBgColor, int rowBgColor, int rowWidth, int rowHeight) {
         // 添加title
         TableRow titleRow = new TableRow(context);
         for (int i = 0; i < titles.size(); i++) {
             String title = titles.get(i);
             TextView textView = new TextView(context);
-            textView.setWidth(200);
-            textView.setHeight(80);
+            textView.setWidth(rowWidth);
+            textView.setHeight(rowHeight);
             textView.setText(title);
             textView.setBackgroundColor(titleBgColor);
 
@@ -37,8 +37,8 @@ public class TablelayoutUtil {
             for (int i = 0; i < rows.size(); i++) {
                 String row = rows.get(i);
                 TextView textView = new TextView(context);
-                textView.setWidth(200);
-                textView.setHeight(80);
+                textView.setWidth(rowWidth);
+                textView.setHeight(rowHeight);
                 textView.setText(row);
                 textView.setBackgroundColor(rowBgColor);
 
