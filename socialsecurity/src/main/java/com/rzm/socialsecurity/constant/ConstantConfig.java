@@ -6,4 +6,6 @@ public interface ConstantConfig {
     String monthMoney="monthMoney"; // 本月工资收入
     String sbgrMoney ="sbgrMoney"; // 社保个人部分
     String zxkcMoney ="zxkcMoney"; // 专项扣除
+    String isShowAppDialog ="isShowAppDialog"; // app启动弹窗
+    String isAgreeUserPrivacy ="isAgreeUserPrivacy"; // 用户隐私协议
 }

@@ -17,6 +17,7 @@ import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
 import com.rzm.socialsecurity.activity.GSCalculateResultActivity;
+import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
@@ -147,6 +148,9 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
         });
 
         view.findViewById(R.id.tv_zxfjkc).setOnClickListener(v -> startActivity(new Intent(getActivity(), CalculateZXFJKCActivity.class)));
+        view.findViewById(R.id.tv_jump_fragment3).setOnClickListener(v -> {
+            ((MainActivity)getActivity()).jumpCurrentPage(2);
+        });
 
     }
 

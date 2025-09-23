@@ -17,6 +17,6 @@ public class APresenter extends MvpPresenter<IAView> {
 
     @Override
     public void initView() {
-        getView().showToast("我是fragment");
+
     }
 }
