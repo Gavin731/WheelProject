@@ -17,7 +17,7 @@ public class MainPresenter extends MvpPresenter<IMainView> {
 
     @Override
     public void initView() {
-        getView().showToast(getView().getResourcesHint());
+//        getView().showToast(getView().getResourcesHint());
         getView().initNavigation();
     }
 }

@@ -28,6 +28,7 @@
         android:paddingRight="15dp"
         android:layout_height="40dp">
         <TextView
+            android:id="@+id/total_amount"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"
@@ -59,6 +60,7 @@
         android:paddingRight="15dp"
         android:layout_height="40dp">
         <TextView
+            android:id="@+id/company_amount"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"
@@ -74,6 +76,7 @@
             android:text="元"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_personal"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginStart="15dp"
@@ -81,6 +84,7 @@
         android:text="个人缴纳" />
 
     <LinearLayout
+        android:id="@+id/ll_personal"
         android:layout_width="match_parent"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
@@ -90,6 +94,7 @@
         android:paddingRight="15dp"
         android:layout_height="40dp">
         <TextView
+            android:id="@+id/personal_amount"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"

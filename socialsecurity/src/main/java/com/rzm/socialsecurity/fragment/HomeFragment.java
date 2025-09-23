@@ -23,7 +23,7 @@ import com.rzm.socialsecurity.activity.SBFunctionActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
-import com.rzm.socialsecurity.presenter.APresenter;
+import com.rzm.socialsecurity.presenter.HomePresenter;
 import com.rzm.socialsecurity.view.IAView;
 
 /**
@@ -35,7 +35,7 @@ import com.rzm.socialsecurity.view.IAView;
  * -----------------------------------------------------------------
  * 2018/11/30     zenglinggui       v1.0.0        create
  **/
-public class AFragment extends MvpFragment<APresenter> implements IAView {
+public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
 
     private static final String ARG_C = "content";
 
@@ -44,10 +44,10 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     public ImageView ivYanglao, ivYiliao, ivShiye;
     public EditText etMonthMoney, etSbMoney, etGsMonthMoney, etGsSbMoney, etGsZxkcMoney;
 
-    public static AFragment newInstance(String content) {
+    public static HomeFragment newInstance(String content) {
         Bundle args = new Bundle();
         args.putString(ARG_C, content);
-        AFragment fragment = new AFragment();
+        HomeFragment fragment = new HomeFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,13 +59,13 @@ public class AFragment extends MvpFragment<APresenter> implements IAView {
     }
 
     @Override
-    public APresenter createPresenter() {
-        return new APresenter();
+    public HomePresenter createPresenter() {
+        return new HomePresenter();
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.view_home;
+        return R.layout.fragment_home;
     }
 
     @Override

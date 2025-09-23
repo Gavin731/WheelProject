@@ -94,7 +94,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
         mNavigationController.setupWithViewPager(vpMain);
 
-        mNavigationController.setMessageNumber(0, 100);
+        // 设置红点
+//        mNavigationController.setMessageNumber(0, 100);
     }
 
     public void jumpCurrentPage(int index) {

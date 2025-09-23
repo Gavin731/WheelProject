@@ -88,6 +88,14 @@
             android:name=".activity.CalculateZXFJKCActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
+        <activity
+            android:name=".activity.OtherTaxationCalculateActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.OtherTaxationCalculateResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"

@@ -2,6 +2,7 @@ package com.common.wheel.base;
 
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public void showToast(String message) {
-//        ToastUtils.showLong(message);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

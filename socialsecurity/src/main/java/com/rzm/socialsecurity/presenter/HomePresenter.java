@@ -13,7 +13,7 @@ import com.rzm.socialsecurity.view.IAView;
  * -----------------------------------------------------------------
  * 2018/12/3     zenglinggui       v1.0.0        create
  **/
-public class APresenter extends MvpPresenter<IAView> {
+public class HomePresenter extends MvpPresenter<IAView> {
 
     @Override
     public void initView() {

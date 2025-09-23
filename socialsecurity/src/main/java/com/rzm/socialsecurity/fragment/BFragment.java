@@ -14,9 +14,7 @@ import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.mvp.MvpFragment;
 import com.common.wheel.util.DeviceUtil;
 import com.rzm.socialsecurity.R;
-import com.rzm.socialsecurity.presenter.APresenter;
 import com.rzm.socialsecurity.presenter.BPresenter;
-import com.rzm.socialsecurity.view.IAView;
 import com.rzm.socialsecurity.view.IBView;
 
 public class BFragment extends MvpFragment<BPresenter> implements IBView {

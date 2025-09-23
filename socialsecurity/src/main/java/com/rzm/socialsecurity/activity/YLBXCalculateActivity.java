@@ -1,9 +1,13 @@
 package com.rzm.socialsecurity.activity;
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,13 +22,14 @@ import com.rzm.socialsecurity.presenter.YLBXCalculatePresenter;
 import com.rzm.socialsecurity.view.IYLBXCalculateView;
 
 /**
- * 养老、医疗、失业保险计算页面
+ * 养老、医疗、失业、工伤、生育保险计算页面
  */
 public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> implements IYLBXCalculateView {
 
     public ImageView ivBack;
-    public TextView tvName;
+    public TextView tvName, tvHint1, tvHint2;
     public LinearLayout tvCalculate, tvJnjs;
+    public EditText etCardinalNumber, etCompany, etPersonal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +49,64 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
 
     @Override
     public void initView() {
+        int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
 
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
         tvName = findViewById(R.id.tv_name);
-        tvName.setText(getHint());
+        tvName.setText(getHint(type));
         tvJnjs = findViewById(R.id.tv_jnjs);
         tvJnjs.setOnClickListener(v -> showHintDialog());
-        tvCalculate = findViewById(R.id.tv_calculate);
-        tvCalculate.setOnClickListener(v -> startActivity(new Intent(this, YLBXCalculateResultActivity.class)));
 
+        etCardinalNumber = findViewById(R.id.et_cardinal_number);
+        etCompany = findViewById(R.id.et_company);
+        etPersonal = findViewById(R.id.et_personal);
+
+        tvCalculate = findViewById(R.id.tv_calculate);
+        tvCalculate.setOnClickListener(v -> {
+            String etCardinalNumberText = etCardinalNumber.getText().toString().trim();
+            String etCompanyText = etCompany.getText().toString().trim();
+            String etPersonalText = etPersonal.getText().toString().trim();
+            if (TextUtils.isEmpty(etCardinalNumberText)) {
+                showToast("请输入缴费基数");
+                return;
+            }
+            if (TextUtils.isEmpty(etCompanyText)) {
+                showToast("请输入单位缴纳比例");
+                return;
+            }
+            if (Float.parseFloat(etCompanyText) > 20) {
+                showToast("单位缴纳比例最大不能超过20");
+                return;
+            }
+            if (type == 4 || type == 5) {
+                etPersonalText = "0";
+            } else {
+                if (TextUtils.isEmpty(etPersonalText)) {
+                    showToast("请输入个人缴纳比例");
+                    return;
+                }
+                if (Float.parseFloat(etPersonalText) > 20) {
+                    showToast("个人缴纳比例最大不能超过20");
+                    return;
+                }
+            }
+            Intent intent = new Intent(this, YLBXCalculateResultActivity.class);
+            intent.putExtra(ConstantConfig.cardinalNumberText, etCardinalNumberText);
+            intent.putExtra(ConstantConfig.companyText, etCompanyText);
+            intent.putExtra(ConstantConfig.personalText, etPersonalText);
+            intent.putExtra(ConstantConfig.isHidePersonalText, type == 4 || type == 5);
+            startActivity(intent);
+        });
+
+        tvHint1 = findViewById(R.id.tv_hint1);
+        tvHint2 = findViewById(R.id.tv_hint2);
+        tvHint1.setText(getHint1(type));
+
+        if (type == 4 || type == 5) {
+            findViewById(R.id.tv_presonal).setVisibility(GONE);
+            findViewById(R.id.ll_presonal).setVisibility(GONE);
+        }
     }
 
     public void showHintDialog() {
@@ -75,20 +128,47 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
 
     }
 
-    public String getHint() {
-        int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
+    public String getHint(int type) {
         String name = "";
         switch (type) {
             case 1:
-                name = "养老保险";
+                name = "养老保险计算";
                 break;
             case 2:
-                name = "医疗保险";
+                name = "医疗保险计算";
                 break;
             case 3:
-                name = "失业保险";
+                name = "失业保险计算";
+                break;
+            case 4:
+                name = "工伤保险计算";
+                break;
+            case 5:
+                name = "生育保险计算";
                 break;
         }
         return name;
+    }
+
+    public String getHint1(int type) {
+        String result = "";
+        switch (type) {
+            case 1:
+                result = "养老保险:企业缴纳比例一般为16%，职工个人缴费比例为 8%。";
+                break;
+            case 2:
+                result = "医疗保险:企业缴费比例约为 8%，个人缴费比例为 2%。";
+                break;
+            case 3:
+                result = "失业保险:企业缴费比例通常为 0.5%，个人缴费比例为 0.5%。";
+                break;
+            case 4:
+                result = "工伤保险:缴费比例根据单位被划分的行业范围来确定，通常在 0.2%-1.9% 之间，个人不缴费。";
+                break;
+            case 5:
+                result = "生育保险:企业缴纳比例一般为0.8%";
+                break;
+        }
+        return result;
     }
 }

@@ -4,8 +4,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.rzm.socialsecurity.fragment.AFragment;
+import com.rzm.socialsecurity.fragment.HomeFragment;
 import com.rzm.socialsecurity.fragment.BFragment;
+import com.rzm.socialsecurity.fragment.ToolFragment;
 
 
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
@@ -21,11 +22,11 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return AFragment.newInstance(position + "");
+                return HomeFragment.newInstance(position + "");
             case 1:
-                return BFragment.newInstance(position + "");
+                return ToolFragment.newInstance(position + "");
             default:
-                return AFragment.newInstance(position + "");
+                return BFragment.newInstance(position + "");
         }
 
     }
