@@ -13,4 +13,5 @@ public interface ConstantConfig {
     String personalText ="personalText"; // 个人缴纳比例
     String isHidePersonalText ="isHidePersonalText"; // 是否隐藏个人缴纳比例
     String amount ="amount"; // 金额
+    String cbAmount ="cbAmount"; // 成本金额
 }

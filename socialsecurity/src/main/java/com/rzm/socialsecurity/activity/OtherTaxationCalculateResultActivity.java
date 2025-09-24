@@ -69,6 +69,7 @@ public class OtherTaxationCalculateResultActivity extends MvpActivity<OtherTaxat
     public void initData(List<String> titles, List<List<String>> tableData) {
         int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
         float amount = getIntent().getFloatExtra(ConstantConfig.amount, 0);
+        float cbAmount = getIntent().getFloatExtra(ConstantConfig.cbAmount, 0);
         tvTitle.setText(getHint(type));
         tvTitle.setVisibility(View.VISIBLE);
         tvJsgs1.setText(presenter.getCalculateHint1(type));
@@ -76,7 +77,7 @@ public class OtherTaxationCalculateResultActivity extends MvpActivity<OtherTaxat
 
         BigDecimal bg1 = new BigDecimal(amount).setScale(2, RoundingMode.HALF_UP);// 收入
         // 应纳税额
-        BigDecimal bg2 = presenter.calculateSk(type, bg1);
+        BigDecimal bg2 = presenter.calculateSk(type, bg1, new BigDecimal(cbAmount));
         // 本月税后所得
         BigDecimal bg8 = bg1.subtract(bg2).setScale(2, RoundingMode.HALF_UP);
 
@@ -100,6 +101,9 @@ public class OtherTaxationCalculateResultActivity extends MvpActivity<OtherTaxat
                 break;
             case 3:
                 name = "股息分红报酬计算";
+                break;
+            case 4:
+                name = "个体经营税务计算";
                 break;
         }
         return name;

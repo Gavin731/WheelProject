@@ -1,5 +1,7 @@
 package com.rzm.socialsecurity.activity;
 
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,8 +21,8 @@ import com.rzm.socialsecurity.view.IOtherTaxationCalculateView;
 public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCalculatePresenter> implements IOtherTaxationCalculateView {
 
     public ImageView ivBack;
-    public TextView tvName, tvMoneyHint;
-    public EditText tvMoney;
+    public TextView tvName, tvMoneyHint, tvCbHint;
+    public EditText tvMoney, etCb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +47,38 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
 
-        tvName =findViewById(R.id.tv_name);
+        tvName = findViewById(R.id.tv_name);
         tvName.setText(getHint(type));
         tvMoneyHint = findViewById(R.id.tv_money_hint);
         tvMoneyHint.setText(getHint2(type));
-        tvMoney =findViewById(R.id.tv_money);
+        tvMoney = findViewById(R.id.tv_money);
         tvMoney.setHint(getHint3(type));
+        tvCbHint = findViewById(R.id.tv_cb_hint);
+        etCb = findViewById(R.id.et_cb);
         findViewById(R.id.tv_calculate).setOnClickListener(v -> {
             String money = tvMoney.getText().toString().trim();
-            if(TextUtils.isEmpty(money)){
+            if (TextUtils.isEmpty(money)) {
                 showToast(getHint3(type));
                 return;
+            }
+            String cbAmount = etCb.getText().toString().trim();
+            if (type == 4) {
+                if (TextUtils.isEmpty(cbAmount)) {
+                    showToast("请输入成本、费用及损失金额");
+                    return;
+                }
             }
             Intent intent = new Intent(OtherTaxationCalculateActivity.this, OtherTaxationCalculateResultActivity.class);
             intent.putExtra(ConstantConfig.bxKey, type);
             intent.putExtra(ConstantConfig.amount, Float.parseFloat(money));
+            intent.putExtra(ConstantConfig.cbAmount, TextUtils.isEmpty(cbAmount) ? 0 : Float.parseFloat(cbAmount));
             startActivity(intent);
         });
+        if (type == 4) {
+            tvCbHint.setVisibility(VISIBLE);
+            etCb.setVisibility(VISIBLE);
+        }
+
     }
 
     public String getHint(int type) {
@@ -76,9 +93,13 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
             case 3:
                 name = "股息分红报酬计算";
                 break;
+            case 4:
+                name = "个体经营税务计算";
+                break;
         }
         return name;
     }
+
     public String getHint2(int type) {
         String name = "";
         switch (type) {
@@ -91,20 +112,27 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
             case 3:
                 name = "股息分红金额";
                 break;
+            case 4:
+                name = "经营所得金额";
+                break;
         }
         return name;
     }
+
     public String getHint3(int type) {
         String name = "";
         switch (type) {
             case 1:
-                name = "请输入劳务报酬金额";
+                name = "请输入劳务报酬金额（元）";
                 break;
             case 2:
-                name = "请输入年终奖金额";
+                name = "请输入年终奖金额（元）";
                 break;
             case 3:
-                name = "请输入股息分红金额";
+                name = "请输入股息分红金额（元）";
+                break;
+            case 4:
+                name = "请输入经营所得金额（元）";
                 break;
         }
         return name;

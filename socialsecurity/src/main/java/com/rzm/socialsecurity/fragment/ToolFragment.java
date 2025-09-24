@@ -48,6 +48,7 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
         view.findViewById(R.id.ll_laowu).setOnClickListener(v -> jumpOtherCalculatePage(1));
         view.findViewById(R.id.ll_nzj).setOnClickListener(v -> jumpOtherCalculatePage(2));
         view.findViewById(R.id.ll_gxfh).setOnClickListener(v -> jumpOtherCalculatePage(3));
+        view.findViewById(R.id.ll_gtjy).setOnClickListener(v -> jumpOtherCalculatePage(4));
     }
 
     public void jumpCalculatePage(int type) {

@@ -26,6 +26,8 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
             initNzj();
         }else if (type == 3) {
             initGxfh();
+        }else if (type == 4) {
+            initGtjy();
         }
 
 
@@ -202,12 +204,83 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
     }
 
     /**
-     * 应缴税额
+     * 个体经营数据
+     */
+    public void initGtjy() {
+        List<String> titles = new ArrayList<>();
+        titles.add("级数");
+        titles.add("全年应纳税所得额");
+        titles.add("税率(%)");
+        titles.add("速算扣除数");
+
+        tableData.clear();
+        List<String> row1 = new ArrayList<>();
+        row1.add("1");
+        row1.add("不超过\n15000元的");
+        row1.add("5");
+        row1.add("0");
+        tableData.add(row1);
+
+        List<String> row2 = new ArrayList<>();
+        row2.add("2");
+        row2.add("超过15000元至30000元的");
+        row2.add("10");
+        row2.add("750");
+        tableData.add(row2);
+
+        List<String> row3 = new ArrayList<>();
+        row3.add("3");
+        row3.add("超过30000元至60000元的");
+        row3.add("20");
+        row3.add("3750");
+        tableData.add(row3);
+
+        List<String> row4 = new ArrayList<>();
+        row4.add("4");
+        row4.add("超过60000元至100000元的");
+        row4.add("30");
+        row4.add("9750");
+        tableData.add(row4);
+
+        List<String> row5 = new ArrayList<>();
+        row5.add("5");
+        row5.add("超过100000元的");
+        row5.add("35");
+        row5.add("14750");
+        tableData.add(row5);
+
+        getView().initData(titles, tableData);
+    }
+
+    /**
+     * 个体经营税率
      *
-     * @param amount 应纳税所得额
+     * @param amount
      * @return
      */
-    public BigDecimal calculateSk(int type, BigDecimal amount) {
+    public List<String> getGtjyData(BigDecimal amount) {
+        BigDecimal total = amount;
+        if (total.floatValue() <= 15000) {
+            return tableData.get(0);
+        } else if (total.floatValue() > 15000 && total.floatValue() <= 30000) {
+            return tableData.get(1);
+        } else if (total.floatValue() > 30000 && total.floatValue() <= 60000) {
+            return tableData.get(2);
+        } else if (total.floatValue() > 60000 && total.floatValue() <= 100000) {
+            return tableData.get(3);
+        } else {
+            return tableData.get(4);
+        }
+    }
+
+    /**
+     * 应缴税额
+     *
+     * @param amount 金额
+     * @param cbAmount 个体经营成本
+     * @return
+     */
+    public BigDecimal calculateSk(int type, BigDecimal amount, BigDecimal cbAmount) {
         // 劳务
         if (type == 1) {
             List<String> list = getLaywuData(amount);
@@ -234,6 +307,13 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
             BigDecimal bg1 = new BigDecimal(sl);
             BigDecimal bg2 = new BigDecimal(kcs);
             return amount.multiply(bg1).setScale(2, RoundingMode.HALF_UP);
+        }else if (type == 4){
+            List<String> list = getGxfhData(amount);
+            float sl = Float.parseFloat(list.get(2)) / 100;// 税率
+            float kcs = Float.parseFloat(list.get(3));// 扣除数
+            BigDecimal bg1 = new BigDecimal(sl);
+            BigDecimal bg2 = new BigDecimal(kcs);
+            return amount.subtract(cbAmount).multiply(bg1).subtract(bg2).setScale(2, RoundingMode.HALF_UP);
         }
         return new BigDecimal(0);
 
@@ -251,6 +331,9 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
             case 3:
                 result = "应缴税额=税前*税率(20%)";
                 break;
+            case 4:
+                result = "应缴纳税款=(税前-成本)*税率-速算扣除数";
+                break;
         }
         return result;
     }
@@ -263,6 +346,7 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
                 break;
             case 2:
             case 3:
+            case 4:
                 result = "";
                 break;
         }

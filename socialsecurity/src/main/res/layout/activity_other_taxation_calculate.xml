@@ -49,6 +49,30 @@
         android:paddingStart="5dp"
         android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/tv_cb_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="成本、费用及损失金额"
+        android:visibility="gone"/>
+
+
+    <EditText
+        android:id="@+id/et_cb"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/edit_bg"
+        android:hint="请输入成本、费用及损失金额（元）"
+        android:inputType="numberDecimal"
+        android:paddingStart="5dp"
+        android:visibility="gone"
+        android:textSize="12sp" />
+
 
     <LinearLayout
         android:id="@+id/tv_calculate"
