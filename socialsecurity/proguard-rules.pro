@@ -34,3 +34,6 @@
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }
 -keep class com.common.wheel.admanager.InitCallback { *; }
 -keep class com.common.wheel.admanager.InformationFlowAdCallback { *; }
+
+-keep class com.github.gzuliyujiang.**.** { *; }
+-keep class com.kongzue.dialogx.**.** { *; }

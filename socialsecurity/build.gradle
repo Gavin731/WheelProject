@@ -23,24 +23,32 @@ android {
 
     signingConfigs {
         release {
-//            storeFile file("/Users/zenglinggui/Documents/zeng/key_store/shangyantong.keystore")
-//            storePassword "qcwl2syt"
-//            keyAlias "syt"
-//            keyPassword "qcwl2syt"
+            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+            storePassword "juduo123"
+            keyAlias "juduo"
+            keyPassword "juduo123"
         }
         debug {
+            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+            storePassword "juduo123"
+            keyAlias "juduo"
+            keyPassword "juduo123"
         }
     }
 
     buildTypes {
         debug {
             debuggable true
+            minifyEnabled true //开启混淆
+            shrinkResources false //移除无用资源
+            zipAlignEnabled false //zipalign优化
             signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("boolean", "LOG_DEBUG", "true")
         }
 
         release {
-            minifyEnabled false //开启混淆
+            minifyEnabled true //开启混淆
             shrinkResources false //移除无用资源
             zipAlignEnabled true //zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
