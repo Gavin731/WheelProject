@@ -14,4 +14,5 @@ public interface ConstantConfig {
     String isHidePersonalText ="isHidePersonalText"; // 是否隐藏个人缴纳比例
     String amount ="amount"; // 金额
     String cbAmount ="cbAmount"; // 成本金额
+    String webType ="webType"; // web类型
 }

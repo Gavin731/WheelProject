@@ -9,6 +9,7 @@ import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.common.wheel.BaseApplication;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InitCallback;
+import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 
 public class MyApp extends BaseApplication {
@@ -36,6 +37,7 @@ public class MyApp extends BaseApplication {
         }, getTTCustomController());
         AdvertisementManager.getInstance().initConfig("297ca176-e8ad-40e7-b39e-0926e16bf166", "192.168.1.0");
         Hawk.init(this).build();
+        FileDownloader.setupOnApplicationOnCreate(this);
     }
 
     private TTCustomController getTTCustomController() {

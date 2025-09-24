@@ -29,22 +29,21 @@ android {
             keyPassword "juduo123"
         }
         debug {
-            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
-            storePassword "juduo123"
-            keyAlias "juduo"
-            keyPassword "juduo123"
+//            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+//            storePassword "juduo123"
+//            keyAlias "juduo"
+//            keyPassword "juduo123"
         }
     }
 
     buildTypes {
         debug {
             debuggable true
-            minifyEnabled true //开启混淆
-            shrinkResources false //移除无用资源
-            zipAlignEnabled false //zipalign优化
-            signingConfig signingConfigs.debug
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("boolean", "LOG_DEBUG", "true")
+//            minifyEnabled true //开启混淆
+//            shrinkResources false //移除无用资源
+//            zipAlignEnabled false //zipalign优化
+//            signingConfig signingConfigs.debug
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
@@ -109,6 +108,8 @@ dependencies {
     // 选择器
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.14'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelView:4.1.14'
+    // 下载
+    implementation 'com.liulishuo.filedownloader:library:1.7.7'
 
 
 
