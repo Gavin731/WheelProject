@@ -9,12 +9,17 @@
         android:id="@+id/header"
         layout="@layout/view_top" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E4E5E9" />
+
     <ImageView
-        android:layout_width="62dp"
-        android:layout_height="62dp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="76dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/app_logo" />
 
     <TextView
         android:layout_width="wrap_content"

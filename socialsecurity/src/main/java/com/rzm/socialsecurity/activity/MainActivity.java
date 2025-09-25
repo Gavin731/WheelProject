@@ -1,6 +1,7 @@
 package com.rzm.socialsecurity.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
+import com.rzm.socialsecurity.custom.HomeTabItemView;
 import com.rzm.socialsecurity.presenter.MainPresenter;
 import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
@@ -42,25 +44,18 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     PageNavigationView pnvTab;
     NoTouchViewPager vpMain;
-
+    boolean isShow = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
-        }
         presenter.initView();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showAppHintDialog();
+            }
+        }, 500);
     }
 
     @Override
@@ -76,12 +71,6 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     @Override
     protected void onResume() {
         super.onResume();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showAppHintDialog();
-            }
-        }, 500);
     }
 
     @Override
@@ -89,13 +78,38 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         pnvTab = findViewById(R.id.pnv_Tab);
         vpMain = findViewById(R.id.vp_Main);
 
-        NavigationController mNavigationController = pnvTab.material()
-                .addItem(R.drawable.ic_ondemand_video_black_24dp, "首页", COLORS[0])
-                .addItem(R.drawable.ic_audiotrack_black_24dp, "更多工具", COLORS[1])
-                .addItem(R.drawable.ic_book_black_24dp, "税务指南", COLORS[2])
-                .addItem(R.drawable.ic_news_black_24dp, "个人中心", COLORS[3])
-                .enableAnimateLayoutChanges()
-                .build();
+//        NavigationController mNavigationController = pnvTab.material()
+//                .addItem(R.drawable.ic_ondemand_video_black_24dp, "首页", COLORS[0])
+//                .addItem(R.drawable.ic_audiotrack_black_24dp, "更多工具", COLORS[1])
+//                .addItem(R.drawable.ic_book_black_24dp, "税务指南", COLORS[2])
+//                .addItem(R.drawable.ic_news_black_24dp, "个人中心", COLORS[3])
+//                .enableAnimateLayoutChanges()
+//                .build();
+        HomeTabItemView home = new HomeTabItemView(this);
+        home.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_home_def));
+        home.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_home));
+        home.setTitle("首页");
+        home.setChecked(true);
+
+        HomeTabItemView tool = new HomeTabItemView(this);
+        tool.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_tool));
+        tool.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_tool_select));
+        tool.setTitle("更多工具");
+        tool.setChecked(false);
+
+        HomeTabItemView tax = new HomeTabItemView(this);
+        tax.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide));
+        tax.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide_select));
+        tax.setTitle("税务指南");
+        tax.setChecked(false);
+
+        HomeTabItemView personal = new HomeTabItemView(this);
+        personal.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_personal_center));
+        personal.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_personal_center_select));
+        personal.setTitle("个人中心");
+        personal.setChecked(false);
+
+        NavigationController mNavigationController = pnvTab.custom().addItem(home).addItem(tool).addItem(tax).addItem(personal).build();
 
         TabViewPagerAdapter pagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager(), 4);
         vpMain.setAdapter(pagerAdapter);
@@ -139,7 +153,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                             showUserPrivacy(false);
                         });
 
-                        TextView tvShowUserPrivacy = v.findViewById(R.id.tv_showUserPrivacy);
+                        LinearLayout tvShowUserPrivacy = v.findViewById(R.id.tv_showUserPrivacy);
                         tvShowUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
                             Hawk.put(ConstantConfig.isShowAppDialog, true);
@@ -182,8 +196,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         ClickableSpan userAgreementSpan = new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
-                                Toast.makeText(MainActivity.this, "点击了用户协议", Toast.LENGTH_SHORT).show();
                                 // 这里可以跳转到用户协议页面
+                                showWebView(2);
                             }
 
                             @Override
@@ -198,8 +212,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         ClickableSpan privacyPolicySpan = new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
-                                Toast.makeText(MainActivity.this, "点击了隐私政策", Toast.LENGTH_SHORT).show();
                                 // 这里可以跳转到隐私政策页面
+                                showWebView(1);
                             }
 
                             @Override
@@ -227,16 +241,17 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
                         TextView tvFindUserPrivacy = v.findViewById(R.id.tv_find_user_privacy);
                         tvFindUserPrivacy.setOnClickListener(v1 -> {
-                            if(isEit){
+                            if (isEit) {
                                 System.exit(0);
-                            }else{
+                            } else {
                                 dialog.dismiss();
                                 showUserPrivacy2();
                             }
                         });
-                        LinearLayout tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
+                        TextView tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
                             Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
+                            requestPermission();
                             dialog.dismiss();
                         });
                     }
@@ -263,8 +278,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         ClickableSpan userAgreementSpan = new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
-                                Toast.makeText(MainActivity.this, "点击了用户协议", Toast.LENGTH_SHORT).show();
                                 // 这里可以跳转到用户协议页面
+                                showWebView(2);
                             }
 
                             @Override
@@ -279,8 +294,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         ClickableSpan privacyPolicySpan = new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
-                                Toast.makeText(MainActivity.this, "点击了隐私政策", Toast.LENGTH_SHORT).show();
                                 // 这里可以跳转到隐私政策页面
+                                showWebView(1);
                             }
 
                             @Override
@@ -315,8 +330,31 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
                             Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
+                            requestPermission();
                         });
                     }
                 }).show();
+    }
+
+    public void showWebView(int type) {
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra(ConstantConfig.webType, type);
+        startActivity(intent);
+    }
+
+    public void requestPermission(){
+        AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+        }
     }
 }

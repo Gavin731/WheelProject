@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -11,8 +12,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
@@ -40,8 +48,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     private static final String ARG_C = "content";
 
     public TextView tvTabGszxjs, tvTabSbjnjs, tvGoPage1, tvGoPage2;
-    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate;
-    public ImageView ivYanglao, ivYiliao, ivShiye;
+    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye;
+    public ImageView ivTop;
     public EditText etMonthMoney, etSbMoney, etGsMonthMoney, etGsSbMoney, etGsZxkcMoney;
 
     public static HomeFragment newInstance(String content) {
@@ -75,6 +83,14 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
 
     @Override
     public void initView() {
+        ivTop = view.findViewById(R.id.iv_top);
+        Glide.with(getActivity()).load(R.mipmap.sy_banner).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                ivTop.setBackground(resource);
+            }
+        });
+
         ivYanglao = view.findViewById(R.id.iv_yanglao);
         ivYiliao = view.findViewById(R.id.iv_yiliao);
         ivShiye = view.findViewById(R.id.iv_top_shiye);
@@ -92,13 +108,28 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         ivYanglao.setOnClickListener(v -> jumpCalculatePage(1));
         ivYiliao.setOnClickListener(v -> jumpCalculatePage(2));
         ivShiye.setOnClickListener(v -> jumpCalculatePage(3));
+
+        Drawable bgHomeTabLeftSelect =getActivity().getDrawable(R.drawable.bg_home_tab_left_select);
+        Drawable bgHomeTabLeftDefault =getActivity().getDrawable(R.drawable.bg_home_tab_left_default);
+        Drawable bgHomeTabRightSelect =getActivity().getDrawable(R.drawable.bg_home_tab_right_select);
+        Drawable bgHomeTabRightDefault =getActivity().getDrawable(R.drawable.bg_home_tab_right_default);
         tvTabSbjnjs.setOnClickListener(v -> {
             llSb.setVisibility(VISIBLE);
             llGs.setVisibility(GONE);
+            tvTabSbjnjs.setBackground(bgHomeTabLeftSelect);
+            tvTabSbjnjs.setTextColor(getActivity().getColor(R.color.white));
+
+            tvTabGszxjs.setBackground(bgHomeTabRightDefault);
+            tvTabGszxjs.setTextColor(getActivity().getColor(R.color.color_3875F6));
         });
         tvTabGszxjs.setOnClickListener(v -> {
             llSb.setVisibility(GONE);
             llGs.setVisibility(VISIBLE);
+            tvTabGszxjs.setBackground(bgHomeTabRightSelect);
+            tvTabGszxjs.setTextColor(getActivity().getColor(R.color.white));
+
+            tvTabSbjnjs.setBackground(bgHomeTabLeftDefault);
+            tvTabSbjnjs.setTextColor(getActivity().getColor(R.color.color_3875F6));
         });
         tvStartCalculate = view.findViewById(R.id.tv_start_calculate);
         tvStartCalculate.setOnClickListener(v -> {

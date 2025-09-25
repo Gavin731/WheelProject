@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_marginStart="60dp"
-    android:layout_marginEnd="60dp"
-    android:layout_height="wrap_content"
+    android:layout_width="206dp"
+    android:layout_height="128dp"
     android:background="@drawable/bg_write_radius"
     android:gravity="center"
     android:orientation="vertical">
@@ -12,30 +10,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="温馨提示" />
+        android:text="温馨提示"
+        android:textColor="#ff000000"
+        android:textSize="12sp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp">
-
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1" />
-    </ScrollView>
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:text="1"
+        android:textColor="#ff333333"
+        android:textSize="10sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/gray" />
+        android:background="#E1E1E1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="37dp"
         android:orientation="horizontal">
 
         <TextView
@@ -43,20 +41,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/btn_bg_bottom_left_round"
             android:gravity="center"
-            android:text="查看协议" />
-
-        <View
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:background="@color/gray" />
+            android:text="查看协议"
+            android:textColor="#ff888888"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tv_ok_user_privacy"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/btn_bg_bottom_right_round"
             android:gravity="center"
-            android:text="同意并继续" />
+            android:text="同意并继续"
+            android:textColor="#ffffffff"
+            android:textSize="11sp" />
     </LinearLayout>
 </LinearLayout>

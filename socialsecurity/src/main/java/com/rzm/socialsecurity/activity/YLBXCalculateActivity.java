@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.wheel.mvp.MvpActivity;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBackgroundMaskClickListener;
@@ -27,8 +34,8 @@ import com.rzm.socialsecurity.view.IYLBXCalculateView;
 public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> implements IYLBXCalculateView {
 
     public ImageView ivBack;
-    public TextView tvName, tvHint1, tvHint2;
-    public LinearLayout tvCalculate, tvJnjs;
+    public TextView tvHint1, tvHint2;
+    public LinearLayout tvCalculate, tvJnjs, llTop;
     public EditText etCardinalNumber, etCompany, etPersonal;
 
     @Override
@@ -53,8 +60,14 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
 
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
-        tvName = findViewById(R.id.tv_name);
-        tvName.setText(getHint(type));
+        llTop = findViewById(R.id.ll_top);
+        Glide.with(this).load(getTopDrawable(type)).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                llTop.setBackground(resource);
+            }
+        });
+
         tvJnjs = findViewById(R.id.tv_jnjs);
         tvJnjs.setOnClickListener(v -> showHintDialog());
 
@@ -128,26 +141,29 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
 
     }
 
-    public String getHint(int type) {
-        String name = "";
+    public Drawable getTopDrawable(int type) {
+        Drawable result;
         switch (type) {
             case 1:
-                name = "养老保险计算";
+                result = getDrawable(R.mipmap.bxjs_yanglao);
                 break;
             case 2:
-                name = "医疗保险计算";
+                result = getDrawable(R.mipmap.bxjs_yiliao);
                 break;
             case 3:
-                name = "失业保险计算";
+                result = getDrawable(R.mipmap.bxjs_shiye);
                 break;
             case 4:
-                name = "工伤保险计算";
+                result = getDrawable(R.mipmap.bxjs_gongshang);
                 break;
             case 5:
-                name = "生育保险计算";
+                result = getDrawable(R.mipmap.bxjs_shengyu);
+                break;
+            default:
+                result = getDrawable(R.mipmap.bxjs_yanglao);
                 break;
         }
-        return name;
+        return result;
     }
 
     public String getHint1(int type) {

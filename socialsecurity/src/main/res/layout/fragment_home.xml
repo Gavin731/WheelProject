@@ -1,339 +1,528 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/iv_top"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/color_ef5b9c" />
+    android:scrollbars="none">
 
     <LinearLayout
-        android:id="@+id/iv_top_bx"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/iv_yanglao"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#fff" />
-
-        <ImageView
-            android:id="@+id/iv_yiliao"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/color_ef5b9c" />
-
-        <ImageView
-            android:id="@+id/iv_top_shiye"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#fff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tab"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/tv_sbjnjs"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#eeeeee"
-            android:gravity="center"
-            android:text="社保缴纳计算" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tv_gszxjs"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#cccccc"
-            android:gravity="center"
-            android:text="个税在线计算" />
-    </LinearLayout>
-
-   <LinearLayout
-       android:id="@+id/ll_sb"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:visibility="visible">
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="15dp"
-           android:text="本月工资收入" />
-
-       <EditText
-           android:id="@+id/et_month_money"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginLeft="15dp"
-           android:layout_marginTop="10dp"
-           android:layout_marginRight="15dp"
-           android:background="@drawable/edit_bg"
-           android:hint="请输入工资（元）"
-           android:inputType="numberDecimal"
-           android:paddingStart="5dp" />
-
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="15dp"
-           android:layout_marginTop="10dp"
-           android:text="社保个人部分" />
-
-       <EditText
-           android:id="@+id/et_sb_money"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginLeft="15dp"
-           android:layout_marginTop="10dp"
-           android:layout_marginRight="15dp"
-           android:background="@drawable/edit_bg"
-           android:hint="请输入个人缴纳金额（元）"
-           android:inputType="numberDecimal"
-           android:paddingStart="5dp" />
-
-       <LinearLayout
-           android:id="@+id/tv_start_calculate"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:background="@drawable/btn_bg"
-           android:gravity="center"
-           android:layout_marginLeft="40dp"
-           android:layout_marginTop="10dp"
-           android:layout_marginRight="40dp"
-           android:orientation="horizontal">
-           <ImageView
-               android:layout_width="12dp"
-               android:layout_height="12dp"
-               android:src="@mipmap/ic_launcher_round"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="5dp"
-               android:gravity="center"
-               android:text="开始计算"
-               android:textColor="#fff" />
-       </LinearLayout>
-
-
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="30dp"
-           android:layout_marginTop="10dp"
-           android:background="#cccccc"
-           android:gravity="start|center"
-           android:paddingStart="15dp"
-           android:text="社保计算手册" />
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="80dp"
-           android:gravity="center"
-           android:paddingStart="15dp"
-           android:paddingRight="10dp">
-
-           <LinearLayout
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:orientation="vertical">
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="社保的作用" />
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="10dp"
-                   android:text="社保是生活的安全网，养老医疗有担当" />
-           </LinearLayout>
-
-           <TextView
-               android:id="@+id/tv_goPage1"
-               android:layout_width="100dp"
-               android:layout_height="40dp"
-               android:background="@drawable/btn_bg"
-               android:gravity="center"
-               android:text="去看看" />
-
-       </LinearLayout>
-
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="5dp"
-           android:background="#ddd" />
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="80dp"
-           android:gravity="center"
-           android:paddingStart="15dp"
-           android:paddingEnd="10dp">
-
-           <LinearLayout
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:orientation="vertical">
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="社保的管理与监督" />
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="10dp"
-                   android:text="社保预存未来，岁月无惧风雨" />
-           </LinearLayout>
-
-           <TextView
-               android:id="@+id/tv_goPage2"
-               android:layout_width="100dp"
-               android:layout_height="40dp"
-               android:background="@drawable/btn_bg"
-               android:gravity="center"
-               android:text="去看看" />
-
-       </LinearLayout>
-   </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_gs"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-        <TextView
+            android:id="@+id/iv_top"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="本月工资收入" />
-
-        <EditText
-            android:id="@+id/et_gs_month_money"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/edit_bg"
-            android:hint="请输入本月工资收入（元）"
-            android:inputType="numberDecimal"
-            android:paddingStart="5dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="五险一金（个人缴纳）" />
-
-        <EditText
-            android:id="@+id/et_gs_sb_money"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/edit_bg"
-            android:hint="请输入五险一金个人缴纳部分（元）"
-            android:inputType="numberDecimal"
-            android:paddingStart="5dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="专项附加扣除" />
-
-        <EditText
-            android:id="@+id/et_gs_zxkc_money"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/edit_bg"
-            android:hint="请输入专项附加扣除金额（元）"
-            android:inputType="numberDecimal"
-            android:paddingStart="5dp" />
-        <LinearLayout
-            android:id="@+id/tv_gs_calculate"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_bg"
-            android:gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="40dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:src="@mipmap/ic_launcher_round"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:gravity="center"
-                android:text="开始计算"
-                android:textColor="#fff" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_zxfjkc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="计算专项附加扣除 >"
-            android:textColor="@color/mbridge_cpb_blue"/>
+            android:layout_height="116dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:paddingStart="15dp"
-            android:paddingRight="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/bg_home"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="税务申报指南" />
+            <LinearLayout
+                android:id="@+id/iv_top_bx"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_jump_fragment3"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="@drawable/btn_bg"
-                android:gravity="center"
-                android:text="前往查看" />
+                <LinearLayout
+                    android:id="@+id/iv_yanglao"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/sy_yanglaobx"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingStart="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="养老保险"
+                        android:textColor="#ff15563a"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="去计算"
+                            android:textColor="#ff15563a"
+                            android:textSize="7sp" />
+
+                        <ImageView
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:src="@mipmap/sy_hxjt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/iv_yiliao"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/sy_yiliaobx"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingStart="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="医疗保险"
+                        android:textColor="#ff89312f"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="去计算"
+                            android:textColor="#ff89312f"
+                            android:textSize="7sp" />
+
+                        <ImageView
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:src="@mipmap/sy_hxjt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/iv_top_shiye"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/sy_shiyebx"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingStart="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="失业保险"
+                        android:textColor="#ff6141a8"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="去计算"
+                            android:textColor="#ff6141a8"
+                            android:textSize="7sp" />
+
+                        <ImageView
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:src="@mipmap/sy_hxjt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tab"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/tv_sbjnjs"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_home_tab_left_select"
+                    android:gravity="center"
+                    android:text="社保缴纳计算"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_gszxjs"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_home_tab_right_default"
+                    android:gravity="center"
+                    android:text="个税在线计算"
+                    android:textColor="@color/color_3875F6"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_sb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_bottom_round"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="本月工资收入"
+                    android:textColor="#ff333333"
+                    android:textSize="9sp" />
+
+                <EditText
+                    android:id="@+id/et_month_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入工资（元）"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="5dp"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:text="社保个人部分"
+                    android:textColor="#ff333333"
+                    android:textSize="9sp" />
+
+                <EditText
+                    android:id="@+id/et_sb_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入个人缴纳金额（元）"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="5dp"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:id="@+id/tv_start_calculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@mipmap/sy_ksjs" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center"
+                        android:text="开始计算"
+                        android:textColor="#ffffffff"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="12dp"
+                    android:background="#E4E5E9" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@mipmap/sy_sbjssc" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="社保计算手册"
+                        android:textColor="#ff333333"
+                        android:textSize="9sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sy_sbdzy"
+                        android:orientation="vertical"
+                        android:paddingStart="9dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:text="社保的作用"
+                            android:textColor="#ff154083"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="社保是生活的安全网，养老医疗有担当"
+                            android:textColor="#ff154083"
+                            android:textSize="7sp" />
+
+                        <TextView
+                            android:id="@+id/tv_goPage1"
+                            android:layout_width="33dp"
+                            android:layout_height="13dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/btn_bg_round"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="7sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sy_sbglyjd"
+                        android:orientation="vertical"
+                        android:paddingStart="9dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:text="社保的管理与监督"
+                            android:textColor="#ff154083"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="社保预存未来，岁月无惧风雨"
+                            android:textColor="#ff154083"
+                            android:textSize="7sp" />
+
+                        <TextView
+                            android:id="@+id/tv_goPage2"
+                            android:layout_width="33dp"
+                            android:layout_height="13dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/btn_bg_round"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="7sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_gs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_bottom_round"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="本月工资收入"
+                    android:textColor="#ff333333"
+                    android:textSize="9sp" />
+
+                <EditText
+                    android:id="@+id/et_gs_month_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入本月工资收入（元）"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="5dp"
+                    android:textColor="#ff999999"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:text="五险一金（个人缴纳）"
+                    android:textColor="#ff333333"
+                    android:textSize="9sp" />
+
+                <EditText
+                    android:id="@+id/et_gs_sb_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入五险一金个人缴纳部分（元）"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="5dp"
+                    android:textColor="#ff999999"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="专项附加扣除"
+                    android:textColor="#ff333333"
+                    android:textSize="9sp" />
+
+                <EditText
+                    android:id="@+id/et_gs_zxkc_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入专项附加扣除金额（元）"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="5dp"
+                    android:textColor="#ff999999"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:id="@+id/tv_gs_calculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@mipmap/sy_ksjs" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center"
+                        android:text="开始计算"
+                        android:textColor="#ffffffff"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_zxfjkc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="计算专项附加扣除 >"
+                    android:textColor="#ff3875f6"
+                    android:textSize="9sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@mipmap/sy_gs_sbzn"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="税务申报指南"
+                        android:textColor="#ff154083"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_jump_fragment3"
+                        android:layout_width="50dp"
+                        android:layout_height="13dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/btn_bg_round"
+                        android:gravity="center"
+                        android:text="前往查看"
+                        android:textColor="#ffffffff"
+                        android:textSize="7sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
