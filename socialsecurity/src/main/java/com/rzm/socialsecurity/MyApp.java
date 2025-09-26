@@ -24,7 +24,7 @@ public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        AdvertisementManager.getInstance().init(this, "5670955", "终端测试软件", new InitCallback() {
+        AdvertisementManager.getInstance().init(this, "5744513", "社保个税管家", new InitCallback() {
             @Override
             public void success() {
 

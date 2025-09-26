@@ -70,7 +70,7 @@ public class BFragment extends MvpFragment<BPresenter> implements IBView {
         getActivity().findViewById(R.id.show_ad_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInterstitialAd(getActivity(), "103526723", new InfoAdCallBack() {
+                AdvertisementManager.getInstance().showInterstitialAd(getActivity(), "103656207", new InfoAdCallBack() {
                     @Override
                     public void onError() {
                         LogUtils.i("页面提示：插屏广告获取失败");
@@ -116,7 +116,7 @@ public class BFragment extends MvpFragment<BPresenter> implements IBView {
         getActivity().findViewById(R.id.show_ad2_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInterstitialAd(getActivity(), "103526723", new InfoAdCallBack() {
+                AdvertisementManager.getInstance().showInterstitialAd(getActivity(), "103656207", new InfoAdCallBack() {
                     @Override
                     public void onError() {
                         LogUtils.i("页面提示：插屏广告2获取失败");
@@ -165,7 +165,7 @@ public class BFragment extends MvpFragment<BPresenter> implements IBView {
         getActivity().findViewById(R.id.show_kp_ad_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showOpenScreenAd(getActivity(), "103403260", splashContainer, 1000, 1920, new OpenScreenAdCallBack() {
+                AdvertisementManager.getInstance().showOpenScreenAd(getActivity(), "103656025", splashContainer, 1000, 1920, new OpenScreenAdCallBack() {
                     @Override
                     public void onAdClose() {
                         LogUtils.i("开屏广告关闭");
@@ -197,13 +197,13 @@ public class BFragment extends MvpFragment<BPresenter> implements IBView {
         getActivity().findViewById(R.id.show_info_image_ad_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInfoFlowAd(getActivity(), "103401966", infoContainer, 800, 400, null);
+                AdvertisementManager.getInstance().showInfoFlowAd(getActivity(), "103655294", infoContainer, 800, 400, null);
             }
         });
         getActivity().findViewById(R.id.show_info_image_ad2_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showInfoFlowAd(getActivity(), "103401966", infoContainer2, 800, 400, new InformationFlowAdCallback() {
+                AdvertisementManager.getInstance().showInfoFlowAd(getActivity(), "103655294", infoContainer2, 800, 400, new InformationFlowAdCallback() {
                     @Override
                     public void onError() {
                         LogUtils.i("信息流2广告获取失败");
@@ -234,7 +234,7 @@ public class BFragment extends MvpFragment<BPresenter> implements IBView {
         getActivity().findViewById(R.id.http_request_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertisementManager.getInstance().showRewardAd(getActivity(), "103428930", new RewardAdCallBack() {
+                AdvertisementManager.getInstance().showRewardAd(getActivity(), "103653498", new RewardAdCallBack() {
                     @Override
                     public void onAdClose() {
                         LogUtils.i("激励广告关闭");

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">掌税宝</string>
+    <string name="app_name">社保个税管家</string>
+    <string name="ym">https://devs.umeng.com/sdk  文档</string>
+    <string name="ymk">68d5fad4c0c131698b7eba30</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.rzm.socialsecurity.activity;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import java.math.RoundingMode;
  */
 public class YLBXCalculateResultActivity extends MvpActivity<YLBXCalculateResultPresenter> implements IYLBXCalculateResultView {
     public ImageView ivBack;
-    public TextView tvBack, totalAmount, companyAmount, personalAmount;
+    public TextView tvBack, totalAmount, companyAmount, personalAmount,tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,13 @@ public class YLBXCalculateResultActivity extends MvpActivity<YLBXCalculateResult
 
     @Override
     public void initView() {
+        int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
+        tvTitle=findViewById(R.id.tv_title);
+        tvTitle.setVisibility(VISIBLE);
+        tvTitle.setText(getTitle(type));
+
         tvBack = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(v -> finish());
         totalAmount = findViewById(R.id.total_amount);
@@ -72,5 +78,27 @@ public class YLBXCalculateResultActivity extends MvpActivity<YLBXCalculateResult
         // 总缴纳
         BigDecimal total = company.add(personal).setScale(2, RoundingMode.HALF_UP);
         totalAmount.setText(String.valueOf(total));
+    }
+
+    public String getTitle(int type) {
+        String result = "";
+        switch (type) {
+            case 1:
+                result = "养老保险计算结果";
+                break;
+            case 2:
+                result = "医疗保险计算结果";
+                break;
+            case 3:
+                result = "失业保险计算结果";
+                break;
+            case 4:
+                result = "工伤保险计算结果";
+                break;
+            case 5:
+                result = "生育保险计算结果";
+                break;
+        }
+        return result;
     }
 }

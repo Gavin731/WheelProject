@@ -214,6 +214,8 @@
                     android:hint="请输入工资（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
+                    android:textColor="#ff333333"
+                    android:textColorHint="#ff999999"
                     android:textSize="10sp" />
 
                 <TextView
@@ -236,6 +238,8 @@
                     android:hint="请输入个人缴纳金额（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
+                    android:textColor="#ff333333"
+                    android:textColorHint="#ff999999"
                     android:textSize="10sp" />
 
                 <LinearLayout
@@ -405,7 +409,8 @@
                     android:hint="请输入本月工资收入（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
-                    android:textColor="#ff999999"
+                    android:textColor="#ff333333"
+                    android:textColorHint="#ff999999"
                     android:textSize="10sp" />
 
                 <TextView
@@ -428,7 +433,8 @@
                     android:hint="请输入五险一金个人缴纳部分（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
-                    android:textColor="#ff999999"
+                    android:textColor="#ff333333"
+                    android:textColorHint="#ff999999"
                     android:textSize="10sp" />
 
                 <TextView
@@ -451,7 +457,8 @@
                     android:hint="请输入专项附加扣除金额（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
-                    android:textColor="#ff999999"
+                    android:textColorHint="#ff999999"
+                    android:textColor="#ff333333"
                     android:textSize="10sp" />
 
                 <LinearLayout
@@ -496,9 +503,9 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="7dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@mipmap/sy_gs_sbzn"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <TextView

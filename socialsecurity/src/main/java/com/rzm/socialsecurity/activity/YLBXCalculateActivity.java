@@ -108,6 +108,7 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
             intent.putExtra(ConstantConfig.cardinalNumberText, etCardinalNumberText);
             intent.putExtra(ConstantConfig.companyText, etCompanyText);
             intent.putExtra(ConstantConfig.personalText, etPersonalText);
+            intent.putExtra(ConstantConfig.bxKey, type);
             intent.putExtra(ConstantConfig.isHidePersonalText, type == 4 || type == 5);
             startActivity(intent);
         });

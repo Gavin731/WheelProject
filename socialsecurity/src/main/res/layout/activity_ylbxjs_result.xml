@@ -1,126 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="#fff"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
-    <include android:id="@+id/header" layout="@layout/view_top"/>
-    <ImageView
-        android:id="@+id/iv_top"
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_top" />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/color_ef5b9c" />
+        android:layout_height="1px"
+        android:background="#E4E5E9" />
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="总缴纳" />
+        android:text="总缴纳"
+        android:textColor="#ff333333"
+        android:textSize="9sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:paddingRight="15dp"
-        android:layout_height="40dp">
+        android:paddingRight="15dp">
+
         <TextView
             android:id="@+id/total_amount"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="35dp"
-            android:layout_marginLeft="15dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="15dp"
+            android:layout_weight="1"
             android:background="#fff"
-            android:text="1111"
             android:gravity="center_vertical"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:text="1111"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="元"/>
+            android:text="元"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:text="单位缴纳" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="单位缴纳"
+        android:textColor="#ff333333"
+        android:textSize="9sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:paddingRight="15dp"
-        android:layout_height="40dp">
+        android:paddingRight="15dp">
+
         <TextView
             android:id="@+id/company_amount"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="35dp"
-            android:layout_marginLeft="15dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="15dp"
+            android:layout_weight="1"
             android:background="#fff"
-            android:text="222"
             android:gravity="center_vertical"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:text="222"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="元"/>
+            android:text="元"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/tv_personal"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:text="个人缴纳" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="个人缴纳"
+        android:textColor="#ff333333"
+        android:textSize="9sp" />
 
     <LinearLayout
         android:id="@+id/ll_personal"
         android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:paddingRight="15dp"
-        android:layout_height="40dp">
+        android:paddingRight="15dp">
+
         <TextView
             android:id="@+id/personal_amount"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="35dp"
-            android:layout_marginLeft="15dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="15dp"
+            android:layout_weight="1"
             android:background="#fff"
-            android:text="333"
             android:gravity="center_vertical"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:text="333"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="元"/>
+            android:text="元"
+            android:textColor="#ff333333"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_back"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_width="180dp"
+        android:layout_height="32dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
         android:background="@drawable/btn_bg"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:text="返回"
-        android:textColor="#fff" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffffff"
+        android:textSize="11sp" />
 
 </LinearLayout>
