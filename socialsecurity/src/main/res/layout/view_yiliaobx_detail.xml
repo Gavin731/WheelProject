@@ -1,60 +1,367 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="医疗保险是指以保险合同约定的医疗行为的发生为给付保险金条件，为被保险人接受诊疗期间的医疗费用支出提供保障的保险。"/>
-
-    <TextView
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="主要特点"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <View
+            android:layout_width="4dp"
+            android:layout_height="9dp"
+            android:background="#3875F6" />
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="强制性:社会医疗保险通常由国家立法强制实施用人单位和职工必须按时足额缴纳保险费
-        \n\n互济性:通过建立医疗保险基金，将风险分散给所有参保人员，实现互助共济，让患病者能够得到经济上的帮助。
-        \n\n社会性:覆盖范围广泛，包括不同职业、不同收入水平的人群，旨在为全体社会成员提供基本的医疗保障，具有很强的社会属性."/>
-
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="分类"/>
-
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="社会医疗保险:由国家或政府组织实施，旨在为全体公民提供基本医疗保障。如适用于企业单位职工的劳保医疗、适用于城镇居民的医保、适用于农村居民的合作医疗。
-        \n\n商业医疗保险:由商业保险公司经营，以营利为目的，消费者自愿购买。包括小额医疗险、防癌医疗险、百万医疗险、高端医疗险等。"/>
-
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="保险待遇"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="医疗保险"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:text="医疗费用报销:参保人在发生医疗费用后，可按照规定的报销范围、报销比例和报销限额，从医疗保险基金中获得一定的经济补偿，以减轻医疗负担。报销范围通常包括门诊费用、住院费用、药品费用、检查费用、手术费用等，但不同的医疗保险制度和保险产品可能会有所差异。
-        \n\n医疗服务提供:医疗保险机构与定点医疗机构签订合作协议，参保人可以在这些定点医疗机构享受相应的医疗服务，包括诊断、治疗、护理等。同时，医疗保险还可能涵盖一些预防保健服务，如疫苗接种、健康体检等，以促进参保人的健康管理。"/>
+        android:layout_marginTop="3dp"
+        android:text="是指以保险合同约定的医疗行为的发生为给付保险金条件，为被保险人接受诊疗期间的医疗费用支出提供保障的保险。"
+        android:textColor="#ff333333"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主要特点"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="强制性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="社会医疗保险通常由国家立法强制实施用人单位和职工必须按时足额缴纳保险费。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="互济性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="通过建立医疗保险基金，将风险分散给所有参保人员，实现互助共济，让患病者能够得到经济上的帮助。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="社会性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="覆盖范围广泛，包括不同职业、不同收入水平的人群，旨在为全体社会成员提供基本的医疗保障，具有很强的社会属性。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="分类"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="社会医疗保险:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="由国家或政府组织实施，旨在为全体公民提供基本医疗保障。如适用于企业单位职工的劳保医疗、适用于城镇居民的医保、适用于农村居民的合作医疗。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="商业医疗保险:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="由商业保险公司经营，以营利为目的，消费者自愿购买。包括小额医疗险、防癌医疗险、百万医疗险、高端医疗险等。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="保险待遇"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="医疗费用报销:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="参保人在发生医疗费用后，可按照规定的报销范围、报销比例和报销限额，从医疗保险基金中获得一定的经济补偿，以减轻医疗负担。报销范围通常包括门诊费用、住院费用、药品费用、检查费用、手术费用等，但不同的医疗保险制度和保险产品可能会有所差异。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="医疗服务提供:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="医疗保险机构与定点医疗机构签订合作协议，参保人可以在这些定点医疗机构享受相应的医疗服务，包括诊断、治疗、护理等。同时，医疗保险还可能涵盖一些预防保健服务，如疫苗接种、健康体检等，以促进参保人的健康管理。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

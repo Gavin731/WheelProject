@@ -47,8 +47,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
 
     private static final String ARG_C = "content";
 
-    public TextView tvTabGszxjs, tvTabSbjnjs, tvGoPage1, tvGoPage2;
-    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye;
+    public TextView tvTabGszxjs, tvTabSbjnjs;
+    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye, tvGoPage1, tvGoPage2;
     public ImageView ivTop;
     public EditText etMonthMoney, etSbMoney, etGsMonthMoney, etGsSbMoney, etGsZxkcMoney;
 

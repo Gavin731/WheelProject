@@ -302,6 +302,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/tv_goPage1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -326,7 +327,6 @@
                             android:textSize="7sp" />
 
                         <TextView
-                            android:id="@+id/tv_goPage1"
                             android:layout_width="33dp"
                             android:layout_height="13dp"
                             android:layout_marginTop="2dp"
@@ -339,6 +339,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/tv_goPage2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
@@ -364,7 +365,6 @@
                             android:textSize="7sp" />
 
                         <TextView
-                            android:id="@+id/tv_goPage2"
                             android:layout_width="33dp"
                             android:layout_height="13dp"
                             android:layout_marginTop="2dp"

@@ -23,7 +23,8 @@
             android:layout_marginLeft="3dp"
             android:text="养老保险"
             android:textColor="#ff333333"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -47,7 +48,8 @@
             android:layout_height="wrap_content"
             android:text="主要特点"
             android:textColor="#ff333333"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +82,8 @@
                         android:layout_marginStart="2dp"
                         android:text="强制性:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -112,7 +115,8 @@
                         android:layout_marginStart="2dp"
                         android:text="费用来源多元化:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -144,7 +148,8 @@
                         android:layout_marginStart="2dp"
                         android:text="社会性:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -175,7 +180,8 @@
             android:layout_height="wrap_content"
             android:text="中国养老保险体系构成"
             android:textColor="#ff333333"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -208,7 +214,8 @@
                         android:layout_marginStart="2dp"
                         android:text="第一支柱:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -240,7 +247,8 @@
                         android:layout_marginStart="2dp"
                         android:text="第二支柱:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -249,7 +257,7 @@
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="9dp"
-                    android:text="企业年金和职业年金，是与职业关联由国家政策引导、单位和职工参与、市场运营管理、政府行政监督的补充养老保险"
+                    android:text="企业年金和职业年金，是与职业关联由国家政策引导、单位和职工参与、市场运营管理、政府行政监督的补充养老保险。"
                     android:textColor="#ff333333"
                     android:textSize="10sp" />
 
@@ -272,7 +280,8 @@
                         android:layout_marginStart="2dp"
                         android:text="第三支柱:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -304,7 +313,8 @@
                         android:layout_marginStart="2dp"
                         android:text="养老保险:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -313,7 +323,7 @@
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="9dp"
-                    android:text="主要目的是为保障老年人的基本生活需求，为其提供稳定可靠的生活来源。参保人在达到法定退休年龄、累计缴费满一定年限后，就可以按月领取养老金，以保障晚年生活"
+                    android:text="主要目的是为保障老年人的基本生活需求，为其提供稳定可靠的生活来源。参保人在达到法定退休年龄、累计缴费满一定年限后，就可以按月领取养老金，以保障晚年生活。"
                     android:textColor="#ff333333"
                     android:textSize="10sp" />
 
@@ -336,7 +346,8 @@
                         android:layout_marginStart="2dp"
                         android:text="养老金待遇:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -358,9 +369,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_ylbx_funstion"
         android:orientation="vertical"
-        android:layout_marginBottom="10dp"
         android:padding="9dp">
 
         <TextView
@@ -368,7 +379,8 @@
             android:layout_height="wrap_content"
             android:text="死亡待遇"
             android:textColor="#ff333333"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -401,7 +413,8 @@
                         android:layout_marginStart="2dp"
                         android:text="丧葬费:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
@@ -410,7 +423,7 @@
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="9dp"
-                    android:text="用于安葬去世参保人的费用"
+                    android:text="用于安葬去世参保人的费用。"
                     android:textColor="#ff333333"
                     android:textSize="10sp" />
 
@@ -433,7 +446,8 @@
                         android:layout_marginStart="2dp"
                         android:text="一次性抚恤费:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp" />¬
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView

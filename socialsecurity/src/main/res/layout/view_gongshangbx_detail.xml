@@ -1,62 +1,410 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="工伤保险是国家通过立法强制实行的，依法参加社会保险的劳动者在工作中遭受事故伤害或罹患职业性疾病时，劳动者本人及其亲属按照规定可以享受医疗救治、生活保障、经济补偿、医疗和职业康复等物质帮助的一种社会保险项目。"/>
-
-    <TextView
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="主要特点"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <View
+            android:layout_width="4dp"
+            android:layout_height="9dp"
+            android:background="#3875F6" />
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="强制性:由国家立法强制实施，用人单位必须依法为职工缴纳工伤保险费，否则将承担相应的法律责任。
-     \n\n非营利性:工伤保险是政府组织实施的社会保障制度，不以营利为目的，旨在保障职工的合法权益分散用人单位的工伤风险
-     \n\n广泛性:覆盖范围广泛，包括各类企业、事业单位、社会团体、民办非企业单位、基金会、律师事务所、会计师事务所等组织和有雇工的个体工商户的职工。
-     \n\n互济性:通过建立工伤保险基金，将用人单位缴纳的保险费集中起来，对工伤职工进行经济援助，实现了风险在参保单位之间的分担和互助共济"/>
-
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="保障内容"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="工伤保险"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="医疗救治:职工因工作遭受事故伤害或者患职业病进行治疗，享受工伤医疗待遇。治疗工伤所需费用符合工伤保险诊疗项目目录、工伤保险药品目录工伤保险住院服务标准的，从工伤保险基金支付
-     \n\n生活保障:包括停工留薪期待遇，职工因工作遭受事故伤害或者患职业病需要暂停工作接受工伤医疗的，在停工留薪期内，原工资福利待遇不变，由所在单位按月支付。
-     \n\n经济补偿:如一次性伤残补助金、一次性工亡补助金等。一次性伤残补助金根据伤残等级确定，标准为本人工资的一定倍数:一次性工亡补助金为上一年度全国城镇居民人均可支配收入的 20倍。
-     \n\n医疗和职业康复:工伤保险基金支付工伤职工进行康复性治疗的费用，帮助工伤职工恢复身体功能和职业能力，重返工作岗位。"/>
+        android:layout_marginTop="3dp"
+        android:text="是国家通过立法强制实行的，依法参加社会保险的劳动者在工作中遭受事故伤害或罹患职业性疾病时，劳动者本人及其亲属按照规定可以享受医疗救治、生活保障、经济补偿、医疗和职业康复等物质帮助的一种社会保险项目。"
+        android:textColor="#ff333333"
+        android:textSize="11sp" />
 
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="认定程序"/>
-
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="单位或职工及其亲属应当在事故伤害发生之日起的15 天内，及时与业务部联系。单位应在30日内(特殊情况，经社会保险部门同意可以适当延长)向区县劳动保障行政部门提出工伤认定申请。社会行政保险部门自受理工伤认定申请之日起 60日内作出工伤认定的决定，并在决定作出之日起 20日内书面通知申请工伤认定的职工和用人单位。对于事实清楚、权利义务明确的工伤申请，应当自受理之日起 15 日内作出工伤认定决定。"/>
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主要特点"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="强制性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="由国家立法强制实施，用人单位必须依法为职工缴纳工伤保险费，否则将承担相应的法律责任。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="非营利性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="工伤保险是政府组织实施的社会保障制度，不以营利为目的，旨在保障职工的合法权益分散用人单位的工伤风险。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="广泛性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="覆盖范围广泛，包括各类企业、事业单位、社会团体、民办非企业单位、基金会、律师事务所、会计师事务所等组织和有雇工的个体工商户的职工。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="互济性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="通过建立工伤保险基金，将用人单位缴纳的保险费集中起来，对工伤职工进行经济援助，实现了风险在参保单位之间的分担和互助共济。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="保障内容"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="医疗救治:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="职工因工作遭受事故伤害或者患职业病进行治疗，享受工伤医疗待遇。治疗工伤所需费用符合工伤保险诊疗项目目录、工伤保险药品目录工伤保险住院服务标准的，从工伤保险基金支付。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="生活保障:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="包括停工留薪期待遇，职工因工作遭受事故伤害或者患职业病需要暂停工作接受工伤医疗的，在停工留薪期内，原工资福利待遇不变，由所在单位按月支付。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="经济补偿:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="如一次性伤残补助金、一次性工亡补助金等。一次性伤残补助金根据伤残等级确定，标准为本人工资的一定倍数:一次性工亡补助金为上一年度全国城镇居民人均可支配收入的 20倍。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="医疗和职业康复:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="工伤保险基金支付工伤职工进行康复性治疗的费用，帮助工伤职工恢复身体功能和职业能力，重返工作岗位。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="认定程序"
+            android:textColor="#ff333333"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="单位或职工及其亲属应当在事故伤害发生之日起的15 天内，及时与业务部联系。单位应在30日内(特殊情况，经社会保险部门同意可以适当延长)向区县劳动保障行政部门提出工伤认定申请。社会行政保险部门自受理工伤认定申请之日起 60日内作出工伤认定的决定，并在决定作出之日起 20日内书面通知申请工伤认定的职工和用人单位。对于事实清楚、权利义务明确的工伤申请，应当自受理之日起 15 日内作出工伤认定决定。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
