@@ -33,7 +33,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="-10dp"
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingRight="15dp">
@@ -69,7 +69,7 @@
                 android:layout_height="13dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:background="@drawable/btn_bg_round_35926A"
+                android:background="@drawable/bg_round_35926a"
                 android:gravity="center"
                 android:text="去看看"
                 android:textColor="#ffffffff"
@@ -80,20 +80,45 @@
             android:id="@+id/ll_yiliao"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:background="#ccc">
+            android:background="@mipmap/sb_2yl"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="医疗保险" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="医疗保险"
+                android:textColor="#ff89312f"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:text="医保护航，健康无忧"
+                android:textColor="#ff89312f"
+                android:textSize="7sp" />
+
+            <TextView
+                android:layout_width="33dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_round_aa5351"
+                android:gravity="center"
+                android:text="去看看"
+                android:textColor="#ffffffff"
+                android:textSize="7sp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="66dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:paddingStart="15dp"
@@ -104,41 +129,116 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ddd">
+            android:background="@mipmap/sb_3sy"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="失业保险" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="失业保险"
+                android:textColor="#ff6141a8"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:text="失业有险，再启新程"
+                android:textColor="#ff6141a8"
+                android:textSize="7sp" />
+
+            <TextView
+                android:layout_width="33dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_round_7359c3"
+                android:gravity="center"
+                android:text="去看看"
+                android:textColor="#ffffffff"
+                android:textSize="7sp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_gongshang"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:background="#eee">
+            android:background="@mipmap/sb_4gs"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="工伤保险" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="工伤保险"
+                android:textColor="#ffc06402"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:text="工伤有保，安心劳作"
+                android:textColor="#ffc06402"
+                android:textSize="7sp" />
+
+            <TextView
+                android:layout_width="33dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_round_db8600"
+                android:gravity="center"
+                android:text="去看看"
+                android:textColor="#ffffffff"
+                android:textSize="7sp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_shengyu"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="66dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:background="#eee">
+        android:background="@mipmap/sb_5sy"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="生育保险" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:text="生育保险"
+            android:textColor="#ff0985a4"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:text="生育有保，守护新生"
+            android:textColor="#ff0985a4"
+            android:textSize="7sp" />
+
+        <TextView
+            android:layout_width="33dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/bg_round_35a9cd"
+            android:gravity="center"
+            android:text="去看看"
+            android:textColor="#ffffffff"
+            android:textSize="7sp" />
     </LinearLayout>
 </LinearLayout>

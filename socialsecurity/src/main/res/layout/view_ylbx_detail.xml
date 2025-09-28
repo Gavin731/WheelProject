@@ -1,63 +1,452 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="养老保险，全称社会基本养老保险，是国家和社会根据一定的法律和法规，为解决劳动者在达到国家规定的解除劳动义务的劳动年龄界限，或因年老丧失劳动能力退出劳动岗位后的基本生活而建立的一种社会保险制度。"/>
-
-    <TextView
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="主要特点"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <View
+            android:layout_width="4dp"
+            android:layout_height="9dp"
+            android:background="#3875F6" />
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="强制性:由国家立法强制实行，企业单位和个人都必须参加。
-      \n\n费用来源多元化:费用来源一般由国家、单位和个人三方或单位和个人双方共同负担，实现广泛的社会互济。
-      \n\n社会性:影响大，享受人数多且时间长，费用支出庞大，需要设置专门机构，实行现代化、专业化、社会化的统一规划和管理。"/>
-
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="中国养老保险体系构成"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="养老保险"
+            android:textColor="#ff333333"
+            android:textSize="11sp" />
+    </LinearLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="第一支柱:基本养老保险，包括城镇职工基本养老保险和城乡居民基本养老保险，由政府主导。
-    \n\n第二支柱:企业年金和职业年金，是与职业关联由国家政策引导、单位和职工参与、市场运营管理、政府行政监督的补充养老保险
-   \n\n第三支苡柱:包括个人储蓄型养老保险和商业养老保险，是个人利用金融手段增加养老保障供给的有效形式。
-   \n\n养老保险:主要目的是为保障老年人的基本生活需求，为其提供稳定可靠的生活来源。参保人在达到法定退休年龄、累计缴费满一定年限后，就可以按月领取养老金，以保障晚年生活
-   \n\n养老金待遇:参保人达到法定退休年龄，且累计缴纳养老保险满一定年限(如15 年)，可按月领取基本养老金，直至死亡。基本养老金由基础养老金、个人账户养老金和过渡性养老金组成。基础养老金与当地职工平均工资、缴费年限等有关;个人账户养老金是个人缴费及利息的积累除以一定的计发月数:过渡性养老金是对特定人在养老保险制度改革前的工作年限给予的补偿。"/>
+        android:layout_marginTop="3dp"
+        android:text="全称社会基本养老保险，是国家和社会根据一定的法律和法规，为解决劳动者在达到国家规定的解除劳动义务的劳动年龄界限，或因年老丧失劳动能力退出劳动岗位后的基本生活而建立的一种社会保险制度。"
+        android:textColor="#ff333333"
+        android:textSize="11sp" />
 
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="死亡待遇"/>
-
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="丧葬费:用于安葬去世参保人的费用。
-    \n\n一次性抚恤费:给予参保人家属的一次性抚慰金符合供养条件的直系亲属生活困难补助费:若参保人去世后，其直系亲属符合供养条件且生活困难，可按月领取补助费，直至供养直系亲属死亡。"/>
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主要特点"
+            android:textColor="#ff333333"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="强制性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="由国家立法强制实行，企业单位和个人都必须参加。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="费用来源多元化:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="费用来源一般由国家、单位和个人三方或单位和个人双方共同负担，实现广泛的社会互济。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="社会性:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="影响大，享受人数多且时间长，费用支出庞大，需要设置专门机构，实行现代化、专业化、社会化的统一规划和管理。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="中国养老保险体系构成"
+            android:textColor="#ff333333"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="第一支柱:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="基本养老保险，包括城镇职工基本养老保险和城乡居民基本养老保险，由政府主导。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="第二支柱:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="企业年金和职业年金，是与职业关联由国家政策引导、单位和职工参与、市场运营管理、政府行政监督的补充养老保险"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="第三支柱:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="包括个人储蓄型养老保险和商业养老保险，是个人利用金融手段增加养老保障供给的有效形式。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="养老保险:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="主要目的是为保障老年人的基本生活需求，为其提供稳定可靠的生活来源。参保人在达到法定退休年龄、累计缴费满一定年限后，就可以按月领取养老金，以保障晚年生活"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="养老金待遇:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="参保人达到法定退休年龄，且累计缴纳养老保险满一定年限(如15 年)，可按月领取基本养老金，直至死亡。基本养老金由基础养老金、个人账户养老金和过渡性养老金组成。基础养老金与当地职工平均工资、缴费年限等有关;个人账户养老金是个人缴费及利息的积累除以一定的计发月数:过渡性养老金是对特定人在养老保险制度改革前的工作年限给予的补偿。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ylbx_funstion"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:padding="9dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="死亡待遇"
+            android:textColor="#ff333333"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_write_radius"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="丧葬费:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:text="用于安葬去世参保人的费用"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@mipmap/sh_zs" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="一次性抚恤费:"
+                        android:textColor="#ff333333"
+                        android:textSize="11sp" />¬
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="9dp"
+                    android:text="给予参保人家属的一次性抚慰金符合供养条件的直系亲属生活困难补助费:若参保人去世后，其直系亲属符合供养条件且生活困难，可按月领取补助费，直至供养直系亲属死亡。"
+                    android:textColor="#ff333333"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

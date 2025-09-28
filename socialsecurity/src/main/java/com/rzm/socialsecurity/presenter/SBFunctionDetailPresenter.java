@@ -18,19 +18,19 @@ public class SBFunctionDetailPresenter extends MvpPresenter<ISBFunctionDetailVie
         String result ="";
         switch (type){
             case 1:
-                result = "养老保险";
+                result = "养老保险作用";
                 break;
             case 2:
-                result = "医疗保险";
+                result = "医疗保险作用";
                 break;
             case 3:
-                result = "失业保险";
+                result = "失业保险作用";
                 break;
             case 4:
-                result = "工伤保险";
+                result = "工伤保险作用";
                 break;
             case 5:
-                result = "生育保险";
+                result = "生育保险作用";
                 break;
         }
         return result;

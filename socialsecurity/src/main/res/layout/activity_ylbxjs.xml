@@ -59,9 +59,9 @@
                     android:textSize="9sp" />
 
                 <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@mipmap/jfjs_gd" />
             </LinearLayout>
 
             <LinearLayout

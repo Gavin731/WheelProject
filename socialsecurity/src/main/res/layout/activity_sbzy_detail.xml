@@ -11,18 +11,23 @@
         android:id="@+id/header"
         layout="@layout/view_top" />
 
-    <TextView
-        android:id="@+id/iv_title"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/color_ef5b9c" />
+        android:layout_height="1px"
+        android:background="#E4E5E9" />
 
-    <LinearLayout
-        android:id="@+id/ll_desc"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </LinearLayout>

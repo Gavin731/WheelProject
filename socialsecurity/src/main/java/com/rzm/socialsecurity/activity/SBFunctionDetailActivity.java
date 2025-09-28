@@ -14,7 +14,7 @@ import com.rzm.socialsecurity.view.ISBFunctionDetailView;
 
 public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresenter>  implements ISBFunctionDetailView {
     public ImageView ivBack;
-    public TextView ivTitle;
+    public TextView tvTitle;
     public LinearLayout llDesc;
 
     @Override
@@ -38,10 +38,10 @@ public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresen
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
 
-        ivTitle = findViewById(R.id.iv_title);
+        tvTitle = findViewById(R.id.tv_title);
         llDesc = findViewById(R.id.ll_desc);
         int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
-        ivTitle.setText(presenter.getTitle(type));
+        tvTitle.setText(presenter.getTitle(type));
         View view = getDesc(type);
         llDesc.addView(view);
     }
