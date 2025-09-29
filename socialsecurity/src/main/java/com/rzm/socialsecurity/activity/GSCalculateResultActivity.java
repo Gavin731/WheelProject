@@ -70,9 +70,9 @@ public class GSCalculateResultActivity extends MvpActivity<GSCalculateResultPres
         BigDecimal bg3=new BigDecimal(zxkcMoney).setScale(2, RoundingMode.HALF_UP);// 专项扣除
         BigDecimal bg4 =new BigDecimal(5000).setScale(2, RoundingMode.HALF_UP);
         // 应纳税所得额
-        BigDecimal bg5 = bg1.subtract(bg2).subtract(bg3).subtract(bg4).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal bg5 = monthMoney > 5000 ? bg1.subtract(bg2).subtract(bg3).subtract(bg4).setScale(2, RoundingMode.HALF_UP) : new BigDecimal(0);
         // 应纳税额
-        BigDecimal bg6 = presenter.calculateSk(bg5);
+        BigDecimal bg6 = monthMoney > 5000 ? presenter.calculateSk(bg5) : new BigDecimal(0);
         // 本月扣除总额
         BigDecimal bg7 = bg6.add(bg2).setScale(2, RoundingMode.HALF_UP);
         // 本月税后所得

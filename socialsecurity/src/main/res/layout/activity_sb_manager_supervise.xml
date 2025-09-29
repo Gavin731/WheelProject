@@ -20,8 +20,9 @@
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:paddingEnd="30dp"
                 android:layout_marginStart="10dp"
                 android:src="@mipmap/sb_fh" />
         </LinearLayout>

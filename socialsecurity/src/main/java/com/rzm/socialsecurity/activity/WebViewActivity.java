@@ -109,7 +109,7 @@ public class WebViewActivity extends AppCompatActivity {
 //                view.loadUrl("file:///android_asset/error.html");
             }
         });
-        webView.loadUrl("http://www.baidu.com");
+        webView.loadUrl(type == 1 ? "https://ht.njrzm.com/static/yszc1" : "https://ht.njrzm.com/static/yhxy1");
     }
 
 }

@@ -498,6 +498,7 @@
                     android:textSize="9sp" />
 
                 <LinearLayout
+                    android:id="@+id/tv_jump_fragment3"
                     android:layout_width="match_parent"
                     android:layout_height="47dp"
                     android:layout_marginStart="8dp"
@@ -518,7 +519,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tv_jump_fragment3"
+
                         android:layout_width="50dp"
                         android:layout_height="13dp"
                         android:layout_marginStart="8dp"

@@ -1,5 +1,7 @@
 package com.rzm.socialsecurity.activity;
 
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,6 +43,7 @@ public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresen
         tvTitle = findViewById(R.id.tv_title);
         llDesc = findViewById(R.id.ll_desc);
         int type = getIntent().getIntExtra(ConstantConfig.bxKey, 1);
+        tvTitle.setVisibility(VISIBLE);
         tvTitle.setText(presenter.getTitle(type));
         View view = getDesc(type);
         llDesc.addView(view);
