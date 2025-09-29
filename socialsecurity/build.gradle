@@ -110,7 +110,10 @@ dependencies {
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelView:4.1.14'
     // 下载
     implementation 'com.liulishuo.filedownloader:library:1.7.7'
-
+    // 友盟
+    implementation 'com.umeng.umsdk:common:+'//必选
+    implementation 'com.umeng.umsdk:asms:+'//必选
+    implementation 'com.umeng.umsdk:apm:+'// U-APM产品包依赖，必选
 
 
     implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.3905.0'

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.common.wheel.BaseApplication;
@@ -11,6 +12,8 @@ import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InitCallback;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
+import com.rzm.socialsecurity.util.UMUtil;
+import com.umeng.commonsdk.UMConfigure;
 
 public class MyApp extends BaseApplication {
 
@@ -38,6 +41,7 @@ public class MyApp extends BaseApplication {
         AdvertisementManager.getInstance().initConfig("297ca176-e8ad-40e7-b39e-0926e16bf166", "192.168.1.0");
         Hawk.init(this).build();
         FileDownloader.setupOnApplicationOnCreate(this);
+        UMUtil.preInit(this);
     }
 
     private TTCustomController getTTCustomController() {

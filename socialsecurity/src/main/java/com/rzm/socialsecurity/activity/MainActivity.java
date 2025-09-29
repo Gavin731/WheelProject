@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.mvp.MvpActivity;
@@ -32,8 +33,11 @@ import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.custom.HomeTabItemView;
 import com.rzm.socialsecurity.presenter.MainPresenter;
+import com.rzm.socialsecurity.util.UMUtil;
 import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
@@ -56,6 +60,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                 showAppHintDialog();
             }
         }, 500);
+        BarUtils.setStatusBarLightMode(this, true);
     }
 
     @Override
@@ -243,6 +248,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         tvFindUserPrivacy.setOnClickListener(v1 -> {
                             if (isEit) {
                                 System.exit(0);
+                                MobclickAgent.onKillProcess(MainActivity.this);
                             } else {
                                 dialog.dismiss();
                                 showUserPrivacy2();
@@ -250,6 +256,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         });
                         TextView tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
+                            UMUtil.init(MainActivity.this);
                             Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
                             requestPermission();
                             dialog.dismiss();
@@ -329,6 +336,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         TextView tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
+                            UMUtil.init(MainActivity.this);
                             Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
                             requestPermission();
                         });
