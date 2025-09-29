@@ -3,12 +3,20 @@ package com.rzm.socialsecurity.activity;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
@@ -21,8 +29,9 @@ import com.rzm.socialsecurity.view.IOtherTaxationCalculateView;
 public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCalculatePresenter> implements IOtherTaxationCalculateView {
 
     public ImageView ivBack;
-    public TextView tvName, tvMoneyHint, tvCbHint;
+    public TextView tvMoneyHint, tvCbHint;
     public EditText tvMoney, etCb;
+    public LinearLayout llTop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +56,6 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
 
-        tvName = findViewById(R.id.tv_name);
-        tvName.setText(getHint(type));
         tvMoneyHint = findViewById(R.id.tv_money_hint);
         tvMoneyHint.setText(getHint2(type));
         tvMoney = findViewById(R.id.tv_money);
@@ -74,11 +81,38 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
             intent.putExtra(ConstantConfig.cbAmount, TextUtils.isEmpty(cbAmount) ? 0 : Float.parseFloat(cbAmount));
             startActivity(intent);
         });
+
+        llTop = findViewById(R.id.ll_top);
+        Glide.with(this).load(getTopBgDrawable(type)).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                llTop.setBackground(resource);
+            }
+        });
         if (type == 4) {
             tvCbHint.setVisibility(VISIBLE);
             etCb.setVisibility(VISIBLE);
         }
 
+    }
+
+    public Drawable getTopBgDrawable(int type) {
+        Drawable result = getDrawable(R.mipmap.bxjs_6lw);
+        switch (type) {
+            case 1:
+                result = getDrawable(R.mipmap.bxjs_6lw);
+                break;
+            case 2:
+                result = getDrawable(R.mipmap.bxjs_7nz);
+                break;
+            case 3:
+                result = getDrawable(R.mipmap.bxjs_8gx);
+                break;
+            case 4:
+                result = getDrawable(R.mipmap.bxjs_9sw);
+                break;
+        }
+        return result;
     }
 
     public String getHint(int type) {

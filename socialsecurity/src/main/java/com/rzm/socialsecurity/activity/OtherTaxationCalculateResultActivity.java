@@ -86,8 +86,8 @@ public class OtherTaxationCalculateResultActivity extends MvpActivity<OtherTaxat
         tvSk.setText(String.valueOf(bg2));
 
         TablelayoutUtil.addTableRow(this, tbLSl, titles,
-                tableData, getColor(R.color.gray), getColor(R.color.white),
-                220, 80);
+                tableData,getColor(R.color.color_fafafb), getColor(R.color.white),
+                200, 150);
     }
 
     public String getHint(int type) {

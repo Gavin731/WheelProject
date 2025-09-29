@@ -23,7 +23,7 @@ public class GSCalculateResultPresenter extends MvpPresenter<IGSCalculateResultV
         titles.add("级数");
         titles.add("全年应纳税\n所得额");
         titles.add("税率(%)");
-        titles.add("速算扣除数");
+        titles.add("速算\n扣除数");
 
         tableData.clear();
         List<String> row1=new ArrayList<>();

@@ -6,9 +6,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
@@ -20,8 +26,10 @@ import com.rzm.socialsecurity.view.ITaxGuideDetailView;
  */
 public class TaxGuideDetailActivity extends MvpActivity<TaxGuideDetailPresenter> implements ITaxGuideDetailView {
 
-    public ImageView ivBack, ivName;
-    public TextView tvTitle, tvName, tv_kcfw, tv_kcbz, tv_kcfs, tv_cjwt;
+    public ImageView ivBack;
+    public TextView tvTitle, tv_kcfw, tv_kcbz, tv_kcfs, tv_cjwt;
+    public LinearLayout llTop;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +53,16 @@ public class TaxGuideDetailActivity extends MvpActivity<TaxGuideDetailPresenter>
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
         tvTitle = findViewById(R.id.tv_title);
-        tvTitle.setVisibility(VISIBLE);
-        tvTitle.setText(presenter.getTitleName(type));
+        tvTitle.setText("专项扣除页面");
+//        tvTitle.setText(presenter.getTitleName(type));
 
-        tvName = findViewById(R.id.tv_name);
-        tvName.setText(presenter.getBXName(type));
-
-        ivName = findViewById(R.id.iv_name);
-        Glide.with(this).load(getBXNameImage(type)).into(ivName);
+        llTop = findViewById(R.id.ll_top);
+        Glide.with(this).load(getBXNameImage(type)).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                llTop.setBackground(resource);
+            }
+        });
 
         tv_kcfw = findViewById(R.id.tv_kcfw);
         tv_kcfw.setText(Html.fromHtml(presenter.getKcfw(type), Html.FROM_HTML_MODE_LEGACY));
@@ -65,28 +75,28 @@ public class TaxGuideDetailActivity extends MvpActivity<TaxGuideDetailPresenter>
     }
 
     public Drawable getBXNameImage(int type) {
-        Drawable result = getDrawable(R.mipmap.ic_launcher);
+        Drawable result = getDrawable(R.mipmap.banner1);
         switch (type) {
             case 1:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner1);
                 break;
             case 2:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner2);
                 break;
             case 3:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner3);
                 break;
             case 4:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner4);
                 break;
             case 5:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner5);
                 break;
             case 6:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner6);
                 break;
             case 7:
-                result = getDrawable(R.mipmap.ic_launcher);
+                result = getDrawable(R.mipmap.banner7);
                 break;
         }
         return result;

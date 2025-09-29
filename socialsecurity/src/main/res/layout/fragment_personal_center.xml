@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:text="社保个税计算"
+            android:text="@string/app_name"
             android:textColor="#ff333333"
             android:textSize="11sp" />
     </LinearLayout>
@@ -146,6 +146,7 @@
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/tv_cache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0MB"

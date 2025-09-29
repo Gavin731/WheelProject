@@ -39,9 +39,9 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
     public void initLaowu() {
         List<String> titles = new ArrayList<>();
         titles.add("级数");
-        titles.add("劳务报酬所得应税部分");
+        titles.add("劳务报酬所得\n应税部分");
         titles.add("税率(%)");
-        titles.add("速算扣除数");
+        titles.add("速算\n扣除数");
 
         tableData.clear();
         List<String> row1 = new ArrayList<>();
@@ -90,9 +90,9 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
     public void initNzj() {
         List<String> titles = new ArrayList<>();
         titles.add("级数");
-        titles.add("全年应纳税所得额");
+        titles.add("全年应纳税\n所得额");
         titles.add("税率(%)");
-        titles.add("速算扣除数");
+        titles.add("速算\n扣除数");
 
         tableData.clear();
         List<String> row1=new ArrayList<>();
@@ -178,9 +178,9 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
     public void initGxfh() {
         List<String> titles = new ArrayList<>();
         titles.add("级数");
-        titles.add("股息分红所得应税部分");
+        titles.add("股息分红所得\n应税部分");
         titles.add("税率(%)");
-        titles.add("速算扣除数");
+        titles.add("速算\n扣除数");
 
         tableData.clear();
         List<String> row1 = new ArrayList<>();
@@ -209,9 +209,9 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
     public void initGtjy() {
         List<String> titles = new ArrayList<>();
         titles.add("级数");
-        titles.add("全年应纳税所得额");
+        titles.add("全年应纳税\n所得额");
         titles.add("税率(%)");
-        titles.add("速算扣除数");
+        titles.add("速算\n扣除数");
 
         tableData.clear();
         List<String> row1 = new ArrayList<>();

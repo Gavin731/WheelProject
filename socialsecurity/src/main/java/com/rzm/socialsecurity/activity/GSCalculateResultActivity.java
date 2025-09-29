@@ -1,5 +1,7 @@
 package com.rzm.socialsecurity.activity;
 
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -23,7 +25,7 @@ public class GSCalculateResultActivity extends MvpActivity<GSCalculateResultPres
 
     public ImageView ivBack;
     public TableLayout tbLSl;
-    public TextView tvMoney, tvMoney1, tvSk, tvKc;
+    public TextView tvMoney, tvMoney1, tvSk, tvKc,tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,10 @@ public class GSCalculateResultActivity extends MvpActivity<GSCalculateResultPres
     @Override
     public void initView() {
         ivBack = findViewById(R.id.iv_back);
+        tvTitle = findViewById(R.id.tv_title);
         ivBack.setOnClickListener(v -> finish());
+        tvTitle.setText("税后工资计算");
+        tvTitle.setVisibility(VISIBLE);
 
         tbLSl=findViewById(R.id.tbL_sl);
         tvMoney = findViewById(R.id.tv_money);
@@ -78,7 +83,7 @@ public class GSCalculateResultActivity extends MvpActivity<GSCalculateResultPres
         tvKc.setText(String.valueOf(bg7));
 
         TablelayoutUtil.addTableRow(this, tbLSl,titles,
-                tableData,getColor(R.color.gray), getColor(R.color.white),
-                220, 80);
+                tableData,getColor(R.color.color_fafafb), getColor(R.color.white),
+                200, 150);
     }
 }
