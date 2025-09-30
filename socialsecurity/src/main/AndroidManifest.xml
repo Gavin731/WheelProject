@@ -49,8 +49,8 @@
 
         <activity
             android:name=".activity.SplashActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +61,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"/>
         <activity

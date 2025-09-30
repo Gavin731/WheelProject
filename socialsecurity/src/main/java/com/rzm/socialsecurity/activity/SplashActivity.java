@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.mvp.MvpActivity;
+import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.presenter.SplashPresenter;
 import com.rzm.socialsecurity.view.ISplashView;
@@ -39,6 +40,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
             @Override
             public void run() {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         }, 1000);
     }

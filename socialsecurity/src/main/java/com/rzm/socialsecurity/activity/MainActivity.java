@@ -247,8 +247,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         TextView tvFindUserPrivacy = v.findViewById(R.id.tv_find_user_privacy);
                         tvFindUserPrivacy.setOnClickListener(v1 -> {
                             if (isEit) {
-                                System.exit(0);
-                                MobclickAgent.onKillProcess(MainActivity.this);
+                                finish();
+                                android.os.Process.killProcess(android.os.Process.myPid());
+//                                MobclickAgent.onKillProcess(MainActivity.this);
                             } else {
                                 dialog.dismiss();
                                 showUserPrivacy2();
@@ -350,7 +351,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         startActivity(intent);
     }
 
-    public void requestPermission(){
+    public void requestPermission() {
         AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
