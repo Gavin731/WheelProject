@@ -89,7 +89,7 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
                 return;
             }
             if (Float.parseFloat(etCompanyText) > 20) {
-                showToast("单位缴纳比例最大不能超过20");
+                showToast("比例不能超过20");
                 return;
             }
             if (type == 4 || type == 5) {
@@ -100,7 +100,7 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
                     return;
                 }
                 if (Float.parseFloat(etPersonalText) > 20) {
-                    showToast("个人缴纳比例最大不能超过20");
+                    showToast("比例不能超过20");
                     return;
                 }
             }

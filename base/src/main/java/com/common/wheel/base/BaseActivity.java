@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.common.wheel.mvp.IBaseView;
 import com.common.wheel.util.ActivityManager;
+import com.common.wheel.util.ToastUtil;
 
 /**
  * @author: zenglinggui
@@ -42,8 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public void showToast(String message) {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        ToastUtil.showToast(this, message);
     }
 }

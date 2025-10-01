@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.common.wheel.mvp.IBaseView;
+import com.common.wheel.util.ToastUtil;
 
 /**
  * @author: zenglinggui
@@ -85,6 +86,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
 
     @Override
     public void showToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+        ToastUtil.showToast(getActivity(), message);
     }
 }
