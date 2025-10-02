@@ -1,6 +1,7 @@
 package com.rzm.socialsecurity.widget;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -23,15 +24,18 @@ public class CustomEditText extends androidx.appcompat.widget.AppCompatEditText 
     }
 
     private void init() {
-        // 保留光标，但禁用选择
-        setCursorVisible(true); // 重要：保留光标
+        // 确保光标可见
+        setCursorVisible(true);
+
+        // 禁用选择功能
         setTextIsSelectable(false);
         setLongClickable(false);
 
-        // 禁用选择操作
+        // 禁用选择操作模式
         setCustomSelectionActionModeCallback(disabledActionModeCallback);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        // 高版本API处理
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setCustomInsertionActionModeCallback(disabledActionModeCallback);
         }
     }
@@ -58,27 +62,23 @@ public class CustomEditText extends androidx.appcompat.widget.AppCompatEditText 
     };
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // 处理触摸事件，防止长按显示选择手柄
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            // 清除任何可能的选择
-            setSelection(getText().length());
-        }
-        return super.onTouchEvent(event);
-    }
-
-    @Override
     protected void onSelectionChanged(int selStart, int selEnd) {
         super.onSelectionChanged(selStart, selEnd);
 
-        // 如果检测到选择范围（selStart != selEnd），立即取消选择
+        // 防止出现选择范围
         if (selStart != selEnd) {
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    setSelection(getText().length());
-                }
-            });
+            setSelection(getText().length());
         }
+    }
+
+    @Override
+    public boolean onTextContextMenuItem(int id) {
+        // 拦截文本操作菜单
+        if (id == android.R.id.selectAll ||
+                id == android.R.id.copy ||
+                id == android.R.id.cut) {
+            return true; // 消费事件，不执行操作
+        }
+        return super.onTextContextMenuItem(id);
     }
 }

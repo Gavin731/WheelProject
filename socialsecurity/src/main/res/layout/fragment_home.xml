@@ -215,6 +215,9 @@
                     android:inputType="numberDecimal"
                     android:paddingStart="5dp"
                     android:textColor="#ff333333"
+                    android:textSelectHandle="@drawable/none_drawable"
+                    android:textSelectHandleRight="@drawable/none_drawable"
+                    android:textSelectHandleLeft="@drawable/none_drawable"
                     android:textColorHint="#ff999999"
                     android:textSize="10sp"/>
 
@@ -240,6 +243,9 @@
                     android:paddingStart="5dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
+                    android:textSelectHandle="@drawable/none_drawable"
+                    android:textSelectHandleRight="@drawable/none_drawable"
+                    android:textSelectHandleLeft="@drawable/none_drawable"
                     android:textSize="10sp" />
 
                 <LinearLayout

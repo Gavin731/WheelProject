@@ -1,14 +1,17 @@
 package com.common.wheel.base;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.common.wheel.mvp.IBaseView;
 import com.common.wheel.util.ActivityManager;
+import com.common.wheel.util.ImmersiveModeHelper;
 import com.common.wheel.util.ToastUtil;
 
 /**
@@ -32,6 +35,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
             setContentView(layoutResID);
             ActivityManager.getInstance().addActivity(this);
         }
+        ImmersiveModeHelper.setTransparentStatusBar(this);
+
     }
 
     @Override

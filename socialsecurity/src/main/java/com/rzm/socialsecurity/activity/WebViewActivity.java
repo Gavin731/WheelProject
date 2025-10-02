@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.common.wheel.util.ImmersiveModeHelper;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 
@@ -29,6 +30,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
+        ImmersiveModeHelper.setTransparentStatusBar(this);
         int type = getIntent().getIntExtra(ConstantConfig.webType, 1);
 
         ivBack = findViewById(R.id.iv_back);
