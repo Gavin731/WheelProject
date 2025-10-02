@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="61dp"
-        android:layout_height="61dp"
-        android:src="@mipmap/app_logo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="社保计算"
-        android:textColor="#ff222222"
-        android:textSize="14sp" />
+        <ImageView
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:src="@mipmap/app_logo" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="社保个税在线计算"
-        android:textColor="#ff999999"
-        android:textSize="11sp" />
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="社保计算"
+            android:textColor="#ff222222"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="社保个税在线计算"
+            android:textColor="#ff999999"
+            android:textSize="11sp" />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/splashContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

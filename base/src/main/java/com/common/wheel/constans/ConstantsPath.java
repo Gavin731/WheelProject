@@ -11,10 +11,19 @@ public interface ConstantsPath {
     String CRASH = "/CRASH";
 
     String global_ad_switch = "global_ad_switch"; // 全局广告开关
+    String is_global_ad_switch = "is_global_ad_switch"; // 全局广告开关
+
     String splash_ad_switch = "splash_ad_switch"; // 开屏广告开关
+    String is_splash_ad_switch = "is_splash_ad_switch"; // 开屏广告开关
+
     String interstitial_ad_switch = "interstitial_ad_switch"; // 插屏广告开关
+    String is_interstitial_ad_switch = "is_interstitial_ad_switch"; // 插屏广告开关
+
     String video_ad_switch = "video_ad_switch"; // 激励视频广告开关
+    String is_video_ad_switch = "is_video_ad_switch"; // 激励视频广告开关
+
     String feeds_ad_switch = "feeds_ad_switch"; // 信息流广告开关
+    String is_feeds_ad_switch = "is_feeds_ad_switch"; // 信息流广告开关
 
     String interstitial_perss_ad_config = "interstitial_perss_ad_config"; // 插屏广告诱导设置
     String interstitial_perss_ad_config_value = "interstitial_perss_ad_config_value"; // 插屏广告诱导设置

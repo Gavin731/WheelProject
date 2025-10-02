@@ -22,17 +22,20 @@ import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.common.wheel.admanager.AdvertisementManager;
+import com.common.wheel.admanager.InitCallback;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.mvp.MvpActivity;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBackgroundMaskClickListener;
 import com.kongzue.dialogx.interfaces.OnBindView;
 import com.orhanobut.hawk.Hawk;
+import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.custom.HomeTabItemView;
 import com.rzm.socialsecurity.presenter.MainPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
 import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
@@ -257,10 +260,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         });
                         TextView tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
-                            UMUtil.init(MainActivity.this);
-                            Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
-                            requestPermission();
                             dialog.dismiss();
+                            confirmUserPrivacy();
                         });
                     }
                 }).show();
@@ -337,12 +338,32 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         TextView tvOkUserPrivacy = v.findViewById(R.id.tv_ok_user_privacy);
                         tvOkUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
-                            UMUtil.init(MainActivity.this);
-                            Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
-                            requestPermission();
+                            confirmUserPrivacy();
                         });
                     }
                 }).show();
+    }
+
+    public void confirmUserPrivacy(){
+        Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
+        requestPermission();
+        UMUtil.init(MainActivity.this);
+        if (!MyApp.getInstance().getAdInit()) {
+            ADUtil.initAdManager(getApplicationContext(), new InitCallback() {
+                @Override
+                public void success() {
+                    MyApp.getInstance().setAdInit(true);
+                    // 展示广告
+                }
+
+                @Override
+                public void error() {
+                    MyApp.getInstance().setAdInit(false);
+                }
+            });
+        }else{
+            // 展示广告
+        }
     }
 
     public void showWebView(int type) {

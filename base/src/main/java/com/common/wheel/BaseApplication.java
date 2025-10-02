@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 public class BaseApplication extends Application {
 
     private static BaseApplication baseApplication;
+    public boolean adInit=false;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -44,5 +45,13 @@ public class BaseApplication extends Application {
      */
     private void initSharedPreferences() {
         Hawk.init(this).build();
+    }
+
+    public void setAdInit(boolean adInit){
+        this.adInit=adInit;
+    }
+
+    public boolean getAdInit(){
+        return adInit;
     }
 }

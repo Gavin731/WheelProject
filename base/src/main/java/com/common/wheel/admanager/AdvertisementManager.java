@@ -54,9 +54,18 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
+    public void initConfig(String oaid, String publicIP, String url) {
+        Hawk.put("url", url);
+        initAd(oaid, publicIP);
+    }
+
     public void initConfig(String oaid, String publicIP) {
-        Hawk.init(context).build();
         Hawk.put("url", context.getResources().getString(R.string.base_url));
+        initAd(oaid, publicIP);
+    }
+
+    private void initAd(String oaid, String publicIP) {
+        Hawk.init(context).build();
         String token = Hawk.get("token") == null ? "" : Hawk.get("token").toString();
         Hawk.put("oaid", oaid);
         Hawk.put("publicIP", publicIP);
@@ -89,7 +98,7 @@ public class AdvertisementManager {
                 //初始化成功
                 //在初始化成功回调之后进行广告加载
                 Log.e(TAG, "初始化成功");
-                if(callback!=null){
+                if (callback != null) {
                     callback.success();
                 }
             }
@@ -98,7 +107,7 @@ public class AdvertisementManager {
             public void fail(int i, String s) {
                 //初始化失败
                 Log.e(TAG, "初始化失败");
-                if(callback!=null){
+                if (callback != null) {
                     callback.error();
                 }
             }
@@ -184,34 +193,34 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        InterstitialAdManager.getInstance().preload(activity,this.projectId, codeId, callback);
+        InterstitialAdManager.getInstance().preload(activity, this.projectId, codeId, callback);
     }
 
     /**
      * 插屏广告
      */
     public void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
-        ApiService.addLog(activity,"info","准备获取插屏广告");
+        ApiService.addLog(activity, "info", "准备获取插屏广告");
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
-            ApiService.addLog(activity,"error","SDK没有初始化");
+            ApiService.addLog(activity, "error", "SDK没有初始化");
             return;
         }
-        if(!Hawk.isBuilt()){
+        if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
 
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if ("0".equals(valid_user_flag_value)) {
-            if(callback != null){
+            if (callback != null) {
                 Log.i(TAG, "无效用户，获取插屏广告失败");
-                ApiService.addLog(activity,"error","无效用户，获取插屏广告失败");
+                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
                 callback.onAdClose();
             }
             return;
         }
-        ApiService.addLog(activity,"info","开始获取插屏广告");
-        InterstitialAdManager.getInstance().showAd(activity,this.projectId, codeId, callback);
+        ApiService.addLog(activity, "info", "开始获取插屏广告");
+        InterstitialAdManager.getInstance().showAd(activity, this.projectId, codeId, callback);
     }
 
     /**
@@ -222,10 +231,10 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        if(!Hawk.isBuilt()){
+        if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
-        InformationFlowManager.getInstance().loadNativeAd(activity,this.projectId, codeId, splashContainer, width, height, callback);
+        InformationFlowManager.getInstance().loadNativeAd(activity, this.projectId, codeId, splashContainer, width, height, callback);
     }
 
     /**
@@ -236,7 +245,7 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        if(!Hawk.isBuilt()){
+        if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
         OpenScreenAdManager.getInstance().loadSplashAd(act, this.projectId, codeId, splashContainer, width, height, callBack);
@@ -254,12 +263,12 @@ public class AdvertisementManager {
             Log.i(TAG, "SDK没有初始化");
             return;
         }
-        if(!Hawk.isBuilt()){
+        if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if ("0".equals(valid_user_flag_value)) {
-            if(listener != null){
+            if (listener != null) {
                 Log.i(TAG, "无效用户，获取激励广告失败");
                 listener.onAdClose();
             }
