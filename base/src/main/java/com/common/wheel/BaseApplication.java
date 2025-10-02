@@ -20,6 +20,7 @@ public class BaseApplication extends Application {
 
     private static BaseApplication baseApplication;
     public boolean adInit=false;
+    public boolean isSplash=false;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -53,5 +54,13 @@ public class BaseApplication extends Application {
 
     public boolean getAdInit(){
         return adInit;
+    }
+
+    public boolean isSplash() {
+        return isSplash;
+    }
+
+    public void setSplash(boolean splash) {
+        isSplash = splash;
     }
 }

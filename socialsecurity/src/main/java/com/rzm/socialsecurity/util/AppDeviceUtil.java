@@ -1,5 +1,8 @@
 package com.rzm.socialsecurity.util;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.common.wheel.util.ExceptionUtil;
+
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -29,10 +32,10 @@ public class AppDeviceUtil {
             String ip = jsonObject.getString("origin");
             return ip;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            LogUtils.e(ExceptionUtil.getStackTrace(e));
         } finally {
             urlConnection.disconnect();
         }
-
+        return "";
     }
 }

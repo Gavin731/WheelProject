@@ -15,4 +15,11 @@ public interface ConstantConfig {
     String amount ="amount"; // 金额
     String cbAmount ="cbAmount"; // 成本金额
     String webType ="webType"; // web类型
+
+    String AD_PROJECT="5744513"; // 项目id
+    String PROJECT_NAME = "社保个税管家";
+    String AD_SPLASH="103656025"; // 开屏
+    String AD_Interstitial="103656207";
+    String AD_INFO="103655294";
+    String AD_Reward="103653498";
 }

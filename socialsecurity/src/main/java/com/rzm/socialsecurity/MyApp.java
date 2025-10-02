@@ -8,13 +8,18 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.BaseApplication;
 import com.common.wheel.admanager.InitCallback;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.activity.SplashActivity;
+import com.rzm.socialsecurity.entity.SplashEventEntity;
+import com.rzm.socialsecurity.entity.SplashEventEntity2;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class MyApp extends BaseApplication {
 
@@ -29,19 +34,24 @@ public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Hawk.init(this).build();
+        Hawk.put("url", getResources().getString(R.string.app_url));
         // 获取信息是否可以上报
         ADUtil.getKey(this, new InitCallback() {
             @Override
             public void success() {
                 setAdInit(true);
+                EventBus.getDefault().post(new SplashEventEntity(true));
             }
 
             @Override
             public void error() {
-                setAdInit(true);
+                setAdInit(false);
+                EventBus.getDefault().post(new SplashEventEntity(false));
             }
         });
-        Hawk.init(this).build();
+
         FileDownloader.setupOnApplicationOnCreate(this);
         UMUtil.preInit(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
@@ -86,6 +96,11 @@ public class MyApp extends BaseApplication {
     }
 
     public void resetApp() {
+        if(isSplash){
+            return;
+        }
+        LogUtils.e("1开始获取开屏广告111");
+        EventBus.getDefault().postSticky(new SplashEventEntity2(true));
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

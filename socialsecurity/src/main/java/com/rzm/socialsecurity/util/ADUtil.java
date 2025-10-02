@@ -35,6 +35,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
+import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.commonsdk.listener.OnGetOaidListener;
 
@@ -49,8 +50,6 @@ import io.reactivex.schedulers.Schedulers;
 public class ADUtil {
 
     public static String TAG = "ADUtil";
-    public static String PROJECT_ID = "5744513";
-    public static String PROJECT_NAME = "社保个税管家";
 
     public static void getKey(Context context, InitCallback callback) {
         HashMap<String, Object> requestParams = new HashMap<>();
@@ -66,6 +65,8 @@ public class ADUtil {
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
                             isPostEnvInfo(context, callback);
+                        }else{
+                            callback.error();
                         }
                         return true;
                     }
@@ -77,6 +78,7 @@ public class ADUtil {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.i("", "token error:" + ExceptionUtil.getStackTrace(throwable));
+//                        callback.error();
                     }
                 });
     }
@@ -107,6 +109,8 @@ public class ADUtil {
                             String data = resultBean.getData().toString();
                             if ("true".equals(data)) {
                                 initAdManager(context, callback);
+                            }else{
+                                callback.error();
                             }
                         }
                         return null;
@@ -283,7 +287,7 @@ public class ADUtil {
                     @Override
                     public void onGetOaid(String s) {
                         LogUtils.e("oaid地址是：" + s);
-                        AdvertisementManager.getInstance().init(context, PROJECT_ID, PROJECT_NAME, callback, getTTCustomController());
+                        AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
                         AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url));
 //                        postEnvInfo(context);
                         // 获取app配置
@@ -369,14 +373,17 @@ public class ADUtil {
     public static void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
         if (!MyApp.getInstance().getAdInit()) {
             Log.i(TAG, "SDK没有初始化");
+            callback.onAdClose();
             return;
         }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
+            callback.onAdClose();
             return;
         }
         boolean is_interstitial_ad_switch = Hawk.get(ConstantsPath.is_interstitial_ad_switch, false);
         if (!is_interstitial_ad_switch) {
+            callback.onAdClose();
             return;
         }
         AdvertisementManager.getInstance().showInterstitialAd(activity, codeId, callback);
@@ -388,14 +395,17 @@ public class ADUtil {
     public static void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height, boolean isConfig, InformationFlowAdCallback callback) {
         if (!MyApp.getInstance().getAdInit()) {
             Log.i(TAG, "SDK没有初始化");
+            callback.onError();
             return;
         }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
+            callback.onError();
             return;
         }
         boolean is_feeds_ad_switch = Hawk.get(ConstantsPath.is_feeds_ad_switch, false);
         if (isConfig && !is_feeds_ad_switch) {
+            callback.onError();
             return;
         }
         AdvertisementManager.getInstance().showInfoFlowAd(activity, codeId, splashContainer, width, height, callback);
@@ -407,16 +417,20 @@ public class ADUtil {
     public static void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
         if (!MyApp.getInstance().getAdInit()) {
             Log.i(TAG, "SDK没有初始化");
+            callBack.onAdClose();
             return;
         }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
+            callBack.onAdClose();
             return;
         }
         boolean is_splash_ad_switch = Hawk.get(ConstantsPath.is_splash_ad_switch, false);
         if (!is_splash_ad_switch) {
+            callBack.onAdClose();
             return;
         }
+        LogUtils.e("开始获取开屏广告2");
         AdvertisementManager.getInstance().showOpenScreenAd(act, codeId, splashContainer, width, height, callBack);
     }
 
@@ -430,14 +444,17 @@ public class ADUtil {
     public static void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
         if (!MyApp.getInstance().getAdInit()) {
             Log.i(TAG, "SDK没有初始化");
+            listener.onAdClose();
             return;
         }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
+            listener.onAdClose();
             return;
         }
         boolean is_video_ad_switch = Hawk.get(ConstantsPath.is_video_ad_switch, false);
         if (!is_video_ad_switch) {
+            listener.onAdClose();
             return;
         }
         AdvertisementManager.getInstance().showRewardAd(act, codeId, listener);

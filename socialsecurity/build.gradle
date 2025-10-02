@@ -114,6 +114,8 @@ dependencies {
     implementation 'com.umeng.umsdk:common:+'//必选
     implementation 'com.umeng.umsdk:asms:+'//必选
     implementation 'com.umeng.umsdk:apm:+'// U-APM产品包依赖，必选
+    // eventbus
+    implementation 'org.greenrobot:eventbus:3.3.1'
 
 
     implementation 'com.maven.local:Baidu_MobAds_SDK_v9.37:9.3905.0'

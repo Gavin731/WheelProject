@@ -53,3 +53,5 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+
+-keep class com.rzm.socialsecurity.entity.** {*;}
