@@ -25,92 +25,111 @@
                 android:id="@+id/iv_back"
                 android:layout_width="43dp"
                 android:layout_height="43dp"
-                android:paddingEnd="30dp"
                 android:layout_marginStart="10dp"
+                android:paddingEnd="30dp"
                 android:src="@mipmap/sb_fh" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_money_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="劳务报酬金额"
-        android:textColor="#ff333333"
-        android:textSize="9sp" />
-
-
-    <EditText
-        android:id="@+id/tv_money"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/edit_bg"
-        android:hint="请输入劳务报错金额（元）"
-        android:inputType="numberDecimal"
-        android:paddingStart="5dp"
-        android:textColor="#ff333333"
-        android:textColorHint="#ff999999"
-        android:textSize="10sp" />
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-    <TextView
-        android:id="@+id/tv_cb_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="成本、费用及损失金额"
-        android:textColor="#ff333333"
-        android:textSize="9sp"
-        android:visibility="gone" />
-
-
-    <EditText
-        android:id="@+id/et_cb"
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/edit_bg"
-        android:hint="请输入成本、费用及损失金额（元）"
-        android:inputType="numberDecimal"
-        android:paddingStart="5dp"
-        android:textColor="#ff333333"
-        android:textColorHint="#ff999999"
-        android:textSize="10sp"
-        android:visibility="gone" />
-
-
-    <LinearLayout
-        android:id="@+id/tv_calculate"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/btn_bg"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:src="@mipmap/sy_ksjs" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:gravity="center"
-            android:text="开始计算"
-            android:textColor="#ffffffff"
-            android:textSize="11sp" />
-    </LinearLayout>
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tv_money_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="劳务报酬金额"
+                android:textColor="#ff333333"
+                android:textSize="9sp" />
+
+
+            <EditText
+                android:id="@+id/tv_money"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/edit_bg"
+                android:hint="请输入劳务报错金额（元）"
+                android:inputType="numberDecimal"
+                android:paddingStart="5dp"
+                android:textColor="#ff333333"
+                android:textColorHint="#ff999999"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_cb_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="成本、费用及损失金额"
+                android:textColor="#ff333333"
+                android:textSize="9sp"
+                android:visibility="gone" />
+
+
+            <EditText
+                android:id="@+id/et_cb"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/edit_bg"
+                android:hint="请输入成本、费用及损失金额（元）"
+                android:inputType="numberDecimal"
+                android:paddingStart="5dp"
+                android:textColor="#ff333333"
+                android:textColorHint="#ff999999"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/tv_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@mipmap/sy_ksjs" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:text="开始计算"
+                    android:textColor="#ffffffff"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_info_ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

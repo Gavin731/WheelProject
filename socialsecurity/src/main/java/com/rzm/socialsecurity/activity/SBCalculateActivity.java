@@ -2,13 +2,17 @@ package com.rzm.socialsecurity.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.SBCalculatePresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.ISBCalculateView;
 
 import java.math.BigDecimal;
@@ -53,5 +57,32 @@ public class SBCalculateActivity extends MvpActivity<SBCalculatePresenter>  impl
         tv_month_money.setText(String.valueOf(bg1));
         tv_sb_money.setText(String.valueOf(bg2));
         tv_money.setText(String.valueOf(bg3));
+        FrameLayout flInfoAd=findViewById(R.id.fl_info_ad);
+        ADUtil.showInfoFlowAd(this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
     }
 }

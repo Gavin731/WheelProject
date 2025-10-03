@@ -54,13 +54,15 @@ public class AdvertisementManager {
         get().requestPermissionIfNecessary(context);
     }
 
-    public void initConfig(String oaid, String publicIP, String url) {
+    public void initConfig(String oaid, String publicIP, String url, String appVersionName) {
         Hawk.put("url", url);
+        Hawk.put("appVersionName", appVersionName);
         initAd(oaid, publicIP);
     }
 
-    public void initConfig(String oaid, String publicIP) {
+    public void initConfig(String oaid, String publicIP, String appVersionName) {
         Hawk.put("url", context.getResources().getString(R.string.base_url));
+        Hawk.put("appVersionName", appVersionName);
         initAd(oaid, publicIP);
     }
 
@@ -207,21 +209,22 @@ public class AdvertisementManager {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
             ApiService.addLog(activity, "error", "SDK没有初始化");
+            callback.onAdClose();
             return;
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
 
-        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
-        if ("0".equals(valid_user_flag_value)) {
-            if (callback != null) {
-                Log.i(TAG, "无效用户，获取插屏广告失败");
-                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
-                callback.onAdClose();
-            }
-            return;
-        }
+//        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+//        if ("0".equals(valid_user_flag_value)) {
+//            if (callback != null) {
+//                Log.i(TAG, "无效用户，获取插屏广告失败");
+//                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
+//                callback.onAdClose();
+//            }
+//            return;
+//        }
         ApiService.addLog(activity, "info", "开始获取插屏广告");
         InterstitialAdManager.getInstance().showAd(activity, this.projectId, codeId, callback);
     }
@@ -232,6 +235,7 @@ public class AdvertisementManager {
     public void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
+            callback.onError();
             return;
         }
         if (!Hawk.isBuilt()) {
@@ -246,6 +250,7 @@ public class AdvertisementManager {
     public void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
+            callBack.onAdClose();
             return;
         }
         if (!Hawk.isBuilt()) {
@@ -264,19 +269,20 @@ public class AdvertisementManager {
     public void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
+            listener.onAdClose();
             return;
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
-        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
-        if ("0".equals(valid_user_flag_value)) {
-            if (listener != null) {
-                Log.i(TAG, "无效用户，获取激励广告失败");
-                listener.onAdClose();
-            }
-            return;
-        }
+//        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+//        if ("0".equals(valid_user_flag_value)) {
+//            if (listener != null) {
+//                Log.i(TAG, "无效用户，获取激励广告失败");
+//                listener.onAdClose();
+//            }
+//            return;
+//        }
 
         RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
     }

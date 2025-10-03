@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,12 +16,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.common.wheel.admanager.InformationFlowAdCallback;
+import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
@@ -32,6 +36,7 @@ import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.HomePresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IAView;
 
 /**
@@ -51,6 +56,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye, tvGoPage1, tvGoPage2;
     public ImageView ivTop;
     public EditText etMonthMoney, etSbMoney, etGsMonthMoney, etGsSbMoney, etGsZxkcMoney;
+    public FrameLayout flInfoAd;
 
     public static HomeFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -143,10 +149,52 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
                 showToast("请先填写社保个人部分");
                 return;
             }
+
             Intent intent = new Intent(getActivity(), SBCalculateActivity.class);
             intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));
             intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
             startActivity(intent);
+            ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
+                @Override
+                public void onAdClose() {
+
+                }
+
+                @Override
+                public void onVideoComplete() {
+
+                }
+
+                @Override
+                public void onAdVideoBarClick() {
+
+                }
+
+                @Override
+                public void onVideoError() {
+
+                }
+
+                @Override
+                public void onRewardArrived() {
+
+                }
+
+                @Override
+                public void onSkippedVideo() {
+
+                }
+
+                @Override
+                public void onAdShow() {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
         });
         tvGoPage1 = view.findViewById(R.id.tv_goPage1);
         tvGoPage1.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBFunctionActivity.class)));
@@ -176,6 +224,47 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
             intent.putExtra(ConstantConfig.zxkcMoney, Float.parseFloat(zxkcMoney));
             startActivity(intent);
+            ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
+                @Override
+                public void onAdClose() {
+
+                }
+
+                @Override
+                public void onVideoComplete() {
+
+                }
+
+                @Override
+                public void onAdVideoBarClick() {
+
+                }
+
+                @Override
+                public void onVideoError() {
+
+                }
+
+                @Override
+                public void onRewardArrived() {
+
+                }
+
+                @Override
+                public void onSkippedVideo() {
+
+                }
+
+                @Override
+                public void onAdShow() {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
         });
 
         view.findViewById(R.id.tv_zxfjkc).setOnClickListener(v -> startActivity(new Intent(getActivity(), CalculateZXFJKCActivity.class)));
@@ -183,6 +272,33 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             ((MainActivity)getActivity()).jumpCurrentPage(2);
         });
 
+        flInfoAd=view.findViewById(R.id.fl_info_ad_home);
+        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
     }
 
     public void jumpCalculatePage(int type) {

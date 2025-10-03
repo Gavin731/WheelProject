@@ -2,8 +2,13 @@ package com.rzm.socialsecurity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.PathUtils;
+import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.InfoAdCallBack;
+import com.common.wheel.admanager.InformationFlowAdCallback;
+import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.mvp.MvpFragment;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
@@ -12,6 +17,7 @@ import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.TaxGuideDetailActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.TaxGuidePresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IBView;
 
 /**
@@ -20,6 +26,7 @@ import com.rzm.socialsecurity.view.IBView;
 public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements IBView {
 
     private static final String ARG_C = "content";
+    public boolean isShow=false;
 
     public static TaxGuideFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -40,6 +47,84 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && !isShow){
+            isShow = true;
+            ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onLoadSuccess() {
+
+                }
+
+                @Override
+                public void onStartShow() {
+
+                }
+
+                @Override
+                public void onAdShow() {
+
+                }
+
+                @Override
+                public void onAdVideoBarClick() {
+
+                }
+
+                @Override
+                public void onAdClose() {
+
+                }
+
+                @Override
+                public void onVideoComplete() {
+
+                }
+
+                @Override
+                public void onSkippedVideo() {
+
+                }
+            });
+        }
+        if(isVisibleToUser){
+            FrameLayout fl_info_ad= view.findViewById(R.id.fl_info_ad_tax);
+            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onFeedAdLoad() {
+
+                }
+
+                @Override
+                public void onRenderSuccess() {
+
+                }
+
+                @Override
+                public void onAdClick() {
+
+                }
+
+                @Override
+                public void onRenderFail() {
+
+                }
+            });
+        }
+    }
+
+    @Override
     public void lazyLoad() {
 
     }
@@ -53,7 +138,50 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
         view.findViewById(R.id.ll_znjy).setOnClickListener(v->jumpDetail(5));
         view.findViewById(R.id.ll_zfdk).setOnClickListener(v->jumpDetail(6));
         view.findViewById(R.id.ll_yyrzg).setOnClickListener(v->jumpDetail(7));
-        view.findViewById(R.id.tv_download).setOnClickListener(v->download());
+        view.findViewById(R.id.tv_download).setOnClickListener(v->{
+            ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
+                @Override
+                public void onAdClose() {
+                    download();
+                }
+
+                @Override
+                public void onVideoComplete() {
+
+                }
+
+                @Override
+                public void onAdVideoBarClick() {
+
+                }
+
+                @Override
+                public void onVideoError() {
+
+                }
+
+                @Override
+                public void onRewardArrived() {
+
+                }
+
+                @Override
+                public void onSkippedVideo() {
+
+                }
+
+                @Override
+                public void onAdShow() {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+        });
+
     }
 
     public void jumpDetail(int type){

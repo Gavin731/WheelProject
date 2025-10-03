@@ -2,17 +2,24 @@ package com.rzm.socialsecurity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
+import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.InfoAdCallBack;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.OtherTaxationCalculateActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.ToolPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IBView;
 
 public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     private static final String ARG_C = "content";
+    public boolean isShow=false;
+
 
     public static ToolFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -25,6 +32,84 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     @Override
     public ToolPresenter createPresenter() {
         return new ToolPresenter();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && !isShow){
+            isShow = true;
+            ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onLoadSuccess() {
+
+                }
+
+                @Override
+                public void onStartShow() {
+
+                }
+
+                @Override
+                public void onAdShow() {
+
+                }
+
+                @Override
+                public void onAdVideoBarClick() {
+
+                }
+
+                @Override
+                public void onAdClose() {
+
+                }
+
+                @Override
+                public void onVideoComplete() {
+
+                }
+
+                @Override
+                public void onSkippedVideo() {
+
+                }
+            });
+        }
+        if(isVisibleToUser){
+            FrameLayout fl_info_ad= view.findViewById(R.id.fl_info_ad_tool);
+            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onFeedAdLoad() {
+
+                }
+
+                @Override
+                public void onRenderSuccess() {
+
+                }
+
+                @Override
+                public void onAdClick() {
+
+                }
+
+                @Override
+                public void onRenderFail() {
+
+                }
+            });
+        }
     }
 
     @Override
@@ -49,6 +134,7 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
         view.findViewById(R.id.ll_nzj).setOnClickListener(v -> jumpOtherCalculatePage(2));
         view.findViewById(R.id.ll_gxfh).setOnClickListener(v -> jumpOtherCalculatePage(3));
         view.findViewById(R.id.ll_gtjy).setOnClickListener(v -> jumpOtherCalculatePage(4));
+
     }
 
     public void jumpCalculatePage(int type) {

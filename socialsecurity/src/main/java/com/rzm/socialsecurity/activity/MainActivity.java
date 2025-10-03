@@ -12,24 +12,26 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.AdvertisementManager;
+import com.common.wheel.admanager.InfoAdCallBack;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.admanager.InitCallback;
-import com.common.wheel.constans.ConstantsPath;
+import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBackgroundMaskClickListener;
 import com.kongzue.dialogx.interfaces.OnBindView;
 import com.orhanobut.hawk.Hawk;
-import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
@@ -39,8 +41,6 @@ import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
 import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.commonsdk.UMConfigure;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
@@ -51,7 +51,6 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     PageNavigationView pnvTab;
     NoTouchViewPager vpMain;
-    boolean isShow = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,9 +59,10 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                showAppHintDialog();
+                showInterstitialAd(1);
             }
-        }, 500);
+        }, 100);
+
         BarUtils.setStatusBarLightMode(this, true);
     }
 
@@ -158,14 +158,82 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         ImageView tv = v.findViewById(R.id.iv_close);
                         tv.setOnClickListener(v1 -> {
                             dialog.dismiss();
-                            showUserPrivacy(false);
+                            showInterstitialAd(2);
                         });
 
                         LinearLayout tvShowUserPrivacy = v.findViewById(R.id.tv_showUserPrivacy);
                         tvShowUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
                             Hawk.put(ConstantConfig.isShowAppDialog, true);
-                            showUserPrivacy(false);
+                            showInterstitialAd(2);
+                            ADUtil.showRewardAd(MainActivity.this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
+                                @Override
+                                public void onAdClose() {
+
+                                }
+
+                                @Override
+                                public void onVideoComplete() {
+
+                                }
+
+                                @Override
+                                public void onAdVideoBarClick() {
+
+                                }
+
+                                @Override
+                                public void onVideoError() {
+
+                                }
+
+                                @Override
+                                public void onRewardArrived() {
+
+                                }
+
+                                @Override
+                                public void onSkippedVideo() {
+
+                                }
+
+                                @Override
+                                public void onAdShow() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+
+                                }
+                            });
+                        });
+                        FrameLayout flInfoAd=v.findViewById(R.id.fl_info_ad);
+                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 800, true, new InformationFlowAdCallback() {
+                            @Override
+                            public void onError() {
+
+                            }
+
+                            @Override
+                            public void onFeedAdLoad() {
+
+                            }
+
+                            @Override
+                            public void onRenderSuccess() {
+
+                            }
+
+                            @Override
+                            public void onAdClick() {
+
+                            }
+
+                            @Override
+                            public void onRenderFail() {
+
+                            }
                         });
                     }
                 }).show();
@@ -263,6 +331,33 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                             dialog.dismiss();
                             confirmUserPrivacy();
                         });
+                        FrameLayout flInfoAd=v.findViewById(R.id.fl_info_ad);
+                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 800, true, new InformationFlowAdCallback() {
+                            @Override
+                            public void onError() {
+
+                            }
+
+                            @Override
+                            public void onFeedAdLoad() {
+
+                            }
+
+                            @Override
+                            public void onRenderSuccess() {
+
+                            }
+
+                            @Override
+                            public void onAdClick() {
+
+                            }
+
+                            @Override
+                            public void onRenderFail() {
+
+                            }
+                        });
                     }
                 }).show();
     }
@@ -353,6 +448,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                 @Override
                 public void success() {
                     // 展示广告
+                    showInterstitialAd(3);
                 }
 
                 @Override
@@ -361,7 +457,64 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
             });
         }else{
             // 展示广告
+            showInterstitialAd(3);
         }
+    }
+
+    public void showInterstitialAd(int type){
+        ADUtil.showInterstitialAd(this, ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onLoadSuccess() {
+
+            }
+
+            @Override
+            public void onStartShow() {
+
+            }
+
+            @Override
+            public void onAdShow() {
+
+            }
+
+            @Override
+            public void onAdVideoBarClick() {
+
+            }
+
+            @Override
+            public void onAdClose() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (type){
+                            case 1:
+                                showAppHintDialog();
+                                break;
+                            case 2:
+                                showUserPrivacy(false);
+                                break;
+                        }
+                    }
+                }, 100);
+            }
+
+            @Override
+            public void onVideoComplete() {
+
+            }
+
+            @Override
+            public void onSkippedVideo() {
+
+            }
+        });
     }
 
     public void showWebView(int type) {

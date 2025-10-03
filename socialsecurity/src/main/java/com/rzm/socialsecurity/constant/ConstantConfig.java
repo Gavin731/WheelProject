@@ -19,7 +19,7 @@ public interface ConstantConfig {
     String AD_PROJECT="5744513"; // 项目id
     String PROJECT_NAME = "社保个税管家";
     String AD_SPLASH="103656025"; // 开屏
-    String AD_Interstitial="103656207";
-    String AD_INFO="103655294";
-    String AD_Reward="103653498";
+    String AD_Interstitial="103656207";// 插屏
+    String AD_INFO="103655294";// 信息流
+    String AD_Reward="103653498";// 激励
 }

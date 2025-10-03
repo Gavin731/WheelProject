@@ -50,5 +50,5 @@ public interface ConstantsPath {
     String 	is_upload_log = "is_upload_log";// 是否上传日志
     String 	is_upload_log_value = "is_upload_log_value";
 
-    String appVersion = "1.3.1";
+//    String appVersion = "1.3.1";
 }

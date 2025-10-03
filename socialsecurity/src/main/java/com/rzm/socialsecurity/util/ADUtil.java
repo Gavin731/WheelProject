@@ -33,6 +33,7 @@ import com.common.wheel.util.ExceptionUtil;
 import com.common.wheel.util.GsonUtil;
 import com.google.gson.internal.LinkedTreeMap;
 import com.orhanobut.hawk.Hawk;
+import com.rzm.socialsecurity.BuildConfig;
 import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
@@ -98,7 +99,7 @@ public class ADUtil {
     protected static void isPostEnvInfo(Context context, InitCallback callback) {
         String token = Hawk.get("token");
         HashMap<String, Object> params = new HashMap<>();
-        params.put("appVersion", ConstantsPath.appVersion);
+        params.put("appVersion", BuildConfig.VERSION_NAME);
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_report_config_query");
@@ -235,7 +236,7 @@ public class ADUtil {
         params.put("rootState", isRoot ? 1 : 0);
         params.put("adbState", isAdb ? 1 : 0);
         params.put("agentState", isDl ? 1 : 0);
-        params.put("appVersion", ConstantsPath.appVersion);
+        params.put("appVersion", BuildConfig.VERSION_NAME);
 
 
         HashMap<String, Object> requestParams = new HashMap<>();
@@ -294,7 +295,7 @@ public class ADUtil {
                     public void onGetOaid(String s) {
                         LogUtils.e("oaid地址是：" + s);
                         AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
-                        AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url));
+                        AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
 //                        postEnvInfo(context);
                         // 获取app配置
                         requestConfig(context);
@@ -439,10 +440,10 @@ public class ADUtil {
             return;
         }
         boolean is_video_ad_switch = Hawk.get(ConstantsPath.is_video_ad_switch, false);
-        if (!is_video_ad_switch) {
-            listener.onAdClose();
-            return;
-        }
+//        if (!is_video_ad_switch) {
+//            listener.onAdClose();
+//            return;
+//        }
         AdvertisementManager.getInstance().showRewardAd(act, codeId, listener);
     }
 }

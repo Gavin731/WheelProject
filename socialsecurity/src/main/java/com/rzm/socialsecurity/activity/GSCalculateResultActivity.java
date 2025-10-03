@@ -3,14 +3,18 @@ package com.rzm.socialsecurity.activity;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.GSCalculateResultPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.TablelayoutUtil;
 import com.rzm.socialsecurity.view.IGSCalculateResultView;
 
@@ -56,6 +60,33 @@ public class GSCalculateResultActivity extends MvpActivity<GSCalculateResultPres
         tvMoney1 = findViewById(R.id.tv_money1);
         tvSk = findViewById(R.id.tv_sk);
         tvKc = findViewById(R.id.tv_kc);
+        FrameLayout flInfoAd=findViewById(R.id.fl_info_ad);
+        ADUtil.showInfoFlowAd(this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
 
 
     }

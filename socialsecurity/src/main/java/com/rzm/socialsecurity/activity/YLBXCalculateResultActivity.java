@@ -5,13 +5,17 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.YLBXCalculateResultPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IYLBXCalculateResultView;
 
 import java.math.BigDecimal;
@@ -78,6 +82,34 @@ public class YLBXCalculateResultActivity extends MvpActivity<YLBXCalculateResult
         // 总缴纳
         BigDecimal total = company.add(personal).setScale(2, RoundingMode.HALF_UP);
         totalAmount.setText(String.valueOf(total));
+
+        FrameLayout fl_info_ad= findViewById(R.id.fl_info_ad);
+        ADUtil.showInfoFlowAd(this, ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
     }
 
     public String getTitle(int type) {

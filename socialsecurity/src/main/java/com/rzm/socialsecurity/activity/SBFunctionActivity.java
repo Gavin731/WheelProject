@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.SBFunctionPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.ISBFunctionView;
 
 /**
@@ -22,6 +24,47 @@ public class SBFunctionActivity  extends MvpActivity<SBFunctionPresenter> implem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        ADUtil.showInterstitialAd(this, ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onLoadSuccess() {
+
+            }
+
+            @Override
+            public void onStartShow() {
+
+            }
+
+            @Override
+            public void onAdShow() {
+
+            }
+
+            @Override
+            public void onAdVideoBarClick() {
+
+            }
+
+            @Override
+            public void onAdClose() {
+
+            }
+
+            @Override
+            public void onVideoComplete() {
+
+            }
+
+            @Override
+            public void onSkippedVideo() {
+
+            }
+        });
     }
 
     @Override

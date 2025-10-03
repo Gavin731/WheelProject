@@ -94,8 +94,9 @@ class ApiService {
      */
     @SuppressLint("CheckResult")
     protected static void isPostEnvInfo(Context context) {
+        String appVersionName =Hawk.get("appVersionName");
         HashMap<String, Object> params = new HashMap<>();
-        params.put("appVersion", ConstantsPath.appVersion);
+        params.put("appVersion", appVersionName);
 
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_sdk_report_config_query");
@@ -211,6 +212,7 @@ class ApiService {
         boolean isVpn = DeviceUtil.isVpnActive(context);
         String oaid = Hawk.get("oaid");
         String publicIP = Hawk.get("publicIP");
+        String appVersionName =Hawk.get("appVersionName");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("imei", DeviceUtil.getImei(context));
@@ -225,7 +227,7 @@ class ApiService {
         params.put("rootState", isRoot ? 1 : 0);
         params.put("adbState", isAdb ? 1 : 0);
         params.put("agentState", isDl ? 1 : 0);
-        params.put("appVersion", ConstantsPath.appVersion);
+        params.put("appVersion", appVersionName);
 
 
         HashMap<String, Object> requestParams = new HashMap<>();

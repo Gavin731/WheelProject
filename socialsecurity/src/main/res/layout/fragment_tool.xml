@@ -257,6 +257,12 @@
                     android:src="@mipmap/gdgj_yjt" />
             </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/fl_info_ad_tool"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:id="@+id/ll_laowu"
                 android:layout_width="match_parent"

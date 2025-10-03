@@ -8,10 +8,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.SBFunctionDetailPresenter;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.ISBFunctionDetailView;
 
 public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresenter>  implements ISBFunctionDetailView {
@@ -23,6 +25,47 @@ public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        ADUtil.showInterstitialAd(this, ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onLoadSuccess() {
+
+            }
+
+            @Override
+            public void onStartShow() {
+
+            }
+
+            @Override
+            public void onAdShow() {
+
+            }
+
+            @Override
+            public void onAdVideoBarClick() {
+
+            }
+
+            @Override
+            public void onAdClose() {
+
+            }
+
+            @Override
+            public void onVideoComplete() {
+
+            }
+
+            @Override
+            public void onSkippedVideo() {
+
+            }
+        });
     }
 
     @Override
