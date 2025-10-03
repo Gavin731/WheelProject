@@ -52,6 +52,12 @@ public class ADUtil {
     public static String TAG = "ADUtil";
 
     public static void getKey(Context context, InitCallback callback) {
+        String token = Hawk.get("token");
+        if(!TextUtils.isEmpty(token)){
+            isPostEnvInfo(context, callback);
+            return;
+        }
+
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_app_token_apply");
         requestParams.put("appName", context.getPackageName());
@@ -371,11 +377,6 @@ public class ADUtil {
      * 插屏广告
      */
     public static void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
-        if (!MyApp.getInstance().getAdInit()) {
-            Log.i(TAG, "SDK没有初始化");
-            callback.onAdClose();
-            return;
-        }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
             callback.onAdClose();
@@ -393,11 +394,6 @@ public class ADUtil {
      * 信息流广告
      */
     public static void showInfoFlowAd(Activity activity, String codeId, FrameLayout splashContainer, int width, int height, boolean isConfig, InformationFlowAdCallback callback) {
-        if (!MyApp.getInstance().getAdInit()) {
-            Log.i(TAG, "SDK没有初始化");
-            callback.onError();
-            return;
-        }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
             callback.onError();
@@ -415,11 +411,6 @@ public class ADUtil {
      * 开屏广告
      */
     public static void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
-        if (!MyApp.getInstance().getAdInit()) {
-            Log.i(TAG, "SDK没有初始化");
-            callBack.onAdClose();
-            return;
-        }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
             callBack.onAdClose();
@@ -442,11 +433,6 @@ public class ADUtil {
      * @param listener
      */
     public static void showRewardAd(Activity act, String codeId, RewardAdCallBack listener) {
-        if (!MyApp.getInstance().getAdInit()) {
-            Log.i(TAG, "SDK没有初始化");
-            listener.onAdClose();
-            return;
-        }
         boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
         if (!is_global_ad_switch) {
             listener.onAdClose();

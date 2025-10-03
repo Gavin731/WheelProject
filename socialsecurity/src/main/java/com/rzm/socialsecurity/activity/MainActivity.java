@@ -348,17 +348,15 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
         requestPermission();
         UMUtil.init(MainActivity.this);
-        if (!MyApp.getInstance().getAdInit()) {
+        if (!AdvertisementManager.getInstance().issInit()) {
             ADUtil.initAdManager(getApplicationContext(), new InitCallback() {
                 @Override
                 public void success() {
-                    MyApp.getInstance().setAdInit(true);
                     // 展示广告
                 }
 
                 @Override
                 public void error() {
-                    MyApp.getInstance().setAdInit(false);
                 }
             });
         }else{

@@ -88,6 +88,9 @@ public class AdvertisementManager {
     private void doInit(InitCallback callback, TTCustomController customController) {
         if (sInit) {
             Log.i(TAG, "已经初始化过了");
+            if (callback != null) {
+                callback.success();
+            }
             return;
         }
         TTAdSdk.init(context, buildConfig(customController));
@@ -284,5 +287,9 @@ public class AdvertisementManager {
 
     protected String getToken() {
         return token;
+    }
+
+    public boolean issInit() {
+        return sInit;
     }
 }

@@ -34,24 +34,8 @@ public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Hawk.init(this).build();
         Hawk.put("url", getResources().getString(R.string.app_url));
-        // 获取信息是否可以上报
-        ADUtil.getKey(this, new InitCallback() {
-            @Override
-            public void success() {
-                setAdInit(true);
-                EventBus.getDefault().post(new SplashEventEntity(true));
-            }
-
-            @Override
-            public void error() {
-                setAdInit(false);
-                EventBus.getDefault().post(new SplashEventEntity(false));
-            }
-        });
-
         FileDownloader.setupOnApplicationOnCreate(this);
         UMUtil.preInit(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
@@ -96,10 +80,6 @@ public class MyApp extends BaseApplication {
     }
 
     public void resetApp() {
-        if(isSplash){
-            return;
-        }
-        LogUtils.e("1开始获取开屏广告111");
         EventBus.getDefault().postSticky(new SplashEventEntity2(true));
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
