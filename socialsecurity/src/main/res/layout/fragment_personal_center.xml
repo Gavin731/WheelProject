@@ -12,13 +12,13 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="@dimen/dp_40_60"
+            android:layout_marginTop="@dimen/dp_22_33"
             android:background="@color/white"
             android:gravity="center"
             android:text="我的"
             android:textColor="#ff333333"
-            android:textSize="12sp" />
+            android:textSize="@dimen/sp_12_18" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,44 +27,44 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="33dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/dp_33_49"
+                android:layout_height="@dimen/dp_33_49"
+                android:layout_marginStart="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_8_12"
+                android:layout_marginBottom="@dimen/dp_8_12"
                 android:src="@mipmap/app_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
+                android:layout_marginStart="@dimen/dp_9_13"
                 android:text="@string/app_name"
                 android:textColor="#ff333333"
-                android:textSize="11sp" />
+                android:textSize="@dimen/sp_11_16" />
         </LinearLayout>
 
         <FrameLayout
             android:id="@+id/fl_info_ad_personal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="@dimen/dp_5_7" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/dp_10_15"
+            android:layout_marginTop="@dimen/dp_5_7"
+            android:layout_marginEnd="@dimen/dp_10_15"
             android:background="@drawable/bg_write_radius"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/ll_yszc"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dp_40_60"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="10dp">
+                android:paddingStart="@dimen/dp_10_15">
 
                 <TextView
                     android:layout_width="0dp"
@@ -72,12 +72,12 @@
                     android:layout_weight="1"
                     android:text="隐私政策"
                     android:textColor="#ff333333"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/sp_11_16" />
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="@dimen/dp_10_15"
+                    android:layout_height="@dimen/dp_10_15"
+                    android:layout_marginEnd="@dimen/dp_10_15"
                     android:src="@mipmap/gdgj_yjt" />
             </LinearLayout>
 
@@ -89,10 +89,10 @@
             <LinearLayout
                 android:id="@+id/ll_yhxy"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dp_40_60"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="10dp">
+                android:paddingStart="@dimen/dp_10_15">
 
                 <TextView
                     android:layout_width="0dp"
@@ -100,12 +100,12 @@
                     android:layout_weight="1"
                     android:text="用户协议"
                     android:textColor="#ff333333"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/sp_11_16" />
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="@dimen/dp_10_15"
+                    android:layout_height="@dimen/dp_10_15"
+                    android:layout_marginEnd="@dimen/dp_10_15"
                     android:src="@mipmap/gdgj_yjt" />
             </LinearLayout>
 
@@ -117,10 +117,10 @@
             <LinearLayout
                 android:id="@+id/ll_gywm"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dp_40_60"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="10dp">
+                android:paddingStart="@dimen/dp_10_15">
 
                 <TextView
                     android:layout_width="0dp"
@@ -128,12 +128,12 @@
                     android:layout_weight="1"
                     android:text="关于我们"
                     android:textColor="#ff333333"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/sp_11_16" />
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="@dimen/dp_10_15"
+                    android:layout_height="@dimen/dp_10_15"
+                    android:layout_marginEnd="@dimen/dp_10_15"
                     android:src="@mipmap/gdgj_yjt" />
             </LinearLayout>
         </LinearLayout>
@@ -141,14 +141,14 @@
         <LinearLayout
             android:id="@+id/ll_qlhc"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_height="@dimen/dp_40_60"
+            android:layout_marginStart="@dimen/dp_10_15"
+            android:layout_marginTop="@dimen/dp_10_15"
+            android:layout_marginEnd="@dimen/dp_10_15"
             android:background="@drawable/bg_write_radius"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="8dp">
+            android:paddingStart="@dimen/dp_8_12">
 
             <TextView
                 android:layout_width="0dp"
@@ -156,21 +156,21 @@
                 android:layout_weight="1"
                 android:text="清理缓存"
                 android:textColor="#ff333333"
-                android:textSize="11sp" />
+                android:textSize="@dimen/sp_11_16" />
 
             <TextView
                 android:id="@+id/tv_cache"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/dp_10_15"
                 android:text="0MB"
                 android:textColor="#ff999999"
-                android:textSize="11sp" />
+                android:textSize="@dimen/sp_11_16" />
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="@dimen/dp_10_15"
+                android:layout_height="@dimen/dp_10_15"
+                android:layout_marginEnd="@dimen/dp_10_15"
                 android:src="@mipmap/gdgj_yjt" />
         </LinearLayout>
     </LinearLayout>

@@ -126,11 +126,11 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
             intent.putExtra(ConstantConfig.bxKey, type);
             intent.putExtra(ConstantConfig.amount, Float.parseFloat(money));
             intent.putExtra(ConstantConfig.cbAmount, TextUtils.isEmpty(cbAmount) ? 0 : Float.parseFloat(cbAmount));
-            startActivity(intent);
+
             ADUtil.showRewardAd(this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-
+                    startActivity(intent);
                 }
 
                 @Override

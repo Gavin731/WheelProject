@@ -48,9 +48,8 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && !isShow){
+    public void lazyLoad() {
+        if(!isShow){
             isShow = true;
             ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
                 @Override
@@ -93,8 +92,6 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
 
                 }
             });
-        }
-        if(isVisibleToUser){
             ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
@@ -122,11 +119,6 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
                 }
             });
         }
-    }
-
-    @Override
-    public void lazyLoad() {
-
     }
 
     @Override

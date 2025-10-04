@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="202dp"
-    android:layout_height="238dp"
+    android:layout_width="@dimen/dp_202_303"
+    android:layout_height="@dimen/dp_238_357"
     android:background="@drawable/bg_write_radius"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingStart="9dp"
-    android:paddingEnd="9dp">
+    android:paddingStart="@dimen/dp_9_13"
+    android:paddingEnd="@dimen/dp_9_13">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="缴费基数"
         android:textColor="#ff000000"
-        android:textSize="12sp" />
+        android:textSize="@dimen/sp_12_18" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/dp_14_21"
         android:text="一般以职工本人上一年度月平均工资作为缴费基数。新入职员工按当月实际工资收入来确定，但不得低于当地最低工资标准，也不得高于当地上年度职工月平均工资的300%。"
         android:textColor="#ff666666"
-        android:textSize="10sp" />
+        android:textSize="@dimen/sp_10_15" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/dp_3_5"
         android:text="若职工工资低于当地最低工资标准，则以最低工资标准作为缴费基数;若高于当地上年度职工月平均工资的 300%，则以当地上年度职工月平均工资的 300%作为缴费基数。"
         android:textColor="#ff666666"
-        android:textSize="10sp" />
+        android:textSize="@dimen/sp_10_15" />
 
 
     <TextView
         android:id="@+id/tv_close"
-        android:layout_width="180dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="@dimen/dp_180_270"
+        android:layout_height="@dimen/dp_32_48"
+        android:layout_marginTop="@dimen/dp_15_22"
         android:background="@drawable/btn_bg"
         android:gravity="center"
         android:text="我知道了"
         android:textColor="#ffffffff"
-        android:textSize="11sp" />
+        android:textSize="@dimen/sp_11_16" />
 </LinearLayout>

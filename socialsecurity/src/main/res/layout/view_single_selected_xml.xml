@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/dp_10_15">
 
         <TextView
             android:id="@+id/tv_cancel"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="取消"
             android:textColor="#ff999999"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="请选择"
             android:textColor="#ff333333"
-            android:textSize="10sp"
+            android:textSize="@dimen/sp_10_15"
             android:textStyle="bold" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="确定"
             android:textColor="#ff3875f6"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
     </LinearLayout>
 
     <View
@@ -49,6 +49,6 @@
     <com.github.gzuliyujiang.wheelview.widget.WheelView
         android:id="@+id/wheel_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="150dp" />
 
 </LinearLayout>

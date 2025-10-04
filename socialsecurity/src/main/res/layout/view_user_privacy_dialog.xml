@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="206dp"
-    android:layout_height="wrap_content"
-    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
-        android:layout_width="206dp"
-        android:layout_height="149dp"
+        android:layout_width="@dimen/dp_206_309"
+        android:layout_height="@dimen/dp_280"
+        android:layout_marginTop="@dimen/dp_150"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_write_radius"
         android:gravity="center"
         android:orientation="vertical">
@@ -14,19 +16,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/dp_10_15"
             android:text="用户协议和隐私政策"
             android:textColor="#ff000000"
-            android:textSize="12sp" />
+            android:textSize="@dimen/sp_12_18" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:scrollbars="none"
-            android:layout_weight="1">
+            android:layout_marginStart="@dimen/dp_20_30"
+            android:layout_marginTop="@dimen/dp_10_15"
+            android:layout_marginEnd="@dimen/dp_20_30"
+            android:layout_weight="1"
+            android:scrollbars="none">
 
             <TextView
                 android:id="@+id/tv_content"
@@ -34,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:textColor="#ff333333"
-                android:textSize="10sp" />
+                android:textSize="@dimen/sp_10_15" />
         </ScrollView>
 
         <View
@@ -44,7 +46,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="@dimen/dp_27_40"
             android:orientation="horizontal">
 
             <TextView
@@ -56,7 +58,7 @@
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="#ff888888"
-                android:textSize="11sp" />
+                android:textSize="@dimen/sp_11_16" />
 
             <TextView
                 android:id="@+id/tv_ok_user_privacy"
@@ -67,10 +69,16 @@
                 android:gravity="center"
                 android:text="已阅读并同意"
                 android:textColor="#ffffffff"
-                android:textSize="11sp" />
+                android:textSize="@dimen/sp_11_16" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <FrameLayout
         android:id="@+id/fl_info_ad"
         android:layout_width="match_parent"

@@ -8,16 +8,16 @@
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="@dimen/dp_16_24"
+        android:layout_height="@dimen/dp_16_24"
         android:src="@mipmap/icon_home_tab_home" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="@dimen/dp_2_3"
         android:text="首页"
         android:textColor="#ff407aec"
-        android:textSize="8sp" />
+        android:textSize="@dimen/sp_8_12" />
 </LinearLayout>

@@ -36,9 +36,13 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && !isShow){
+    public int getLayoutId() {
+        return R.layout.fragment_tool;
+    }
+
+    @Override
+    public void lazyLoad() {
+        if(!isShow){
             isShow = true;
             ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
                 @Override
@@ -81,8 +85,6 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
 
                 }
             });
-        }
-        if(isVisibleToUser){
             ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
@@ -110,16 +112,6 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
                 }
             });
         }
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_tool;
-    }
-
-    @Override
-    public void lazyLoad() {
-
     }
 
     @Override

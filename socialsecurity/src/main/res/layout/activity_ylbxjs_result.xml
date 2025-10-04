@@ -17,146 +17,146 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_10_15"
         android:text="总缴纳"
         android:textColor="#ff333333"
-        android:textSize="9sp" />
+        android:textSize="@dimen/sp_9_13" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/dp_26_39"
+        android:layout_marginLeft="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_5_7"
+        android:layout_marginRight="@dimen/dp_10_15"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:paddingRight="15dp">
+        android:paddingRight="@dimen/dp_15_22">
 
         <TextView
             android:id="@+id/total_amount"
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="@dimen/dp_24_36"
+            android:layout_marginLeft="@dimen/dp_8_12"
+            android:layout_marginRight="@dimen/dp_15_22"
             android:layout_weight="1"
             android:background="#fff"
             android:gravity="center_vertical"
-            android:paddingStart="5dp"
+            android:paddingStart="@dimen/dp_5_7"
             android:text="1111"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="元"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_5_7"
         android:text="单位缴纳"
         android:textColor="#ff333333"
-        android:textSize="9sp" />
+        android:textSize="@dimen/sp_9_13" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/dp_26_39"
+        android:layout_marginLeft="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_5_7"
+        android:layout_marginRight="@dimen/dp_10_15"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:paddingRight="15dp">
+        android:paddingRight="@dimen/dp_15_22">
 
         <TextView
             android:id="@+id/company_amount"
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="@dimen/dp_24_36"
+            android:layout_marginLeft="@dimen/dp_8_12"
+            android:layout_marginRight="@dimen/dp_15_22"
             android:layout_weight="1"
             android:background="#fff"
             android:gravity="center_vertical"
-            android:paddingStart="5dp"
+            android:paddingStart="@dimen/dp_5_7"
             android:text="222"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="元"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_personal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_5_7"
         android:text="个人缴纳"
         android:textColor="#ff333333"
-        android:textSize="9sp" />
+        android:textSize="@dimen/sp_9_13" />
 
     <LinearLayout
         android:id="@+id/ll_personal"
         android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/dp_26_39"
+        android:layout_marginLeft="@dimen/dp_10_15"
+        android:layout_marginTop="@dimen/dp_5_7"
+        android:layout_marginRight="@dimen/dp_10_15"
         android:background="@drawable/edit_bg"
         android:gravity="center_vertical"
-        android:paddingRight="15dp">
+        android:paddingRight="@dimen/dp_15_22">
 
         <TextView
             android:id="@+id/personal_amount"
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="@dimen/dp_24_36"
+            android:layout_marginLeft="@dimen/dp_8_12"
+            android:layout_marginRight="@dimen/dp_15_22"
             android:layout_weight="1"
             android:background="#fff"
             android:gravity="center_vertical"
-            android:paddingStart="5dp"
+            android:paddingStart="@dimen/dp_5_7"
             android:text="333"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="元"
             android:textColor="#ff333333"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_10_15" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_back"
         android:layout_width="180dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/dp_32_48"
+        android:layout_marginTop="@dimen/dp_10_15"
         android:background="@drawable/btn_bg"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5_7"
         android:gravity="center"
         android:text="返回"
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffffff"
-        android:textSize="11sp" />
+        android:textSize="@dimen/sp_11_16" />
 
     <FrameLayout
         android:id="@+id/fl_info_ad"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/dp_5_7"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="@dimen/dp_10_15"/>
 </LinearLayout>

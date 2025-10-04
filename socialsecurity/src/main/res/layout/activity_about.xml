@@ -15,17 +15,18 @@
         android:background="#E4E5E9" />
 
     <ImageView
-        android:layout_width="61dp"
-        android:layout_height="61dp"
+        android:layout_width="@dimen/dp_61_91"
+        android:layout_height="@dimen/dp_61_91"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="@dimen/dp_76_114"
         android:src="@mipmap/app_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="14sp"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:textSize="@dimen/sp_14_21"
         android:text="@string/app_name"
         android:textColor="#ff222222" />
 
@@ -33,18 +34,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/dp_3_5"
         android:text="社保个税在线计算"
         android:textColor="#ff999999"
-        android:textSize="11sp" />
+        android:textSize="@dimen/sp_11_16" />
 
     <TextView
         android:id="@+id/tv_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/dp_3_5"
         android:text="V1.0"
         android:textColor="#ff999999"
-        android:textSize="11sp" />
+        android:textSize="@dimen/sp_11_16" />
 </LinearLayout>

@@ -134,7 +134,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     @Override
     public String getResourcesHint() {
-        return "我是MainActivity提供的文案";
+        return "";
     }
 
     public void showAppHintDialog() {
@@ -165,11 +165,10 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         tvShowUserPrivacy.setOnClickListener(v1 -> {
                             dialog.dismiss();
                             Hawk.put(ConstantConfig.isShowAppDialog, true);
-                            showInterstitialAd(2);
                             ADUtil.showRewardAd(MainActivity.this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                                 @Override
                                 public void onAdClose() {
-
+                                    showInterstitialAd(2);
                                 }
 
                                 @Override

@@ -10,25 +10,25 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="61dp"
-            android:layout_height="61dp"
+            android:layout_width="@dimen/dp_61_91"
+            android:layout_height="@dimen/dp_61_91"
             android:src="@mipmap/app_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:text="社保计算"
+            android:layout_marginTop="@dimen/dp_13_19"
+            android:text="@string/app_name"
             android:textColor="#ff222222"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14_21" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/dp_5_7"
             android:text="社保个税在线计算"
             android:textColor="#ff999999"
-            android:textSize="11sp" />
+            android:textSize="@dimen/sp_11_16" />
     </LinearLayout>
     <FrameLayout
         android:id="@+id/splashContainer"

@@ -10,23 +10,23 @@
     <LinearLayout
         android:id="@+id/ll_top"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="@dimen/dp_140_210"
         android:background="@mipmap/sbzy_banner"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="@dimen/dp_40_60"
+            android:layout_marginTop="@dimen/dp_15_22"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:paddingEnd="30dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="@dimen/dp_30_45"
+                android:layout_height="@dimen/dp_30_45"
+                android:paddingEnd="@dimen/dp_20_30"
+                android:layout_marginStart="@dimen/dp_10_15"
                 android:src="@mipmap/sb_fh" />
         </LinearLayout>
 
@@ -34,11 +34,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_marginTop="-10dp"
+        android:layout_height="@dimen/dp_66_99"
+        android:layout_marginTop="-15dp"
         android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingRight="15dp">
+        android:paddingStart="@dimen/dp_15_22"
+        android:paddingRight="@dimen/dp_15_22">
 
         <LinearLayout
             android:id="@+id/ll_yanglao"
@@ -51,38 +51,38 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_10_15"
                 android:text="养老保险"
                 android:textColor="#ff15563a"
-                android:textSize="13sp" />
+                android:textSize="@dimen/sp_13_19" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:text="一份保障，一生保障"
                 android:textColor="#ff15563a"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
 
             <TextView
-                android:layout_width="33dp"
-                android:layout_height="13dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="@dimen/dp_33_49"
+                android:layout_height="@dimen/dp_13_19"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:background="@drawable/bg_round_35926a"
                 android:gravity="center"
                 android:text="去看看"
                 android:textColor="#ffffffff"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_yiliao"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="@dimen/dp_5_7"
             android:layout_weight="1"
             android:background="@mipmap/sb_2yl"
             android:orientation="vertical">
@@ -90,41 +90,41 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_10_15"
                 android:text="医疗保险"
                 android:textColor="#ff89312f"
-                android:textSize="13sp" />
+                android:textSize="@dimen/sp_13_19" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:text="医保护航，健康无忧"
                 android:textColor="#ff89312f"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
 
             <TextView
-                android:layout_width="33dp"
-                android:layout_height="13dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="@dimen/dp_33_49"
+                android:layout_height="@dimen/dp_13_19"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:background="@drawable/bg_round_aa5351"
                 android:gravity="center"
                 android:text="去看看"
                 android:textColor="#ffffffff"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/dp_66_99"
+        android:layout_marginTop="@dimen/dp_10_15"
         android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingRight="15dp">
+        android:paddingStart="@dimen/dp_15_22"
+        android:paddingRight="@dimen/dp_15_22">
 
         <LinearLayout
             android:id="@+id/ll_shiye"
@@ -137,38 +137,38 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_10_15"
                 android:text="失业保险"
                 android:textColor="#ff6141a8"
-                android:textSize="13sp" />
+                android:textSize="@dimen/sp_13_19" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:text="失业有险，再启新程"
                 android:textColor="#ff6141a8"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
 
             <TextView
-                android:layout_width="33dp"
-                android:layout_height="13dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="@dimen/dp_33_49"
+                android:layout_height="@dimen/dp_13_19"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:background="@drawable/bg_round_7359c3"
                 android:gravity="center"
                 android:text="去看看"
                 android:textColor="#ffffffff"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_gongshang"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="@dimen/dp_5_7"
             android:layout_weight="1"
             android:background="@mipmap/sb_4gs"
             android:orientation="vertical">
@@ -176,71 +176,71 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_10_15"
                 android:text="工伤保险"
                 android:textColor="#ffc06402"
-                android:textSize="13sp" />
+                android:textSize="@dimen/sp_13_19" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:text="工伤有保，安心劳作"
                 android:textColor="#ffc06402"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
 
             <TextView
-                android:layout_width="33dp"
-                android:layout_height="13dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="@dimen/dp_33_49"
+                android:layout_height="@dimen/dp_13_19"
+                android:layout_marginLeft="@dimen/dp_5_7"
+                android:layout_marginTop="@dimen/dp_2_3"
                 android:background="@drawable/bg_round_db8600"
                 android:gravity="center"
                 android:text="去看看"
                 android:textColor="#ffffffff"
-                android:textSize="7sp" />
+                android:textSize="@dimen/sp_7_8" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_shengyu"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_height="@dimen/dp_66_99"
+        android:layout_marginStart="@dimen/dp_15_22"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:layout_marginEnd="@dimen/dp_15_22"
         android:background="@mipmap/sb_5sy"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/dp_5_7"
+            android:layout_marginTop="@dimen/dp_10_15"
             android:text="生育保险"
             android:textColor="#ff0985a4"
-            android:textSize="13sp" />
+            android:textSize="@dimen/sp_13_19" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/dp_5_7"
+            android:layout_marginTop="@dimen/dp_2_3"
             android:text="生育有保，守护新生"
             android:textColor="#ff0985a4"
-            android:textSize="7sp" />
+            android:textSize="@dimen/sp_7_8" />
 
         <TextView
-            android:layout_width="33dp"
-            android:layout_height="13dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="2dp"
+            android:layout_width="@dimen/dp_33_49"
+            android:layout_height="@dimen/dp_13_19"
+            android:layout_marginLeft="@dimen/dp_5_7"
+            android:layout_marginTop="@dimen/dp_2_3"
             android:background="@drawable/bg_round_35a9cd"
             android:gravity="center"
             android:text="去看看"
             android:textColor="#ffffffff"
-            android:textSize="7sp" />
+            android:textSize="@dimen/sp_7_8" />
     </LinearLayout>
 </LinearLayout>

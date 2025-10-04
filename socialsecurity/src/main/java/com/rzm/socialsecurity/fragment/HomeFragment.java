@@ -153,11 +153,11 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             Intent intent = new Intent(getActivity(), SBCalculateActivity.class);
             intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));
             intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
-            startActivity(intent);
+
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-
+                    startActivity(intent);
                 }
 
                 @Override
@@ -223,11 +223,11 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));
             intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
             intent.putExtra(ConstantConfig.zxkcMoney, Float.parseFloat(zxkcMoney));
-            startActivity(intent);
+
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-
+                    startActivity(intent);
                 }
 
                 @Override

@@ -33,7 +33,7 @@ public class TablelayoutUtil {
             }
             textView.setHeight(rowHeight);
             textView.setText(title);
-            textView.setTextSize(9);
+            textView.setTextSize(13);
             textView.setTextColor(context.getColor(R.color.color_ff999999));
             textView.setBackgroundColor(titleBgColor);
 
@@ -66,7 +66,7 @@ public class TablelayoutUtil {
                 }
                 textView.setHeight(rowHeight);
                 textView.setText(row);
-                textView.setTextSize(9);
+                textView.setTextSize(13);
                 textView.setTextColor(context.getColor(R.color.color_ff333333));
                 textView.setBackgroundColor(rowBgColor);
 

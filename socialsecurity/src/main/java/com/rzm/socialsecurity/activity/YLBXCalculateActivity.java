@@ -157,11 +157,11 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
             intent.putExtra(ConstantConfig.personalText, etPersonalText);
             intent.putExtra(ConstantConfig.bxKey, type);
             intent.putExtra(ConstantConfig.isHidePersonalText, type == 4 || type == 5);
-            startActivity(intent);
+
             ADUtil.showRewardAd(this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-
+                    startActivity(intent);
                 }
 
                 @Override

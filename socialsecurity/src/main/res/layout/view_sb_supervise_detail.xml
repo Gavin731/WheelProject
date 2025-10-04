@@ -2,29 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="@dimen/dp_10_15"
     android:orientation="vertical"
-    android:padding="9dp">
+    android:padding="@dimen/dp_9_13">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_ylbx_funstion"
         android:orientation="vertical"
-        android:padding="9dp">
+        android:padding="@dimen/dp_9_13">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="行政监督"
             android:textColor="#ff333333"
-            android:textSize="11sp"
+            android:textSize="@dimen/sp_11_16"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/dp_5_7"
             android:background="@drawable/bg_write_radius"
             android:orientation="vertical">
 
@@ -36,201 +36,201 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督主体:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="人力资源和社会保障部门、财政部门、审计部门等多个行政部门共同参与。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督内容:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="对社保基金的收支、管理等情况进行全面监督。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="人力资源和社会保障部门:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="负责监督社保政策的执行情况以及基金整体运行状况。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="财政部门:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="监督基金的财务管理，包括资金的预算、拨付和使用合规性。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="审计部门:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="则通过定期或不定期的审计工作，对社保基金的财务收支的真实性、合法性和效益性进行审查，检查是否存在违规操作、资金流失等问题。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督作用:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
+                    android:layout_marginBottom="@dimen/dp_10_15"
                     android:text="行政监督具有权威性和强制性，能够从宏观层面规范社保基金的运行，确保其在法律法规和政策规定的框架内运作，及时发现并纠正基金管理中的重大问题，保障社保基金的安全和规范使用。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -238,23 +238,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10_15"
         android:background="@drawable/bg_ylbx_funstion"
         android:orientation="vertical"
-        android:padding="9dp">
+        android:padding="@dimen/dp_9_13">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="社会监督"
             android:textColor="#ff333333"
-            android:textSize="11sp"
+            android:textSize="@dimen/sp_11_16"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/dp_5_7"
             android:background="@drawable/bg_write_radius"
             android:orientation="vertical">
 
@@ -266,135 +266,135 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督方式:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="通过信息公开、举报奖励等制度来实现。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="信息公开:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="社保相关部门将社保基金的收支情况、政策执行情况、参保单位和个人的缴费信息等向社会公开，接受公众的查询和监督。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="举报奖励:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="鼓励社会公众发现社保领域的违法违规行为时，积极向有关部门举报，对于经查证属实的举报人给予一定的奖励。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督作用:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
+                    android:layout_marginBottom="@dimen/dp_10_15"
                     android:text="社会监督能够充分发挥公众的力量，形成广泛的监督网络，使社保基金的运行处于社会的全方位监督之下。公众的参与不仅可以增加社保基金管理的透明度，还能够及时发现一些行政监督和内部监督难以察觉的问题，对违法违规行为形成强大的舆论压力，促使相关部门和人员规范操作。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
             </LinearLayout>
         </LinearLayout>
@@ -403,23 +403,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10_15"
         android:background="@drawable/bg_ylbx_funstion"
         android:orientation="vertical"
-        android:padding="9dp">
+        android:padding="@dimen/dp_9_13">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="内部监督"
             android:textColor="#ff333333"
-            android:textSize="11sp"
+            android:textSize="@dimen/sp_11_16"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/dp_5_7"
             android:background="@drawable/bg_write_radius"
             android:orientation="vertical">
 
@@ -431,135 +431,135 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督主体:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="社保经办机构自身。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督方式:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="建立健全内部控制制度，对业务流程和基金管理进行自我监督。这包括在社保经办机构内部设置专门的监督岗位或部门，制定严格的业务操作规范和审批流程，对社保登记、缴费核定、待遇发放等各个业务环节进行全程监控，防止出现操作失误、滥用职权等问题。同时，加强对基金管理的内部审计，定期对基金账目进行核对和检查，确保基金安全。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="举报奖励:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
                     android:text="鼓励社会公众发现社保领域的违法违规行为时，积极向有关部门举报，对于经查证属实的举报人给予一定的奖励。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="@dimen/dp_12_18"
+                        android:layout_height="@dimen/dp_12_18"
                         android:src="@mipmap/sh_zs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="@dimen/dp_2_3"
                         android:text="监督作用:"
                         android:textColor="#ff333333"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/sp_11_16"
                         android:textStyle="bold" />¬
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_9_13"
+                    android:layout_marginBottom="@dimen/dp_10_15"
                     android:text="内部监督是社保基金监督的第一道防线，能够及时发现和纠正业务操作中的错误和不规范行为，防范内部人员的违法违规行为，从源头上保障社保基金的安全。通过不断完善内部控制制度，还可以提高社保经办机构的管理水平和服务质量，提升社保基金运行的效率和效益。"
                     android:textColor="#ff333333"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/sp_10_15" />
 
             </LinearLayout>
         </LinearLayout>

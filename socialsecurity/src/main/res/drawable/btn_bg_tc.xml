@@ -3,5 +3,5 @@
 
     <solid android:color="#ff3875f6" />
     <gradient android:type="linear" android:useLevel="true" android:startColor="#ff3875f6" android:endColor="#ff50aff8" android:angle="0" />
-    <corners android:topLeftRadius="5dp" android:topRightRadius="5dp" android:bottomLeftRadius="5dp" android:bottomRightRadius="5dp" />
+    <corners android:topLeftRadius="@dimen/dp_5_7" android:topRightRadius="@dimen/dp_5_7" android:bottomLeftRadius="@dimen/dp_5_7" android:bottomRightRadius="@dimen/dp_5_7" />
 </shape>
