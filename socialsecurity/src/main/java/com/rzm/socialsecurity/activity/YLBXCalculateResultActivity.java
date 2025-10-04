@@ -9,9 +9,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpActivity;
+import com.common.wheel.util.ImmersiveModeHelper;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.YLBXCalculateResultPresenter;
@@ -32,6 +34,7 @@ public class YLBXCalculateResultActivity extends MvpActivity<YLBXCalculateResult
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        ImmersiveModeHelper.setStatusBarMode(this, true);
     }
 
     @Override

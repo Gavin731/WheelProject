@@ -121,6 +121,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
         TabViewPagerAdapter pagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager(), 4);
         vpMain.setAdapter(pagerAdapter);
+        vpMain.setOffscreenPageLimit(4);
 
         mNavigationController.setupWithViewPager(vpMain);
 

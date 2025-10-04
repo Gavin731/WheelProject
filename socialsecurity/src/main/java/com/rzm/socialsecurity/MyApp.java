@@ -25,6 +25,7 @@ public class MyApp extends BaseApplication {
 
     private int activityCount = 0;
 
+
     @Override
     public void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -49,6 +50,7 @@ public class MyApp extends BaseApplication {
                 if (activityCount == 1) {
                     // 应用进入前台
                     Log.d("aaaaa", "App in foreground");
+                    resetApp();
                 }
             }
 
@@ -65,7 +67,7 @@ public class MyApp extends BaseApplication {
                 activityCount--;
                 if (activityCount == 0) {
                     // 应用进入后台
-                    resetApp();
+
                 }
             }
 
@@ -80,6 +82,9 @@ public class MyApp extends BaseApplication {
     }
 
     public void resetApp() {
+        if (isSplash) {
+            return;
+        }
         EventBus.getDefault().postSticky(new SplashEventEntity2(true));
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

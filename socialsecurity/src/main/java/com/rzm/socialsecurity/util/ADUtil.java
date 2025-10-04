@@ -54,12 +54,13 @@ public class ADUtil {
     public static String TAG = "ADUtil";
 
     public static void getKey(Context context, InitCallback callback) {
+
         String token = Hawk.get("token");
         if(!TextUtils.isEmpty(token)){
             isPostEnvInfo(context, callback);
             return;
         }
-
+        LogUtils.e("aaaaa_开始获取token");
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_app_token_apply");
         requestParams.put("appName", context.getPackageName());
@@ -74,6 +75,7 @@ public class ADUtil {
                             Hawk.put("token", result.getAppToken());
                             isPostEnvInfo(context, callback);
                         }else{
+                            LogUtils.e("aaaaa_开始获取token为空");
                             callback.error();
                         }
                         return true;
@@ -87,6 +89,7 @@ public class ADUtil {
                     public void accept(Throwable throwable) throws Exception {
                         Log.i("", "token error:" + ExceptionUtil.getStackTrace(throwable));
 //                        callback.error();
+                        LogUtils.e("aaaaa_开始获取token error");
                     }
                 });
     }
@@ -98,6 +101,7 @@ public class ADUtil {
      */
     @SuppressLint("CheckResult")
     protected static void isPostEnvInfo(Context context, InitCallback callback) {
+        LogUtils.e("aaaaa_开始获取是否上报");
         String token = Hawk.get("token");
         HashMap<String, Object> params = new HashMap<>();
         params.put("appVersion", BuildConfig.VERSION_NAME);
@@ -115,13 +119,14 @@ public class ADUtil {
                     public Object apply(ResultBean resultBean) throws Exception {
                         if (resultBean.getData() != null) {
                             String data = resultBean.getData().toString();
+                            LogUtils.e("aaaaa_开始获取是否上报结果data");
                             if ("true".equals(data)) {
                                 initAdManager(context, callback);
                             }else{
                                 callback.error();
                             }
                         }
-                        return null;
+                        return true;
                     }
                 }).subscribe(new Consumer<Object>() {
                     @Override
@@ -131,6 +136,7 @@ public class ADUtil {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        LogUtils.e("aaaaa_开始获取是否上报 error");
                     }
                 });
     }
@@ -423,7 +429,7 @@ public class ADUtil {
             callBack.onAdClose();
             return;
         }
-        LogUtils.e("开始获取开屏广告2");
+        LogUtils.e("aaaaa_开始获取开屏广告2");
         AdvertisementManager.getInstance().showOpenScreenAd(act, codeId, splashContainer, width, height, callBack);
     }
 
@@ -439,12 +445,12 @@ public class ADUtil {
         if (!is_global_ad_switch) {
             listener.onAdClose();
             return;
-        } //  todo zeng
+        }
         boolean is_video_ad_switch = Hawk.get(ConstantsPath.is_video_ad_switch, false);
-//        if (!is_video_ad_switch) {
-//            listener.onAdClose();
-//            return;
-//        }
+        if (!is_video_ad_switch) {
+            listener.onAdClose();
+            return;
+        }
         AdvertisementManager.getInstance().showRewardAd(act, codeId, listener);
     }
 }

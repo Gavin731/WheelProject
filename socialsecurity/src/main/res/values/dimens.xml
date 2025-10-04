@@ -48,6 +48,9 @@
     <dimen name="dp_47_70">70dp</dimen>
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_280">280dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_10">20dp</dimen>
+    <dimen name="dp_28_42">42dp</dimen>
 
 
     <dimen name="sp_14_21">21sp</dimen>

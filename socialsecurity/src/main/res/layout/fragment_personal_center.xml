@@ -9,11 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_22_33"
+            android:background="@color/white"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40_60"
-            android:layout_marginTop="@dimen/dp_22_33"
             android:background="@color/white"
             android:gravity="center"
             android:text="我的"

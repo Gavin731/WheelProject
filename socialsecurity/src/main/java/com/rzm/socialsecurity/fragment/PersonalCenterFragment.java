@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InfoAdCallBack;
@@ -24,8 +25,8 @@ import java.io.File;
 public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter> implements IBView {
 
     private static final String ARG_C = "content";
-    public boolean isShow=false;
-    public FrameLayout fl_info_ad;
+    public boolean isShow = false;
+    public FrameLayout flInfoAdPersonal;
 
     public TextView tvCache;
     public String path = PathUtils.getExternalAppDownloadPath() + "/个人所得税年度自行纳税申报表.pdf";
@@ -50,7 +51,13 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
 
     @Override
     public void lazyLoad() {
-        if(!isShow){
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && !isShow) {
             isShow = true;
             ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
                 @Override
@@ -93,7 +100,8 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
 
                 }
             });
-            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+//            flInfoAdPersonal.removeAllViews();
+            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdPersonal, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
 
@@ -126,7 +134,7 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
     public void initView() {
         tvCache = view.findViewById(R.id.tv_cache);
         initFiLe();
-        fl_info_ad= view.findViewById(R.id.fl_info_ad_personal);
+        flInfoAdPersonal = view.findViewById(R.id.fl_info_ad_personal);
         view.findViewById(R.id.ll_yszc).setOnClickListener(v -> showWebView(1));
         view.findViewById(R.id.ll_yhxy).setOnClickListener(v -> showWebView(2));
         view.findViewById(R.id.ll_gywm).setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));

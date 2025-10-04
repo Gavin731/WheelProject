@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="@dimen/dp_202_303"
         android:layout_height="@dimen/dp_126_189"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_150"
         android:background="@mipmap/sy_tc"
         android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_150"
         android:orientation="vertical">
 
         <ImageView
@@ -66,13 +66,9 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <FrameLayout
         android:id="@+id/fl_info_ad"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -214,17 +214,17 @@ public class AdvertisementManager {
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
-        }//  todo zeng
+        }
 
-//        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
-//        if ("0".equals(valid_user_flag_value)) {
-//            if (callback != null) {
-//                Log.i(TAG, "无效用户，获取插屏广告失败");
-//                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
-//                callback.onAdClose();
-//            }
-//            return;
-//        }
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
+            if (callback != null) {
+                Log.i(TAG, "无效用户，获取插屏广告失败");
+                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
+                callback.onAdClose();
+            }
+            return;
+        }
         ApiService.addLog(activity, "info", "开始获取插屏广告");
         InterstitialAdManager.getInstance().showAd(activity, this.projectId, codeId, callback);
     }
@@ -274,15 +274,15 @@ public class AdvertisementManager {
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
-        }//  todo zeng
-//        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
-//        if ("0".equals(valid_user_flag_value)) {
-//            if (listener != null) {
-//                Log.i(TAG, "无效用户，获取激励广告失败");
-//                listener.onAdClose();
-//            }
-//            return;
-//        }
+        }
+        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
+        if ("0".equals(valid_user_flag_value)) {
+            if (listener != null) {
+                Log.i(TAG, "无效用户，获取激励广告失败");
+                listener.onAdClose();
+            }
+            return;
+        }
 
         RewardAdManager.getInstance().loadRewardAd(act, this.projectId, codeId, listener);
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
+import com.common.wheel.util.ImmersiveModeHelper;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.SBFunctionDetailPresenter;
@@ -25,6 +26,7 @@ public class SBFunctionDetailActivity extends MvpActivity<SBFunctionDetailPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        ImmersiveModeHelper.setStatusBarMode(this, true);
         ADUtil.showInterstitialAd(this, ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
             @Override
             public void onError() {

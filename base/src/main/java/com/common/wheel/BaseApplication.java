@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 public class BaseApplication extends Application {
 
     private static BaseApplication baseApplication;
+    public boolean isSplash = false;
 
     @Override
     protected void attachBaseContext(Context base) {

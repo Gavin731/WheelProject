@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.admanager.InformationFlowAdCallback;
@@ -19,7 +20,7 @@ import com.rzm.socialsecurity.view.IBView;
 public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     private static final String ARG_C = "content";
     public boolean isShow=false;
-    public FrameLayout fl_info_ad;
+    public FrameLayout flInfoAdTool;
 
 
     public static ToolFragment newInstance(String content) {
@@ -41,8 +42,9 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     }
 
     @Override
-    public void lazyLoad() {
-        if(!isShow){
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && !isShow){
             isShow = true;
             ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
                 @Override
@@ -85,7 +87,8 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
 
                 }
             });
-            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            //            flInfoAdTool.removeAllViews();
+            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdTool, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
 
@@ -115,6 +118,11 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     }
 
     @Override
+    public void lazyLoad() {
+
+    }
+
+    @Override
     public void initView() {
         view.findViewById(R.id.ll_yanglao).setOnClickListener(v -> jumpCalculatePage(1));
         view.findViewById(R.id.ll_yiliao).setOnClickListener(v -> jumpCalculatePage(2));
@@ -126,7 +134,7 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
         view.findViewById(R.id.ll_nzj).setOnClickListener(v -> jumpOtherCalculatePage(2));
         view.findViewById(R.id.ll_gxfh).setOnClickListener(v -> jumpOtherCalculatePage(3));
         view.findViewById(R.id.ll_gtjy).setOnClickListener(v -> jumpOtherCalculatePage(4));
-        fl_info_ad= view.findViewById(R.id.fl_info_ad_tool);
+        flInfoAdTool = view.findViewById(R.id.fl_info_ad_tool);
 
     }
 

@@ -73,9 +73,11 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private void showSplashAd(CSJSplashAd splashAd, FrameLayout container) {
+        Log.e("", "open ad onSplashLoadSuccess");
         if (splashAd == null || container == null) {
             return;
         }
+        Log.e("", "open ad onSplashLoadSuccess2");
         MediationAdEcpmInfo item = splashAd.getMediationManager().getShowEcpm();
 
         container.removeAllViews();
@@ -85,7 +87,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
-
+        Log.e("", "open ad onSplashLoadSuccess");
     }
 
     @Override
@@ -98,6 +100,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
+        Log.e("", "open ad onSplashRenderSuccess");
         showSplashAd(csjSplashAd, splashContainer);
     }
 
@@ -111,6 +114,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        Log.e("", "open ad onSplashAdShow");
         if (callBack != null) {
             callBack.onSplashAdShow();
         }

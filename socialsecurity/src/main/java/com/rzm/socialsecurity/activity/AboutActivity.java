@@ -23,6 +23,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ImmersiveModeHelper.setTransparentStatusBar(this);
+        ImmersiveModeHelper.setStatusBarMode(this, true);
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
         tvTitle = findViewById(R.id.tv_title);

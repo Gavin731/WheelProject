@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="@dimen/dp_206_309"
         android:layout_height="@dimen/dp_280"
         android:layout_marginTop="@dimen/dp_150"
-        android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_write_radius"
         android:gravity="center"
         android:orientation="vertical">
@@ -74,13 +74,9 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <FrameLayout
         android:id="@+id/fl_info_ad"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

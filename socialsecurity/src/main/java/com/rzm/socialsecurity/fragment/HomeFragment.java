@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.Request;
@@ -216,8 +217,9 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
                 return;
             }
             if(TextUtils.isEmpty(zxkcMoney)){
-                showToast("请先填写专项附加扣除");
-                return;
+                zxkcMoney = "0";
+//                showToast("请先填写专项附加扣除");
+//                return;
             }
             Intent intent = new Intent(getActivity(), GSCalculateResultActivity.class);
             intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));

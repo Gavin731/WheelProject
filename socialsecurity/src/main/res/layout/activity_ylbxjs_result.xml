@@ -155,7 +155,7 @@
     <FrameLayout
         android:id="@+id/fl_info_ad"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_5_7"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginBottom="@dimen/dp_10_15"/>

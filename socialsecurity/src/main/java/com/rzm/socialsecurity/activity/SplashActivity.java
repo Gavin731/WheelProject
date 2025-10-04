@@ -36,6 +36,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        MyApp.getInstance().isSplash = true;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
         ADUtil.getKey(this, new InitCallback() {
             @Override
             public void success() {
-                LogUtils.e("开始获取开屏广告0");
+                LogUtils.e("aaaaa_开始获取开屏广告");
                 ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, 0, 0, new OpenScreenAdCallBack() {
                     @Override
                     public void onAdClose() {
@@ -86,13 +87,16 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
 
             @Override
             public void error() {
+                LogUtils.e("aaaaa_初始化失败");
                 openMain();
             }
         });
     }
 
     public void openMain() {
+        MyApp.getInstance().isSplash = false;
         startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }
+
 }

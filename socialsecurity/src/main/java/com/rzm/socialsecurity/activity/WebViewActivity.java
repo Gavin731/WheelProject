@@ -31,6 +31,7 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         ImmersiveModeHelper.setTransparentStatusBar(this);
+        ImmersiveModeHelper.setStatusBarMode(this, true);
         int type = getIntent().getIntExtra(ConstantConfig.webType, 1);
 
         ivBack = findViewById(R.id.iv_back);

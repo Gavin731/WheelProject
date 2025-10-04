@@ -160,7 +160,8 @@
             <LinearLayout
                 android:id="@+id/ll_tab"
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
+                android:layout_height="@dimen/dp_28_42"
+                android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginLeft="@dimen/dp_10_15"
                 android:layout_marginRight="@dimen/dp_10_15">
 
