@@ -214,7 +214,7 @@ public class AdvertisementManager {
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
-        }
+        }//  todo zeng
 
 //        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
 //        if ("0".equals(valid_user_flag_value)) {
@@ -274,7 +274,7 @@ public class AdvertisementManager {
         }
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
-        }
+        }//  todo zeng
 //        String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
 //        if ("0".equals(valid_user_flag_value)) {
 //            if (listener != null) {

@@ -47,6 +47,7 @@ import java.util.List;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import me.jessyan.autosize.AutoSizeConfig;
 
 public class ADUtil {
 
@@ -269,7 +270,7 @@ public class ADUtil {
                                 writeConfig(context, configs);
                             }
                         }
-                        return null;
+                        return true;
                     }
                 }).subscribe(new Consumer<Object>() {
                     @Override
@@ -279,7 +280,7 @@ public class ADUtil {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i("", "get configkey error:" + ExceptionUtil.getStackTrace(throwable));
+                        Log.i("", "app get configkey error:" + ExceptionUtil.getStackTrace(throwable));
                     }
                 });
     }
@@ -306,7 +307,7 @@ public class ADUtil {
     }
 
     private static void writeConfig(Context context, List<ConfigEntity> configs) {
-        Log.i("", "configkey:" + GsonUtil.formatObjectToJson(configs));
+        Log.i("", "app configkey:" + GsonUtil.formatObjectToJson(configs));
         for (ConfigEntity configEntity : configs) {
             switch (configEntity.getConfigKey()) {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
@@ -318,7 +319,7 @@ public class ADUtil {
                 case ConstantsPath.interstitial_ad_switch://插屏广告开关
                     Hawk.put(ConstantsPath.is_interstitial_ad_switch, configEntity.getConfigStatus());
                     break;
-                case ConstantsPath.is_video_ad_switch://激励视频广告开关
+                case ConstantsPath.video_ad_switch://激励视频广告开关
                     Hawk.put(ConstantsPath.is_video_ad_switch, configEntity.getConfigStatus());
                     break;
                 case ConstantsPath.feeds_ad_switch://信息流广告开关
@@ -438,7 +439,7 @@ public class ADUtil {
         if (!is_global_ad_switch) {
             listener.onAdClose();
             return;
-        }
+        } //  todo zeng
         boolean is_video_ad_switch = Hawk.get(ConstantsPath.is_video_ad_switch, false);
 //        if (!is_video_ad_switch) {
 //            listener.onAdClose();

@@ -25,6 +25,7 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
 
     private static final String ARG_C = "content";
     public boolean isShow=false;
+    public FrameLayout fl_info_ad;
 
     public TextView tvCache;
     public String path = PathUtils.getExternalAppDownloadPath() + "/个人所得税年度自行纳税申报表.pdf";
@@ -95,7 +96,6 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
             });
         }
         if(isVisibleToUser){
-            FrameLayout fl_info_ad= view.findViewById(R.id.fl_info_ad_personal);
             ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
@@ -134,7 +134,7 @@ public class PersonalCenterFragment extends MvpFragment<PersonalCenterPresenter>
     public void initView() {
         tvCache = view.findViewById(R.id.tv_cache);
         initFiLe();
-
+        fl_info_ad= view.findViewById(R.id.fl_info_ad_personal);
         view.findViewById(R.id.ll_yszc).setOnClickListener(v -> showWebView(1));
         view.findViewById(R.id.ll_yhxy).setOnClickListener(v -> showWebView(2));
         view.findViewById(R.id.ll_gywm).setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));

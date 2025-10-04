@@ -191,9 +191,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
             callback.onRenderSuccess();
         }
         if (mTTFeedAd != null) {
-
-
-
+            splashContainer.removeAllViews();
             View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
             ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
         }

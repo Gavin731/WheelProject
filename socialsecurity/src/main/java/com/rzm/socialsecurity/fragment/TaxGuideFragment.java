@@ -27,6 +27,7 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
 
     private static final String ARG_C = "content";
     public boolean isShow=false;
+    public FrameLayout fl_info_ad;
 
     public static TaxGuideFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -94,7 +95,6 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
             });
         }
         if(isVisibleToUser){
-            FrameLayout fl_info_ad= view.findViewById(R.id.fl_info_ad_tax);
             ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
@@ -138,6 +138,7 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
         view.findViewById(R.id.ll_znjy).setOnClickListener(v->jumpDetail(5));
         view.findViewById(R.id.ll_zfdk).setOnClickListener(v->jumpDetail(6));
         view.findViewById(R.id.ll_yyrzg).setOnClickListener(v->jumpDetail(7));
+        fl_info_ad= view.findViewById(R.id.fl_info_ad_tax);
         view.findViewById(R.id.tv_download).setOnClickListener(v->{
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override

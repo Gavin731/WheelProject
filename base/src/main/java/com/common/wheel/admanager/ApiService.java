@@ -260,7 +260,7 @@ class ApiService {
                                 writeConfig(context, configs);
                             }
                         }
-                        return null;
+                        return true;
                     }
                 }).subscribe(new Consumer<Object>() {
                     @Override

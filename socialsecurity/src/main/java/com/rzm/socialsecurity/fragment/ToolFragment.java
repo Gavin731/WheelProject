@@ -19,6 +19,7 @@ import com.rzm.socialsecurity.view.IBView;
 public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     private static final String ARG_C = "content";
     public boolean isShow=false;
+    public FrameLayout fl_info_ad;
 
 
     public static ToolFragment newInstance(String content) {
@@ -82,7 +83,6 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
             });
         }
         if(isVisibleToUser){
-            FrameLayout fl_info_ad= view.findViewById(R.id.fl_info_ad_tool);
             ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, fl_info_ad, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
                 @Override
                 public void onError() {
@@ -134,6 +134,7 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
         view.findViewById(R.id.ll_nzj).setOnClickListener(v -> jumpOtherCalculatePage(2));
         view.findViewById(R.id.ll_gxfh).setOnClickListener(v -> jumpOtherCalculatePage(3));
         view.findViewById(R.id.ll_gtjy).setOnClickListener(v -> jumpOtherCalculatePage(4));
+        fl_info_ad= view.findViewById(R.id.fl_info_ad_tool);
 
     }
 

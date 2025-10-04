@@ -37,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
             ActivityManager.getInstance().addActivity(this);
         }
         ImmersiveModeHelper.setTransparentStatusBar(this);
-        DensityFixer.watchAndFix(this);
+//        DensityFixer.watchAndFix(this);
 
     }
 
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     protected void onResume() {
         super.onResume();
         // 每次回到前台都修复一次
-        DensityFixer.fixDensity(this);
+//        DensityFixer.fixDensity(this);
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             // 获得焦点时修复
-            DensityFixer.fixDensity(this);
+//            DensityFixer.fixDensity(this);
         }
     }
 
