@@ -112,6 +112,9 @@ public class ADUtil {
         requestParams.put("appToken", token);
 
         requestParams.put("params", params);
+
+        boolean isShowUserPrivacy = Hawk.get(ConstantConfig.isAgreeUserPrivacy, false);
+
         Apis.getBaseApi().zxzh_sdk_report_config_query(requestParams)
                 .subscribeOn(Schedulers.io())
                 .map(new Function<ResultBean, Object>() {
@@ -119,8 +122,9 @@ public class ADUtil {
                     public Object apply(ResultBean resultBean) throws Exception {
                         if (resultBean.getData() != null) {
                             String data = resultBean.getData().toString();
-                            LogUtils.e("aaaaa_开始获取是否上报结果data");
-                            if ("true".equals(data)) {
+                            Hawk.put(ConstantConfig.userEnv, data);
+                            LogUtils.e("aaaaa_开始获取是否上报结果"+data);
+                            if ("true".equals(data) || isShowUserPrivacy) {
                                 initAdManager(context, callback);
                             }else{
                                 callback.error();
@@ -297,10 +301,20 @@ public class ADUtil {
             public void run() {
                 String ipAddress = AppDeviceUtil.getIp();
                 LogUtils.e("IP地址是：" + ipAddress);
+                String oaid = Hawk.get(ConstantConfig.oaid);
+                LogUtils.e("oaid原有地址是：" + oaid);
+                if(!TextUtils.isEmpty(oaid)){
+                    AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
+                    AdvertisementManager.getInstance().initConfig(oaid, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
+                    // 获取app配置
+                    requestConfig(context);
+                    return;
+                }
                 UMConfigure.getOaid(context, new OnGetOaidListener() {
                     @Override
                     public void onGetOaid(String s) {
                         LogUtils.e("oaid地址是：" + s);
+                        Hawk.put(ConstantConfig.oaid, s);
                         AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
                         AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
 //                        postEnvInfo(context);

@@ -276,7 +276,7 @@ class ApiService {
     }
 
     private static void writeConfig(Context context, List<ConfigEntity> configs) {
-        Log.i("", "configkey:" + GsonUtil.formatObjectToJson(configs));
+        Log.i("", "sdk configkey:" + GsonUtil.formatObjectToJson(configs));
         ApiService.addLog(context,"info","获取的配置信息："+GsonUtil.formatObjectToJson(configs));
         for (ConfigEntity configEntity : configs) {
             switch (configEntity.getConfigKey()) {

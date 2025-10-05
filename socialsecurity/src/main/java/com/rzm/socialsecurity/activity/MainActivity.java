@@ -36,11 +36,14 @@ import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.custom.HomeTabItemView;
+import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
 import com.rzm.socialsecurity.presenter.MainPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
 import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
@@ -140,7 +143,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     public void showAppHintDialog() {
         boolean isShowAppHint = Hawk.get(ConstantConfig.isShowAppDialog, false);
-        if (isShowAppHint) {
+        String userEnv = Hawk.get(ConstantConfig.userEnv);
+        if (isShowAppHint || "false".equals(userEnv)) {
             showUserPrivacy(false);
             return;
         }
@@ -245,6 +249,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     public void showUserPrivacy(boolean isEit) {
         boolean isShowUserPrivacy = Hawk.get(ConstantConfig.isAgreeUserPrivacy, false);
         if (isShowUserPrivacy) {
+            confirmUserPrivacy();
             return;
         }
 
@@ -449,6 +454,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                 public void success() {
                     // 展示广告
                     showInterstitialAd(3);
+                    EventBus.getDefault().post(new ShowInfoAdEvent(true));
                 }
 
                 @Override

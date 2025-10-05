@@ -15,6 +15,8 @@ public interface ConstantConfig {
     String amount ="amount"; // 金额
     String cbAmount ="cbAmount"; // 成本金额
     String webType ="webType"; // web类型
+    String userEnv ="userEnv"; // 用户上报
+    String oaid ="oaid"; // oaid
 
     String AD_PROJECT="5744513"; // 项目id
     String PROJECT_NAME = "社保个税管家";

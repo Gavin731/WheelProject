@@ -23,7 +23,7 @@ public class ToastUtil {
 
         // 创建 Toast 对象
         Toast toast = new Toast(context);
-        toast.setGravity(Gravity.CENTER, 0, -400); // 设置居中显示
+        toast.setGravity(Gravity.CENTER, 0, -300); // 设置居中显示
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout); // 设置自定义视图
         toast.show();

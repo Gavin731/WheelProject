@@ -5,6 +5,7 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.metrics.Event;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -36,9 +37,14 @@ import com.rzm.socialsecurity.activity.SBFunctionActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
+import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
 import com.rzm.socialsecurity.presenter.HomePresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IAView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * @author: zenglinggui
@@ -71,6 +77,13 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -213,8 +226,9 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
                 return;
             }
             if(TextUtils.isEmpty(sbMoney)){
-                showToast("请先填写五险一金");
-                return;
+                sbMoney="0";
+//                showToast("请先填写五险一金");
+//                return;
             }
             if(TextUtils.isEmpty(zxkcMoney)){
                 zxkcMoney = "0";
@@ -307,6 +321,39 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         Intent intent = new Intent(getActivity(), YLBXCalculateActivity.class);
         intent.putExtra(ConstantConfig.bxKey, type);
         startActivity(intent);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showInfoAd(ShowInfoAdEvent showInfoAdEvent){
+        if(!showInfoAdEvent.isShowAd()){
+            return;
+        }
+        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
     }
 
 

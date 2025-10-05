@@ -8,18 +8,12 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.BaseApplication;
-import com.common.wheel.admanager.InitCallback;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.activity.SplashActivity;
-import com.rzm.socialsecurity.entity.SplashEventEntity;
-import com.rzm.socialsecurity.entity.SplashEventEntity2;
-import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
 
-import org.greenrobot.eventbus.EventBus;
 
 public class MyApp extends BaseApplication {
 
@@ -85,7 +79,6 @@ public class MyApp extends BaseApplication {
         if (isSplash) {
             return;
         }
-        EventBus.getDefault().postSticky(new SplashEventEntity2(true));
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

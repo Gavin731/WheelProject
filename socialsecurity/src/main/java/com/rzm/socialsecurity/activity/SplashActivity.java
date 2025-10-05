@@ -1,32 +1,20 @@
 package com.rzm.socialsecurity.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.FrameLayout;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import com.blankj.utilcode.util.LogUtils;
-import com.common.wheel.admanager.AdvertisementManager;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InitCallback;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
 import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
-import com.rzm.socialsecurity.entity.SplashEventEntity;
-import com.rzm.socialsecurity.entity.SplashEventEntity2;
 import com.rzm.socialsecurity.presenter.SplashPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.ISplashView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 public class SplashActivity extends MvpActivity<SplashPresenter> implements ISplashView {
 
@@ -57,7 +45,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
             @Override
             public void success() {
                 LogUtils.e("aaaaa_开始获取开屏广告");
-                ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, 0, 0, new OpenScreenAdCallBack() {
+                ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, ScreenUtils.getScreenWidth(), 0, new OpenScreenAdCallBack() {
                     @Override
                     public void onAdClose() {
                         openMain();
