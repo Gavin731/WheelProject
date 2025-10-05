@@ -293,22 +293,22 @@ public class OtherTaxationCalculateResultPresenter extends MvpPresenter<IOtherTa
                 return amount.subtract(new BigDecimal(800)).multiply(new BigDecimal(sl)).subtract(bg2).setScale(2, RoundingMode.HALF_UP);
             }
             return amount.multiply(bg1).multiply(new BigDecimal(sl)).subtract(bg2).setScale(2, RoundingMode.HALF_UP);
-        }else if (type == 2){
+        }else if (type == 2){ // 年终奖报酬计算
             List<String> list = getNzjData(amount);
             float sl = Float.parseFloat(list.get(2)) / 100;// 税率
             float kcs = Float.parseFloat(list.get(3));// 扣除数
             BigDecimal bg1 = new BigDecimal(sl);
             BigDecimal bg2 = new BigDecimal(kcs);
             return amount.multiply(bg1).subtract(bg2).setScale(2, RoundingMode.HALF_UP);
-        }else if (type == 3){
+        }else if (type == 3){ // 股息分红报酬计算
             List<String> list = getGxfhData(amount);
             float sl = Float.parseFloat(list.get(2)) / 100;// 税率
             float kcs = Float.parseFloat(list.get(3));// 扣除数
             BigDecimal bg1 = new BigDecimal(sl);
             BigDecimal bg2 = new BigDecimal(kcs);
             return amount.multiply(bg1).setScale(2, RoundingMode.HALF_UP);
-        }else if (type == 4){
-            List<String> list = getGxfhData(amount);
+        }else if (type == 4){ // 个体经营税务计算
+            List<String> list = getGtjyData(amount.subtract(cbAmount));
             float sl = Float.parseFloat(list.get(2)) / 100;// 税率
             float kcs = Float.parseFloat(list.get(3));// 扣除数
             BigDecimal bg1 = new BigDecimal(sl);

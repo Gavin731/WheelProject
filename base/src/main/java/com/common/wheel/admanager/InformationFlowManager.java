@@ -153,7 +153,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     public void onAdClick() {
         long curDate = new Date().getTime();
         // 2次点击小于1.5秒，则不处理
-        if(upDate >0 && (curDate - upDate)<= 9000){
+        if(upDate >0 && (curDate - upDate)<= 500){
             return;
         }
         if(callback!=null){
@@ -165,6 +165,7 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
         Hawk.put("infoCount", count + 1);
         // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
         String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+        Log.e("----bbb", "aaacount:"+count+",value:"+feeds_misclick_ad_config_value);
         if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
             if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
                 ViewHelper.hideInfoView();
