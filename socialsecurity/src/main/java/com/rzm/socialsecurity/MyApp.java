@@ -14,7 +14,6 @@ import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.activity.SplashActivity;
 import com.rzm.socialsecurity.util.UMUtil;
 
-import me.jessyan.autosize.AutoSizeConfig;
 
 
 public class MyApp extends BaseApplication {
@@ -75,7 +74,7 @@ public class MyApp extends BaseApplication {
             public void onActivityDestroyed(Activity activity) {
             }
         });
-        AutoSizeConfig.getInstance().setCustomFragment(true).setExcludeFontScale(true);
+//        AutoSizeConfig.getInstance().setCustomFragment(true).setExcludeFontScale(true);
     }
 
     public void resetApp() {

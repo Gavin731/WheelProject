@@ -40,12 +40,12 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.WheelProject">
 <!--        240* 544-->
-        <meta-data
-            android:name="design_width_in_dp"
-            android:value="360" />
-        <meta-data
-            android:name="design_height_in_dp"
-            android:value="640" />
+<!--        <meta-data-->
+<!--            android:name="design_width_in_dp"-->
+<!--            android:value="360" />-->
+<!--        <meta-data-->
+<!--            android:name="design_height_in_dp"-->
+<!--            android:value="640" />-->
 
         <activity
             android:name=".activity.SplashActivity"
@@ -169,7 +169,7 @@
             android:configChanges="screenSize|orientation|keyboardHidden"
             tools:replace="android:configChanges"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <!-- 如果targetSdkVersion设置值>=24，则强烈建议添加以下provider，否则会影响app变现 -->
         <!-- android:authorities="${packageName}.bd.provider" authorities中${packageName}部分必须替换成app自己的包名 -->
@@ -205,7 +205,7 @@
             android:name="com.qq.e.ads.LandscapeADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
-            tools:replace="android:screenOrientation" />
+            tools:replace="android:screenOrientation"/>
 
         <!-- 声明SDK所需要的组件 -->
         <service
@@ -215,7 +215,7 @@
 
         <activity
             android:name="com.qq.e.ads.ADActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <!-- GDT end================== -->
 
         <!-- mintegral start================== -->
@@ -235,7 +235,7 @@
             android:name="com.sigmob.sdk.base.common.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             tools:replace="android:theme"
-            android:theme="@style/sig_transparent_style" />
+            android:theme="@style/sig_transparent_style"/>
 
         <provider
             android:name="com.sigmob.sdk.SigmobFileV4Provider"
