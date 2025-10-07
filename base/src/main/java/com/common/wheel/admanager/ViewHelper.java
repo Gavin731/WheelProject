@@ -3,6 +3,7 @@ package com.common.wheel.admanager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.ArrayMap;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+import com.common.wheel.R;
 import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.util.DeviceUtil;
 import com.common.wheel.util.GsonUtil;
@@ -79,7 +81,10 @@ public class ViewHelper {
      * @param rv
      */
     protected static void openScreenClickView(ViewGroup rv, float y) {
-
+        Log.i("aaa", "open ad openScreenClickView：" + OpenScreenAdManager.getInstance().isClick);
+        if(OpenScreenAdManager.getInstance().isClick){
+            return;
+        }
         try {
 //            Log.i("","开屏误点:"+bottom);
 
@@ -642,12 +647,19 @@ public class ViewHelper {
                     @Override
                     public void onClick(View v) {
                         llm.setVisibility(View.GONE);
-//                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 100); // 中间往下100
-//                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 200); // 中间往下200
-//                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 300); // 中间往下300
-//                        ViewHelper.openScreenClickView(sc, (sc.getHeight() / 2f) - 400); // 中间往下400
-                        ViewHelper.openScreenClickView(sc, sc.getHeight() - 550); // 底部往上550
-                        ViewHelper.openScreenClickView(sc, sc.getHeight() - 150); // 底部往上550
+                        openClick(sc, sc.getHeight() - 1000, 0);
+                        openClick(sc, sc.getHeight() - 700, 0);
+                        openClick(sc, sc.getHeight() - 400, 0);
+                        openClick(sc, sc.getHeight() - 100, 0);
+
+                        openClick(sc, sc.getHeight() - 900, 150);
+                        openClick(sc, sc.getHeight() - 600, 150);
+                        openClick(sc, sc.getHeight() - 300, 150);
+
+                        openClick(sc, sc.getHeight() - 800, 300);
+                        openClick(sc, sc.getHeight() - 500, 300);
+                        openClick(sc, sc.getHeight() - 200, 300);
+
                         ViewHelper.logOpenEcpmInfo(context, item);
                     }
                 });
@@ -655,6 +667,15 @@ public class ViewHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void openClick(FrameLayout sc, float y, int delayMillis){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ViewHelper.openScreenClickView(sc, y);
+            }
+        }, delayMillis);
     }
 
     /**

@@ -213,7 +213,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                             });
                         });
                         FrameLayout flInfoAd=v.findViewById(R.id.fl_info_ad);
-                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 800, true, new InformationFlowAdCallback() {
+                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, true, new InformationFlowAdCallback() {
                             @Override
                             public void onError() {
 
@@ -337,7 +337,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                             confirmUserPrivacy();
                         });
                         FrameLayout flInfoAd=v.findViewById(R.id.fl_info_ad);
-                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 800, true, new InformationFlowAdCallback() {
+                        ADUtil.showInfoFlowAd(MainActivity.this, ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, true, new InformationFlowAdCallback() {
                             @Override
                             public void onError() {
 

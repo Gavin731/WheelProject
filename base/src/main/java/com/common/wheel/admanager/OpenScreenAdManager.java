@@ -25,6 +25,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     private FrameLayout splashContainer;
     private String projectId;
     private String codeId;
+    public boolean isClick = false;
 
 
     protected static OpenScreenAdManager getInstance() {
@@ -114,6 +115,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        this.isClick = false;
         Log.e("", "open ad onSplashAdShow");
         if (callBack != null) {
             callBack.onSplashAdShow();
@@ -133,6 +135,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        this.isClick = true;
         if (callBack != null) {
             callBack.onSplashAdClick();
         }
@@ -148,6 +151,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        this.isClick = false;
         if (callBack != null) {
             callBack.onAdClose();
         }
