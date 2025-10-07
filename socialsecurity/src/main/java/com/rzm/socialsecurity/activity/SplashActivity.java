@@ -45,7 +45,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
             @Override
             public void success() {
                 LogUtils.e("aaaaa_开始获取开屏广告");
-                ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, ScreenUtils.getScreenWidth(), 0, new OpenScreenAdCallBack() {
+                ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, ScreenUtils.getAppScreenWidth(), ScreenUtils.getAppScreenHeight(), new OpenScreenAdCallBack() {
                     @Override
                     public void onAdClose() {
                         openMain();
