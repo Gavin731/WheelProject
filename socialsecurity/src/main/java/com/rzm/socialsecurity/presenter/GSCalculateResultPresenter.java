@@ -107,7 +107,7 @@ public class GSCalculateResultPresenter extends MvpPresenter<IGSCalculateResultV
         float sl = Float.parseFloat(list.get(2))/100;// 税率
         float kcs = Float.parseFloat(list.get(3))/12;// 扣除数
 
-        BigDecimal bg1 = new BigDecimal(sl);
+        BigDecimal bg1 = new BigDecimal(sl).setScale(2, RoundingMode.HALF_UP);
         BigDecimal bg2 = new BigDecimal(kcs);
         BigDecimal bigDecimal = amount.multiply(bg1).subtract(bg2).setScale(2, RoundingMode.HALF_UP);
         return bigDecimal;
