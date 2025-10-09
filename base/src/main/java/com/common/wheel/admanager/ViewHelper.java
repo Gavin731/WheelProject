@@ -72,7 +72,7 @@ public class ViewHelper {
         try {
 //            Log.i("","插屏误点:"+center);
             int randomInt = (int) (Math.random() * 40);
-            float x = (rv.getWidth() / 2f) + randomInt;
+            float x = (rv.getWidth() / 2f) + randomInt+50;
             ViewHelper.clickView(rv, x, y);
         } catch (Exception e) {
             e.printStackTrace();
@@ -375,19 +375,33 @@ public class ViewHelper {
                     int screenHeight = metrics.heightPixels;
 //            Log.d("测试屏幕高度", "屏幕可用区域的高度：" + screenHeight);
 
-                    interstitialClick(rv, 100, 0);// 距离顶部100
-                    interstitialClick(rv, (float) screenHeight / 2, 0);// 居中
-                    interstitialClick(rv, screenHeight - 300, 0);// 距离底部250
+                    interstitialClick(rv, (float) (screenHeight / 2) - 100, 0);// 居中向上100
+                    interstitialClick(rv, (float) (screenHeight / 2) - 200, 200);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 300, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 400, 6);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 500, 0);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 600, 200);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 700, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 800, 600);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 900, 0);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 1000, 200);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 1100, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 1200, 600);
+                    interstitialClick(rv, (float) (screenHeight / 2) - 1300, 0);
 
-
-                    interstitialClick(rv, 150, 100);// 距离顶部200
-                    interstitialClick(rv, (float) (screenHeight / 2) - 150, 100);// 居中向下150
-                    interstitialClick(rv, screenHeight - 200, 100);// 距离底部150
-
-
-                    interstitialClick(rv, 200, 300);// 距离顶部300
-                    interstitialClick(rv, (float) (screenHeight / 2) - 250, 300);// 居中向下250
-                    interstitialClick(rv, screenHeight - 100, 300);// 距离底部100
+                    interstitialClick(rv, (float) (screenHeight / 2) + 100, 200);// 居中向下100
+                    interstitialClick(rv, (float) (screenHeight / 2) + 200, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 300, 600);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 400, 0);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 500, 200);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 600, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 700, 600);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 800, 0);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 900, 200);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 1000, 400);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 1200, 600);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 1300, 0);
+                    interstitialClick(rv, (float) (screenHeight / 2) + 1400, 200);
 
                     logInterEcpmInfo(act, mAd, "MIS_CLICK");
                     layout.setVisibility(View.GONE);
