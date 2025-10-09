@@ -47,7 +47,6 @@ import java.util.List;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import me.jessyan.autosize.AutoSizeConfig;
 
 public class ADUtil {
 

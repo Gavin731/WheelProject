@@ -50,5 +50,7 @@ public interface ConstantsPath {
     String 	is_upload_log = "is_upload_log";// 是否上传日志
     String 	is_upload_log_value = "is_upload_log_value";
 
+    String interstitial_ad_is_click="interstitial_ad_is_click";// 插屏广告是否被点击
+
 //    String appVersion = "1.3.1";
 }

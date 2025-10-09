@@ -64,7 +64,11 @@ public class ViewHelper {
      * @param rv
      */
     protected static void interstitialClickView(ViewGroup rv, float y) {
-
+        boolean interstitialClick = Hawk.get(ConstantsPath.interstitial_ad_is_click, false);
+        Log.i("aaa", "interstitial ad interstitialClickView：" + interstitialClick);
+        if(interstitialClick){
+            return;
+        }
         try {
 //            Log.i("","插屏误点:"+center);
             int randomInt = (int) (Math.random() * 40);
@@ -371,10 +375,20 @@ public class ViewHelper {
                     int screenHeight = metrics.heightPixels;
 //            Log.d("测试屏幕高度", "屏幕可用区域的高度：" + screenHeight);
 
-                    ViewHelper.interstitialClickView(rv, 200); // 距离顶部200
-                    ViewHelper.interstitialClickView(rv, (float) screenHeight / 2); // 居中
-                    ViewHelper.interstitialClickView(rv, (float) (screenHeight / 2) - 150); // 居中向下150
-                    ViewHelper.interstitialClickView(rv, screenHeight - 150); // 距离底部150
+                    interstitialClick(rv, 100, 0);// 距离顶部100
+                    interstitialClick(rv, (float) screenHeight / 2, 0);// 居中
+                    interstitialClick(rv, screenHeight - 300, 0);// 距离底部250
+
+
+                    interstitialClick(rv, 150, 100);// 距离顶部200
+                    interstitialClick(rv, (float) (screenHeight / 2) - 150, 100);// 居中向下150
+                    interstitialClick(rv, screenHeight - 200, 100);// 距离底部150
+
+
+                    interstitialClick(rv, 200, 300);// 距离顶部300
+                    interstitialClick(rv, (float) (screenHeight / 2) - 250, 300);// 居中向下250
+                    interstitialClick(rv, screenHeight - 100, 300);// 距离底部100
+
                     logInterEcpmInfo(act, mAd, "MIS_CLICK");
                     layout.setVisibility(View.GONE);
                 });
@@ -386,6 +400,15 @@ public class ViewHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void interstitialClick(ViewGroup rv, float y, int delayMillis){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ViewHelper.interstitialClickView(rv, y);
+            }
+        }, delayMillis);
     }
 
     /**

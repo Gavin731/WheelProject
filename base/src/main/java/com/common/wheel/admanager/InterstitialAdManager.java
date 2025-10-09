@@ -11,6 +11,8 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
+import com.common.wheel.constans.ConstantsPath;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,7 @@ public class InterstitialAdManager {
     protected void showAd(Activity activity,String appId, String codeId, InfoAdCallBack callback) {
         this.callback = callback;
         this.projectId = appId;
+        Hawk.put(ConstantsPath.interstitial_ad_is_click, false);
         if (!adLoadListeners.isEmpty()) {
             adLoadListeners.get(0).setCallback(callback);
             show(activity, codeId);

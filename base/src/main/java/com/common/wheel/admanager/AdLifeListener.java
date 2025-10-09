@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+import com.common.wheel.constans.ConstantsPath;
 import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
@@ -36,6 +37,7 @@ public class AdLifeListener implements TTFullScreenVideoAd.FullScreenVideoAdInte
 
     @Override
     public void onAdVideoBarClick() {
+        Hawk.put(ConstantsPath.interstitial_ad_is_click, true);
         Log.i("", "adLs click");
         if(callback!=null){
             callback.onAdVideoBarClick();
