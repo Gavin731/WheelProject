@@ -17,6 +17,28 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // 渠道配置
+    flavorDimensions "channel"
+    productFlavors {
+        huawei {
+            dimension "channel"
+            // 华为渠道特有配置
+            manifestPlaceholders = [CHANNEL_ID: "huawei"]
+        }
+        xiaomi {
+            dimension "channel"
+            manifestPlaceholders = [CHANNEL_ID: "xiaomi"]
+        }
+        oppo {
+            dimension "channel"
+            manifestPlaceholders = [CHANNEL_ID: "oppo"]
+        }
+        vivo {
+            dimension "channel"
+            manifestPlaceholders = [CHANNEL_ID: "vivo"]
+        }
+    }
+
     buildFeatures {
         buildConfig true  // 启用 BuildConfig 生成功能
     }
