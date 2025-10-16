@@ -139,7 +139,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
         if (callBack != null) {
             callBack.onSplashAdClick();
         }
-        Log.i("", "open ad click");
+        Log.i("", "open ad onSplashAdClick");
         MediationBaseManager mediationManager = csjSplashAd.getMediationManager();
         if (mediationManager != null) {
             MediationAdEcpmInfo showEcpm = mediationManager.getShowEcpm();
@@ -151,6 +151,7 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
 
     @Override
     public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        Log.i("", "open ad onSplashAdClose");
         this.isClick = false;
         if (callBack != null) {
             callBack.onAdClose();

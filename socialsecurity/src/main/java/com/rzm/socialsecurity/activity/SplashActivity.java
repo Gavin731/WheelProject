@@ -59,6 +59,7 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
                 ADUtil.showOpenScreenAd(SplashActivity.this, ConstantConfig.AD_SPLASH, splashContainer, ScreenUtils.getAppScreenWidth(), ScreenUtils.getAppScreenHeight(), new OpenScreenAdCallBack() {
                     @Override
                     public void onAdClose() {
+                        LogUtils.e("开屏广告被关闭，跳转首页");
                         isLoadAdCallback = true;
                         openMain();
                     }
@@ -75,12 +76,14 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
 
                     @Override
                     public void onSplashLoadFail() {
+                        LogUtils.e("开屏广告加载异常，跳转首页");
                         isLoadAdCallback = true;
                         openMain();
                     }
 
                     @Override
                     public void onSplashRenderFail() {
+                        LogUtils.e("开屏广告渲染异常，跳转首页");
                         isLoadAdCallback = true;
                         openMain();
                     }
