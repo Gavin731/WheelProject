@@ -17,10 +17,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InfoAdCallBack;
@@ -31,11 +33,15 @@ import com.common.wheel.mvp.MvpActivity;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBackgroundMaskClickListener;
 import com.kongzue.dialogx.interfaces.OnBindView;
+import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadListener;
+import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.custom.HomeTabItemView;
+import com.rzm.socialsecurity.entity.IPEvent;
 import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
 import com.rzm.socialsecurity.presenter.MainPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
@@ -44,6 +50,8 @@ import com.rzm.socialsecurity.view.IMainView;
 import com.rzm.socialsecurity.widget.NoTouchViewPager;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
@@ -54,6 +62,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     PageNavigationView pnvTab;
     NoTouchViewPager vpMain;
+    InitCallback initCallback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,13 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         }, 100);
 
         BarUtils.setStatusBarLightMode(this, true);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -445,26 +461,33 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     }
 
     public void confirmUserPrivacy(){
+        initCallback = new InitCallback() {
+            @Override
+            public void success() {
+                // 展示广告
+                showInterstitialAd(3);
+                EventBus.getDefault().post(new ShowInfoAdEvent(true));
+            }
+
+            @Override
+            public void error() {
+            }
+        };
+
         Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
         requestPermission();
         UMUtil.init(MainActivity.this);
         if (!AdvertisementManager.getInstance().issInit()) {
-            ADUtil.initAdManager(getApplicationContext(), new InitCallback() {
-                @Override
-                public void success() {
-                    // 展示广告
-                    showInterstitialAd(3);
-                    EventBus.getDefault().post(new ShowInfoAdEvent(true));
-                }
-
-                @Override
-                public void error() {
-                }
-            });
+            ADUtil.initAdManager(getApplicationContext(), initCallback);
         }else{
             // 展示广告
             showInterstitialAd(3);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void initAd(IPEvent ipEvent){
+        ADUtil.initAd(getApplicationContext(), ipEvent.getIpAddress(), initCallback);
     }
 
     public void showInterstitialAd(int type){
@@ -539,13 +562,68 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
             Hawk.put("isCheckPermission", true);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
         }
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-//        }
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
-//        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // 下载时，申请读写文件权限
+        if (requestCode == 2) {
+            boolean isPass = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    isPass = false;
+                }
+            }
+            if (isPass) {
+                download();
+            }
+        }
+
+    }
+
+    public void download() {
+        String path = PathUtils.getExternalAppDownloadPath() + "/个人所得税年度自行纳税申报表.pdf";
+        FileDownloader.getImpl().create("https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/202402/P020240227631678268732.pdf")
+                .setPath(path)
+                .setListener(new FileDownloadListener() {
+                    @Override
+                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                    }
+
+                    @Override
+                    protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
+                    }
+
+                    @Override
+                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                    }
+
+                    @Override
+                    protected void blockComplete(BaseDownloadTask task) {
+                    }
+
+                    @Override
+                    protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
+                    }
+
+                    @Override
+                    protected void completed(BaseDownloadTask task) {
+                        showToast("下载成功，路径为：" + path);
+                    }
+
+                    @Override
+                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                    }
+
+                    @Override
+                    protected void error(BaseDownloadTask task, Throwable e) {
+                        showToast("下载失败");
+                    }
+
+                    @Override
+                    protected void warn(BaseDownloadTask task) {
+                    }
+                }).start();
     }
 }

@@ -3,30 +3,43 @@ package com.rzm.socialsecurity.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.common.wheel.admanager.AdvertisementManager;
 import com.common.wheel.admanager.InitCallback;
 import com.common.wheel.admanager.OpenScreenAdCallBack;
 import com.common.wheel.mvp.MvpActivity;
+import com.orhanobut.hawk.Hawk;
+import com.rzm.socialsecurity.BuildConfig;
 import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
+import com.rzm.socialsecurity.entity.IPEvent;
 import com.rzm.socialsecurity.presenter.SplashPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.ISplashView;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.commonsdk.listener.OnGetOaidListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class SplashActivity extends MvpActivity<SplashPresenter> implements ISplashView {
 
     FrameLayout splashContainer;
     private boolean isLoadAdCallback =false;// 加载广告是否有回调
+    InitCallback initCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.initView();
         MyApp.getInstance().isSplash = true;
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -51,8 +64,8 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
             }
         }, 20000);
         splashContainer = findViewById(R.id.splashContainer);
-        // 获取信息是否可以上报
-        ADUtil.getKey(this, new InitCallback() {
+
+        initCallback = new InitCallback() {
             @Override
             public void success() {
                 LogUtils.e("aaaaa_开始获取开屏广告");
@@ -96,7 +109,9 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
                 isLoadAdCallback = true;
                 openMain();
             }
-        });
+        };
+        // 获取信息是否可以上报
+        ADUtil.getKey(this, initCallback);
     }
 
     public void openMain() {
@@ -105,4 +120,15 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
         finish();
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void initAd(IPEvent ipEvent){
+        ADUtil.initAd(getApplicationContext(), ipEvent.getIpAddress(), initCallback);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

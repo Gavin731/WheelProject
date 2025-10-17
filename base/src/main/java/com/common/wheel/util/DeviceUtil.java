@@ -40,41 +40,49 @@ public class DeviceUtil {
      */
     @SuppressLint("MissingPermission")
     public static String getImei(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            return getUUID(context);
-        } else {
-            TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            try {
-                Method method = manager.getClass().getMethod("getImei", int.class);
-                String imei1 = (String) method.invoke(manager, 0);
-                String imei2 = (String) method.invoke(manager, 1);
-                if (TextUtils.isEmpty(imei2)) {
-                    return imei1;
-                }
-                if (!TextUtils.isEmpty(imei1)) {
-                    //因为手机卡插在不同位置，获取到的imei1和imei2值会交换，所以取它们的最小值,保证拿到的imei都是同一个
-                    String imei = "";
-                    if (imei1.compareTo(imei2) <= 0) {
-                        imei = imei1;
-                    } else {
-                        imei = imei2;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                return getUUID(context);
+            } else {
+                TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                try {
+                    Method method = manager.getClass().getMethod("getImei", int.class);
+                    String imei1 = (String) method.invoke(manager, 0);
+                    String imei2 = (String) method.invoke(manager, 1);
+                    if (TextUtils.isEmpty(imei2)) {
+                        return imei1;
                     }
-                    return imei;
+                    if (!TextUtils.isEmpty(imei1)) {
+                        //因为手机卡插在不同位置，获取到的imei1和imei2值会交换，所以取它们的最小值,保证拿到的imei都是同一个
+                        String imei = "";
+                        if (imei1.compareTo(imei2) <= 0) {
+                            imei = imei1;
+                        } else {
+                            imei = imei2;
+                        }
+                        return imei;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return manager.getDeviceId();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                return manager.getDeviceId();
+                return "";
             }
+        }catch (Exception e){
             return "";
         }
     }
 
     @SuppressLint("HardwareIds")
     public static String getAndroidId(Context context) {
-        return Settings.Secure.getString(
-                context.getContentResolver(),
-                Settings.Secure.ANDROID_ID
-        );
+        try {
+            return Settings.Secure.getString(
+                    context.getContentResolver(),
+                    Settings.Secure.ANDROID_ID
+            );
+        }catch (Exception e){
+            return "";
+        }
     }
 
     public static String getOAId(Context context) {
@@ -158,10 +166,14 @@ public class DeviceUtil {
      * 检查设备是否插入了 SIM 卡
      */
     public static boolean hasSimCard(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager != null) {
-            int simState = telephonyManager.getSimState();
-            return simState != TelephonyManager.SIM_STATE_ABSENT;
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (telephonyManager != null) {
+                int simState = telephonyManager.getSimState();
+                return simState != TelephonyManager.SIM_STATE_ABSENT;
+            }
+        }catch (Exception e){
+
         }
         return false;
     }
@@ -173,11 +185,15 @@ public class DeviceUtil {
      * @return
      */
     public static String getWifiIpAddress(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager != null && wifiManager.isWifiEnabled()) {
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            int ipAddress = wifiInfo.getIpAddress();
-            return formatIpAddress(ipAddress);
+        try {
+            WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            if (wifiManager != null && wifiManager.isWifiEnabled()) {
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                int ipAddress = wifiInfo.getIpAddress();
+                return formatIpAddress(ipAddress);
+            }
+        }catch (Exception e){
+
         }
         return null;
     }
@@ -319,10 +335,14 @@ public class DeviceUtil {
      * @return
      */
     public static String getLocalMacAddressFromWifiInfo(Context context) {
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo winfo = wifi.getConnectionInfo();
-        String mac = winfo.getMacAddress();
-        return mac;
+        try {
+            WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo winfo = wifi.getConnectionInfo();
+            String mac = winfo.getMacAddress();
+            return mac;
+        }catch (Exception e){
+            return "";
+        }
     }
 
     /**

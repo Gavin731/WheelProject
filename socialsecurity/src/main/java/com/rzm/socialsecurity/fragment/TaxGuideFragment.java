@@ -1,8 +1,14 @@
 package com.rzm.socialsecurity.fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PathUtils;
@@ -15,6 +21,7 @@ import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.rzm.socialsecurity.R;
+import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.TaxGuideDetailActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.TaxGuidePresenter;
@@ -27,7 +34,7 @@ import com.rzm.socialsecurity.view.IBView;
 public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements IBView {
 
     private static final String ARG_C = "content";
-    public boolean isShow=false;
+    public boolean isShow = false;
     public FrameLayout flInfoAdTax;
 
     public static TaxGuideFragment newInstance(String content) {
@@ -51,7 +58,7 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && !isShow){
+        if (isVisibleToUser && !isShow) {
             isShow = true;
             ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
                 @Override
@@ -131,19 +138,19 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
 
     @Override
     public void initView() {
-        view.findViewById(R.id.ll_zfzj).setOnClickListener(v->jumpDetail(1));
-        view.findViewById(R.id.ll_sylr).setOnClickListener(v->jumpDetail(2));
-        view.findViewById(R.id.ll_jxjy).setOnClickListener(v->jumpDetail(3));
-        view.findViewById(R.id.ll_dbyl).setOnClickListener(v->jumpDetail(4));
-        view.findViewById(R.id.ll_znjy).setOnClickListener(v->jumpDetail(5));
-        view.findViewById(R.id.ll_zfdk).setOnClickListener(v->jumpDetail(6));
-        view.findViewById(R.id.ll_yyrzg).setOnClickListener(v->jumpDetail(7));
+        view.findViewById(R.id.ll_zfzj).setOnClickListener(v -> jumpDetail(1));
+        view.findViewById(R.id.ll_sylr).setOnClickListener(v -> jumpDetail(2));
+        view.findViewById(R.id.ll_jxjy).setOnClickListener(v -> jumpDetail(3));
+        view.findViewById(R.id.ll_dbyl).setOnClickListener(v -> jumpDetail(4));
+        view.findViewById(R.id.ll_znjy).setOnClickListener(v -> jumpDetail(5));
+        view.findViewById(R.id.ll_zfdk).setOnClickListener(v -> jumpDetail(6));
+        view.findViewById(R.id.ll_yyrzg).setOnClickListener(v -> jumpDetail(7));
         flInfoAdTax = view.findViewById(R.id.fl_info_ad_tax);
-        view.findViewById(R.id.tv_download).setOnClickListener(v->{
+        view.findViewById(R.id.tv_download).setOnClickListener(v -> {
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-                    download();
+                    checkPermissions();
                 }
 
                 @Override
@@ -185,54 +192,19 @@ public class TaxGuideFragment extends MvpFragment<TaxGuidePresenter> implements 
 
     }
 
-    public void jumpDetail(int type){
-        Intent intent=new Intent(getActivity(), TaxGuideDetailActivity.class);
+    public void jumpDetail(int type) {
+        Intent intent = new Intent(getActivity(), TaxGuideDetailActivity.class);
         intent.putExtra(ConstantConfig.bxKey, type);
         startActivity(intent);
     }
 
-    public void download(){
-        String path = PathUtils.getExternalAppDownloadPath()+"/个人所得税年度自行纳税申报表.pdf";
-        FileDownloader.getImpl().create("https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/202402/P020240227631678268732.pdf")
-                .setPath(path)
-                .setListener(new FileDownloadListener() {
-                    @Override
-                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void blockComplete(BaseDownloadTask task) {
-                    }
-
-                    @Override
-                    protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
-                    }
-
-                    @Override
-                    protected void completed(BaseDownloadTask task) {
-                        showToast("下载成功，路径为："+path);
-                    }
-
-                    @Override
-                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void error(BaseDownloadTask task, Throwable e) {
-                        showToast("下载失败");
-                    }
-
-                    @Override
-                    protected void warn(BaseDownloadTask task) {
-                    }
-                }).start();
+    public void checkPermissions() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+            return;
+        }
+        ((MainActivity)getActivity()).download();
     }
 }

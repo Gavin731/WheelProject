@@ -164,9 +164,22 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
                 return;
             }
 
+            float monthMoneybl = 0;
+            try {
+                monthMoneybl = Float.parseFloat(monthMoney);
+            }catch (Exception ignored){
+
+            }
+            float sbMoneybl = 0;
+            try {
+                sbMoneybl = Float.parseFloat(sbMoney);
+            }catch (Exception ignored){
+
+            }
+
             Intent intent = new Intent(getActivity(), SBCalculateActivity.class);
-            intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));
-            intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
+            intent.putExtra(ConstantConfig.monthMoney, monthMoneybl);
+            intent.putExtra(ConstantConfig.sbgrMoney, sbMoneybl);
 
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
@@ -235,10 +248,29 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
 //                showToast("请先填写专项附加扣除");
 //                return;
             }
+            float monthMoneybl = 0;
+            try {
+                monthMoneybl = Float.parseFloat(monthMoney);
+            }catch (Exception ignored){
+
+            }
+            float sbMoneybl = 0;
+            try {
+                sbMoneybl = Float.parseFloat(sbMoney);
+            }catch (Exception ignored){
+
+            }
+            float zxkcMoneybl = 0;
+            try {
+                zxkcMoneybl = Float.parseFloat(zxkcMoney);
+            }catch (Exception ignored){
+
+            }
+
             Intent intent = new Intent(getActivity(), GSCalculateResultActivity.class);
-            intent.putExtra(ConstantConfig.monthMoney, Float.parseFloat(monthMoney));
-            intent.putExtra(ConstantConfig.sbgrMoney, Float.parseFloat(sbMoney));
-            intent.putExtra(ConstantConfig.zxkcMoney, Float.parseFloat(zxkcMoney));
+            intent.putExtra(ConstantConfig.monthMoney, monthMoneybl);
+            intent.putExtra(ConstantConfig.sbgrMoney, sbMoneybl);
+            intent.putExtra(ConstantConfig.zxkcMoney, zxkcMoneybl);
 
             ADUtil.showRewardAd(getActivity(), ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override

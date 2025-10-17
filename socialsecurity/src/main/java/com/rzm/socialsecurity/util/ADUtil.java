@@ -37,8 +37,13 @@ import com.rzm.socialsecurity.BuildConfig;
 import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
+import com.rzm.socialsecurity.entity.IPEvent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.commonsdk.listener.OnGetOaidListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -299,31 +304,37 @@ public class ADUtil {
             @Override
             public void run() {
                 String ipAddress = AppDeviceUtil.getIp();
-                LogUtils.e("IP地址是：" + ipAddress);
-                String oaid = Hawk.get(ConstantConfig.oaid);
-                LogUtils.e("oaid原有地址是：" + oaid);
-                if(!TextUtils.isEmpty(oaid)){
-                    AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
-                    AdvertisementManager.getInstance().initConfig(oaid, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
-                    // 获取app配置
-                    requestConfig(context);
-                    return;
-                }
-                UMConfigure.getOaid(context, new OnGetOaidListener() {
-                    @Override
-                    public void onGetOaid(String s) {
-                        LogUtils.e("oaid地址是：" + s);
-                        Hawk.put(ConstantConfig.oaid, s);
-                        AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
-                        AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
-//                        postEnvInfo(context);
-                        // 获取app配置
-                        requestConfig(context);
-                    }
-                });
+                IPEvent ipEvent=new IPEvent(ipAddress, callback);
+                EventBus.getDefault().post(ipEvent);
             }
         }).start();
     }
+
+    public static void initAd(Context context, String ipAddress, InitCallback callback){
+        LogUtils.e("IP地址是：" + ipAddress);
+        String oaid = Hawk.get(ConstantConfig.oaid);
+        LogUtils.e("oaid原有地址是：" + oaid);
+        if(!TextUtils.isEmpty(oaid)){
+            AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
+            AdvertisementManager.getInstance().initConfig(oaid, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
+            // 获取app配置
+            requestConfig(context);
+            return;
+        }
+        UMConfigure.getOaid(context, new OnGetOaidListener() {
+            @Override
+            public void onGetOaid(String s) {
+                LogUtils.e("oaid地址是：" + s);
+                Hawk.put(ConstantConfig.oaid, s);
+                AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
+                AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
+//                        postEnvInfo(context);
+                // 获取app配置
+                requestConfig(context);
+            }
+        });
+    }
+
 
     private static void writeConfig(Context context, List<ConfigEntity> configs) {
         Log.i("", "app configkey:" + GsonUtil.formatObjectToJson(configs));
