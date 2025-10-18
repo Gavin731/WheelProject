@@ -122,10 +122,23 @@ public class OtherTaxationCalculateActivity extends MvpActivity<OtherTaxationCal
                     return;
                 }
             }
+            float moneyBl = 0;
+            try {
+                moneyBl = Float.parseFloat(money);
+            }catch (Exception e){
+
+            }
+            float cbAmountBl = 0;
+            try {
+                cbAmountBl = Float.parseFloat(cbAmount);
+            }catch (Exception e){
+
+            }
+
             Intent intent = new Intent(OtherTaxationCalculateActivity.this, OtherTaxationCalculateResultActivity.class);
             intent.putExtra(ConstantConfig.bxKey, type);
-            intent.putExtra(ConstantConfig.amount, Float.parseFloat(money));
-            intent.putExtra(ConstantConfig.cbAmount, TextUtils.isEmpty(cbAmount) ? 0 : Float.parseFloat(cbAmount));
+            intent.putExtra(ConstantConfig.amount, moneyBl);
+            intent.putExtra(ConstantConfig.cbAmount, TextUtils.isEmpty(cbAmount) ? 0 : cbAmountBl);
 
             ADUtil.showRewardAd(this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override

@@ -135,7 +135,13 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
                 showToast("请输入单位缴纳比例");
                 return;
             }
-            if (Float.parseFloat(etCompanyText) > 20) {
+            float etCompanyTextBl = 0;
+            try {
+                etCompanyTextBl = Float.parseFloat(etCompanyText);
+            }catch (Exception e){
+                etCompanyText = "0";
+            }
+            if (etCompanyTextBl > 20) {
                 showToast("比例不能超过20");
                 return;
             }
@@ -146,7 +152,13 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
                     showToast("请输入个人缴纳比例");
                     return;
                 }
-                if (Float.parseFloat(etPersonalText) > 20) {
+                float etPersonalTextBl = 0;
+                try {
+                    etPersonalTextBl = Float.parseFloat(etPersonalText);
+                }catch (Exception e){
+                    etPersonalText = "0";
+                }
+                if (etPersonalTextBl > 20) {
                     showToast("比例不能超过20");
                     return;
                 }
