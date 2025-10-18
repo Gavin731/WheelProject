@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.AdvertisementManager;
@@ -42,6 +43,7 @@ import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.custom.HomeTabItemView;
 import com.rzm.socialsecurity.entity.IPEvent;
+import com.rzm.socialsecurity.entity.MainInterstitialAdEvent;
 import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
 import com.rzm.socialsecurity.presenter.MainPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
@@ -284,7 +286,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         String fullText = "尊敬的用户:\n" +
                                 "      衷心感谢您选用社保个税计算!我们非常尊重并保护您的个人信息和隐私，为了更好的保障您的权利，在您使用我们的产品前，请您务必谨慎阅读《用户协议》和《隐私政策》内的所有条款。\n" +
                                 "请注意:\n" +
-                                "1.在您使用本产品时，我们可能会收集您的:安卓ID、网络状态、APP版本号、MAC地址、IME1、所在位置信息、手机存储权限、电话、IP地址等，用于统计APP的使用情况、定位错误问题和不断提供APP稳定性和安全性;\n" +
+                                "1.在您使用本产品时，我们可能会收集您的:AndroidId、OaId、网络状态、APP版本号、MAC地址、IMEI、所在位置信息、手机存储权限、电话、IP地址等，用于统计APP的使用情况、定位错误问题和不断提供APP稳定性和安全性;\n" +
                                 "2.我们会尽力采取各种安全技术保护您的个人信息，未经您的同意，我们不会从第三方获取、共享或对外提供您的信息。\n" +
                                 "如您同意以上协议内容，请您点击“同意并继续”，开始使用我的产品。";
 
@@ -490,6 +492,24 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         ADUtil.initAd(getApplicationContext(), ipEvent.getIpAddress(), initCallback);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void interstitialAdEvent(MainInterstitialAdEvent mainInterstitialAdEvent){
+        LogUtils.i("ceshi:"+mainInterstitialAdEvent.getType());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (mainInterstitialAdEvent.getType()){
+                    case 1:
+                        showAppHintDialog();
+                        break;
+                    case 2:
+                        showUserPrivacy(false);
+                        break;
+                }
+            }
+        }, 100);
+    }
+
     public void showInterstitialAd(int type){
         ADUtil.showInterstitialAd(this, ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
             @Override
@@ -519,19 +539,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
             @Override
             public void onAdClose() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        switch (type){
-                            case 1:
-                                showAppHintDialog();
-                                break;
-                            case 2:
-                                showUserPrivacy(false);
-                                break;
-                        }
-                    }
-                }, 100);
+                EventBus.getDefault().post(new MainInterstitialAdEvent(type));
             }
 
             @Override
