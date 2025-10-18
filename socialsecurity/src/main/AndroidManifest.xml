@@ -156,9 +156,9 @@
         <!--            tools:replace="android:authorities" />-->
 
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <!--This meta-data tag is required to use Google Play Services.-->
         <!-- admob end================== -->
 
@@ -224,34 +224,34 @@
         <!-- GDT end================== -->
 
         <!-- mintegral start================== -->
-        <provider
-            android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"
-            android:authorities="${applicationId}.mbFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/mb_provider_paths" />
-        </provider>
+<!--        <provider-->
+<!--            android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"-->
+<!--            android:authorities="${applicationId}.mbFileProvider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/mb_provider_paths" />-->
+<!--        </provider>-->
         <!-- mintegral end================== -->
 
         <!-- sigmob start================== -->
-        <activity
-            android:name="com.sigmob.sdk.base.common.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            tools:replace="android:theme"
-            android:theme="@style/sig_transparent_style"/>
+<!--        <activity-->
+<!--            android:name="com.sigmob.sdk.base.common.AdActivity"-->
+<!--            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"-->
+<!--            tools:replace="android:theme"-->
+<!--            android:theme="@style/sig_transparent_style"/>-->
 
-        <provider
-            android:name="com.sigmob.sdk.SigmobFileV4Provider"
-            android:authorities="${applicationId}.sigprovider"
-            android:exported="false"
-            android:initOrder="200"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/sigmob_provider_paths"/>
-        </provider>
+<!--        <provider-->
+<!--            android:name="com.sigmob.sdk.SigmobFileV4Provider"-->
+<!--            android:authorities="${applicationId}.sigprovider"-->
+<!--            android:exported="false"-->
+<!--            android:initOrder="200"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/sigmob_provider_paths"/>-->
+<!--        </provider>-->
     </application>
 
 </manifest>
