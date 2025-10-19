@@ -35,6 +35,7 @@ import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
+import com.rzm.socialsecurity.activity.TaxGuideActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
@@ -317,7 +318,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
 
         view.findViewById(R.id.tv_zxfjkc).setOnClickListener(v -> startActivity(new Intent(getActivity(), CalculateZXFJKCActivity.class)));
         view.findViewById(R.id.tv_jump_fragment3).setOnClickListener(v -> {
-            ((MainActivity)getActivity()).jumpCurrentPage(2);
+           startActivity(new Intent(getActivity(), TaxGuideActivity.class));
         });
 
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);

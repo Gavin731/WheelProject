@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.rzm.socialsecurity.fragment.HomeFragment;
 import com.rzm.socialsecurity.fragment.BFragment;
 import com.rzm.socialsecurity.fragment.PersonalCenterFragment;
-import com.rzm.socialsecurity.fragment.TaxGuideFragment;
+import com.rzm.socialsecurity.fragment.PayRecordFragment;
 import com.rzm.socialsecurity.fragment.ToolFragment;
 
 
@@ -28,7 +28,7 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return ToolFragment.newInstance(position + "");
             case 2:
-                return TaxGuideFragment.newInstance(position + "");
+                return PayRecordFragment.newInstance(position + "");
             case 3:
                 return PersonalCenterFragment.newInstance(position + "");
             default:

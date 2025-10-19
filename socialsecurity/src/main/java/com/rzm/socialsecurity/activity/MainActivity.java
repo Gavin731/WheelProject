@@ -133,7 +133,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         HomeTabItemView tax = new HomeTabItemView(this);
         tax.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide));
         tax.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide_select));
-        tax.setTitle("税务指南");
+        tax.setTitle("缴费记录");
         tax.setChecked(false);
 
         HomeTabItemView personal = new HomeTabItemView(this);
@@ -574,68 +574,5 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
             Hawk.put("isCheckPermission", true);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // 下载时，申请读写文件权限
-        if (requestCode == 2) {
-            boolean isPass = true;
-            for (int result : grantResults) {
-                if (result != PackageManager.PERMISSION_GRANTED) {
-                    isPass = false;
-                }
-            }
-            if (isPass) {
-                download();
-            }
-        }
-
-    }
-
-    public void download() {
-        String path = PathUtils.getExternalAppDownloadPath() + "/个人所得税年度自行纳税申报表.pdf";
-        FileDownloader.getImpl().create("https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/202402/P020240227631678268732.pdf")
-                .setPath(path)
-                .setListener(new FileDownloadListener() {
-                    @Override
-                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void blockComplete(BaseDownloadTask task) {
-                    }
-
-                    @Override
-                    protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
-                    }
-
-                    @Override
-                    protected void completed(BaseDownloadTask task) {
-                        showToast("下载成功，路径为：" + path);
-                    }
-
-                    @Override
-                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void error(BaseDownloadTask task, Throwable e) {
-                        showToast("下载失败");
-                    }
-
-                    @Override
-                    protected void warn(BaseDownloadTask task) {
-                    }
-                }).start();
     }
 }

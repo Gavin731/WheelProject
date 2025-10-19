@@ -6,6 +6,5 @@ import com.rzm.socialsecurity.view.IBView;
 public class TaxGuidePresenter extends MvpPresenter<IBView> {
     @Override
     public void initView() {
-
     }
 }

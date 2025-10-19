@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_top" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_260_390"
+                android:layout_margin="@dimen/dp_10_15"
+                android:background="@mipmap/sw_sxcl"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp_9_13"
+                    android:layout_marginTop="@dimen/dp_9_13"
+                    android:layout_weight="1"
+                    android:text="个人所得税申报"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_11_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="附件：个人所得税年度自行纳税申请表"
+                    android:textColor="#ff3875f6"
+                    android:textSize="@dimen/sp_9_13" />
+
+                <TextView
+                    android:id="@+id/tv_download"
+                    android:layout_width="@dimen/dp_126_189"
+                    android:layout_height="@dimen/dp_30_45"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dp_10_15"
+                    android:background="@drawable/btn_bg"
+                    android:gravity="center"
+                    android:text="下载"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_11_16" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_info_ad_tax"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_13_19"
+                    android:layout_height="@dimen/dp_13_19"
+                    android:layout_marginStart="@dimen/dp_8_12"
+                    android:src="@mipmap/sy_sbjssc" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_2_3"
+                    android:text="专项扣除税务指南"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_11_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8_12"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:layout_marginEnd="@dimen/dp_8_12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_zfzj"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="住房租金"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_sylr"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_2" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="赡养老人"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8_12"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_marginEnd="@dimen/dp_8_12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_jxjy"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_3" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="继续教育"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dbyl"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_4" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="大病医疗"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8_12"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_marginEnd="@dimen/dp_8_12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_znjy"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_5" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="子女教育"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_zfdk"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_write_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_26_39"
+                        android:layout_height="@dimen/dp_26_39"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/icon_sw_6" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="住房贷款"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专项扣除指南"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_yyrzg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50_75"
+                android:layout_marginStart="@dimen/dp_13_19"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_marginEnd="@dimen/dp_8_12"
+                android:layout_marginBottom="@dimen/dp_10_15"
+                android:background="@drawable/bg_write_radius"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_26_39"
+                    android:layout_height="@dimen/dp_26_39"
+                    android:layout_marginStart="@dimen/dp_7_8"
+                    android:src="@mipmap/icon_sw_7" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3岁以下婴幼儿照顾"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_11_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="专项扣除指南"
+                        android:textColor="#ff999999"
+                        android:textSize="@dimen/sp_9_13" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
