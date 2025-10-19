@@ -69,6 +69,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!Hawk.isBuilt()) {
+            Hawk.init(this).build();
+        }
         presenter.initView();
         new Handler().postDelayed(new Runnable() {
             @Override

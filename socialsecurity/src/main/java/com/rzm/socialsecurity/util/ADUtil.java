@@ -311,6 +311,9 @@ public class ADUtil {
     }
 
     public static void initAd(Context context, String ipAddress, InitCallback callback){
+        if (!Hawk.isBuilt()) {
+            Hawk.init(context).build();
+        }
         LogUtils.e("IP地址是：" + ipAddress);
         String oaid = Hawk.get(ConstantConfig.oaid);
         LogUtils.e("oaid原有地址是：" + oaid);
