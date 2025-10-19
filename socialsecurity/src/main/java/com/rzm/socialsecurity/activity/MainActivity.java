@@ -286,7 +286,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
                         String fullText = "尊敬的用户:\n" +
                                 "      衷心感谢您选用社保个税计算!我们非常尊重并保护您的个人信息和隐私，为了更好的保障您的权利，在您使用我们的产品前，请您务必谨慎阅读《用户协议》和《隐私政策》内的所有条款。\n" +
                                 "请注意:\n" +
-                                "1.在您使用本产品时，我们可能会收集您的:AndroidId、OaId、网络状态、APP版本号、MAC地址、IMEI、所在位置信息、手机存储权限、电话、IP地址等，用于统计APP的使用情况、定位错误问题和不断提供APP稳定性和安全性;\n" +
+                                "1.在您使用本产品时，我们可能会收集您的设备唯一标识符(IMEI、AndroidID、OAID、IDFA、OpenUDID、GUID、IDFV、SIM卡IMSI信息、ICCID，MEID、SSID、ME、IP地址、设备MAC地址、SUPI、SUCI、序列号)对用户进行唯一标识。通过网络状态、APP版本号、所在位置信息、电话、手机存储权限等，用于统计APP的使用情况、定位错误问题和不断提供APP稳定性和安全性;\n" +
                                 "2.我们会尽力采取各种安全技术保护您的个人信息，未经您的同意，我们不会从第三方获取、共享或对外提供您的信息。\n" +
                                 "如您同意以上协议内容，请您点击“同意并继续”，开始使用我的产品。";
 

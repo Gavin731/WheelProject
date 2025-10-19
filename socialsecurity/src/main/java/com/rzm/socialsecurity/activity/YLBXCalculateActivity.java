@@ -135,6 +135,11 @@ public class YLBXCalculateActivity extends MvpActivity<YLBXCalculatePresenter> i
                 showToast("请输入单位缴纳比例");
                 return;
             }
+            try {
+                Float.parseFloat(etCardinalNumberText);
+            }catch (Exception e){
+                etCardinalNumberText = "0";
+            }
             float etCompanyTextBl = 0;
             try {
                 etCompanyTextBl = Float.parseFloat(etCompanyText);
