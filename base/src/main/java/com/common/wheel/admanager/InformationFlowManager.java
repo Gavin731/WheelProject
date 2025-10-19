@@ -1,5 +1,7 @@
 package com.common.wheel.admanager;
 
+import static android.view.View.GONE;
+
 import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.ComplianceInfo;
+import com.bytedance.sdk.openadsdk.TTAdDislike;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
 import com.bytedance.sdk.openadsdk.mediation.MediationConstant;
@@ -121,6 +124,23 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
             } else {
                 //非下载类广告
             }
+            mTTFeedAd.setDislikeCallback(weakRef.get(), new TTAdDislike.DislikeInteractionCallback() {
+                @Override
+                public void onShow() {
+                    Log.e("", "信息流 onShow");
+                }
+
+                @Override
+                public void onSelected(int i, String s, boolean b) {
+                    Log.e("", "信息流 onSelected");
+                    splashContainer.setVisibility(GONE);
+                }
+
+                @Override
+                public void onCancel() {
+                    Log.e("", "信息流 onCancel");
+                }
+            });
             mTTFeedAd.uploadDislikeEvent("mediation_dislike_event");
             /** 5、展示广告 */
             MediationNativeManager manager = mTTFeedAd.getMediationManager();
