@@ -12,6 +12,8 @@ public class UMUtil {
     public static void preInit(Application context) {
         String channel = ChannelUtils.getChannel(context);
         UMConfigure.enableImeiCollection(false);
+        UMConfigure.enableImsiCollection(false);
+        UMConfigure.enableIccidCollection(false);
         UMConfigure.preInit(context, key, channel);
     }
 

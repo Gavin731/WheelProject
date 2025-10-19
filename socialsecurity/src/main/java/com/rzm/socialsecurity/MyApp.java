@@ -8,18 +8,28 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.BaseApplication;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.activity.SplashActivity;
+import com.rzm.socialsecurity.constant.ConstantConfig;
+import com.rzm.socialsecurity.entity.IPEvent;
+import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.UMUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class MyApp extends BaseApplication {
 
     private int activityCount = 0;
+    private static MyApp myApp;
 
+    public static MyApp getMyApp(){
+        return myApp;
+    }
 
     @Override
     public void attachBaseContext(Context base) {
@@ -30,10 +40,13 @@ public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Hawk.init(this).build();
+        myApp = this;
+        boolean isShowUserPrivacy = Hawk.get(ConstantConfig.isAgreeUserPrivacy, false);
+        if(isShowUserPrivacy){
+            initUm();
+        }
         Hawk.put("url", getResources().getString(R.string.app_url));
         FileDownloader.setupOnApplicationOnCreate(this);
-        UMUtil.preInit(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -85,5 +98,11 @@ public class MyApp extends BaseApplication {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    public void initUm(){
+      LogUtils.i("开始初始化友盟");
+      UMUtil.preInit(this);
+      UMUtil.init(this);
     }
 }

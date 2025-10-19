@@ -38,6 +38,7 @@ import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
+import com.rzm.socialsecurity.MyApp;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.adapter.TabViewPagerAdapter;
 import com.rzm.socialsecurity.constant.ConstantConfig;
@@ -481,7 +482,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
         Hawk.put(ConstantConfig.isAgreeUserPrivacy, true);
         requestPermission();
-        UMUtil.init(MainActivity.this);
+        MyApp.getMyApp().initUm();
         if (!AdvertisementManager.getInstance().issInit()) {
             ADUtil.initAdManager(getApplicationContext(), initCallback);
         }else{
