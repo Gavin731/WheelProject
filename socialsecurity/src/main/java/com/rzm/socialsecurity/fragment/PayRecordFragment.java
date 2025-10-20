@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,6 +24,8 @@ import com.rzm.socialsecurity.presenter.TaxGuidePresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IBView;
 
+import java.util.Calendar;
+
 /**
  * 缴费记录
  */
@@ -31,6 +34,8 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
     private static final String ARG_C = "content";
     public boolean isShow = false;
     public FrameLayout flInfoAdTax;
+    public int selectYear;
+    public TextView tvYear;
 
     public static PayRecordFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -176,5 +181,23 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
                 }
             });
         });
+
+        selectYear = Calendar.getInstance().get(Calendar.YEAR);
+        tvYear = view.findViewById(R.id.tv_year);
+        refreshYearData();
+
+
+        view.findViewById(R.id.ll_left).setOnClickListener(v->{
+            selectYear--;
+            refreshYearData();
+        });
+        view.findViewById(R.id.ll_right).setOnClickListener(v->{
+            selectYear++;
+            refreshYearData();
+        });
+    }
+
+    public void refreshYearData(){
+        tvYear.setText(String.valueOf(selectYear));
     }
 }

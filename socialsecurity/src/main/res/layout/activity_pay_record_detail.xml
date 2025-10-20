@@ -33,10 +33,11 @@
                 android:paddingRight="@dimen/dp_10_15">
 
                 <LinearLayout
+                    android:id="@+id/ll_yanglao"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_50_75"
                     android:layout_weight="1"
-                    android:background="@mipmap/wdsbzd_k1"
+                    android:background="@mipmap/jlzc_k1"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -58,6 +59,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_yiliao"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_50_75"
                     android:layout_marginLeft="@dimen/dp_5_7"
@@ -84,6 +86,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_shiye"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_50_75"
                     android:layout_marginLeft="@dimen/dp_5_7"
@@ -119,6 +122,7 @@
                 android:paddingRight="@dimen/dp_10_15">
 
                 <LinearLayout
+                    android:id="@+id/ll_gongshang"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_50_75"
                     android:layout_weight="1"
@@ -144,6 +148,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_shengyu"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_50_75"
                     android:layout_marginLeft="@dimen/dp_5_7"
@@ -188,9 +193,10 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="100dp" />
+                android:layout_height="50dp" />
 
             <LinearLayout
+                android:id="@+id/ll_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_20_30"
                 android:layout_marginLeft="@dimen/dp_10_15"
@@ -205,6 +211,7 @@
                     android:src="@mipmap/jlzc_rl" />
 
                 <TextView
+                    android:id="@+id/tv_calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_3_5"
@@ -223,7 +230,7 @@
                 android:background="@drawable/edit_bg"
                 android:inputType="numberDecimal"
                 android:paddingStart="@dimen/dp_5_7"
-                android:text="111"
+                android:text="0"
                 android:textColor="#ffff2222"
                 android:textSelectHandle="@drawable/none_drawable"
                 android:textSelectHandleLeft="@drawable/none_drawable"
@@ -235,6 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_32_48"
                 android:layout_marginLeft="@dimen/dp_20_30"
+                android:layout_marginBottom="@dimen/dp_20_30"
                 android:layout_marginTop="@dimen/dp_10_15"
                 android:layout_marginRight="@dimen/dp_20_30"
                 android:background="@drawable/btn_bg"

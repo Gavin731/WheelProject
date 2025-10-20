@@ -385,6 +385,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10_15"
                 android:background="@drawable/bg_ylbx_funstion"
+                android:layout_marginBottom="@dimen/dp_20_30"
                 android:orientation="vertical">
 
                 <TextView
@@ -411,12 +412,21 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="@dimen/dp_11_16"
-                            android:layout_height="@dimen/dp_11_16"
-                            android:src="@mipmap/wdsbzd_y1" />
+                        <LinearLayout
+                            android:id="@+id/ll_left"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_11_16"
+                                android:layout_height="@dimen/dp_11_16"
+                                android:src="@mipmap/wdsbzd_y1" />
+                        </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_3_5"
@@ -425,10 +435,18 @@
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_10_15" />
 
-                        <ImageView
-                            android:layout_width="@dimen/dp_11_16"
-                            android:layout_height="@dimen/dp_11_16"
-                            android:src="@mipmap/wdsbzd_y2" />
+                        <LinearLayout
+                            android:id="@+id/ll_right"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_11_16"
+                                android:layout_height="@dimen/dp_11_16"
+                                android:src="@mipmap/wdsbzd_y2" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
