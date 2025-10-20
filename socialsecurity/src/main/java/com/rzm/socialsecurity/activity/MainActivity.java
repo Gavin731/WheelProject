@@ -133,7 +133,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
         HomeTabItemView tax = new HomeTabItemView(this);
         tax.setDefaultDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide));
         tax.setSelectedDrawable(getDrawable(R.mipmap.icon_home_tab_tax_guide_select));
-        tax.setTitle("缴费记录");
+        tax.setTitle("社保账单");
         tax.setChecked(false);
 
         HomeTabItemView personal = new HomeTabItemView(this);

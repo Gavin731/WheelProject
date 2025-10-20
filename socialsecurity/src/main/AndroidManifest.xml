@@ -140,6 +140,11 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.PayRecordDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"
