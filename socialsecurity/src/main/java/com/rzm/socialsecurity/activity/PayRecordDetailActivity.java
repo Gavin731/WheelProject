@@ -2,7 +2,9 @@ package com.rzm.socialsecurity.activity;
 
 import static android.view.View.VISIBLE;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -14,12 +16,14 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.mvp.MvpActivity;
+import com.common.wheel.util.GsonUtil;
 import com.common.wheel.util.ImmersiveModeHelper;
 import com.github.gzuliyujiang.wheelpicker.DatePicker;
 import com.github.gzuliyujiang.wheelpicker.annotation.DateMode;
 import com.github.gzuliyujiang.wheelpicker.contract.OnDatePickedListener;
 import com.github.gzuliyujiang.wheelpicker.entity.DateEntity;
 import com.github.gzuliyujiang.wheelpicker.widget.DateWheelLayout;
+import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.presenter.TaxGuidePresenter;
@@ -27,6 +31,8 @@ import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.view.IBView;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> implements IBView {
 
@@ -150,7 +156,13 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
         llShengyu.setOnClickListener(v -> selectBxType("shengyu"));
 
         etMonthMoney = findViewById(R.id.et_month_money);
-        findViewById(R.id.tv_start_calculate).setOnClickListener(v -> {
+
+        tvCalendar = findViewById(R.id.tv_calendar);
+        Calendar calendar = Calendar.getInstance();
+        selectYear = calendar.get(Calendar.YEAR);
+        selectMonth = calendar.get(Calendar.MONTH)+1;
+        refreshCalendarText();
+        findViewById(R.id.ll_save).setOnClickListener(v->{
             String monthMoney = etMonthMoney.getText().toString().trim();
             float monthMoneybl = 0;
             try {
@@ -158,15 +170,10 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
             } catch (Exception ignored) {
 
             }
+            saveData(monthMoneybl);
+            setResult(Activity.RESULT_OK);
             finish();
         });
-
-        tvCalendar = findViewById(R.id.tv_calendar);
-        Calendar calendar = Calendar.getInstance();
-        selectYear = calendar.get(Calendar.YEAR);
-        selectMonth = calendar.get(Calendar.MONTH)+1;
-        refreshCalendarText();
-
     }
 
     public void selectBxType(String bx) {
@@ -214,5 +221,23 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
         } else {
             tvCalendar.setText(selectYear + "-" + selectMonth);
         }
+    }
+
+    public void saveData(float money){
+        // 查询现有数据
+        String jsonData = Hawk.get(ConstantConfig.record);
+        Map<String,Float> data = new HashMap<>();
+        if(!TextUtils.isEmpty(jsonData)){
+            data = GsonUtil.parseJsonToMap(jsonData);
+        }
+        String key="";
+        if (selectMonth < 10) {
+            key = selectYear+"-0"+selectMonth+"-"+type;
+        }else{
+            key = selectYear+"-"+selectMonth+"-"+type;
+        }
+
+        data.put(key, money);
+        Hawk.put(ConstantConfig.record, GsonUtil.formatObjectToJson(data));
     }
 }

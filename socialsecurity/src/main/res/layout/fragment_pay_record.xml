@@ -80,6 +80,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_yanglao_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_7_8"
@@ -93,6 +94,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/tv_yanglao_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/dp_7_8"
@@ -141,6 +143,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_yiliao_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_7_8"
@@ -154,6 +157,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/tv_yiliao_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/dp_7_8"
@@ -172,7 +176,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_height="@dimen/dp_80"
                     android:layout_weight="1"
                     android:background="@mipmap/wdsbzd_k1"
                     android:orientation="vertical">
@@ -188,7 +192,6 @@
                             android:layout_marginLeft="@dimen/dp_7_8"
                             android:layout_marginTop="@dimen/dp_7_8"
                             android:layout_marginRight="@dimen/dp_3_5"
-                            android:layout_marginBottom="@dimen/dp_7_8"
                             android:src="@mipmap/icon_gdgj_3" />
 
                         <TextView
@@ -204,10 +207,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_3_5"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_shiye_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_7_8"
@@ -215,24 +220,22 @@
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
                         <TextView
+                            android:id="@+id/tv_shiye_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/dp_7_8"
+                            android:layout_marginLeft="@dimen/dp_7_8"
+                            android:layout_marginTop="@dimen/dp_2_3"
                             android:text="76.31%"
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_height="@dimen/dp_80"
                     android:layout_marginLeft="@dimen/dp_5_7"
                     android:layout_weight="1"
                     android:background="@mipmap/wdsbzd_k1"
@@ -249,7 +252,6 @@
                             android:layout_marginLeft="@dimen/dp_7_8"
                             android:layout_marginTop="@dimen/dp_7_8"
                             android:layout_marginRight="@dimen/dp_3_5"
-                            android:layout_marginBottom="@dimen/dp_7_8"
                             android:src="@mipmap/icon_gdgj_4" />
 
                         <TextView
@@ -265,10 +267,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_3_5"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_gongshang_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_7_8"
@@ -276,15 +280,12 @@
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
                         <TextView
+                            android:id="@+id/tv_gongshang_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/dp_7_8"
+                            android:layout_marginLeft="@dimen/dp_7_8"
+                            android:layout_marginTop="@dimen/dp_2_3"
                             android:text="76.31%"
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
@@ -293,7 +294,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dp_50_75"
+                    android:layout_height="@dimen/dp_80"
                     android:layout_marginLeft="@dimen/dp_5_7"
                     android:layout_weight="1"
                     android:background="@mipmap/wdsbzd_k1"
@@ -310,7 +311,6 @@
                             android:layout_marginLeft="@dimen/dp_7_8"
                             android:layout_marginTop="@dimen/dp_7_8"
                             android:layout_marginRight="@dimen/dp_3_5"
-                            android:layout_marginBottom="@dimen/dp_7_8"
                             android:src="@mipmap/icon_gdgj_5" />
 
                         <TextView
@@ -326,10 +326,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_3_5"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_shengyu_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_7_8"
@@ -337,15 +339,12 @@
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
                         <TextView
+                            android:id="@+id/tv_shengyu_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/dp_7_8"
+                            android:layout_marginLeft="@dimen/dp_7_8"
+                            android:layout_marginTop="@dimen/dp_2_3"
                             android:text="76.31%"
                             android:textColor="#ff333333"
                             android:textSize="@dimen/sp_9_13" />
@@ -384,8 +383,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10_15"
-                android:background="@drawable/bg_ylbx_funstion"
                 android:layout_marginBottom="@dimen/dp_20_30"
+                android:background="@drawable/bg_ylbx_funstion"
                 android:orientation="vertical">
 
                 <TextView
@@ -471,6 +470,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -496,6 +496,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -521,6 +522,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -546,6 +548,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -579,6 +582,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -604,6 +608,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -629,6 +634,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -654,6 +660,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -687,6 +694,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -712,6 +720,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -737,6 +746,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data11"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"
@@ -762,6 +772,7 @@
                                 android:textSize="@dimen/sp_9_13" />
 
                             <TextView
+                                android:id="@+id/tv_data12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp_7_8"

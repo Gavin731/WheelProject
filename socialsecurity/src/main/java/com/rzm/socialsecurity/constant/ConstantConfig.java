@@ -17,6 +17,7 @@ public interface ConstantConfig {
     String webType ="webType"; // web类型
     String userEnv ="userEnv"; // 用户上报
     String oaid ="oaid"; // oaid
+    String record ="record"; // 支出
 
     String AD_PROJECT="5744513"; // 项目id
     String PROJECT_NAME = "社保个税管家";

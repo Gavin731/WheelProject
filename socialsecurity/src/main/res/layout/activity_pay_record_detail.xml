@@ -238,7 +238,7 @@
                 android:textSize="@dimen/sp_10_15" />
 
             <LinearLayout
-                android:id="@+id/tv_start_calculate"
+                android:id="@+id/ll_save"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_32_48"
                 android:layout_marginLeft="@dimen/dp_20_30"

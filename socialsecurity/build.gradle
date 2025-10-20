@@ -130,6 +130,7 @@ dependencies {
     // 选择器
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.14'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelView:4.1.14'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.14'
     // 下载
     implementation 'com.liulishuo.filedownloader:library:1.7.7'
     // 友盟
