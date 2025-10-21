@@ -88,13 +88,6 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        LogUtils.e("zhangsanzhangsa");
-        showInfoAd();
-    }
-
-    @Override
     public HomePresenter createPresenter() {
         return new HomePresenter();
     }
@@ -329,6 +322,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         });
 
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);
+        showInfoAd();
     }
 
     public void jumpCalculatePage(int type) {
