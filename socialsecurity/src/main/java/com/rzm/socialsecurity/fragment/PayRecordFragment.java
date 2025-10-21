@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.admanager.InformationFlowAdCallback;
@@ -239,20 +240,19 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
         tvYear.setText(String.valueOf(selectYear));
         // 查询现有数据
         String jsonData = Hawk.get(ConstantConfig.record);
-        Map<String, Double> data = new HashMap<>();
+        Map<String, String> data = new HashMap<>();
         if (!TextUtils.isEmpty(jsonData)) {
-            data = GsonUtil.parseJsonToMap(jsonData);
+            data = GsonUtil.parseJsonToMapString(jsonData);
         }
-        Map<String, Double> yearData = new HashMap<>();
+        Map<String, String> yearData = new HashMap<>();
         // 找出当前年份的数据
-        for (Map.Entry<String, Double> entry : data.entrySet()) {
+        for (Map.Entry<String, String> entry : data.entrySet()) {
             String key = entry.getKey();
-            Double value = entry.getValue();
+            String value = entry.getValue();
             if (key.indexOf(String.valueOf(selectYear)) == 0) {
                 yearData.put(key, value);
             }
         }
-
         // 找出当前5中类型的数据
         BigDecimal total = new BigDecimal(0);
         BigDecimal dataYanglao = new BigDecimal(0);
@@ -260,9 +260,9 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
         BigDecimal dataShiye = new BigDecimal(0);
         BigDecimal dataGongshang = new BigDecimal(0);
         BigDecimal dataShengyu = new BigDecimal(0);
-        for (Map.Entry<String, Double> entry : yearData.entrySet()) {
+        for (Map.Entry<String, String> entry : yearData.entrySet()) {
             String key = entry.getKey();
-            Double value = entry.getValue();
+            String value = entry.getValue();
             total = total.add(new BigDecimal(value)).setScale(2, RoundingMode.HALF_UP);
             if (key.indexOf("yanglao") > 0) {
                 dataYanglao = dataYanglao.add(new BigDecimal(value)).setScale(2, RoundingMode.HALF_UP);
@@ -319,9 +319,9 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
         BigDecimal data10 = new BigDecimal(0);
         BigDecimal data11 = new BigDecimal(0);
         BigDecimal data12 = new BigDecimal(0);
-        for (Map.Entry<String, Double> entry : yearData.entrySet()) {
+        for (Map.Entry<String, String> entry : yearData.entrySet()) {
             String key = entry.getKey();
-            Double value = entry.getValue();
+            String value = entry.getValue();
             if (key.indexOf("-01-") > 0) {
                 data1 = data1.add(new BigDecimal(value)).setScale(2, RoundingMode.HALF_UP);
             } else if (key.indexOf("-02-") > 0) {

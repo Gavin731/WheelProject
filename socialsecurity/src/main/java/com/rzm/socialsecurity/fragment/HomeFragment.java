@@ -88,6 +88,13 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.e("zhangsanzhangsa");
+        showInfoAd();
+    }
+
+    @Override
     public HomePresenter createPresenter() {
         return new HomePresenter();
     }
@@ -322,32 +329,6 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         });
 
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);
-        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
-            @Override
-            public void onError() {
-
-            }
-
-            @Override
-            public void onFeedAdLoad() {
-
-            }
-
-            @Override
-            public void onRenderSuccess() {
-
-            }
-
-            @Override
-            public void onAdClick() {
-
-            }
-
-            @Override
-            public void onRenderFail() {
-
-            }
-        });
     }
 
     public void jumpCalculatePage(int type) {
@@ -361,6 +342,10 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         if(!showInfoAdEvent.isShowAd()){
             return;
         }
+        showInfoAd();
+    }
+
+    public void showInfoAd(){
         ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
             @Override
             public void onError() {
@@ -388,6 +373,5 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             }
         });
     }
-
 
 }

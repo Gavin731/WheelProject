@@ -226,9 +226,9 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
     public void saveData(float money){
         // 查询现有数据
         String jsonData = Hawk.get(ConstantConfig.record);
-        Map<String,Float> data = new HashMap<>();
+        Map<String,String> data = new HashMap<>();
         if(!TextUtils.isEmpty(jsonData)){
-            data = GsonUtil.parseJsonToMap(jsonData);
+            data = GsonUtil.parseJsonToMapString(jsonData);
         }
         String key="";
         if (selectMonth < 10) {
@@ -237,7 +237,7 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
             key = selectYear+"-"+selectMonth+"-"+type;
         }
 
-        data.put(key, money);
+        data.put(key, String.valueOf(money));
         Hawk.put(ConstantConfig.record, GsonUtil.formatObjectToJson(data));
     }
 }

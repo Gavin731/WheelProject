@@ -34,6 +34,7 @@
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }
 -keep class com.common.wheel.admanager.InitCallback { *; }
 -keep class com.common.wheel.admanager.InformationFlowAdCallback { *; }
+-keep class com.common.wheel.util.GsonUtil { *; }
 
 -keep class com.github.gzuliyujiang.**.** { *; }
 -keep class com.kongzue.dialogx.**.** { *; }
@@ -55,3 +56,14 @@
 }
 
 -keep class com.rzm.socialsecurity.entity.** {*;}
+# 保持泛型签名信息（最关键）
+-keepattributes Signature
+# 保持 Gson 相关的类和注解
+-keep class com.google.gson.** { *; }
+-keep class com.google.gson.stream.** { *; }
+# 保持 TypeToken 的泛型信息
+-keep class * extends com.google.gson.reflect.TypeToken { *; }
+# 特别保护 Map 相关的泛型使用
+-keepclassmembers class * {
+    java.util.Map *;
+}

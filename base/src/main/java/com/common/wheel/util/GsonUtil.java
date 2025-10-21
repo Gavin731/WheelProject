@@ -110,6 +110,11 @@ public class GsonUtil {
         }.getType());
     }
 
+    public static Map<String, String> parseJsonToMapString(String json) {
+        return getGson().fromJson(json, new TypeToken<Map<String, String>>() {
+        }.getType());
+    }
+
     public static class DateDeserializer implements JsonDeserializer<Date> {
 
         @Override
