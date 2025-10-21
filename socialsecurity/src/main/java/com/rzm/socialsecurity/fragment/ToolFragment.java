@@ -1,5 +1,7 @@
 package com.rzm.socialsecurity.fragment;
 
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -44,76 +46,56 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && !isShow){
-            isShow = true;
-            ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
-                @Override
-                public void onError() {
+        if(isVisibleToUser){
+            if(!isShow){
+                isShow = true;
+                ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+                    @Override
+                    public void onError() {
 
-                }
+                    }
 
-                @Override
-                public void onLoadSuccess() {
+                    @Override
+                    public void onLoadSuccess() {
 
-                }
+                    }
 
-                @Override
-                public void onStartShow() {
+                    @Override
+                    public void onStartShow() {
 
-                }
+                    }
 
-                @Override
-                public void onAdShow() {
+                    @Override
+                    public void onAdShow() {
 
-                }
+                    }
 
-                @Override
-                public void onAdVideoBarClick() {
+                    @Override
+                    public void onAdVideoBarClick() {
 
-                }
+                    }
 
-                @Override
-                public void onAdClose() {
+                    @Override
+                    public void onAdClose() {
 
-                }
+                    }
 
-                @Override
-                public void onVideoComplete() {
+                    @Override
+                    public void onVideoComplete() {
 
-                }
+                    }
 
-                @Override
-                public void onSkippedVideo() {
+                    @Override
+                    public void onSkippedVideo() {
 
-                }
-            });
-            //            flInfoAdTool.removeAllViews();
-            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdTool, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
-                @Override
-                public void onError() {
-
-                }
-
-                @Override
-                public void onFeedAdLoad() {
-
-                }
-
-                @Override
-                public void onRenderSuccess() {
-
-                }
-
-                @Override
-                public void onAdClick() {
-
-                }
-
-                @Override
-                public void onRenderFail() {
-
-                }
-            });
+                    }
+                });
+                //            flInfoAdTool.removeAllViews();
+                showInfoAd();
+            }
+            if(flInfoAdTool!=null &&  flInfoAdTool.getVisibility() == VISIBLE){
+                showInfoAd();
+            }
         }
     }
 
@@ -148,5 +130,34 @@ public class ToolFragment extends MvpFragment<ToolPresenter> implements IBView {
         Intent intent = new Intent(getActivity(), OtherTaxationCalculateActivity.class);
         intent.putExtra(ConstantConfig.bxKey, type);
         startActivity(intent);
+    }
+    public void showInfoAd(){
+        LogUtils.i("------aa2222");
+        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdTool, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
     }
 }

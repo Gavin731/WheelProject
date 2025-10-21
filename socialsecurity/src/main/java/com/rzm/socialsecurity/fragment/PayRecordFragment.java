@@ -1,5 +1,7 @@
 package com.rzm.socialsecurity.fragment;
 
+import static android.view.View.VISIBLE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -73,77 +75,58 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && !isShow) {
-            isShow = true;
-            ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
-                @Override
-                public void onError() {
+        if (isVisibleToUser ) {
+            if(!isShow){
+                isShow = true;
+                ADUtil.showInterstitialAd(getActivity(), ConstantConfig.AD_Interstitial, new InfoAdCallBack() {
+                    @Override
+                    public void onError() {
 
-                }
+                    }
 
-                @Override
-                public void onLoadSuccess() {
+                    @Override
+                    public void onLoadSuccess() {
 
-                }
+                    }
 
-                @Override
-                public void onStartShow() {
+                    @Override
+                    public void onStartShow() {
 
-                }
+                    }
 
-                @Override
-                public void onAdShow() {
+                    @Override
+                    public void onAdShow() {
 
-                }
+                    }
 
-                @Override
-                public void onAdVideoBarClick() {
+                    @Override
+                    public void onAdVideoBarClick() {
 
-                }
+                    }
 
-                @Override
-                public void onAdClose() {
+                    @Override
+                    public void onAdClose() {
 
-                }
+                    }
 
-                @Override
-                public void onVideoComplete() {
+                    @Override
+                    public void onVideoComplete() {
 
-                }
+                    }
 
-                @Override
-                public void onSkippedVideo() {
+                    @Override
+                    public void onSkippedVideo() {
 
-                }
-            });
-            ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdTax, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
-                @Override
-                public void onError() {
-
-                }
-
-                @Override
-                public void onFeedAdLoad() {
-
-                }
-
-                @Override
-                public void onRenderSuccess() {
-
-                }
-
-                @Override
-                public void onAdClick() {
-
-                }
-
-                @Override
-                public void onRenderFail() {
-
-                }
-            });
-            refreshYearData();
+                    }
+                });
+                showInfoAd();
+                refreshYearData();
+            }
+            if(flInfoAdTax!=null &&  flInfoAdTax.getVisibility() == VISIBLE){
+                showInfoAd();
+            }
         }
+
     }
 
     @Override
@@ -287,11 +270,11 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
 
         if(total.floatValue() > 0){
             BigDecimal data100 = new BigDecimal(100);
-            BigDecimal yanglaoRate = dataYanglao.divide(total, 2, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal yiliaoRate = dataYiliao.divide(total, 2, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal shiyeRate = dataShiye.divide(total, 2, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal gongshangRate = dataGongshang.divide(total, 2, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal shengyuRate = dataShengyu.divide(total, 2, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal yanglaoRate = dataYanglao.divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal yiliaoRate = dataYiliao.divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal shiyeRate = dataShiye.divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal gongshangRate = dataGongshang.divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal shengyuRate = dataShengyu.divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
             tvYanglaoRate.setText(String.valueOf(yanglaoRate) + "%");
             tvYiliaoRate.setText(String.valueOf(yiliaoRate) + "%");
             tvShiyeRate.setText(String.valueOf(shiyeRate) + "%");
@@ -372,4 +355,34 @@ public class PayRecordFragment extends MvpFragment<TaxGuidePresenter> implements
                     }
                 }
             });
+
+    public void showInfoAd(){
+        LogUtils.i("------aa3333");
+        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAdTax, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onFeedAdLoad() {
+
+            }
+
+            @Override
+            public void onRenderSuccess() {
+
+            }
+
+            @Override
+            public void onAdClick() {
+
+            }
+
+            @Override
+            public void onRenderFail() {
+
+            }
+        });
+    }
 }

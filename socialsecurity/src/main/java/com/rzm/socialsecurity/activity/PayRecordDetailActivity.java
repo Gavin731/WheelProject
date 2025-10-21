@@ -164,6 +164,10 @@ public class PayRecordDetailActivity extends MvpActivity<TaxGuidePresenter> impl
         refreshCalendarText();
         findViewById(R.id.ll_save).setOnClickListener(v->{
             String monthMoney = etMonthMoney.getText().toString().trim();
+            if(TextUtils.isEmpty(monthMoney)){
+                showToast("请先填写金额");
+                return;
+            }
             float monthMoneybl = 0;
             try {
                 monthMoneybl = Float.parseFloat(monthMoney);

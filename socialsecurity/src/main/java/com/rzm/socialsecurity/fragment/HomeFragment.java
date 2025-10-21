@@ -103,6 +103,17 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            if(flInfoAd!=null && flInfoAd.getVisibility() == VISIBLE){
+                LogUtils.i("------aa1111");
+                showInfoAd();
+            }
+        }
+    }
+
+    @Override
     public void initView() {
         ivTop = view.findViewById(R.id.iv_top);
         Glide.with(getActivity()).load(R.mipmap.sy_banner).into(new SimpleTarget<Drawable>() {
