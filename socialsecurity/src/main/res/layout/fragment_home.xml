@@ -46,7 +46,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="养老保险"
+                        android:text="退休计算"
                         android:textColor="#ff15563a"
                         android:textSize="@dimen/sp_11_16" />
 
@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="医疗保险"
+                        android:text="医疗账单"
                         android:textColor="#ff89312f"
                         android:textSize="@dimen/sp_11_16" />
 
@@ -125,7 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="失业保险"
+                        android:text="公积金计算"
                         android:textColor="#ff6141a8"
                         android:textSize="@dimen/sp_11_16" />
 
