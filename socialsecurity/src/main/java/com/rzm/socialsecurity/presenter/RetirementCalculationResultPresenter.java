@@ -1,12 +1,12 @@
 package com.rzm.socialsecurity.presenter;
 
 import com.common.wheel.mvp.MvpPresenter;
-import com.rzm.socialsecurity.view.IRetirementCalculationView;
+import com.rzm.socialsecurity.view.IRetirementCalculationResultView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RetirementCalculationPresenter extends MvpPresenter<IRetirementCalculationView> {
+public class RetirementCalculationResultPresenter extends MvpPresenter<IRetirementCalculationResultView> {
 
     private List<String> sexTypeData = new ArrayList<>();//住房贷利息
 

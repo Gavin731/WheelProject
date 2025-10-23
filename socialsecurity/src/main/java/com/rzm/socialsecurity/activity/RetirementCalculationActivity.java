@@ -2,7 +2,6 @@ package com.rzm.socialsecurity.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -22,21 +21,21 @@ import com.github.gzuliyujiang.wheelpicker.entity.DateEntity;
 import com.github.gzuliyujiang.wheelpicker.widget.DateWheelLayout;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.constant.ConstantConfig;
-import com.rzm.socialsecurity.presenter.RetirementCalculationPresenter;
+import com.rzm.socialsecurity.presenter.RetirementCalculationResultPresenter;
 import com.rzm.socialsecurity.util.ADUtil;
 import com.rzm.socialsecurity.util.DialogUtil;
-import com.rzm.socialsecurity.view.IRetirementCalculationView;
+import com.rzm.socialsecurity.view.IRetirementCalculationResultView;
 
 import java.util.List;
 
 /**
  * 退休计算
  */
-public class RetirementCalculationActivity extends MvpActivity<RetirementCalculationPresenter> implements IRetirementCalculationView {
+public class RetirementCalculationActivity extends MvpActivity<RetirementCalculationResultPresenter> implements IRetirementCalculationResultView {
 
     public ImageView ivBack;
     public LinearLayout tvCalculate;
-    public int selectYear, selectMonth, selectDay, selectSexTypePosition;
+    public int selectYear, selectMonth, selectDay, selectSexTypePosition = -1;
     public TextView tvDate, tvSexType;
 
     @Override
@@ -87,8 +86,8 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
     }
 
     @Override
-    public RetirementCalculationPresenter createPresenter() {
-        return new RetirementCalculationPresenter();
+    public RetirementCalculationResultPresenter createPresenter() {
+        return new RetirementCalculationResultPresenter();
     }
 
     @Override
@@ -102,8 +101,19 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
         ivBack.setOnClickListener(v -> finish());
         tvCalculate = findViewById(R.id.tv_calculate);
         tvCalculate.setOnClickListener(v -> {
-
-            Intent intent = new Intent(this, YLBXCalculateResultActivity.class);
+            if (selectYear < 1965) {
+                showToast("请选择出生年月");
+                return;
+            }
+            if (selectSexTypePosition < 0) {
+                showToast("请选择性别及人员类型");
+                return;
+            }
+            Intent intent = new Intent(this, RetirementCalculationResultActivity.class);
+            intent.putExtra(ConstantConfig.year, selectYear);
+            intent.putExtra(ConstantConfig.month, selectMonth);
+            intent.putExtra(ConstantConfig.day, selectDay);
+            intent.putExtra(ConstantConfig.sexOrType, selectSexTypePosition == 0 ? ConstantConfig.sexOrType_maleEmployee : (selectSexTypePosition == 1 ? ConstantConfig.sexOrType_femaleCadre : ConstantConfig.sexOrType_femaleEmployee));
             ADUtil.showRewardAd(this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
@@ -142,7 +152,7 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
 
                 @Override
                 public void onError() {
-
+                    startActivity(intent);
                 }
             });
         });

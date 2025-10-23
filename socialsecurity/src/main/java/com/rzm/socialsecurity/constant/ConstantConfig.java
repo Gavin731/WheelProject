@@ -18,6 +18,16 @@ public interface ConstantConfig {
     String userEnv ="userEnv"; // 用户上报
     String oaid ="oaid"; // oaid
     String record ="record"; // 支出
+    String year ="year";
+    String month ="month";
+    String day ="day";
+    String sexOrType ="sexOrType";
+
+
+    String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 男职工
+    String sexOrType_femaleCadre ="sexOrType_femaleCadre"; // 女干部
+    String sexOrType_femaleEmployee ="sexOrType_femaleEmployee"; // 女职工
+
 
     String AD_PROJECT="5744513"; // 项目id
     String PROJECT_NAME = "社保个税管家";

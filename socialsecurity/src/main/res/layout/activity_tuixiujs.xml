@@ -185,7 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10_15"
-                    android:text="说明:按照《关于实施渐进式延迟法定退休年龄的决定》附表对照关系，您通过全能退休计算器，选择出生年月、性别及人员类型，即可计算出对应改革后法定退休年龄、改革后退休时间、延迟月数。,"
+                    android:text="说明:按照《关于实施渐进式延迟法定退休年龄的决定》附表对照关系，您通过全能退休计算器，选择出生年月、性别及人员类型，即可计算出对应改革后法定退休年龄、改革后退休时间、延迟月数。"
                     android:textColor="#ff999999"
                     android:textSize="@dimen/sp_9_13" />
 
