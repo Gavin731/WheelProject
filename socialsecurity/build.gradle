@@ -37,6 +37,10 @@ android {
             dimension "channel"
             manifestPlaceholders = [CHANNEL_ID: "vivo"]
         }
+        lianxiang {
+            dimension "channel"
+            manifestPlaceholders = [CHANNEL_ID: "lianxiang"]
+        }
     }
 
     buildFeatures {
