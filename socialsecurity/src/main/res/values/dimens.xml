@@ -65,4 +65,5 @@
     <dimen name="sp_23_41">41sp</dimen>
     <dimen name="sp_9_13">13sp</dimen>
     <dimen name="sp_7_8">8sp</dimen>
+    <dimen name="sp_35">35sp</dimen>
 </resources>

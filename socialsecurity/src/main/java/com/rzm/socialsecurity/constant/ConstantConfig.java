@@ -22,6 +22,7 @@ public interface ConstantConfig {
     String month ="month";
     String day ="day";
     String sexOrType ="sexOrType";
+    String yiliao_record ="yiliao_record"; // yiliao
 
 
     String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 60岁男职工

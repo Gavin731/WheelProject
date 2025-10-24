@@ -32,6 +32,7 @@ import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
 import com.rzm.socialsecurity.activity.GSCalculateResultActivity;
 import com.rzm.socialsecurity.activity.MainActivity;
+import com.rzm.socialsecurity.activity.MedicalCalculationActivity;
 import com.rzm.socialsecurity.activity.RetirementCalculationActivity;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
@@ -343,7 +344,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             Intent intent = new Intent(getActivity(), RetirementCalculationActivity.class);
             startActivity(intent);
         }else if(type ==2){//医疗账单
-
+            Intent intent = new Intent(getActivity(), MedicalCalculationActivity.class);
+            startActivity(intent);
         }else if(type ==3){//公积金计算
 
         }

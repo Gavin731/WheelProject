@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_top" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E4E5E9" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_10_15"
+                android:paddingTop="@dimen/dp_10_15"
+                android:paddingRight="@dimen/dp_10_15">
+
+                <LinearLayout
+                    android:id="@+id/ll_menzhen"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_weight="1"
+                    android:background="@mipmap/jlzc_k1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_3_5"
+                        android:text="门诊费"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_9_13" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_zhuyuan"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@mipmap/wdsbzd_k1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_3_5"
+                        android:text="住院费"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_9_13" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_10_15"
+                android:paddingTop="@dimen/dp_10_15"
+                android:paddingRight="@dimen/dp_10_15">
+
+                <LinearLayout
+                    android:id="@+id/ll_yaofei"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@mipmap/wdsbzd_k1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_3_5"
+                        android:text="药费"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_9_13" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_other"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@mipmap/wdsbzd_k1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_3_5"
+                        android:text="其他费用"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_9_13" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_info_ad_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5_7" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_20_30"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:background="@mipmap/jlzc_k2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5_7">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_10_15"
+                    android:layout_height="@dimen/dp_10_15"
+                    android:src="@mipmap/jlzc_rl" />
+
+                <TextView
+                    android:id="@+id/tv_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_3_5"
+                    android:text="20251010"
+                    android:textColor="#ff3875f6"
+                    android:textSize="@dimen/sp_9_13" />
+            </LinearLayout>
+
+            <com.rzm.socialsecurity.widget.CustomEditText
+                android:id="@+id/et_month_money"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_24_36"
+                android:layout_marginLeft="@dimen/dp_8_12"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_marginRight="@dimen/dp_15_22"
+                android:background="@drawable/edit_bg"
+                android:hint="请输入金额（元）"
+                android:inputType="numberDecimal"
+                android:paddingStart="@dimen/dp_5_7"
+                android:text=""
+                android:textColor="#ffff2222"
+                android:textColorHint="#ff999999"
+                android:textSelectHandle="@drawable/none_drawable"
+                android:textSelectHandleLeft="@drawable/none_drawable"
+                android:textSelectHandleRight="@drawable/none_drawable"
+                android:textSize="@dimen/sp_10_15" />
+
+            <LinearLayout
+                android:id="@+id/ll_save"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_32_48"
+                android:layout_marginLeft="@dimen/dp_20_30"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:layout_marginRight="@dimen/dp_20_30"
+                android:layout_marginBottom="@dimen/dp_20_30"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:gravity="center"
+                    android:text="保存"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_11_16" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

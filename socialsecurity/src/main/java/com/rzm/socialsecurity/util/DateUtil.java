@@ -1,6 +1,9 @@
 package com.rzm.socialsecurity.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class DateUtil {
     /**
@@ -17,5 +20,18 @@ public class DateUtil {
     public static int getYear() {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.YEAR);
+    }
+
+    public static String dateToString(Date date, String pattern) {
+        if (date == null) {
+            return "";
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
+            return sdf.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

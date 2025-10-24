@@ -147,6 +147,7 @@ dependencies {
     implementation 'com.umeng.umsdk:apm:+'// U-APM产品包依赖，必选
     // eventbus
     implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 
 
     implementation 'com.maven.local:Baidu_MobAds_SDK:9.3941'
