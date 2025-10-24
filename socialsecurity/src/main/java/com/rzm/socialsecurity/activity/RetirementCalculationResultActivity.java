@@ -137,42 +137,114 @@ public class RetirementCalculationResultActivity extends MvpActivity<RetirementC
     }
 
     public void calculation(int year, int month, int day, String sexOrType) {
+        if (ConstantConfig.sexOrType_maleEmployee.equals(sexOrType)) {
+            calculationMaleEmployee(year, month, day);
+        } else if (ConstantConfig.sexOrType_femaleCadre.equals(sexOrType)) {
+            calculationFemaleCadre(year, month, day);
+        } else if (ConstantConfig.sexOrType_femaleEmployee.equals(sexOrType)) {
+            calculationFemaleEmployee(year, month, day);
+        }
+    }
+
+    public void calculationMaleEmployee(int year, int month, int day) {
         int delayMonths = 0;// 延迟月数
         int txYear = 0;//原来退休年
         int txMonth = 0;//原来退休月
-        if (ConstantConfig.sexOrType_maleEmployee.equals(sexOrType)) {
-            txYear = year + 60;
-            txMonth = month;
-            // 月份差
-            int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
-            delayMonths = (diffMonth / 4 + 1);
-            tvDelayMonths.setText(delayMonths + "个月");
-            // 求退休年月
-            int totalMonth = txMonth + delayMonths;
-            if (totalMonth > 12) {
-                txYear = txYear + (totalMonth / 12);
-                txMonth = totalMonth % 12;
-                if (txMonth == 0) {
-                    txYear--;
-                    txMonth = 12;
-                }
-            } else if (totalMonth == 12) {
-                txYear = txYear + 1;
-            } else {
-                txMonth = totalMonth;
+
+        txYear = year + 60;
+        txMonth = month;
+        // 月份差
+        int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
+        delayMonths = (diffMonth / 4 + 1);
+        tvDelayMonths.setText(delayMonths + "个月");
+        // 求退休年月
+        int totalMonth = txMonth + delayMonths;
+        if (totalMonth > 12) {
+            txYear = txYear + (totalMonth / 12);
+            txMonth = totalMonth % 12;
+            if (txMonth == 0) {
+                txYear--;
+                txMonth = 12;
             }
-            tvTuixiuDate.setText(txYear + "年" + txMonth + "月");
-            // 求退休年龄
-            int delayYear = delayMonths / 12;
-            int delayMonth = delayMonths % 12;
-            tvTuixiuYearMonth.setText((60 + delayYear) + "岁" + delayMonth + "月");
-            // 求距离退休时间
-            diffYear.setText((txYear - DateUtil.getYear()) + "年");
-
-        } else if (ConstantConfig.sexOrType_femaleCadre.equals(sexOrType)) {
-
-        } else if (ConstantConfig.sexOrType_femaleEmployee.equals(sexOrType)) {
-
+        } else if (totalMonth == 12) {
+            txMonth = 12;
+        } else {
+            txMonth = totalMonth;
         }
+        tvTuixiuDate.setText(txYear + "年" + txMonth + "月");
+        // 求退休年龄
+        int delayYear = delayMonths / 12;
+        int delayMonth = delayMonths % 12;
+        tvTuixiuYearMonth.setText((60 + delayYear) + "岁" + delayMonth + "月");
+        // 求距离退休时间
+        diffYear.setText((txYear - DateUtil.getYear()) + "年");
+    }
+
+    public void calculationFemaleCadre(int year, int month, int day) {
+        int delayMonths = 0;// 延迟月数
+        int txYear = 0;//原来退休年
+        int txMonth = 0;//原来退休月
+
+        txYear = year + 55;
+        txMonth = month;
+        // 月份差
+        int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
+        delayMonths = (diffMonth / 4 + 1);
+        tvDelayMonths.setText(delayMonths + "个月");
+        // 求退休年月
+        int totalMonth = txMonth + delayMonths;
+        if (totalMonth > 12) {
+            txYear = txYear + (totalMonth / 12);
+            txMonth = totalMonth % 12;
+            if (txMonth == 0) {
+                txYear--;
+                txMonth = 12;
+            }
+        } else if (totalMonth == 12) {
+            txMonth = 12;
+        } else {
+            txMonth = totalMonth;
+        }
+        tvTuixiuDate.setText(txYear + "年" + txMonth + "月");
+        // 求退休年龄
+        int delayYear = delayMonths / 12;
+        int delayMonth = delayMonths % 12;
+        tvTuixiuYearMonth.setText((55 + delayYear) + "岁" + delayMonth + "月");
+        // 求距离退休时间
+        diffYear.setText((txYear - DateUtil.getYear()) + "年");
+    }
+
+    public void calculationFemaleEmployee(int year, int month, int day) {
+        int delayMonths = 0;// 延迟月数
+        int txYear = 0;//原来退休年
+        int txMonth = 0;//原来退休月
+
+        txYear = year + 50;
+        txMonth = month;
+        // 月份差
+        int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
+        delayMonths = (diffMonth / 2 + 1);
+        tvDelayMonths.setText(delayMonths + "个月");
+        // 求退休年月
+        int totalMonth = txMonth + delayMonths;
+        if (totalMonth > 12) {
+            txYear = txYear + (totalMonth / 12);
+            txMonth = totalMonth % 12;
+            if (txMonth == 0) {
+                txYear--;
+                txMonth = 12;
+            }
+        } else if (totalMonth == 12) {
+            txMonth = 12;
+        } else {
+            txMonth = totalMonth;
+        }
+        tvTuixiuDate.setText(txYear + "年" + txMonth + "月");
+        // 求退休年龄
+        int delayYear = delayMonths / 12;
+        int delayMonth = delayMonths % 12;
+        tvTuixiuYearMonth.setText((50 + delayYear) + "岁" + delayMonth + "月");
+        // 求距离退休时间
+        diffYear.setText((txYear - DateUtil.getYear()) + "年");
     }
 }

@@ -24,9 +24,9 @@ public interface ConstantConfig {
     String sexOrType ="sexOrType";
 
 
-    String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 男职工
-    String sexOrType_femaleCadre ="sexOrType_femaleCadre"; // 女干部
-    String sexOrType_femaleEmployee ="sexOrType_femaleEmployee"; // 女职工
+    String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 60岁男职工
+    String sexOrType_femaleCadre ="sexOrType_femaleCadre"; // 55岁女干部
+    String sexOrType_femaleEmployee ="sexOrType_femaleEmployee"; // 50岁女职工
 
 
     String AD_PROJECT="5744513"; // 项目id

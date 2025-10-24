@@ -19,8 +19,8 @@ public class RetirementCalculationResultPresenter extends MvpPresenter<IRetireme
     public void initData(){
         sexTypeData.clear();
         sexTypeData.add("男职工");
-        sexTypeData.add("原法定退休年龄55周岁女干部");
         sexTypeData.add("原法定退休年龄55周岁女职工");
+        sexTypeData.add("原法定退休年龄50周岁女职工");
     }
 
     public List<String> getSexTypeData(){
