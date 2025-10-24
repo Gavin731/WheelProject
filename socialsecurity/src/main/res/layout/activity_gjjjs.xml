@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_106_159"
+        android:background="@mipmap/gongjijin_jisuan"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40_60"
+            android:layout_marginTop="@dimen/dp_15_22"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/dp_30_45"
+                android:layout_height="@dimen/dp_30_45"
+                android:layout_marginStart="@dimen/dp_10_15"
+                android:paddingEnd="@dimen/dp_20_30"
+                android:src="@mipmap/sb_fh" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_15_22">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_15_22"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="缴费基数"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_10_15" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rzm.socialsecurity.widget.CustomEditText
+                        android:id="@+id/et_month_money"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_marginLeft="@dimen/dp_8_12"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="请输入工资"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/dp_5_7"
+                        android:textColor="#ff333333"
+                        android:textColorHint="#ff999999"
+                        android:textSelectHandle="@drawable/none_drawable"
+                        android:textSelectHandleLeft="@drawable/none_drawable"
+                        android:textSelectHandleRight="@drawable/none_drawable"
+                        android:textSize="@dimen/sp_10_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:text="元"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_10_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dp_3_5"
+                    android:layout_height="@dimen/dp_20"
+                    android:background="#3875F6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3_5"
+                    android:text="公积金缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_12_18" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_15_22">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_15_22"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="企业缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_10_15" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rzm.socialsecurity.widget.CustomEditText
+                        android:id="@+id/ed_company_rate1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_marginLeft="@dimen/dp_8_12"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="请输入比例"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/dp_5_7"
+                        android:textColor="#ff333333"
+                        android:textColorHint="#ff999999"
+                        android:textSelectHandle="@drawable/none_drawable"
+                        android:textSelectHandleLeft="@drawable/none_drawable"
+                        android:textSelectHandleRight="@drawable/none_drawable"
+                        android:textSize="@dimen/sp_10_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:text="%"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_10_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_15_22">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_15_22"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="个人缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_10_15" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rzm.socialsecurity.widget.CustomEditText
+                        android:id="@+id/ed_personal_rate1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_marginLeft="@dimen/dp_8_12"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="请输入比例"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/dp_5_7"
+                        android:textColor="#ff333333"
+                        android:textColorHint="#ff999999"
+                        android:textSelectHandle="@drawable/none_drawable"
+                        android:textSelectHandleLeft="@drawable/none_drawable"
+                        android:textSelectHandleRight="@drawable/none_drawable"
+                        android:textSize="@dimen/sp_10_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:text="%"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_10_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dp_3_5"
+                    android:layout_height="@dimen/dp_20"
+                    android:background="#3875F6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3_5"
+                    android:text="补充公积金缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_12_18" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_15_22">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_15_22"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="企业缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_10_15" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rzm.socialsecurity.widget.CustomEditText
+                        android:id="@+id/ed_company_rate2"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_marginLeft="@dimen/dp_8_12"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="请输入比例"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/dp_5_7"
+                        android:textColor="#ff333333"
+                        android:textColorHint="#ff999999"
+                        android:textSelectHandle="@drawable/none_drawable"
+                        android:textSelectHandleLeft="@drawable/none_drawable"
+                        android:textSelectHandleRight="@drawable/none_drawable"
+                        android:textSize="@dimen/sp_10_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:text="%"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_10_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_15_22">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_15_22"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="个人缴纳比例"
+                    android:textColor="#ff333333"
+                    android:textSize="@dimen/sp_10_15" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rzm.socialsecurity.widget.CustomEditText
+                        android:id="@+id/ed_personal_rate2"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_marginLeft="@dimen/dp_8_12"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="请输入比例"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/dp_5_7"
+                        android:textColor="#ff333333"
+                        android:textColorHint="#ff999999"
+                        android:textSelectHandle="@drawable/none_drawable"
+                        android:textSelectHandleLeft="@drawable/none_drawable"
+                        android:textSelectHandleRight="@drawable/none_drawable"
+                        android:textSize="@dimen/sp_10_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:text="%"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_10_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tv_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_32_48"
+                android:layout_marginLeft="@dimen/dp_20_30"
+                android:layout_marginTop="@dimen/dp_10_15"
+                android:layout_marginRight="@dimen/dp_20_30"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_13_19"
+                    android:layout_height="@dimen/dp_13_19"
+                    android:src="@mipmap/sy_ksjs" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:gravity="center"
+                    android:text="开始计算"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_11_16" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_info_ad"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5_7"
+                android:background="#eee" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/dp_15_22"
+                android:paddingRight="@dimen/dp_15_22"
+                android:paddingBottom="@dimen/dp_20_30">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10_15"
+                    android:text="公积金贷款条件：\n
+1、借款人开立公积金缴存账户满6个月，已及时、连、足额缴纳住房公积金6个月以上，缴交率不低于5%。\n
+2、借款人必须是购房人或房屋所有权人，具有房屋 产权管理部门备案的购房合同或协议书及收费款发票。\n
+3、有长期稳定的经济收入、信用良好，具有偿还贷 款本息能力的证明。\n
+4、对已使用过两次及两次以上住房公积金个人住房 贷款包括异地贷款)的职工(含夫妻双方)无论贷 款是否结清，均不得受理。"
+                    android:textColor="#ff999999"
+                    android:textSize="@dimen/sp_9_13" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

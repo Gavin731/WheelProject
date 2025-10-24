@@ -152,7 +152,7 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
 
                 @Override
                 public void onError() {
-                    startActivity(intent);
+//                    startActivity(intent);
                 }
             });
         });
@@ -197,6 +197,14 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
             }
         });
         tvSexType = findViewById(R.id.tv_sex_type);
+        findViewById(R.id.tv_click_href).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RetirementCalculationActivity.this, WebViewActivity.class);
+                intent.putExtra(ConstantConfig.webType, 3);
+                startActivity(intent);
+            }
+        });
     }
 
     public void selectCalendar() {

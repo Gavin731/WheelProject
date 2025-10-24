@@ -165,6 +165,16 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.GJJCalculationActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.GJJCalculationResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"

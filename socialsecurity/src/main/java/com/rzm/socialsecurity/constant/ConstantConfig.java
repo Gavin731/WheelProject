@@ -24,6 +24,11 @@ public interface ConstantConfig {
     String sexOrType ="sexOrType";
     String yiliao_record ="yiliao_record"; // yiliao
 
+    String companyRate1bl = "companyRate1bl";// 公积金企业比例
+    String companyRate2bl = "companyRate2bl";// 补充公积金企业比例
+    String personalRate1bl = "personalRate1bl";// 公积金个人比例
+    String personalRate2bl = "personalRate2bl";// 补充公积金个人比例
+
 
     String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 60岁男职工
     String sexOrType_femaleCadre ="sexOrType_femaleCadre"; // 55岁女干部

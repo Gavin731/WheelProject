@@ -38,7 +38,7 @@ public class WebViewActivity extends AppCompatActivity {
         ivBack.setOnClickListener(v -> finish());
         tvTitle = findViewById(R.id.tv_title);
         tvTitle.setVisibility(VISIBLE);
-        tvTitle.setText(type == 1 ? "隐私政策" : "用户协议");
+        tvTitle.setText(type == 1 ? "隐私政策" : (type == 2 ? "用户协议" : ""));
         webView = findViewById(R.id.webView);
 
         WebSettings settings = webView.getSettings();
@@ -112,7 +112,7 @@ public class WebViewActivity extends AppCompatActivity {
 //                view.loadUrl("file:///android_asset/error.html");
             }
         });
-        webView.loadUrl(type == 1 ? "https://ht.njrzm.com/static/yszc1" : "https://ht.njrzm.com/static/yhxy1");
+        webView.loadUrl(type == 1 ? "https://ht.njrzm.com/static/yszc1" : (type == 2 ? "https://ht.njrzm.com/static/yhxy1" : "https://www.gov.cn/yaowen/liebiao/202409/content_6974294.htm"));
     }
 
 }

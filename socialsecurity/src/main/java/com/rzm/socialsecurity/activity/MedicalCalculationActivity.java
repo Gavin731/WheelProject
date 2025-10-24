@@ -153,8 +153,7 @@ public class MedicalCalculationActivity extends MvpActivity<MedicalCalculationPr
 
                 @Override
                 public void onError() {
-                    // todo zeng
-                    someActivityResultLauncher.launch(intent);
+
                 }
             });
         });

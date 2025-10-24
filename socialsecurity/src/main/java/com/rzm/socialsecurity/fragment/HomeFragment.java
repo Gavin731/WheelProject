@@ -30,6 +30,7 @@ import com.common.wheel.admanager.RewardAdCallBack;
 import com.common.wheel.mvp.MvpFragment;
 import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
+import com.rzm.socialsecurity.activity.GJJCalculationActivity;
 import com.rzm.socialsecurity.activity.GSCalculateResultActivity;
 import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.MedicalCalculationActivity;
@@ -347,7 +348,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             Intent intent = new Intent(getActivity(), MedicalCalculationActivity.class);
             startActivity(intent);
         }else if(type ==3){//公积金计算
-
+            Intent intent = new Intent(getActivity(), GJJCalculationActivity.class);
+            startActivity(intent);
         }
 //        Intent intent = new Intent(getActivity(), YLBXCalculateActivity.class);
 //        intent.putExtra(ConstantConfig.bxKey, type);
