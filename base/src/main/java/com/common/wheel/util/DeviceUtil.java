@@ -611,6 +611,7 @@ public class DeviceUtil {
 //        } else {
 //            return false;
 //        }
+        // todo zeng
         return false;
     }
 
