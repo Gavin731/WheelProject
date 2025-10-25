@@ -45,8 +45,8 @@ public class DialogUtil {
         // 设置默认选中项
         wheelView.setDefaultPosition(0);
         wheelView.setTextColor(context.getColor(R.color.color_333333));
-        wheelView.setTextSize(40);
-        wheelView.setSelectedTextSize(40);
+        wheelView.setTextSize(50);
+        wheelView.setSelectedTextSize(50);
 
         // 监听滚轮变化
         wheelView.setOnWheelChangedListener(new OnWheelChangedListener() {

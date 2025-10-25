@@ -99,77 +99,79 @@ public class GJJCalculationActivity extends MvpActivity<GJJCalculationPresenter>
         tvCalculate.setOnClickListener(v -> {
 
             Intent intent = new Intent(this, GJJCalculationResultActivity.class);
+            String monthMoney = etMonthMoney.getText().toString().trim();
+            String companyRate1 = edCompanyRate1.getText().toString().trim();
+            String companyRate2 = edCompanyRate2.getText().toString().trim();
+            String personalRate1 = edPersonalRate1.getText().toString().trim();
+            String personalRate2 = edPersonalRate2.getText().toString().trim();
+            if (TextUtils.isEmpty(monthMoney)) {
+                showToast("请先填写本月工资收入");
+                return;
+            }
+            if (TextUtils.isEmpty(companyRate1)) {
+                showToast("请先填写公积金企业缴纳比例");
+                return;
+            }
+            if (TextUtils.isEmpty(personalRate1)) {
+                showToast("请先填写公积金个人缴纳比例");
+                return;
+            }
+            float monthMoneybl = 0;
+            try {
+                monthMoneybl = Float.parseFloat(monthMoney);
+            } catch (Exception ignored) {
+
+            }
+            float companyRate1bl = 0;
+            try {
+                companyRate1bl = Float.parseFloat(companyRate1);
+            } catch (Exception ignored) {
+
+            }
+            if (companyRate1bl > 20) {
+                showToast("比例不能超过20");
+                return;
+            }
+            float companyRate2bl = 0;
+            try {
+                companyRate2bl = Float.parseFloat(companyRate2);
+            } catch (Exception ignored) {
+
+            }
+            if (companyRate2bl > 20) {
+                showToast("比例不能超过20");
+                return;
+            }
+            float personalRate1bl = 0;
+            try {
+                personalRate1bl = Float.parseFloat(personalRate1);
+            } catch (Exception ignored) {
+
+            }
+            if (personalRate1bl > 20) {
+                showToast("比例不能超过20");
+                return;
+            }
+            float personalRate2bl = 0;
+            try {
+                personalRate2bl = Float.parseFloat(personalRate2);
+            } catch (Exception ignored) {
+
+            }
+            if (personalRate2bl > 20) {
+                showToast("比例不能超过20");
+                return;
+            }
+            intent.putExtra(ConstantConfig.monthMoney, monthMoneybl);
+            intent.putExtra(ConstantConfig.companyRate1bl, companyRate1bl);
+            intent.putExtra(ConstantConfig.companyRate2bl, companyRate2bl);
+            intent.putExtra(ConstantConfig.personalRate1bl, personalRate1bl);
+            intent.putExtra(ConstantConfig.personalRate2bl, personalRate2bl);
+
             ADUtil.showRewardAd(this, ConstantConfig.AD_Reward, new RewardAdCallBack() {
                 @Override
                 public void onAdClose() {
-                    String monthMoney = etMonthMoney.getText().toString().trim();
-                    String companyRate1 = edCompanyRate1.getText().toString().trim();
-                    String companyRate2 = edCompanyRate2.getText().toString().trim();
-                    String personalRate1 = edPersonalRate1.getText().toString().trim();
-                    String personalRate2 = edPersonalRate2.getText().toString().trim();
-                    if (TextUtils.isEmpty(monthMoney)) {
-                        showToast("请先填写本月工资收入");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(companyRate1)) {
-                        showToast("请先填写公积金企业缴纳比例");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(personalRate1)) {
-                        showToast("请先填写公积金个人缴纳比例");
-                        return;
-                    }
-                    float monthMoneybl = 0;
-                    try {
-                        monthMoneybl = Float.parseFloat(monthMoney);
-                    } catch (Exception ignored) {
 
-                    }
-                    float companyRate1bl = 0;
-                    try {
-                        companyRate1bl = Float.parseFloat(companyRate1);
-                    } catch (Exception ignored) {
-
-                    }
-                    if (companyRate1bl > 20) {
-                        showToast("比例不能超过20");
-                        return;
-                    }
-                    float companyRate2bl = 0;
-                    try {
-                        companyRate2bl = Float.parseFloat(companyRate2);
-                    } catch (Exception ignored) {
-
-                    }
-                    if (companyRate2bl > 20) {
-                        showToast("比例不能超过20");
-                        return;
-                    }
-                    float personalRate1bl = 0;
-                    try {
-                        personalRate1bl = Float.parseFloat(personalRate1);
-                    } catch (Exception ignored) {
-
-                    }
-                    if (personalRate1bl > 20) {
-                        showToast("比例不能超过20");
-                        return;
-                    }
-                    float personalRate2bl = 0;
-                    try {
-                        personalRate2bl = Float.parseFloat(personalRate2);
-                    } catch (Exception ignored) {
-
-                    }
-                    if (personalRate2bl > 20) {
-                        showToast("比例不能超过20");
-                        return;
-                    }
-                    intent.putExtra(ConstantConfig.monthMoney, monthMoneybl);
-                    intent.putExtra(ConstantConfig.companyRate1bl, companyRate1bl);
-                    intent.putExtra(ConstantConfig.companyRate2bl, companyRate2bl);
-                    intent.putExtra(ConstantConfig.personalRate1bl, personalRate1bl);
-                    intent.putExtra(ConstantConfig.personalRate2bl, personalRate2bl);
                     startActivity(intent);
                 }
 

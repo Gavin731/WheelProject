@@ -606,13 +606,11 @@ public class DeviceUtil {
      */
     public static boolean isAdb(Context context) {
         // 使用示例
-//        if (isAdbAccessible(context)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-        // todo zeng
-        return false;
+        if (isAdbAccessible(context)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean isProxyEnabled(Context context) {

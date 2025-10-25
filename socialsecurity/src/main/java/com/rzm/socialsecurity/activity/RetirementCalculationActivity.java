@@ -211,7 +211,7 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
         // 创建日期选择器实例
         DatePicker datePicker = new DatePicker(this);
         DateWheelLayout dateWheelLayout = datePicker.getWheelLayout();
-        dateWheelLayout.setDateMode(DateMode.YEAR_MONTH_DAY);
+        dateWheelLayout.setDateMode(DateMode.YEAR_MONTH);
         dateWheelLayout.setRange(DateEntity.target(1965, 1, 1), DateEntity.target(2099, 12, 31), DateEntity.today());
         dateWheelLayout.setResetWhenLinkage(false);
         datePicker.setOnDatePickedListener(new OnDatePickedListener() {
@@ -230,7 +230,7 @@ public class RetirementCalculationActivity extends MvpActivity<RetirementCalcula
     public void refreshCalendarText() {
         String month = selectMonth < 10 ? ("0" + selectMonth) : String.valueOf(selectMonth);
         String day = selectDay < 10 ? ("0" + selectDay) : String.valueOf(selectDay);
-        tvDate.setText(selectYear + "-" + month + "-" + day);
+        tvDate.setText(selectYear + "-" + month);
     }
 
     public void showSexTypeDialog(List<String> datas) {

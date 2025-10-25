@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_5_7"
                     android:gravity="center"
-                    android:text="计算结果"
+                    android:text="开始计算"
                     android:textColor="#ffffffff"
                     android:textSize="@dimen/sp_11_16" />
             </LinearLayout>
