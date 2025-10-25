@@ -156,6 +156,9 @@ public class RetirementCalculationResultActivity extends MvpActivity<RetirementC
         // 月份差
         int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
         delayMonths = (diffMonth / 4 + 1);
+        if (delayMonths > 36) {
+            delayMonths = 36;
+        }
         tvDelayMonths.setText(delayMonths + "个月");
         // 求退休年月
         int totalMonth = txMonth + delayMonths;
@@ -190,6 +193,9 @@ public class RetirementCalculationResultActivity extends MvpActivity<RetirementC
         // 月份差
         int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
         delayMonths = (diffMonth / 4 + 1);
+        if (delayMonths > 36) {
+            delayMonths = 36;
+        }
         tvDelayMonths.setText(delayMonths + "个月");
         // 求退休年月
         int totalMonth = txMonth + delayMonths;
@@ -224,6 +230,9 @@ public class RetirementCalculationResultActivity extends MvpActivity<RetirementC
         // 月份差
         int diffMonth = DateUtil.getMonthDifferenceWithCalendar(2025, 1, txYear, txMonth);
         delayMonths = (diffMonth / 2 + 1);
+        if (delayMonths > 60) {
+            delayMonths = 60;
+        }
         tvDelayMonths.setText(delayMonths + "个月");
         // 求退休年月
         int totalMonth = txMonth + delayMonths;
