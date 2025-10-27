@@ -295,7 +295,10 @@ public class MedicalCalculationActivity extends MvpActivity<MedicalCalculationPr
             MedicalCalculationEntity entity = new MedicalCalculationEntity();
             entity.setType(getType(key));
             entity.setAmount(value);
-            BigDecimal rate = new BigDecimal(value).divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal rate = new BigDecimal(0);
+            if (total.floatValue() > 0) {
+                rate = new BigDecimal(value).divide(total, 4, RoundingMode.HALF_UP).multiply(data100).setScale(2, RoundingMode.HALF_UP);
+            }
             entity.setRate(rate + "%");
             dataList.add(entity);
         }
