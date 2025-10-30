@@ -303,7 +303,7 @@ public class ADUtil {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String ipAddress = AppDeviceUtil.getIp();
+                String ipAddress = AppDeviceUtil.getIpAddress();
                 IPEvent ipEvent=new IPEvent(ipAddress, callback);
                 EventBus.getDefault().post(ipEvent);
             }
