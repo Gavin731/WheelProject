@@ -18,6 +18,8 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.orhanobut.hawk.Hawk;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
@@ -40,6 +42,14 @@ public class DeviceUtil {
      */
     @SuppressLint("MissingPermission")
     public static String getImei(Context context) {
+        if (!Hawk.isBuilt()) {
+            Hawk.init(context).build();
+        }
+        String oaid = Hawk.get("oaid");
+        if(!TextUtils.isEmpty(oaid)){
+            return oaid;
+        }
+
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 return getUUID(context);
@@ -75,6 +85,14 @@ public class DeviceUtil {
 
     @SuppressLint("HardwareIds")
     public static String getAndroidId(Context context) {
+        if (!Hawk.isBuilt()) {
+            Hawk.init(context).build();
+        }
+        String oaid = Hawk.get("oaid");
+        if(!TextUtils.isEmpty(oaid)){
+            return oaid;
+        }
+
         try {
             return Settings.Secure.getString(
                     context.getContentResolver(),
@@ -97,6 +115,14 @@ public class DeviceUtil {
      */
     @SuppressLint("MissingPermission")
     public static String getMeId(Context context) {
+        if (!Hawk.isBuilt()) {
+            Hawk.init(context).build();
+        }
+        String oaid = Hawk.get("oaid");
+        if(!TextUtils.isEmpty(oaid)){
+            return oaid;
+        }
+
         try {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -203,6 +229,13 @@ public class DeviceUtil {
     }
 
     public static String getUUID(Context context) {
+        if (!Hawk.isBuilt()) {
+            Hawk.init(context).build();
+        }
+        String oaid = Hawk.get("oaid");
+        if(!TextUtils.isEmpty(oaid)){
+            return oaid;
+        }
 
         String serial = null;
 

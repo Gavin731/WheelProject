@@ -43,8 +43,10 @@ public class MyApp extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         myApp = this;
+        UMUtil.preInit(this);
         boolean isShowUserPrivacy = Hawk.get(ConstantConfig.isAgreeUserPrivacy, false);
         if(isShowUserPrivacy){
+            LogUtils.i("开始初始化友盟：app");
             initUm();
         }
         Hawk.put("url", getResources().getString(R.string.app_url));
@@ -103,12 +105,11 @@ public class MyApp extends BaseApplication {
     }
 
     public void initUm(){
-        LogUtils.i("开始初始化友盟");
+        LogUtils.i("开始初始化友盟：initUm");
         if(umIsInit){
-            LogUtils.i("开始初始化友盟:已经初始化过了");
+            LogUtils.i("开始初始化友盟 initUm:已经初始化过了");
             return;
         }
-        UMUtil.preInit(this);
         UMUtil.init(this);
         umIsInit=true;
     }
