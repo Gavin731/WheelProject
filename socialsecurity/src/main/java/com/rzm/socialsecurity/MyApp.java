@@ -27,6 +27,8 @@ public class MyApp extends BaseApplication {
     private int activityCount = 0;
     private static MyApp myApp;
 
+    private boolean umIsInit=false;
+
     public static MyApp getMyApp(){
         return myApp;
     }
@@ -101,8 +103,13 @@ public class MyApp extends BaseApplication {
     }
 
     public void initUm(){
-      LogUtils.i("开始初始化友盟");
-      UMUtil.preInit(this);
-      UMUtil.init(this);
+        LogUtils.i("开始初始化友盟");
+        if(umIsInit){
+            LogUtils.i("开始初始化友盟:已经初始化过了");
+            return;
+        }
+        UMUtil.preInit(this);
+        UMUtil.init(this);
+        umIsInit=true;
     }
 }
