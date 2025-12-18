@@ -412,17 +412,27 @@ public class ADUtil {
      * 插屏广告
      */
     public static void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
-        boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
-        if (!is_global_ad_switch) {
-            callback.onAdClose();
-            return;
+        showInterstitialAd(activity, codeId, callback, true);
+    }
+
+    /**
+     * 插屏广告
+     * @param isConfig 是否需要看后台开关
+     */
+    public static void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback, boolean isConfig) {
+        if(isConfig){
+            boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
+            if (!is_global_ad_switch) {
+                callback.onAdClose();
+                return;
+            }
+            boolean is_interstitial_ad_switch = Hawk.get(ConstantsPath.is_interstitial_ad_switch, false);
+            if (!is_interstitial_ad_switch) {
+                callback.onAdClose();
+                return;
+            }
         }
-        boolean is_interstitial_ad_switch = Hawk.get(ConstantsPath.is_interstitial_ad_switch, false);
-        if (!is_interstitial_ad_switch) {
-            callback.onAdClose();
-            return;
-        }
-        AdvertisementManager.getInstance().showInterstitialAd(activity, codeId, callback);
+        AdvertisementManager.getInstance().showInterstitialAd(activity, codeId, callback, isConfig);
     }
 
     /**

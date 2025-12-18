@@ -205,6 +205,14 @@ public class AdvertisementManager {
      * 插屏广告
      */
     public void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback) {
+        showInterstitialAd(activity, codeId, callback, true);
+    }
+
+    /**
+     * 插屏广告
+     * * @param isConfig 是否需要看后台开关
+     */
+    public void showInterstitialAd(Activity activity, String codeId, InfoAdCallBack callback, boolean isConfig) {
         ApiService.addLog(activity, "info", "准备获取插屏广告");
         if (!sInit) {
             Log.i(TAG, "SDK没有初始化");
@@ -217,7 +225,7 @@ public class AdvertisementManager {
         }
 
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
-        if ("0".equals(valid_user_flag_value)) {
+        if (isConfig && "0".equals(valid_user_flag_value)) {
             if (callback != null) {
                 Log.i(TAG, "无效用户，获取插屏广告失败");
                 ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
