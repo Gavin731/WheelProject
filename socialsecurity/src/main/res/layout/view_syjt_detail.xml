@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="一、生育津贴怎么算?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="生育津贴计算公式:职工所在用人单位月缴费平均工资/30x乘产假天数。(职工缴费基数按照职工所在用人单位上一年月平均工资计算);"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="二、生育津贴领取的要求是什么?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="大部分城市想享受生育保险福利，都需要连续缴纳生育保险一定时间(一般是12个月)。但是，近年来，多地都在降低享受生育保险的连续参保门槛，以及延长可生育津贴领取时间。其中广东最新规定，享受待遇不再受参保满一年期限制。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="三、生育津贴怎么领?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="生育源贴申领的方式各地不同，有的地方是职工自行办理生育保险备案、申领手续，自行到银行领取生育津贴的。
+    有的地方是单位办理生育保险备案手续，社保中心将生育津贴打在单位账户，由单位进行发放。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:text="详情可以者询当地社保局"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:layout_marginBottom="@dimen/dp_50_75"/>
+
+
+</LinearLayout>

@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="一、医保报销"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="医保报销比例没有全国统一标准，主要受参保类型（职工医保或居民医保）、医院等级、地区政策影响。
+影响报销比例的3个核心因素"
+        android:textColor="#ff333333"
+        android:visibility="visible"
+        android:textSize="@dimen/sp_11_16" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="1、参保类型："
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="职工医保（单位+个人缴费）报销比例通常高于居民医保（个人缴费+政府补贴）。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="2、医院等级："
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="一级医院（如社区医院）报销比例最高，三级医院（如三甲医院）最低。例如："
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="一级医院：报销比例可达80%-95%。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="三级医院：报销比例通常50%-85%。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="2、医院等级："
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="门诊费用：报销比例较低（50%-90%），多数地区设年度限额（如5000元）。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="住院费用：报销比例较高（65%-99%），但起付线更高（如三级医院800元）。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="二、失业金领取条件及标准"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="失业金领取需同时满足 3 个核心条件，标准受缴费年限、地区政策影响，无全国统一金额，具体如下："
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="1、领取条件（3 项必须同时满足）"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="参保缴费满 1 年：失业前用人单位和本人累计缴纳失业保险费满 1 年（累计，非连续）。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="非因本人意愿中断就业：如单位裁员、破产、合同到期不续签、单位违法导致被迫离职、单位提出协商解除等；主动辞职一般不满足。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="已办失业登记 + 有求职要求：在参保地人社平台完成失业登记，愿意接受职业培训与就业介绍。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text=" 2、领取标准（2025 年通用规则）"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="按月发放标准，多数地区按当地最低工资标准的 90% 计发，随最低工资调整。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="领取期限（累计缴费）：1 年≤不满 2 年：3 个月、2 年≤不满 3 年：6 个月、3 年≤不满 4 年：9 个月、4 年≤不满 5 年：12 个月、5 年以上：每满 1 年增发 1 个月，最长 24 个月。缴费满 5 年可领 13 个月，累计最高 24 个月。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="3、关键提示"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="(1）重新就业后再次失业，前次未领完期限可合并计算，一生累计不超 24 个月。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="（2）领取期间可享医保、职业培训补贴等附加待遇，重新就业即停发。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="三、生育保险领取条件及标准"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="生育保险待遇核心含生育医疗费报销与生育津贴领取，无全国统一标准，核心受参保类型、缴费年限、地区政策影响，具体如下："
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="1、领取核心条件（3 项必须同时满足）"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="参保缴费达标：职工医保（含生育保险，多数地区已合并）生育前连续缴费满 6-12 个月（如北京 12 个月、广东 6 个月），生育当月正常缴费；补缴通常不计连续，灵活就业人员部分地区可参保享受。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="符合计划生育政策：合法生育一孩 / 二孩 / 三孩，或实施合规计划生育手术（如流产、结扎等）。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text=" 享受对应假期：女职工生育享产假，或实施计划生育手术享规定休假，假期时长决定津贴金额。
+ "
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text=" 2、核心待遇标准"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="（1）生育医疗费"
+            android:textColor="#ff333333"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="范围：产检、分娩、住院、术后复查及计划生育手术等政策内费用。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="比例：定点医院多为90%-100%（一级 / 二级常 100%，三级约 90%），无起付线，按项目报销。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="特殊：职工未就业配偶可报生育医疗费，居民医保仅报医疗费、不享津贴。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="(2）生育津贴（核心公式）"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="生育津贴 = 单位上年度职工月均缴费基数 ÷30× 产假天数（多数地区基数上限为当地社平工资 3 倍）"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="（3）领取期限"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="多数地区产后 1 年内申领，逾期可能无法受理。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text=" 3、关键影响因素"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="参保类型"
+            android:textColor="#ff333333"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="职工医保待遇优于居民医保，灵活就业人员政策因地而异。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="缴费年限"
+            android:textColor="#ff333333"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="地区差异大，短则 3-6 个月、长则 12 个月，断缴影响资格。"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20_30"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="地区政策"
+            android:textColor="#ff333333"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_11_16" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:paddingTop="@dimen/dp_3_5"
+            android:paddingBottom="@dimen/dp_3_5"
+            android:text="产假天数、津贴基数上限、补贴项目（如一次性营养补助）各地不同"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="四，工伤认定"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="1、法定工伤情形（满足其一即可）"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（1）工作时间 / 场所内，因工作原因受伤、从事预备 / 收尾工作受伤、履职遭暴力伤害。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（2） 患职业病、因工外出受伤 / 下落不明、上下班途中非本人主责的交通事故。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（3）单位安排居家办公因工作原因受伤（有证据支撑）。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="2、视同工伤情形"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（1）工作时间 / 岗位突发疾病死亡，或 48 小时内抢救无效死亡。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（2）抢险救灾等维护国家 / 公共利益受伤、军人旧伤复发人力资源和社会保障部。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="3、申请时限"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（1）单位：事故 / 职业病确诊起 30 日内申请（超期未申请，期间费用单位自担）。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（2）个人 / 近亲属：单位未申请的，可在 6 个月内（原 1 年，2025 年优化）向参保地人社部门申请。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text=" 4、停工留薪期工资"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（1）标准：原工资福利待遇 100% 发放（2025 年优化）。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3_5"
+        android:paddingBottom="@dimen/dp_3_5"
+        android:text="（2）时长：一般不超 12 个月，伤情严重可延长，最长 24 个月。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:layout_marginBottom="@dimen/dp_50_75"/>
+</LinearLayout>

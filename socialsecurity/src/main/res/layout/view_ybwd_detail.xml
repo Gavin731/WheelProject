@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="一、什么是基本医疗保险?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="基本医疗保险是由用人单位、个人、集体组织和政府等按照国家规定缴纳资金，形成医疗保险基金，为参保群众就医提供保障的制度。它分为职工基本医疗保险和城乡居民基本医疗保险两种类型。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="二、参加医疗保险有什么好处?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="参加基本医疗保险可以享受基本医保、大病保险(不需另外缴费)或大额医疗统筹支付、医疗救助三重保障，能极大地减轻看病负担，不用担心因病致贫、因病返贫。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="三、职工医保和居民医保的缴费标准有何不同?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="职工医保由单位和个人按上年度工资收入的一定比例共同缴纳，居民医保由个人按年度缴费标准每年缴纳一次，政府给予补助。例如，某地区居民医保个人缴费标准为320元/年，财政补助610元/年。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="四、职工医保退休后还需要缴费吗?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="职工医保在缴纳规定年限后能够享受退休免缴待遇即退休后不用缴费且可继续享受医保待遇。居民医保则不存在退休免缴待遇，每年必须按时缴费才能够享受待遇。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="五、发现重复参保如何处理?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="参保人员只能选择在一个统筹区参加一种基本医疗保险。重复参保的，原则上保留就业地或常住地(学生为学籍地)的参保关系，跨制度重复参保且连续参加职工医保一年的以上的，原则上保留职工医保参保关系"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="六、医保目录包括哪些内容?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="医保目录包括医保药品目录、诊疗项目目录和医疗服务设施范围目录。医保药品目录分为里类和乙类，甲类药品全额纳入报销范围，乙类药品需个人自付一定比例。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4_6"
+            android:layout_height="@dimen/dp_9_13"
+            android:background="#3875F6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3_5"
+            android:text="七、哪些医疗费用医保不予报销?"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_11_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3_5"
+        android:text="非定点医疗机构就医(除急诊外)、应当由第三人负担的、属于工伤事故的、非医保目录内的以及属于公共卫生服务的医疗费用，医保不予报销。"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_11_16"
+        android:layout_marginBottom="@dimen/dp_50_75"/>
+
+
+</LinearLayout>

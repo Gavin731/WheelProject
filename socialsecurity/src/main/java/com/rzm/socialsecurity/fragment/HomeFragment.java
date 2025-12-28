@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.metrics.Event;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -32,14 +33,17 @@ import com.rzm.socialsecurity.R;
 import com.rzm.socialsecurity.activity.CalculateZXFJKCActivity;
 import com.rzm.socialsecurity.activity.GJJCalculationActivity;
 import com.rzm.socialsecurity.activity.GSCalculateResultActivity;
+import com.rzm.socialsecurity.activity.GSJSActivity;
 import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.MedicalCalculationActivity;
 import com.rzm.socialsecurity.activity.RetirementCalculationActivity;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
+import com.rzm.socialsecurity.activity.SBFunctionDetailActivity;
 import com.rzm.socialsecurity.activity.SBManageOrSuperviseActivity;
 import com.rzm.socialsecurity.activity.TaxGuideActivity;
 import com.rzm.socialsecurity.activity.YLBXCalculateActivity;
+import com.rzm.socialsecurity.activity.ZDGZActivity;
 import com.rzm.socialsecurity.constant.ConstantConfig;
 import com.rzm.socialsecurity.entity.ShowInfoAdEvent;
 import com.rzm.socialsecurity.presenter.HomePresenter;
@@ -64,10 +68,13 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     private static final String ARG_C = "content";
 
     public TextView tvTabGszxjs, tvTabSbjnjs;
-    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye, tvGoPage1, tvGoPage2;
+    public LinearLayout llSb, llGs, tvStartCalculate, tvGsCalculate, ivYanglao, ivYiliao, ivShiye, tvGoPage1, tvGoPage2, tvGoPage3, llYanglao, llYiliao,
+            ll_ybwd,ll_bxbz,ll_gsjs,ll_syjt,ll_zdgz,ll_zxkc;
     public ImageView ivTop;
     public EditText etMonthMoney, etSbMoney, etGsMonthMoney, etGsSbMoney, etGsZxkcMoney;
-    public FrameLayout flInfoAd;
+    public FrameLayout flInfoAd,flInfoAd2;
+
+    public LinearLayout llYanglao1, llYiliao1, llShiye, llGongshang,llShengyu;
 
     public static HomeFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -111,7 +118,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         if(isVisibleToUser){
             if(flInfoAd!=null && flInfoAd.getVisibility() == VISIBLE){
                 LogUtils.i("------aa1111");
-                showInfoAd();
+                showInfoAd(flInfoAd);
+                new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
             }
         }
     }
@@ -140,6 +148,10 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         etGsZxkcMoney = view.findViewById(R.id.et_gs_zxkc_money);
 
 
+        llYanglao = view.findViewById(R.id.ll_yanglao);
+        llYanglao.setOnClickListener(v -> jumpCalculatePage(4));
+        llYiliao = view.findViewById(R.id.ll_yiliao);
+        llYiliao.setOnClickListener(v -> jumpCalculatePage(5));
         ivYanglao.setOnClickListener(v -> jumpCalculatePage(1));
         ivYiliao.setOnClickListener(v -> jumpCalculatePage(2));
         ivShiye.setOnClickListener(v -> jumpCalculatePage(3));
@@ -242,6 +254,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         tvGoPage1.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBFunctionActivity.class)));
         tvGoPage2 = view.findViewById(R.id.tv_goPage2);
         tvGoPage2.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBManageOrSuperviseActivity.class)));
+        tvGoPage3 = view.findViewById(R.id.tv_goPage3);
+        tvGoPage3.setOnClickListener(v -> startActivity(new Intent(getActivity(), SBManageOrSuperviseActivity.class)));
 
 
         tvGsCalculate = view.findViewById(R.id.tv_gs_calculate);
@@ -335,8 +349,37 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
            startActivity(new Intent(getActivity(), TaxGuideActivity.class));
         });
 
+
+        ll_ybwd=view.findViewById(R.id.ll_ybwd);
+        ll_bxbz=view.findViewById(R.id.ll_bxbz);
+        ll_gsjs=view.findViewById(R.id.ll_gsjs);
+        ll_syjt=view.findViewById(R.id.ll_syjt);
+        ll_zdgz=view.findViewById(R.id.ll_zdgz);
+        ll_zxkc=view.findViewById(R.id.ll_zxkc);
+
+        ll_ybwd.setOnClickListener(v -> jumpHoTPage(1));
+        ll_bxbz.setOnClickListener(v -> jumpHoTPage(2));
+        ll_gsjs.setOnClickListener(v -> jumpHoTPage(3));
+        ll_syjt.setOnClickListener(v -> jumpHoTPage(4));
+        ll_zdgz.setOnClickListener(v -> jumpHoTPage(5));
+        ll_zxkc.setOnClickListener(v -> jumpHoTPage(6));
+
+
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);
-        showInfoAd();
+        flInfoAd2=view.findViewById(R.id.fl_info_ad_home2);
+        showInfoAd(flInfoAd);
+        new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
+
+        llYanglao1 = view.findViewById(R.id.ll_yanglao1);
+        llYanglao1.setOnClickListener(v -> jumpDetailPage(1));
+        llYiliao1 = view.findViewById(R.id.ll_yiliao1);
+        llYiliao1.setOnClickListener(v -> jumpDetailPage(2));
+        llShiye = view.findViewById(R.id.ll_shiye);
+        llShiye.setOnClickListener(v -> jumpDetailPage(3));
+        llGongshang = view.findViewById(R.id.ll_gongshang);
+        llGongshang.setOnClickListener(v -> jumpDetailPage(4));
+        llShengyu = view.findViewById(R.id.ll_shengyu);
+        llShengyu.setOnClickListener(v -> jumpDetailPage(5));
     }
 
     public void jumpCalculatePage(int type) {
@@ -350,10 +393,55 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         }else if(type ==3){//公积金计算
             Intent intent = new Intent(getActivity(), GJJCalculationActivity.class);
             startActivity(intent);
+        }else if(type ==4){//医疗保险
+            Intent intent = new Intent(getActivity(), YLBXCalculateActivity.class);
+            intent.putExtra(ConstantConfig.bxKey, 1);
+            startActivity(intent);
+        }else if(type ==5){//养老保险
+            Intent intent = new Intent(getActivity(), YLBXCalculateActivity.class);
+            intent.putExtra(ConstantConfig.bxKey, 2);
+            startActivity(intent);
         }
 //        Intent intent = new Intent(getActivity(), YLBXCalculateActivity.class);
 //        intent.putExtra(ConstantConfig.bxKey, type);
 //        startActivity(intent);
+    }
+
+    public void jumpHoTPage(int type) {
+        Intent intent=null;
+        switch (type){
+            case 1: //医保问答
+                intent = new Intent(getActivity(), SBFunctionDetailActivity.class);
+                intent.putExtra(ConstantConfig.bxKey, 6);
+                startActivity(intent);
+                break;
+            case 2://报销标准
+                intent = new Intent(getActivity(), SBFunctionDetailActivity.class);
+                intent.putExtra(ConstantConfig.bxKey, 7);
+                startActivity(intent);
+                break;
+            case 3://个税计算
+                startActivity(new Intent(getActivity(), GSJSActivity.class));
+                break;
+            case 4://生育津贴
+                intent = new Intent(getActivity(), SBFunctionDetailActivity.class);
+                intent.putExtra(ConstantConfig.bxKey, 8);
+                startActivity(intent);
+                break;
+            case 5://最低工资
+                startActivity(new Intent(getActivity(), ZDGZActivity.class));
+                break;
+            case 6://专项扣除
+                startActivity(new Intent(getActivity(), CalculateZXFJKCActivity.class));
+                break;
+        }
+
+    }
+
+    public void jumpDetailPage(int type){
+        Intent intent = new Intent(getActivity(), SBFunctionDetailActivity.class);
+        intent.putExtra(ConstantConfig.bxKey, type);
+        startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -361,11 +449,12 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         if(!showInfoAdEvent.isShowAd()){
             return;
         }
-        showInfoAd();
+        showInfoAd(flInfoAd);
+        new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
     }
 
-    public void showInfoAd(){
-        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, flInfoAd, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
+    public void showInfoAd(FrameLayout layout){
+        ADUtil.showInfoFlowAd(getActivity(), ConstantConfig.AD_INFO, layout, ScreenUtils.getScreenWidth(), 0, false, new InformationFlowAdCallback() {
             @Override
             public void onError() {
 

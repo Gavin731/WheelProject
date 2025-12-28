@@ -17,7 +17,8 @@
         <ImageView
             android:id="@+id/iv_top"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_116_174" />
+            android:layout_height="@dimen/dp_116_174"
+            android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,10 +28,81 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_61_91"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/dp_10_15"
+                android:paddingRight="@dimen/dp_10_15">
+
+                <LinearLayout
+                    android:id="@+id/ll_yiliao"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/sb_2yl"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:text="医疗保险"
+                        android:textColor="#ff89312f"
+                        android:textSize="@dimen/sp_13_19" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_2_3"
+                        android:text="医保保险计算"
+                        android:textColor="#ff89312f"
+                        android:textSize="@dimen/sp_8_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_yanglao"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_5_7"
+                    android:layout_weight="1"
+                    android:background="@mipmap/sy_yanglaobx"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:text="养老保险"
+                        android:textColor="#ff15563a"
+                        android:textSize="@dimen/sp_13_19" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5_7"
+                        android:layout_marginTop="@dimen/dp_2_3"
+                        android:text="养老保险计算"
+                        android:textColor="#ff15563a"
+                        android:textSize="@dimen/sp_8_12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/iv_top_bx"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50_75"
-                android:layout_margin="@dimen/dp_10_15"
+                android:layout_marginStart="@dimen/dp_10_15"
+                android:layout_marginTop="@dimen/dp_5_7"
+                android:layout_marginEnd="@dimen/dp_10_15"
+                android:layout_marginBottom="@dimen/dp_5_7"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -155,15 +227,17 @@
             <FrameLayout
                 android:id="@+id/fl_info_ad_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
+            <!-- 社保缴纳计算 -->
             <LinearLayout
                 android:id="@+id/ll_tab"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_28_42"
-                android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginLeft="@dimen/dp_10_15"
-                android:layout_marginRight="@dimen/dp_10_15">
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10_15"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_sbjnjs"
@@ -199,7 +273,7 @@
                 android:background="@drawable/bg_bottom_round"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/dp_10_15"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -221,11 +295,11 @@
                     android:inputType="numberDecimal"
                     android:paddingStart="@dimen/dp_5_7"
                     android:textColor="#ff333333"
-                    android:textSelectHandle="@drawable/none_drawable"
-                    android:textSelectHandleRight="@drawable/none_drawable"
-                    android:textSelectHandleLeft="@drawable/none_drawable"
                     android:textColorHint="#ff999999"
-                    android:textSize="@dimen/sp_10_15"/>
+                    android:textSelectHandle="@drawable/none_drawable"
+                    android:textSelectHandleLeft="@drawable/none_drawable"
+                    android:textSelectHandleRight="@drawable/none_drawable"
+                    android:textSize="@dimen/sp_10_15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -250,8 +324,8 @@
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSelectHandle="@drawable/none_drawable"
-                    android:textSelectHandleRight="@drawable/none_drawable"
                     android:textSelectHandleLeft="@drawable/none_drawable"
+                    android:textSelectHandleRight="@drawable/none_drawable"
                     android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
@@ -469,8 +543,8 @@
                     android:hint="请输入专项附加扣除金额（元）"
                     android:inputType="numberDecimal"
                     android:paddingStart="@dimen/dp_5_7"
-                    android:textColorHint="#ff999999"
                     android:textColor="#ff333333"
+                    android:textColorHint="#ff999999"
                     android:textSize="@dimen/sp_10_15" />
 
                 <LinearLayout
@@ -510,7 +584,6 @@
                     android:textSize="@dimen/sp_9_13" />
 
                 <LinearLayout
-                    android:id="@+id/tv_jump_fragment3"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_47_70"
                     android:layout_marginStart="@dimen/dp_8_12"
@@ -541,6 +614,618 @@
                         android:text="前往查看"
                         android:textColor="#ffffffff"
                         android:textSize="@dimen/sp_7_8" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10_15"
+                android:layout_marginRight="@dimen/dp_10_15"
+                android:layout_marginBottom="@dimen/dp_10_15"
+                android:background="@drawable/bg_bottom_round"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp_10_15">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_13_19"
+                        android:layout_height="@dimen/dp_13_19"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/sy_sbjssc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="热门功能"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_11_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8_12"
+                    android:layout_marginTop="@dimen/dp_10_15"
+                    android:layout_marginEnd="@dimen/dp_8_12"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_ybwd"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/icon_gdgj_2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="医保问答"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="医保常见问题解答"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_bxbz"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/icon_gdgj_7" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="报销标准"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个人社保报销标准"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8_12"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_8_12"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_gsjs"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/icon_gdgj_8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="个税计算"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工资个税缴纳计算"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_syjt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/icon_gdgj_5" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="生育津贴"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="生育津贴正常"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8_12"
+                    android:layout_marginTop="@dimen/dp_3_5"
+                    android:layout_marginEnd="@dimen/dp_8_12"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_zdgz"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/icon_gdgj_6" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="最低工资"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="各地工资详情"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_zxkc"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_50_75"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/wdsbzd_k1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_7_8">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_13_19"
+                                android:layout_height="@dimen/dp_13_19"
+                                android:src="@mipmap/sw_zx" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_2_3"
+                                android:text="专项扣除"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_11_16" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="附加专项扣除税务计算"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/sp_9_13" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tv_jump_fragment3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_47_70"
+                    android:layout_marginStart="@dimen/dp_8_12"
+                    android:layout_marginTop="@dimen/dp_7_8"
+                    android:layout_marginEnd="@dimen/dp_8_12"
+                    android:layout_marginBottom="@dimen/dp_10_15"
+                    android:background="@mipmap/sy_gs_sbzn"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8_12"
+                        android:layout_marginTop="@dimen/dp_8_12"
+                        android:text="税务申报指南"
+                        android:textColor="#ff154083"
+                        android:textSize="@dimen/sp_12_18" />
+
+                    <TextView
+
+                        android:layout_width="@dimen/dp_50_75"
+                        android:layout_height="@dimen/dp_13_19"
+                        android:layout_marginStart="@dimen/dp_8_12"
+                        android:layout_marginTop="@dimen/dp_2_3"
+                        android:background="@drawable/btn_bg_round"
+                        android:gravity="center"
+                        android:text="前往查看"
+                        android:textColor="#ffffffff"
+                        android:textSize="@dimen/sp_7_8" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/fl_info_ad_home2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_13_19"
+                        android:layout_height="@dimen/dp_13_19"
+                        android:layout_marginStart="@dimen/dp_7_8"
+                        android:src="@mipmap/sy_sbjssc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="社保的组成部分"
+                        android:textColor="#ff333333"
+                        android:textSize="@dimen/sp_11_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_66_99"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/dp_8_12"
+                    android:paddingRight="@dimen/dp_8_12">
+
+                    <LinearLayout
+                        android:id="@+id/ll_yanglao1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sy_yanglaobx"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_10_15"
+                            android:text="养老保险"
+                            android:textColor="#ff15563a"
+                            android:textSize="@dimen/sp_13_19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="一份保障，一生保障"
+                            android:textColor="#ff15563a"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/bg_round_35926a"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_yiliao1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sb_2yl"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_10_15"
+                            android:text="医疗保险"
+                            android:textColor="#ff89312f"
+                            android:textSize="@dimen/sp_13_19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="医保护航，健康无忧"
+                            android:textColor="#ff89312f"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/bg_round_aa5351"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_66_99"
+                    android:layout_marginTop="@dimen/dp_5_7"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/dp_8_12"
+                    android:paddingRight="@dimen/dp_8_12">
+
+                    <LinearLayout
+                        android:id="@+id/ll_shiye"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sb_3sy"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_10_15"
+                            android:text="失业保险"
+                            android:textColor="#ff6141a8"
+                            android:textSize="@dimen/sp_13_19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="失业有险，再启新程"
+                            android:textColor="#ff6141a8"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/bg_round_7359c3"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_gongshang"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sb_4gs"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_10_15"
+                            android:text="工伤保险"
+                            android:textColor="#ffc06402"
+                            android:textSize="@dimen/sp_13_19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="工伤有保，安心劳作"
+                            android:textColor="#ffc06402"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/bg_round_db8600"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_66_99"
+                    android:layout_marginTop="@dimen/dp_5_7"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_8_12"
+                    android:paddingRight="@dimen/dp_8_12">
+
+                    <LinearLayout
+                        android:id="@+id/ll_shengyu"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/dp_66_99"
+                        android:background="@mipmap/sb_5sy"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10_15"
+                            android:text="生育保险"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:textColor="#ff0985a4"
+                            android:textSize="@dimen/sp_13_19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="生育有保，守护新生"
+                            android:textColor="#ff0985a4"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginLeft="@dimen/dp_5_7"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/bg_round_35a9cd"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tv_goPage3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_5_7"
+                        android:layout_weight="1"
+                        android:background="@mipmap/sy_sbglyjd"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/dp_9_13">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_9_13"
+                            android:text="社保的管理与监督"
+                            android:textColor="#ff154083"
+                            android:textSize="@dimen/sp_11_16" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:text="社保预存未来，岁月无惧风雨"
+                            android:textColor="#ff154083"
+                            android:textSize="@dimen/sp_7_8" />
+
+                        <TextView
+                            android:layout_width="@dimen/dp_33_49"
+                            android:layout_height="@dimen/dp_13_19"
+                            android:layout_marginTop="@dimen/dp_2_3"
+                            android:background="@drawable/btn_bg_round"
+                            android:gravity="center"
+                            android:text="去看看"
+                            android:textColor="#ffffffff"
+                            android:textSize="@dimen/sp_7_8" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

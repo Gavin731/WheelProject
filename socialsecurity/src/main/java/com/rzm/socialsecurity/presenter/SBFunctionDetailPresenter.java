@@ -32,6 +32,15 @@ public class SBFunctionDetailPresenter extends MvpPresenter<ISBFunctionDetailVie
             case 5:
                 result = "生育保险作用";
                 break;
+            case 6:
+                result = "医保问答";
+                break;
+            case 7:
+                result = "报销标准";
+                break;
+            case 8:
+                result = "生育津贴";
+                break;
         }
         return result;
     }
