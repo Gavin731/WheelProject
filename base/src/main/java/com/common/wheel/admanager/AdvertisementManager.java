@@ -227,8 +227,8 @@ public class AdvertisementManager {
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if (isConfig && "0".equals(valid_user_flag_value)) {
             if (callback != null) {
-                Log.i(TAG, "无效用户，获取插屏广告失败");
-                ApiService.addLog(activity, "error", "无效用户，获取插屏广告失败");
+                Log.i(TAG, "no user，showInterstitialAd");
+                ApiService.addLog(activity, "error", "no user，showInterstitialAd");
                 callback.onAdClose();
             }
             return;
@@ -286,7 +286,7 @@ public class AdvertisementManager {
         String valid_user_flag_value = Hawk.get(ConstantsPath.valid_user_flag_value, "0");
         if ("0".equals(valid_user_flag_value)) {
             if (listener != null) {
-                Log.i(TAG, "无效用户，获取激励广告失败");
+                Log.i(TAG, "no user，showRewardAd");
                 listener.onAdClose();
             }
             return;

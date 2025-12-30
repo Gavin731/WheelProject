@@ -11,7 +11,7 @@ android {
         minSdk 24
         targetSdk 34
         versionCode 1
-        versionName "1.3.1"
+        versionName "1.3.2"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -59,21 +59,23 @@ android {
             keyPassword "juduo123"
         }
         debug {
-//            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
-//            storePassword "juduo123"
-//            keyAlias "juduo"
-//            keyPassword "juduo123"
+            // todo zeng
+            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+            storePassword "juduo123"
+            keyAlias "juduo"
+            keyPassword "juduo123"
         }
     }
 
     buildTypes {
         debug {
             debuggable true
-//            minifyEnabled true //开启混淆
-//            shrinkResources false //移除无用资源
-//            zipAlignEnabled false //zipalign优化
-//            signingConfig signingConfigs.debug
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // todo zeng
+            minifyEnabled true //开启混淆
+            shrinkResources false //移除无用资源
+            zipAlignEnabled false //zipalign优化
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {

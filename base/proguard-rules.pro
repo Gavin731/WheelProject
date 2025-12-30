@@ -167,14 +167,6 @@
 
 -keep class com.orhanobut.hawk.** { *; }
 # 保留某个包下的所有类
--keep class com.common.wheel.http.entity.** { *; }
--keep class com.common.wheel.base.** { *; }
--keep class com.common.wheel.mvp.** { *; }
--keep class com.common.wheel.util.** { *; }
--keep class com.common.wheel.entity.** { *; }
--keep class com.blankj.utilcode.**.** { *; }
--keep class com.common.wheel.http.BaseUrl { *; }
--keep class com.common.wheel.BaseApplication { *; }
 -keep class com.common.wheel.admanager.OpenScreenAdCallBack { *; }
 -keep class com.common.wheel.admanager.RewardAdCallBack { *; }
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }
@@ -184,4 +176,14 @@
 -keep public class com.common.wheel.admanager.AdvertisementManager{
     public *;
 }
+
+-keep class com.common.wheel.base.** { *; }
+-keep class com.common.wheel.entity.** { *; }
+-keep class com.common.wheel.http.entity.** { *; }
+-keep class com.common.wheel.mvp.** { *; }
+-keep class com.common.wheel.util.** { *; }
+-keep class com.blankj.utilcode.**.** { *; }
+-keep class com.common.wheel.BaseApplication { *; }
+
+
 

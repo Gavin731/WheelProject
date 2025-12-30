@@ -119,7 +119,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             if(flInfoAd!=null && flInfoAd.getVisibility() == VISIBLE){
                 LogUtils.i("------aa1111");
                 showInfoAd(flInfoAd);
-                new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
+                showInfoAd(flInfoAd2);
             }
         }
     }
@@ -368,7 +368,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);
         flInfoAd2=view.findViewById(R.id.fl_info_ad_home2);
         showInfoAd(flInfoAd);
-        new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
+        showInfoAd(flInfoAd2);
 
         llYanglao1 = view.findViewById(R.id.ll_yanglao1);
         llYanglao1.setOnClickListener(v -> jumpDetailPage(1));
@@ -450,7 +450,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             return;
         }
         showInfoAd(flInfoAd);
-        new Handler().postDelayed(() -> showInfoAd(flInfoAd2), 2000);
+        showInfoAd(flInfoAd2);
     }
 
     public void showInfoAd(FrameLayout layout){

@@ -64,7 +64,7 @@ public class ADUtil {
             isPostEnvInfo(context, callback);
             return;
         }
-        LogUtils.e("aaaaa_开始获取token");
+        LogUtils.e("aaaaa_start get key");
         HashMap<String, Object> requestParams = new HashMap<>();
         requestParams.put("methodType", "zxzh_app_token_apply");
         requestParams.put("appName", context.getPackageName());
@@ -79,7 +79,7 @@ public class ADUtil {
                             Hawk.put("token", result.getAppToken());
                             isPostEnvInfo(context, callback);
                         }else{
-                            LogUtils.e("aaaaa_开始获取token为空");
+                            LogUtils.e("aaaaa_get key is null");
                             callback.error();
                         }
                         return true;
@@ -93,7 +93,7 @@ public class ADUtil {
                     public void accept(Throwable throwable) throws Exception {
                         Log.i("", "token error:" + ExceptionUtil.getStackTrace(throwable));
 //                        callback.error();
-                        LogUtils.e("aaaaa_开始获取token error");
+                        LogUtils.e("aaaaa_get key error");
                     }
                 });
     }
@@ -105,7 +105,6 @@ public class ADUtil {
      */
     @SuppressLint("CheckResult")
     protected static void isPostEnvInfo(Context context, InitCallback callback) {
-        LogUtils.e("aaaaa_开始获取是否上报");
         String token = Hawk.get("token");
         HashMap<String, Object> params = new HashMap<>();
         params.put("appVersion", BuildConfig.VERSION_NAME);
@@ -127,7 +126,7 @@ public class ADUtil {
                         if (resultBean.getData() != null) {
                             String data = resultBean.getData().toString();
                             Hawk.put(ConstantConfig.userEnv, data);
-                            LogUtils.e("aaaaa_开始获取是否上报结果"+data);
+                            LogUtils.e("aaaaa_up result:"+data);
                             if ("true".equals(data) || isShowUserPrivacy) {
                                 initAdManager(context, callback);
                             }else{
@@ -144,7 +143,7 @@ public class ADUtil {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        LogUtils.e("aaaaa_开始获取是否上报 error");
+                        LogUtils.e("aaaaa_up result error");
                     }
                 });
     }
@@ -314,9 +313,9 @@ public class ADUtil {
         if (!Hawk.isBuilt()) {
             Hawk.init(context).build();
         }
-        LogUtils.e("IP地址是：" + ipAddress);
+        LogUtils.e("ip address：" + ipAddress);
         String oaid = Hawk.get(ConstantConfig.oaid);
-        LogUtils.e("oaid原有地址是：" + oaid);
+        LogUtils.e("oaid old：" + oaid);
         if(!TextUtils.isEmpty(oaid)){
             AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
             AdvertisementManager.getInstance().initConfig(oaid, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
@@ -327,7 +326,7 @@ public class ADUtil {
         UMConfigure.getOaid(context, new OnGetOaidListener() {
             @Override
             public void onGetOaid(String s) {
-                LogUtils.e("oaid地址是：" + s);
+                LogUtils.e("oaid new：" + s);
                 Hawk.put(ConstantConfig.oaid, s);
                 AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
                 AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
@@ -466,7 +465,6 @@ public class ADUtil {
             callBack.onAdClose();
             return;
         }
-        LogUtils.e("aaaaa_开始获取开屏广告2");
         AdvertisementManager.getInstance().showOpenScreenAd(act, codeId, splashContainer, width, height, callBack);
     }
 

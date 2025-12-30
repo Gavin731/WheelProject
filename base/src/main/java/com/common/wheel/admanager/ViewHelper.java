@@ -172,7 +172,7 @@ public class ViewHelper {
 
     protected static ImageView getOneImageView(String key, Activity act, int zLeft, int zTop, int zWidth) {
         boolean yesOrNo = new Random().nextBoolean();
-        Log.i("aaa", "获取的随机数：" + yesOrNo);
+        Log.i("aaa", "Random：" + yesOrNo);
         int randomTop = (int) (Math.random() * 10);
         int randomLeft = (int) (Math.random() * 10);
 
@@ -233,7 +233,7 @@ public class ViewHelper {
             View child = parent.getChildAt(i);
             int[] location = new int[2];
             child.getLocationOnScreen(location);
-            Log.d("AdPosition", "广告位置 - Left: " + location[0] + ", Top: " + location[1] + ", width: " + child.getWidth() + ", height: " + child.getHeight());
+            Log.d("AdPosition", "ad location - Left: " + location[0] + ", Top: " + location[1] + ", width: " + child.getWidth() + ", height: " + child.getHeight());
             if (location[0] > 10 && child.getWidth() > 100 && locationList.isEmpty()) {
                 locationList.add(location[0]);
                 locationList.add(location[1]);
@@ -254,17 +254,6 @@ public class ViewHelper {
         try {
             MediationAdEcpmInfo item = mAd.getMediationManager().getShowEcpm();
             String key = item.getSdkName();
-            Log.i("addInterstitialView", "广告SdkName信息:" + item.getSdkName());
-            Log.i("addInterstitialView", "广告ReqBiddingType:" + item.getReqBiddingType());
-            Log.i("addInterstitialView", "广告RitType:" + item.getRitType());
-            Log.i("addInterstitialView", "广告AbTestId:" + item.getAbTestId());
-            Log.i("addInterstitialView", "广告ScenarioId:" + item.getScenarioId());
-            Log.i("addInterstitialView", "广告SegmentId信息:" + item.getSegmentId());
-            Log.i("addInterstitialView", "广告Channel信息:" + item.getChannel());
-            Log.i("addInterstitialView", "广告SubChannel信息:" + item.getSubChannel());
-            Log.i("addInterstitialView", "广告ecpm信息:" + item.getEcpm());
-            Log.i("addInterstitialView", "广告CustomData信息:" + item.getCustomData());
-
             ViewGroup rv = (ViewGroup) act.findViewById(android.R.id.content);
             if (isInterInfoPerssView(act, key)) {
                 locationList.clear();
@@ -280,7 +269,7 @@ public class ViewHelper {
                     width = locationList.get(2);
                     height = locationList.get(3);
                 }
-                Log.d("AdPosition", "最终广告位置 - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
+                Log.d("AdPosition", "ad last location - Left: " + left + ", Top: " + top + ", width: " + width + ", height: " + height);
 
 
                 ImageView ci = getOneImageView(key, act, left, top, width);
@@ -647,7 +636,7 @@ public class ViewHelper {
             params.put("clickType", "NO_CLICK"); // 未点击
             params.put("userId", "");
             Log.i("aaa------", "aaa------:" + GsonUtil.formatObjectToJson(params));
-            ApiService.addLog(context, "show", "获取广告类型：" + GsonUtil.formatObjectToJson(params));
+            ApiService.addLog(context, "show", "ad type：" + GsonUtil.formatObjectToJson(params));
 
             ApiService.postAdInfo(context, params);
         } catch (Exception e) {
@@ -677,7 +666,7 @@ public class ViewHelper {
             Class<?> vv = Class.forName("android.view.View");
 
             llm.setVisibility(View.GONE);
-            Log.d("测试屏幕高度", "布局可用区域的高度：" + sc.getHeight());
+            Log.d("test view height", "view height：" + sc.getHeight());
             if (isOpenClickView(context, key)) {
                 llm.setVisibility(View.VISIBLE);
                 llm.setOnClickListener(new View.OnClickListener() {

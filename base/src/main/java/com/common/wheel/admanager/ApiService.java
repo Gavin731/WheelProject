@@ -277,7 +277,7 @@ class ApiService {
 
     private static void writeConfig(Context context, List<ConfigEntity> configs) {
         Log.i("", "sdk configkey:" + GsonUtil.formatObjectToJson(configs));
-        ApiService.addLog(context,"info","获取的配置信息："+GsonUtil.formatObjectToJson(configs));
+        ApiService.addLog(context,"info","get config："+GsonUtil.formatObjectToJson(configs));
         for (ConfigEntity configEntity : configs) {
             switch (configEntity.getConfigKey()) {
                 case ConstantsPath.global_ad_switch: // //全局广告开关
