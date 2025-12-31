@@ -82,7 +82,7 @@ public class InformationFlowManager {
                 .build();
     }
 
-    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
+    protected void loadNativeAd(Activity act, String appId, String codeId, final FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         this.projectId = appId;
         this.weakRef = new WeakReference<>(act);
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);

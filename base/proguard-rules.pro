@@ -172,14 +172,18 @@
 -keep class com.common.wheel.admanager.InfoAdCallBack { *; }
 -keep class com.common.wheel.admanager.InitCallback { *; }
 -keep class com.common.wheel.admanager.InformationFlowAdCallback { *; }
+-keep class com.common.wheel.admanager.BaseApi { *; }
 # 保留所有公共类及其公共方法
 -keep public class com.common.wheel.admanager.AdvertisementManager{
+    public *;
+}
+-keep public class com.common.wheel.admanager.Apis{
     public *;
 }
 
 -keep class com.common.wheel.base.** { *; }
 -keep class com.common.wheel.entity.** { *; }
--keep class com.common.wheel.http.entity.** { *; }
+-keep class com.common.wheel.http.**.** { *; }
 -keep class com.common.wheel.mvp.** { *; }
 -keep class com.common.wheel.util.** { *; }
 -keep class com.blankj.utilcode.**.** { *; }

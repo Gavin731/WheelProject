@@ -44,7 +44,7 @@ public class Apis {
      * @param <T>
      * @return 实例
      */
-    public static <T> T getApi(Class<T> clazz) {
+    private static <T> T getApi(Class<T> clazz) {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 // 超时设置
