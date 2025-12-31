@@ -37,7 +37,8 @@
 
 -keep class com.common.wheel.base.** { *; }
 -keep class com.common.wheel.entity.** { *; }
--keep class com.common.wheel.http.**.** { *; }
+-keep class com.common.wheel.http.** { *; }
+-keep class com.common.wheel.http.entity.** { *; }
 -keep class com.common.wheel.mvp.** { *; }
 -keep class com.common.wheel.util.** { *; }
 -keep class com.blankj.utilcode.**.** { *; }
