@@ -30,6 +30,19 @@ public interface ConstantConfig {
     String personalRate2bl = "personalRate2bl";// 补充公积金个人比例
 
 
+    String companyYlbxRate = "companyYlbxRate";
+    String personalYlbxRatenl = "personalYlbxRatenl";
+    String companyYiliaoRatebl = "companyYiliaoRatebl";
+    String personalYiliaoRatebl = "personalYiliaoRatebl";
+    String companyShiyeRatebl = "companyShiyeRatebl";
+    String personalShiyeRatebl = "personalShiyeRatebl";
+    String companyShengyuRatebl = "companyShengyuRatebl";
+    String companyGongshangRatebl = "companyGongshangRatebl";
+    String companyGjjRatebl = "companyGjjRatebl";
+    String personalGjjRatebl = "personalGjjRatebl";
+
+
+
     String sexOrType_maleEmployee ="sexOrType_maleEmployee"; // 60岁男职工
     String sexOrType_femaleCadre ="sexOrType_femaleCadre"; // 55岁女干部
     String sexOrType_femaleEmployee ="sexOrType_femaleEmployee"; // 50岁女职工

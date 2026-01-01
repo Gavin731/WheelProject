@@ -40,7 +40,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@mipmap/sb_2yl"
+                    android:background="@mipmap/sb_js"
                     android:orientation="vertical">
 
                     <TextView
@@ -48,8 +48,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_5_7"
                         android:layout_marginTop="@dimen/dp_20"
-                        android:text="医疗保险"
-                        android:textColor="#ff89312f"
+                        android:text="社保计算"
+                        android:textColor="#347CAF"
                         android:textSize="@dimen/sp_13_19" />
 
                     <TextView
@@ -57,8 +57,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_5_7"
                         android:layout_marginTop="@dimen/dp_2_3"
-                        android:text="医保保险计算"
-                        android:textColor="#ff89312f"
+                        android:text="社保缴纳计算"
+                        android:textColor="#347CAF"
                         android:textSize="@dimen/sp_8_12" />
 
                 </LinearLayout>
@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/dp_5_7"
                     android:layout_weight="1"
-                    android:background="@mipmap/sy_yanglaobx"
+                    android:background="@mipmap/sb_zd"
                     android:orientation="vertical">
 
                     <TextView
@@ -77,8 +77,8 @@
                         android:layout_height="32dp"
                         android:layout_marginLeft="@dimen/dp_5_7"
                         android:layout_marginTop="@dimen/dp_20"
-                        android:text="养老保险"
-                        android:textColor="#ff15563a"
+                        android:text="社保账单"
+                        android:textColor="#347CAF"
                         android:textSize="@dimen/sp_13_19" />
 
                     <TextView
@@ -86,8 +86,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_5_7"
                         android:layout_marginTop="@dimen/dp_2_3"
-                        android:text="养老保险计算"
-                        android:textColor="#ff15563a"
+                        android:text="缴费账单记录"
+                        android:textColor="#347CAF"
                         android:textSize="@dimen/sp_8_12" />
 
                 </LinearLayout>

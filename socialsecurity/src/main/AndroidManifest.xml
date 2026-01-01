@@ -185,6 +185,16 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.NewSbCalculationActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.NewSBJSCalculationResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
 
 
         <provider

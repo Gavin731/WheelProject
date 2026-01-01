@@ -38,6 +38,7 @@ import com.rzm.socialsecurity.activity.GSCalculateResultActivity;
 import com.rzm.socialsecurity.activity.GSJSActivity;
 import com.rzm.socialsecurity.activity.MainActivity;
 import com.rzm.socialsecurity.activity.MedicalCalculationActivity;
+import com.rzm.socialsecurity.activity.NewSbCalculationActivity;
 import com.rzm.socialsecurity.activity.RetirementCalculationActivity;
 import com.rzm.socialsecurity.activity.SBCalculateActivity;
 import com.rzm.socialsecurity.activity.SBFunctionActivity;
@@ -156,7 +157,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 LogUtils.i("------y="+scrollY);
 
-                if(!ad2IsShow && scrollY >= flInfoAd2.getTop()-100){
+                if(!ad2IsShow && scrollY >= flInfoAd2.getTop()-200){
                     showInfoAd(flInfoAd2);
                     ad2IsShow=true;
                 }
@@ -164,9 +165,14 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         });
 
         llYanglao = view.findViewById(R.id.ll_yanglao);
-        llYanglao.setOnClickListener(v -> jumpCalculatePage(4));
+        llYanglao.setOnClickListener(v -> {
+            ((MainActivity)getActivity()).jumpCurrentPage(2);
+        });
         llYiliao = view.findViewById(R.id.ll_yiliao);
-        llYiliao.setOnClickListener(v -> jumpCalculatePage(5));
+        llYiliao.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), NewSbCalculationActivity.class);
+            startActivity(intent);
+        });
         ivYanglao.setOnClickListener(v -> jumpCalculatePage(1));
         ivYiliao.setOnClickListener(v -> jumpCalculatePage(2));
         ivShiye.setOnClickListener(v -> jumpCalculatePage(3));
