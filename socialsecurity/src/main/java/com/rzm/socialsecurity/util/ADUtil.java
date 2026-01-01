@@ -61,7 +61,8 @@ public class ADUtil {
 
         String token = Hawk.get("token");
         if(!TextUtils.isEmpty(token)){
-            isPostEnvInfo(context, callback);
+//            isPostEnvInfo(context, callback);
+            initAdManager(context, callback);
             return;
         }
         LogUtils.e("aaaaa_start get key");
@@ -77,7 +78,8 @@ public class ADUtil {
                         TokenEntity result = tokenEntityRxObjectCode.getObject();
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
-                            isPostEnvInfo(context, callback);
+//                            isPostEnvInfo(context, callback);
+                            initAdManager(context, callback);
                         }else{
                             LogUtils.e("aaaaa_get key is null");
                             callback.error();

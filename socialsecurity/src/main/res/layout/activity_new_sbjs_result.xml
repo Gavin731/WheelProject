@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="企业比分"
+                            android:text="企业部分"
                             android:textColor="#ff999999"
                             android:textSize="@dimen/sp_9_13" />
 

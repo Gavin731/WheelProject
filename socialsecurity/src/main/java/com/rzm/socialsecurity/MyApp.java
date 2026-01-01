@@ -10,6 +10,7 @@ import androidx.multidex.MultiDex;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.common.wheel.BaseApplication;
+import com.kongzue.dialogx.DialogX;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.orhanobut.hawk.Hawk;
 import com.rzm.socialsecurity.activity.SplashActivity;
@@ -44,6 +45,7 @@ public class MyApp extends BaseApplication {
         super.onCreate();
         myApp = this;
         UMUtil.preInit(this);
+        DialogX.init(this);
         boolean isShowUserPrivacy = Hawk.get(ConstantConfig.isAgreeUserPrivacy, false);
         if(isShowUserPrivacy){
             LogUtils.i("开始初始化友盟：app");
