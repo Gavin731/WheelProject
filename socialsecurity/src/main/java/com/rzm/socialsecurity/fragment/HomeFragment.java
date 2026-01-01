@@ -9,10 +9,12 @@ import android.media.metrics.Event;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -75,6 +77,9 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
     public FrameLayout flInfoAd,flInfoAd2;
 
     public LinearLayout llYanglao1, llYiliao1, llShiye, llGongshang,llShengyu;
+    public ScrollView sv;
+
+    public boolean ad2IsShow=false;
 
     public static HomeFragment newInstance(String content) {
         Bundle args = new Bundle();
@@ -119,7 +124,6 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             if(flInfoAd!=null && flInfoAd.getVisibility() == VISIBLE){
                 LogUtils.i("------aa1111");
                 showInfoAd(flInfoAd);
-                showInfoAd(flInfoAd2);
             }
         }
     }
@@ -146,7 +150,18 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         etGsMonthMoney = view.findViewById(R.id.et_gs_month_money);
         etGsSbMoney = view.findViewById(R.id.et_gs_sb_money);
         etGsZxkcMoney = view.findViewById(R.id.et_gs_zxkc_money);
+        sv=view.findViewById(R.id.main);
+        sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                LogUtils.i("------y="+scrollY);
 
+                if(!ad2IsShow && scrollY >= flInfoAd2.getTop()-100){
+                    showInfoAd(flInfoAd2);
+                    ad2IsShow=true;
+                }
+            }
+        });
 
         llYanglao = view.findViewById(R.id.ll_yanglao);
         llYanglao.setOnClickListener(v -> jumpCalculatePage(4));
@@ -368,7 +383,6 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         flInfoAd=view.findViewById(R.id.fl_info_ad_home);
         flInfoAd2=view.findViewById(R.id.fl_info_ad_home2);
         showInfoAd(flInfoAd);
-        showInfoAd(flInfoAd2);
 
         llYanglao1 = view.findViewById(R.id.ll_yanglao1);
         llYanglao1.setOnClickListener(v -> jumpDetailPage(1));
@@ -450,7 +464,6 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
             return;
         }
         showInfoAd(flInfoAd);
-        showInfoAd(flInfoAd2);
     }
 
     public void showInfoAd(FrameLayout layout){

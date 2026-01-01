@@ -567,9 +567,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
     public void requestPermission() {
         boolean isPass = Hawk.get("isCheckPermission", false);
         String userEnv = Hawk.get(ConstantConfig.userEnv);
-        if("true".equals(userEnv)){
-            AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
-        }
+//        if("true".equals(userEnv)){
+//            AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
+//        }
         // 没有申请权限，且上报接口开了才申请电话权限
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED && !isPass && "true".equals(userEnv)) {

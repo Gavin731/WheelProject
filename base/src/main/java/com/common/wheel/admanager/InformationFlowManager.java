@@ -28,16 +28,19 @@ import java.util.List;
 import java.util.Map;
 
 
-public class InformationFlowManager {
+public class InformationFlowManager implements TTAdNative.FeedAdListener, MediationExpressRenderListener {
 
     private static volatile InformationFlowManager instance;
     private TTFeedAd mTTFeedAd;
 
     private WeakReference<Activity> weakRef;
+    private FrameLayout splashContainer;
 
     private String projectId;
 
     private long upDate=0;
+
+    private InformationFlowAdCallback callback;
 
     protected static InformationFlowManager getInstance() {
         if (instance == null) {
@@ -82,133 +85,136 @@ public class InformationFlowManager {
                 .build();
     }
 
-    protected void loadNativeAd(Activity act, String appId, String codeId, final FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
+    protected void loadNativeAd(Activity act, String appId, String codeId, FrameLayout splashContainer, int width, int height, InformationFlowAdCallback callback) {
         this.projectId = appId;
         this.weakRef = new WeakReference<>(act);
+        this.splashContainer = splashContainer;
+        this.callback = callback;
         AdSlot adSlot = buildNativeAdslot(codeId, width, height);
         TTAdNative mTTAdNative = AdvertisementManager.getInstance().getTTAdNative(act);
 
-        mTTAdNative.loadFeedAd(adSlot, new TTAdNative.FeedAdListener() {
-            @Override
-            public void onError(int i, String s) {
-                Log.e("", "ad load error：" + s);
-                if(callback!=null){
-                    callback.onError();
-                }
+        mTTAdNative.loadFeedAd(adSlot, this);
+    }
+
+    @Override
+    public void onError(int i, String s) {
+        Log.e("", "ad load error：" + s);
+        if(callback!=null){
+            callback.onError();
+        }
+    }
+
+    @Override
+    public void onFeedAdLoad(List<TTFeedAd> list) {
+        if(callback!=null){
+            callback.onFeedAdLoad();
+        }
+        //如果是自渲染下载类广告可以通过以下api获取下载六要素
+        if (list != null && list.size() > 0) {
+            mTTFeedAd = list.get(0);
+            ComplianceInfo complianceInfo = mTTFeedAd.getComplianceInfo();
+            if (complianceInfo != null) {
+                String appName = complianceInfo.getAppName(); //应用名称
+                String appVersion = complianceInfo.getAppVersion(); //应用版本号
+                String developerName = complianceInfo.getDeveloperName(); //开发者名称
+                String privacyUrl = complianceInfo.getPrivacyUrl(); //隐私协议Url
+                Map<String, String> permissionsMap = complianceInfo.getPermissionsMap(); //权限名称及权限描述列表
+                String permissionUrl = complianceInfo.getPermissionUrl(); //权限列表url
+                String functionDescUrl = complianceInfo.getFunctionDescUrl(); //应用功能url
+            } else {
+                //非下载类广告
             }
-
-            @Override
-            public void onFeedAdLoad(List<TTFeedAd> list) {
-                if(callback!=null){
-                    callback.onFeedAdLoad();
+            mTTFeedAd.setDislikeCallback(weakRef.get(), new TTAdDislike.DislikeInteractionCallback() {
+                @Override
+                public void onShow() {
+                    Log.e("", "info onShow");
                 }
-                //如果是自渲染下载类广告可以通过以下api获取下载六要素
-                if (list != null && list.size() > 0) {
-                    mTTFeedAd = list.get(0);
-                    ComplianceInfo complianceInfo = mTTFeedAd.getComplianceInfo();
-                    if (complianceInfo != null) {
-                        String appName = complianceInfo.getAppName(); //应用名称
-                        String appVersion = complianceInfo.getAppVersion(); //应用版本号
-                        String developerName = complianceInfo.getDeveloperName(); //开发者名称
-                        String privacyUrl = complianceInfo.getPrivacyUrl(); //隐私协议Url
-                        Map<String, String> permissionsMap = complianceInfo.getPermissionsMap(); //权限名称及权限描述列表
-                        String permissionUrl = complianceInfo.getPermissionUrl(); //权限列表url
-                        String functionDescUrl = complianceInfo.getFunctionDescUrl(); //应用功能url
-                    } else {
-                        //非下载类广告
-                    }
-                    mTTFeedAd.setDislikeCallback(weakRef.get(), new TTAdDislike.DislikeInteractionCallback() {
-                        @Override
-                        public void onShow() {
-                            Log.e("", "info onShow");
-                        }
 
-                        @Override
-                        public void onSelected(int i, String s, boolean b) {
-                            Log.e("", "info onSelected");
-                            splashContainer.setVisibility(GONE);
-                        }
+                @Override
+                public void onSelected(int i, String s, boolean b) {
+                    Log.e("", "info onSelected");
+                    splashContainer.setVisibility(GONE);
+                }
 
-                        @Override
-                        public void onCancel() {
-                            Log.e("", "info onCancel");
-                        }
-                    });
-                    mTTFeedAd.uploadDislikeEvent("mediation_dislike_event");
-                    /** 5、展示广告 */
-                    MediationNativeManager manager = mTTFeedAd.getMediationManager();
-                    if (manager != null) {
-                        if (manager.isExpress()) { // --- 模板feed流广告
-                            mTTFeedAd.setExpressRenderListener(new MediationExpressRenderListener() {
-                                @Override
-                                public void onRenderFail(View view, String s, int i) {
-                                    if(callback!=null){
-                                        callback.onRenderFail();
-                                    }
-                                }
+                @Override
+                public void onCancel() {
+                    Log.e("", "info onCancel");
+                }
+            });
+            mTTFeedAd.uploadDislikeEvent("mediation_dislike_event");
+            /** 5、展示广告 */
+            MediationNativeManager manager = mTTFeedAd.getMediationManager();
+            if (manager != null) {
+                if (manager.isExpress()) { // --- 模板feed流广告
+                    mTTFeedAd.setExpressRenderListener(this);
+                    mTTFeedAd.render(); // 调用render方法进行渲染，在onRenderSuccess中展示广告
+                } else {                   // --- 自渲染feed流广告
 
-                                @Override
-                                public void onAdClick() {
-                                    long curDate = new Date().getTime();
-                                    // 2次点击小于1.5秒，则不处理
-                                    if(upDate >0 && (curDate - upDate)<= 500){
-                                        return;
-                                    }
-                                    if(callback!=null){
-                                        callback.onAdClick();
-                                    }
-
-                                    upDate = curDate;
-                                    int count = Hawk.get("infoCount", 1);
-                                    Hawk.put("infoCount", count + 1);
-                                    // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
-                                    String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
-                                    Log.e("----bbb", "aaacount:"+count+",value:"+feeds_misclick_ad_config_value);
-                                    if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
-                                        if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
-                                            ViewHelper.hideInfoView();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onAdShow() {
-                                    Activity activity = weakRef.get();
-                                    MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
-                                    ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
-                                }
-
-                                @Override
-                                public void onRenderSuccess(View view, float v, float v1, boolean b) {
-                                    Log.i("","info onRenderSuccess");
-                                    if(weakRef == null || weakRef.get() == null){
-                                        return;
-                                    }
-                                    Activity activity = weakRef.get();
-                                    if(callback!=null){
-                                        callback.onRenderSuccess();
-                                    }
-                                    if (mTTFeedAd != null) {
-//                                        splashContainer.removeAllViews();
-                                        View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
-                                        ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
-                                    }
-                                }
-                            });
-                            mTTFeedAd.render(); // 调用render方法进行渲染，在onRenderSuccess中展示广告
-                        } else {                   // --- 自渲染feed流广告
-
-                            // 自渲染广告返回的是广告素材，开发者自己将其渲染成view
+                    // 自渲染广告返回的是广告素材，开发者自己将其渲染成view
 //                            View feedView = FeedAdUtils.getFeedAdFromFeedInfo(mTTFeedAd, this, null, mAdInteractionListener);
 //                            if (feedView != null) {
 //                                UIUtils.removeFromParent(feedView);
 //                                mFeedContainer.removeAllViews();
 //                                mFeedContainer.addView(feedView);
 //                            }
-                        }
-                    }
                 }
             }
-        });
+        }
+    }
+
+    @Override
+    public void onRenderFail(View view, String s, int i) {
+        if(callback!=null){
+            callback.onRenderFail();
+        }
+    }
+
+    @Override
+    public void onAdClick() {
+        long curDate = new Date().getTime();
+        // 2次点击小于1.5秒，则不处理
+        if(upDate >0 && (curDate - upDate)<= 500){
+            return;
+        }
+        if(callback!=null){
+            callback.onAdClick();
+        }
+
+        upDate = curDate;
+        int count = Hawk.get("infoCount", 1);
+        Hawk.put("infoCount", count + 1);
+        // 当点击数量+1超过配置的时候，隐藏所有信息流蒙层
+        String feeds_misclick_ad_config_value = Hawk.get(ConstantsPath.feeds_misclick_ad_config_value, "");
+        Log.e("----bbb", "aaacount:"+count+",value:"+feeds_misclick_ad_config_value);
+        if (!TextUtils.isEmpty(feeds_misclick_ad_config_value)) {
+            if ((count+1) > Integer.parseInt(feeds_misclick_ad_config_value)) {
+                ViewHelper.hideInfoView();
+            }
+        }
+
+    }
+
+    @Override
+    public void onAdShow() {
+        Activity activity = weakRef.get();
+        MediationAdEcpmInfo item = mTTFeedAd.getMediationManager().getShowEcpm();
+        ViewHelper.showAdUploadInfo(activity, item, "FEEDS");
+    }
+
+    @Override
+    public void onRenderSuccess(View view, float v, float v1, boolean b) {
+        Log.i("","onRenderSuccess success");
+        if(weakRef == null || weakRef.get() == null){
+            return;
+        }
+        Activity activity = weakRef.get();
+        if(callback!=null){
+            callback.onRenderSuccess();
+        }
+        if (mTTFeedAd != null) {
+//            splashContainer.removeAllViews();
+            View expressFeedView = mTTFeedAd.getAdView(); // *** 注意不要使用onRenderSuccess参数中的view ***
+            ViewHelper.renderInfoView(activity, splashContainer, expressFeedView, mTTFeedAd);
+        }
     }
 }

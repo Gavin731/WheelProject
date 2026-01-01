@@ -59,7 +59,6 @@ android {
             keyPassword "juduo123"
         }
         debug {
-            // todo zeng
             storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
             storePassword "juduo123"
             keyAlias "juduo"
@@ -70,12 +69,11 @@ android {
     buildTypes {
         debug {
             debuggable true
-            // todo zeng
-            minifyEnabled true //开启混淆
-            shrinkResources false //移除无用资源
-            zipAlignEnabled false //zipalign优化
-            signingConfig signingConfigs.debug
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            minifyEnabled true //开启混淆
+//            shrinkResources false //移除无用资源
+//            zipAlignEnabled false //zipalign优化
+//            signingConfig signingConfigs.debug
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {

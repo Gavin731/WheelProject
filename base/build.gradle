@@ -29,7 +29,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true //开启混淆 todo zengling
+            minifyEnabled false //开启混淆
             zipAlignEnabled true //Zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
