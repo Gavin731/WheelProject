@@ -30,6 +30,7 @@ import com.common.wheel.admanager.InfoAdCallBack;
 import com.common.wheel.admanager.InformationFlowAdCallback;
 import com.common.wheel.admanager.InitCallback;
 import com.common.wheel.admanager.RewardAdCallBack;
+import com.common.wheel.constans.ConstantsPath;
 import com.common.wheel.mvp.MvpActivity;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBackgroundMaskClickListener;
@@ -164,7 +165,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 
     public void showAppHintDialog() {
         boolean isShowAppHint = Hawk.get(ConstantConfig.isShowAppDialog, false);
-        if (isShowAppHint) {
+        boolean is_feeds_ad_switch = Hawk.get(ConstantsPath.is_feeds_ad_switch, false);
+        if (isShowAppHint || !is_feeds_ad_switch) {
             confirmUserPrivacy();
             return;
         }
