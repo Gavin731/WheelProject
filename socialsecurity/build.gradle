@@ -53,13 +53,13 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+            storeFile file("D:\\ad\\juduo.jks")
             storePassword "juduo123"
             keyAlias "juduo"
             keyPassword "juduo123"
         }
         debug {
-            storeFile file("/Users/zenglinggui/Documents/ad/juduo.jks")
+            storeFile file("D:\\ad\\juduo.jks")
             storePassword "juduo123"
             keyAlias "juduo"
             keyPassword "juduo123"
