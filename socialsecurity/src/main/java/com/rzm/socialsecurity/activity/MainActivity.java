@@ -352,10 +352,10 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
 //            AdvertisementManager.getInstance().requestPermissionIfNecessary(this);
 //        }
         // 没有申请权限，且上报接口开了才申请电话权限
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-//                != PackageManager.PERMISSION_GRANTED && !isPass) {
-//            Hawk.put("isCheckPermission", true);
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-//        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED && !isPass) {
+            Hawk.put("isCheckPermission", true);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        }
     }
 }
