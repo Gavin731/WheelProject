@@ -365,8 +365,29 @@ public class ADUtil {
 
     }
 
+    /**
+     * 是否允许SDK主动使用地理位置信息                       boolean isCanUseLocation()
+     * 可传入地理位置信息                            LocationProvider getTTLocation()
+     * 是否允许sdk上报手机app安装列表                        boolean alist()
+     * 是否允许SDK主动使用手机硬件参数             boolean isCanUsePhoneState()
+     * isCanUsePhoneState=false时，可传入IME信息           String getDevImei()
+     * 是否允许SDK主动使用ACCESS_WIFI_STATE权限     boolean isCanUseWifiState()
+     * 当isCanUseWifiState=false时，可传入Mac地址信息         String getMacAddress()
+     * 是否允许SDK主动使用WRITE_EXTERNAL_STORAGE权限  boolean isCanUseWriteExternal()
+     * 开发者可以传入OAID                              String getDevOaid()
+     * 否允许SDK降低ANDROID_ID的采集频率                         boolean isCanUseAndroidId()
+     * 开发者可以传入android ID           String getAndroidId()
+     * 设置聚合隐私控制开关                 MediationPrivacyConfig getMediationPrivacyConfig()
+     *
+     * @return
+     */
     private static TTCustomController getTTCustomController() {
         return new TTCustomController() {
+            @Override
+            public boolean alist() {
+                return false;
+            }
+
             @Override
             public boolean isCanUseLocation() {  //是否授权位置权限
                 return true;

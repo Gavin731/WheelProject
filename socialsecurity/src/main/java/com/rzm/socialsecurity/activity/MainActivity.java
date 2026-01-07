@@ -336,7 +336,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements IMainVie
             public void onSkippedVideo() {
 
             }
-        }, type !=3);
+        }, true);
     }
 
     public void showWebView(int type) {
