@@ -45,6 +45,10 @@ android {
             dimension "channel"
             manifestPlaceholders = [CHANNEL_ID: "baidu"]
         }
+        baidu2 {
+            dimension "channel"
+            manifestPlaceholders = [CHANNEL_ID: "baidu2"]
+        }
     }
 
     buildFeatures {
