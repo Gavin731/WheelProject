@@ -155,9 +155,9 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements IAView {
         sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                LogUtils.i("------y="+scrollY);
+                LogUtils.i("------y="+scrollY+","+flInfoAd2.getTop());
 
-                if(!ad2IsShow && scrollY >= flInfoAd2.getTop()-200){
+                if(!ad2IsShow && scrollY >= 900){
                     showInfoAd(flInfoAd2);
                     ad2IsShow=true;
                 }
