@@ -79,11 +79,10 @@ public class ADUtil {
                         if (!TextUtils.isEmpty(result.getAppToken())) {
                             Hawk.put("token", result.getAppToken());
 //                            isPostEnvInfo(context, callback);
-                            initAdManager(context, callback);
                         }else{
                             LogUtils.e("aaaaa_get key is null");
-                            callback.error();
                         }
+                        initAdManager(context, callback);
                         return true;
                     }
                 }).subscribe(new Consumer<Boolean>() {
@@ -96,6 +95,7 @@ public class ADUtil {
                         Log.i("", "token error:" + ExceptionUtil.getStackTrace(throwable));
 //                        callback.error();
                         LogUtils.e("aaaaa_get key error");
+                        initAdManager(context, callback);
                     }
                 });
     }
@@ -320,6 +320,8 @@ public class ADUtil {
         LogUtils.e("oaid old：" + oaid);
         if(!TextUtils.isEmpty(oaid)){
             AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
+            AdvertisementManager.getInstance().setBackupAdCode(ConstantConfig.BACKUP_AD_SPLASH,
+                    ConstantConfig.BACKUP_AD_INFO, ConstantConfig.BACKUP_AD_Interstitial, ConstantConfig.BACKUP_AD_Reward);
             AdvertisementManager.getInstance().initConfig(oaid, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
             // 获取app配置
             requestConfig(context);
@@ -331,6 +333,8 @@ public class ADUtil {
                 LogUtils.e("oaid new：" + s);
                 Hawk.put(ConstantConfig.oaid, s);
                 AdvertisementManager.getInstance().init(context, ConstantConfig.AD_PROJECT, ConstantConfig.PROJECT_NAME, callback, getTTCustomController());
+                AdvertisementManager.getInstance().setBackupAdCode(ConstantConfig.BACKUP_AD_SPLASH,
+                        ConstantConfig.BACKUP_AD_INFO, ConstantConfig.BACKUP_AD_Interstitial, ConstantConfig.BACKUP_AD_Reward);
                 AdvertisementManager.getInstance().initConfig(s, ipAddress, context.getResources().getString(R.string.app_url), BuildConfig.VERSION_NAME);
 //                        postEnvInfo(context);
                 // 获取app配置
@@ -478,12 +482,12 @@ public class ADUtil {
      * 开屏广告
      */
     public static void showOpenScreenAd(Activity act, String codeId, FrameLayout splashContainer, int width, int height, OpenScreenAdCallBack callBack) {
-        boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, false);
+        boolean is_global_ad_switch = Hawk.get(ConstantsPath.is_global_ad_switch, true);
         if (!is_global_ad_switch) {
             callBack.onAdClose();
             return;
         }
-        boolean is_splash_ad_switch = Hawk.get(ConstantsPath.is_splash_ad_switch, false);
+        boolean is_splash_ad_switch = Hawk.get(ConstantsPath.is_splash_ad_switch, true);
         if (!is_splash_ad_switch) {
             callBack.onAdClose();
             return;

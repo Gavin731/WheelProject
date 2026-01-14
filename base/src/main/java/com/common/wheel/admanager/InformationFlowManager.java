@@ -58,9 +58,10 @@ public class InformationFlowManager implements TTAdNative.FeedAdListener, Mediat
     }
 
     private AdSlot buildNativeAdslot(String codeId, int width, int height) {
+        String backup_infoId = Hawk.get("backup_infoId");
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
-                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                TextUtils.isEmpty(backup_infoId) ? codeId : backup_infoId, // adn开屏广告代码位Id，注意不是聚合广告位Id
                 projectId,   // adn应用id，注意要跟初始化传入的保持一致
                 ""   // adn没有appKey时，传入空即可
         ) {

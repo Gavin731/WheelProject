@@ -54,4 +54,9 @@ public interface ConstantConfig {
     String AD_Interstitial="103656207";// 插屏
     String AD_INFO="103655294";// 信息流
     String AD_Reward="103653498";// 激励
+
+    String BACKUP_AD_SPLASH="892876305"; // 开屏
+    String BACKUP_AD_Interstitial="971105591";// 插屏
+    String BACKUP_AD_INFO="971105617";// 信息流
+    String BACKUP_AD_Reward="971105621";// 激励
 }

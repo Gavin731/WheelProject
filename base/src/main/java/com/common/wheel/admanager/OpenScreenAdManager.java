@@ -1,6 +1,7 @@
 package com.common.wheel.admanager;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.FrameLayout;
 
@@ -13,6 +14,7 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
+import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -43,9 +45,10 @@ public class OpenScreenAdManager implements TTAdNative.CSJSplashAdListener, CSJS
     }
 
     private AdSlot buildSplashAdslot(int width, int height) {
+        String backup_openId = Hawk.get("backup_openId");
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
-                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                TextUtils.isEmpty(backup_openId) ? codeId : backup_openId, // adn开屏广告代码位Id，注意不是聚合广告位Id
                 projectId,   // adn应用id，注意要跟初始化传入的保持一致
                 ""   // adn没有appKey时，传入空即可
         ) {

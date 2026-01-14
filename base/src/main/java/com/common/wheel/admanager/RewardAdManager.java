@@ -2,6 +2,7 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -13,6 +14,7 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationSplashRequestInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationBaseManager;
+import com.orhanobut.hawk.Hawk;
 
 import java.lang.ref.WeakReference;
 
@@ -39,9 +41,10 @@ public class RewardAdManager {
     }
 
     private AdSlot buildSplashAdslot(String projectId, String codeId) {
+        String backup_rewardId = Hawk.get("backup_rewardId");
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
-                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                TextUtils.isEmpty(backup_rewardId) ? codeId : backup_rewardId, // adn开屏广告代码位Id，注意不是聚合广告位Id
                 projectId,   // adn应用id，注意要跟初始化传入的保持一致
                 ""   // adn没有appKey时，传入空即可
         ) {

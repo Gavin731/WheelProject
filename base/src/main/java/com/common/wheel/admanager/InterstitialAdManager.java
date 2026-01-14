@@ -2,6 +2,7 @@ package com.common.wheel.admanager;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -43,10 +44,10 @@ public class InterstitialAdManager {
     }
 
     private void loadAd(Activity activity, String codeId, AdLoadListener.LoadSuccess loadSuccess) {
-        Log.i("","-----aaaaaaaaaaaaaaaaa");
+        String backup_interstitialId = Hawk.get("backup_interstitialId");
         MediationSplashRequestInfo csjSplashRequestInfo = new MediationSplashRequestInfo(
                 MediationConstant.ADN_PANGLE, // 穿山甲
-                codeId, // adn开屏广告代码位Id，注意不是聚合广告位Id
+                TextUtils.isEmpty(backup_interstitialId) ? codeId : backup_interstitialId, // adn开屏广告代码位Id，注意不是聚合广告位Id
                 projectId,   // adn应用id，注意要跟初始化传入的保持一致
                 ""   // adn没有appKey时，传入空即可
         ) {
